@@ -1,5 +1,7 @@
 # Local release preparation
 
+**Historical preparation and public source.** The October results below apply to their recorded local candidate. Before the first public release, a clean GitHub runner exposed two issues: cold image construction consumed the migration test's own time budget, and upstream removed exact Alpine APK URLs. The public build separates fixture setup from the test deadline and [refreshes signed, checksum-pinned APKs](verification/public-alpine-refresh.json) for both architectures. The upstream archive can replace APK revisions again, and content hashes do not retain upstream files. Refresh and verify the lock if a new cold build reports an unavailable APK.
+
 The final trusted-local candidate passed the functional and measured-effect gates in [release verification](verification/release-readiness.json). [Dependency assessment](dependency-security.md) records remaining test-tool risks, unverified helper coverage and host/architecture limits. This status does not imply public visibility, a push, a GitHub release or hosted CI success. The artifact remains version 0.2.0; no release tag is created.
 
 ## Prepared and verified

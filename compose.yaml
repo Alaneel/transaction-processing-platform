@@ -1,7 +1,7 @@
 name: transaction-processing-platform
 services:
   db:
-    image: tpp-postgres:17.11-security-20261013
+    image: tpp-postgres:17.11-lock-20261126
     pull_policy: never
     build:
       context: ./docker/postgres
@@ -22,7 +22,7 @@ services:
       retries: 20
     stop_grace_period: 30s
   kafka:
-    image: tpp-kafka:4.3.1-security-20261014
+    image: tpp-kafka:4.3.1-lock-20261126
     pull_policy: never
     build:
       context: ./docker

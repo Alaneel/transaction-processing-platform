@@ -1,5 +1,7 @@
 # Dependency and image security — 14 October 2026
 
+**Historical assessment.** The scans and performance evidence below apply to the exact October images. The November public source refresh changed Alpine package inputs after upstream stopped serving the old URLs. Refer to the [published package pins](../docker/alpine-packages.lock) and [refresh evidence](verification/public-alpine-refresh.json) for those inputs. The October scan findings do not apply to rebuilt November images.
+
 The release candidate preserves Spring Boot 4.1.1, Kafka 4.3.1, PostgreSQL 17.11 and all 42 production source files. Targeted application, build-tool and container patches replace known affected components without changing the financial or delivery algorithms. This assessment supports a trusted local fictional-data demonstration; it is not a claim that the whole system is vulnerability-free.
 
 | Component | Previous | Release candidate |

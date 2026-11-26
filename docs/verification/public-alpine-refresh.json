@@ -1,0 +1,1358 @@
+{
+  "observedAtUtc": "2026-11-26T12:59:32.626566+00:00",
+  "sourceLockSha256": "0c705424b7282458295ad48b4f5977daf5edda7a85c194020087facf4a321b79",
+  "scope": "Official stable Alpine v3.24/main aarch64 and x86_64; HTTPS validation retained; read-only downloads only",
+  "indexes": {
+    "aarch64": {
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/APKINDEX.tar.gz",
+      "httpStatus": 200,
+      "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/APKINDEX.tar.gz",
+      "exitCode": 0,
+      "error": "",
+      "sha256": "55f7cf13ad6e9ea591948a7e614fb6dc0bb6b596c134b48995ca61e97fc1e536",
+      "archiveMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "DESCRIPTION",
+        "APKINDEX"
+      ]
+    },
+    "x86_64": {
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/APKINDEX.tar.gz",
+      "httpStatus": 200,
+      "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/APKINDEX.tar.gz",
+      "exitCode": 0,
+      "error": "",
+      "sha256": "faaffa3f65ddfac0c38946e7ffca3c35be07a173dd9a7fdf29dd84b6df1b83ef",
+      "archiveMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "DESCRIPTION",
+        "APKINDEX"
+      ]
+    }
+  },
+  "packages": [
+    {
+      "architecture": "aarch64",
+      "name": "libcrypto3",
+      "oldVersion": "3.5.9-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libcrypto3-3.5.9-r0.apk",
+      "oldSha256": "2676a2b0b6e23ea2edccf3ee982b9842a665d52603d047de3d0a185dc316d983",
+      "currentVersion": "3.5.9-r1",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libcrypto3-3.5.9-r1.apk",
+      "currentSha256": "58ea027d8bd64fffac7d2106a9034341d6735387298a5e01b551429c73a13c71",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libcrypto3-3.5.9-r0.apk",
+        "httpStatus": 404,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libcrypto3-3.5.9-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libcrypto3-3.5.9-r1.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libcrypto3-3.5.9-r1.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "libcrypto3",
+        "V": "3.5.9-r1",
+        "A": "aarch64",
+        "C": "Q1j5FX8zPYDUksvHpLIk6b6ymqKZM=",
+        "D": "so:libc.musl-aarch64.so.1",
+        "o": "openssl",
+        "t": "1795044707",
+        "c": "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "libcrypto3"
+        ],
+        "pkgver": [
+          "3.5.9-r1"
+        ],
+        "arch": [
+          "aarch64"
+        ],
+        "origin": [
+          "openssl"
+        ],
+        "commit": [
+          "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+        ],
+        "depend": [
+          "so:libc.musl-aarch64.so.1"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": null
+    },
+    {
+      "architecture": "aarch64",
+      "name": "libexpat",
+      "oldVersion": "2.8.5-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libexpat-2.8.5-r0.apk",
+      "oldSha256": "568a12a4889a00711d1c80c197a5540ee1cdec26c1c59da38f8342ad69e7eff9",
+      "currentVersion": "2.11.0-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libexpat-2.11.0-r0.apk",
+      "currentSha256": "cf19455af9c5c9dcd3915294d299f743553855519431bba38577b8c4a23c4373",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libexpat-2.8.5-r0.apk",
+        "httpStatus": 404,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libexpat-2.8.5-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libexpat-2.11.0-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libexpat-2.11.0-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "libexpat",
+        "V": "2.11.0-r0",
+        "A": "aarch64",
+        "C": "Q120RoTMlugaugM6Mq0N/cxoXcJi0=",
+        "D": "so:libc.musl-aarch64.so.1",
+        "o": "expat",
+        "t": "1795611311",
+        "c": "e3335f476c69ffe92817447e265ce2f18323e4ae"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "libexpat"
+        ],
+        "pkgver": [
+          "2.11.0-r0"
+        ],
+        "arch": [
+          "aarch64"
+        ],
+        "origin": [
+          "expat"
+        ],
+        "commit": [
+          "e3335f476c69ffe92817447e265ce2f18323e4ae"
+        ],
+        "depend": [
+          "so:libc.musl-aarch64.so.1"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": null
+    },
+    {
+      "architecture": "aarch64",
+      "name": "libpng",
+      "oldVersion": "1.6.59-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libpng-1.6.59-r0.apk",
+      "oldSha256": "bccd127f8c42bc5c21c018b6b1dc977128f3bad64c3412e541c09e96e8b227a4",
+      "currentVersion": "1.6.59-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libpng-1.6.59-r0.apk",
+      "currentSha256": "bccd127f8c42bc5c21c018b6b1dc977128f3bad64c3412e541c09e96e8b227a4",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libpng-1.6.59-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libpng-1.6.59-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libpng-1.6.59-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libpng-1.6.59-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "libpng",
+        "V": "1.6.59-r0",
+        "A": "aarch64",
+        "C": "Q1tghdLeQRR5bv9IoSfKJRO91rI4c=",
+        "D": "so:libc.musl-aarch64.so.1 so:libz.so.1",
+        "o": "libpng",
+        "t": "1790747419",
+        "c": "8f222b50cd6e31c83f7dd69ab7c00e7471e11d4b"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "libpng"
+        ],
+        "pkgver": [
+          "1.6.59-r0"
+        ],
+        "arch": [
+          "aarch64"
+        ],
+        "origin": [
+          "libpng"
+        ],
+        "commit": [
+          "8f222b50cd6e31c83f7dd69ab7c00e7471e11d4b"
+        ],
+        "depend": [
+          "so:libc.musl-aarch64.so.1",
+          "so:libz.so.1"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": true
+    },
+    {
+      "architecture": "aarch64",
+      "name": "libssl3",
+      "oldVersion": "3.5.9-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libssl3-3.5.9-r0.apk",
+      "oldSha256": "20ac252b276d73f2c69c1d25f84537c7fba81caefc026c6be1094b394af2082e",
+      "currentVersion": "3.5.9-r1",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libssl3-3.5.9-r1.apk",
+      "currentSha256": "4aff30f84e7ac922b026f8b2dd574d91bb3bb01d22767a8a9a0a10c5ef64a44b",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libssl3-3.5.9-r0.apk",
+        "httpStatus": 404,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libssl3-3.5.9-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libssl3-3.5.9-r1.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libssl3-3.5.9-r1.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "libssl3",
+        "V": "3.5.9-r1",
+        "A": "aarch64",
+        "C": "Q1KNkgX8ENzbEIhoMADjj6YaImHMI=",
+        "D": "libcrypto3=3.5.9-r1 so:libc.musl-aarch64.so.1 so:libcrypto.so.3",
+        "o": "openssl",
+        "t": "1795044707",
+        "c": "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "libssl3"
+        ],
+        "pkgver": [
+          "3.5.9-r1"
+        ],
+        "arch": [
+          "aarch64"
+        ],
+        "origin": [
+          "openssl"
+        ],
+        "commit": [
+          "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+        ],
+        "depend": [
+          "libcrypto3=3.5.9-r1",
+          "so:libc.musl-aarch64.so.1",
+          "so:libcrypto.so.3"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": null
+    },
+    {
+      "architecture": "aarch64",
+      "name": "openssl",
+      "oldVersion": "3.5.9-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/openssl-3.5.9-r0.apk",
+      "oldSha256": "aa27b9edfeffbf7ebafbcf29df3f02eef4bf50f793a4874ae2f52aba6b53e653",
+      "currentVersion": "3.5.9-r1",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/openssl-3.5.9-r1.apk",
+      "currentSha256": "4f5adffa94887a87807d9222cf26930e906ae47e6a15ee9b8d1da034d695614d",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/openssl-3.5.9-r0.apk",
+        "httpStatus": 404,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/openssl-3.5.9-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/openssl-3.5.9-r1.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/openssl-3.5.9-r1.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "openssl",
+        "V": "3.5.9-r1",
+        "A": "aarch64",
+        "C": "Q1nQedBPJeQHtMqI7vE0ZBsRuszyQ=",
+        "D": "libssl3=3.5.9-r1 libcrypto3=3.5.9-r1 so:libc.musl-aarch64.so.1 so:libcrypto.so.3 so:libssl.so.3",
+        "o": "openssl",
+        "t": "1795044707",
+        "c": "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "openssl"
+        ],
+        "pkgver": [
+          "3.5.9-r1"
+        ],
+        "arch": [
+          "aarch64"
+        ],
+        "origin": [
+          "openssl"
+        ],
+        "commit": [
+          "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+        ],
+        "depend": [
+          "libssl3=3.5.9-r1",
+          "libcrypto3=3.5.9-r1",
+          "so:libc.musl-aarch64.so.1",
+          "so:libcrypto.so.3",
+          "so:libssl.so.3"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": null
+    },
+    {
+      "architecture": "aarch64",
+      "name": "p11-kit",
+      "oldVersion": "0.26.2-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-0.26.2-r0.apk",
+      "oldSha256": "0ad7cbbc011491b604b4d8fb8aafb6ce2a271c19eb8b785dd51f1704c61c58a5",
+      "currentVersion": "0.26.2-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-0.26.2-r0.apk",
+      "currentSha256": "0ad7cbbc011491b604b4d8fb8aafb6ce2a271c19eb8b785dd51f1704c61c58a5",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-0.26.2-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-0.26.2-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-0.26.2-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-0.26.2-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "p11-kit",
+        "V": "0.26.2-r0",
+        "A": "aarch64",
+        "C": "Q1btUg+DbR+2wN/3QOm3t9POW0uio=",
+        "D": "so:libc.musl-aarch64.so.1 so:libffi.so.8 so:libtasn1.so.6",
+        "o": "p11-kit",
+        "t": "1782380770",
+        "c": "922ca1ffc9cc326f7d95b093b365e31da5cba1a9"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "p11-kit"
+        ],
+        "pkgver": [
+          "0.26.2-r0"
+        ],
+        "arch": [
+          "aarch64"
+        ],
+        "origin": [
+          "p11-kit"
+        ],
+        "commit": [
+          "922ca1ffc9cc326f7d95b093b365e31da5cba1a9"
+        ],
+        "depend": [
+          "so:libc.musl-aarch64.so.1",
+          "so:libffi.so.8",
+          "so:libtasn1.so.6"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": true
+    },
+    {
+      "architecture": "aarch64",
+      "name": "p11-kit-trust",
+      "oldVersion": "0.26.2-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-trust-0.26.2-r0.apk",
+      "oldSha256": "6a39cb8ba9a68a178f404300409398b7f806bdfe3060621b5428f42abcf7173c",
+      "currentVersion": "0.26.2-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-trust-0.26.2-r0.apk",
+      "currentSha256": "6a39cb8ba9a68a178f404300409398b7f806bdfe3060621b5428f42abcf7173c",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-trust-0.26.2-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-trust-0.26.2-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-trust-0.26.2-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-trust-0.26.2-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "p11-kit-trust",
+        "V": "0.26.2-r0",
+        "A": "aarch64",
+        "C": "Q12muBWMhXo90ISFDqyW9ThdZU2+I=",
+        "D": "so:libc.musl-aarch64.so.1 so:libp11-kit.so.0 so:libtasn1.so.6",
+        "o": "p11-kit",
+        "t": "1782380770",
+        "c": "922ca1ffc9cc326f7d95b093b365e31da5cba1a9"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "p11-kit-trust"
+        ],
+        "pkgver": [
+          "0.26.2-r0"
+        ],
+        "arch": [
+          "aarch64"
+        ],
+        "origin": [
+          "p11-kit"
+        ],
+        "commit": [
+          "922ca1ffc9cc326f7d95b093b365e31da5cba1a9"
+        ],
+        "depend": [
+          "so:libc.musl-aarch64.so.1",
+          "so:libp11-kit.so.0",
+          "so:libtasn1.so.6"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": true
+    },
+    {
+      "architecture": "aarch64",
+      "name": "sqlite-libs",
+      "oldVersion": "3.53.4-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/sqlite-libs-3.53.4-r0.apk",
+      "oldSha256": "b39d8d73c1208838a436f2d481ba605b52a095f8d6ff781556eafc81cd1a13e9",
+      "currentVersion": "3.53.4-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/sqlite-libs-3.53.4-r0.apk",
+      "currentSha256": "b39d8d73c1208838a436f2d481ba605b52a095f8d6ff781556eafc81cd1a13e9",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/sqlite-libs-3.53.4-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/sqlite-libs-3.53.4-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/sqlite-libs-3.53.4-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/sqlite-libs-3.53.4-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "sqlite-libs",
+        "V": "3.53.4-r0",
+        "A": "aarch64",
+        "C": "Q1OWsp/zpMxhhT4AEyP8P+zIs8g+U=",
+        "D": "so:libc.musl-aarch64.so.1",
+        "o": "sqlite",
+        "t": "1787333779",
+        "c": "a9c3ba8b9129ec0f294d0a9bf538c2f1632bb016"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "sqlite-libs"
+        ],
+        "pkgver": [
+          "3.53.4-r0"
+        ],
+        "arch": [
+          "aarch64"
+        ],
+        "origin": [
+          "sqlite"
+        ],
+        "commit": [
+          "a9c3ba8b9129ec0f294d0a9bf538c2f1632bb016"
+        ],
+        "depend": [
+          "so:libc.musl-aarch64.so.1"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": true
+    },
+    {
+      "architecture": "aarch64",
+      "name": "zlib",
+      "oldVersion": "1.3.2-r1",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/zlib-1.3.2-r1.apk",
+      "oldSha256": "1f77a542ac6634761b9fe38d8bdca19b154071dcfa25432e73f2bc8a0740a33f",
+      "currentVersion": "1.4-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/zlib-1.4-r0.apk",
+      "currentSha256": "d3e30d012a3445222b0b4a28f1d4d97ce67387f8b48561921111696da174f0de",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/zlib-1.3.2-r1.apk",
+        "httpStatus": 404,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/zlib-1.3.2-r1.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/zlib-1.4-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/zlib-1.4-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "zlib",
+        "V": "1.4-r0",
+        "A": "aarch64",
+        "C": "Q1cAnIFG+QhV4gjN8LYPNd8Iv+wcM=",
+        "D": "so:libc.musl-aarch64.so.1",
+        "o": "zlib",
+        "t": "1793989322",
+        "c": "bdf501c870a92a05c097857401f69c48c4810384"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "zlib"
+        ],
+        "pkgver": [
+          "1.4-r0"
+        ],
+        "arch": [
+          "aarch64"
+        ],
+        "origin": [
+          "zlib"
+        ],
+        "commit": [
+          "bdf501c870a92a05c097857401f69c48c4810384"
+        ],
+        "depend": [
+          "so:libc.musl-aarch64.so.1"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": null
+    },
+    {
+      "architecture": "x86_64",
+      "name": "libcrypto3",
+      "oldVersion": "3.5.9-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libcrypto3-3.5.9-r0.apk",
+      "oldSha256": "6632d758d8f5e9ea3b650fe966f23bbf9a202f8b8dceecac93da135dec5e3689",
+      "currentVersion": "3.5.9-r1",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libcrypto3-3.5.9-r1.apk",
+      "currentSha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libcrypto3-3.5.9-r0.apk",
+        "httpStatus": 404,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libcrypto3-3.5.9-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libcrypto3-3.5.9-r1.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libcrypto3-3.5.9-r1.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "libcrypto3",
+        "V": "3.5.9-r1",
+        "A": "x86_64",
+        "C": "Q1I05gx2S9sTHg77/A+WuZaCWiHJo=",
+        "D": "so:libc.musl-x86_64.so.1",
+        "o": "openssl",
+        "t": "1795044707",
+        "c": "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "libcrypto3"
+        ],
+        "pkgver": [
+          "3.5.9-r1"
+        ],
+        "arch": [
+          "x86_64"
+        ],
+        "origin": [
+          "openssl"
+        ],
+        "commit": [
+          "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+        ],
+        "depend": [
+          "so:libc.musl-x86_64.so.1"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": null
+    },
+    {
+      "architecture": "x86_64",
+      "name": "libexpat",
+      "oldVersion": "2.8.5-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libexpat-2.8.5-r0.apk",
+      "oldSha256": "2e56946bc495cbed9eb1ad70859a79cba9db6420016453e065a0628848b32c7e",
+      "currentVersion": "2.11.0-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libexpat-2.11.0-r0.apk",
+      "currentSha256": "3779d8b0dfac33f82fd4ca0749318066e6beabe77cd788aa2d9f502e74a87b07",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libexpat-2.8.5-r0.apk",
+        "httpStatus": 404,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libexpat-2.8.5-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libexpat-2.11.0-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libexpat-2.11.0-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "libexpat",
+        "V": "2.11.0-r0",
+        "A": "x86_64",
+        "C": "Q1SIkwd1A0L0JkLzL6ZhtEEzKhlGg=",
+        "D": "so:libc.musl-x86_64.so.1",
+        "o": "expat",
+        "t": "1795611311",
+        "c": "e3335f476c69ffe92817447e265ce2f18323e4ae"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "libexpat"
+        ],
+        "pkgver": [
+          "2.11.0-r0"
+        ],
+        "arch": [
+          "x86_64"
+        ],
+        "origin": [
+          "expat"
+        ],
+        "commit": [
+          "e3335f476c69ffe92817447e265ce2f18323e4ae"
+        ],
+        "depend": [
+          "so:libc.musl-x86_64.so.1"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": null
+    },
+    {
+      "architecture": "x86_64",
+      "name": "libpng",
+      "oldVersion": "1.6.59-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libpng-1.6.59-r0.apk",
+      "oldSha256": "d16aeb0597f2bc43e0583ac9ff779388ec160c3e22568b640122e94ba55be6d7",
+      "currentVersion": "1.6.59-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libpng-1.6.59-r0.apk",
+      "currentSha256": "d16aeb0597f2bc43e0583ac9ff779388ec160c3e22568b640122e94ba55be6d7",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libpng-1.6.59-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libpng-1.6.59-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libpng-1.6.59-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libpng-1.6.59-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "libpng",
+        "V": "1.6.59-r0",
+        "A": "x86_64",
+        "C": "Q1qtsPrh9nP39XxYLvdXFAUOykO5I=",
+        "D": "so:libc.musl-x86_64.so.1 so:libz.so.1",
+        "o": "libpng",
+        "t": "1790747419",
+        "c": "8f222b50cd6e31c83f7dd69ab7c00e7471e11d4b"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "libpng"
+        ],
+        "pkgver": [
+          "1.6.59-r0"
+        ],
+        "arch": [
+          "x86_64"
+        ],
+        "origin": [
+          "libpng"
+        ],
+        "commit": [
+          "8f222b50cd6e31c83f7dd69ab7c00e7471e11d4b"
+        ],
+        "depend": [
+          "so:libc.musl-x86_64.so.1",
+          "so:libz.so.1"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": true
+    },
+    {
+      "architecture": "x86_64",
+      "name": "libssl3",
+      "oldVersion": "3.5.9-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libssl3-3.5.9-r0.apk",
+      "oldSha256": "05e3393fb95aa5751ca2f9d242f659f6cff82c1cc7767cc2df4a086f7ad01877",
+      "currentVersion": "3.5.9-r1",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libssl3-3.5.9-r1.apk",
+      "currentSha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libssl3-3.5.9-r0.apk",
+        "httpStatus": 404,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libssl3-3.5.9-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libssl3-3.5.9-r1.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libssl3-3.5.9-r1.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "libssl3",
+        "V": "3.5.9-r1",
+        "A": "x86_64",
+        "C": "Q1liSMx7iQMBbzF6s3hvx1ksKDoFw=",
+        "D": "libcrypto3=3.5.9-r1 so:libc.musl-x86_64.so.1 so:libcrypto.so.3",
+        "o": "openssl",
+        "t": "1795044707",
+        "c": "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "libssl3"
+        ],
+        "pkgver": [
+          "3.5.9-r1"
+        ],
+        "arch": [
+          "x86_64"
+        ],
+        "origin": [
+          "openssl"
+        ],
+        "commit": [
+          "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+        ],
+        "depend": [
+          "libcrypto3=3.5.9-r1",
+          "so:libc.musl-x86_64.so.1",
+          "so:libcrypto.so.3"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": null
+    },
+    {
+      "architecture": "x86_64",
+      "name": "openssl",
+      "oldVersion": "3.5.9-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/openssl-3.5.9-r0.apk",
+      "oldSha256": "9358e8f38eb19a1e035355626570c76bda1e5a49084c768fb0edc1e607251e99",
+      "currentVersion": "3.5.9-r1",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/openssl-3.5.9-r1.apk",
+      "currentSha256": "ed11241475e5757ce8eb9788b18116a804a579395d4813605df12989a2acbabf",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/openssl-3.5.9-r0.apk",
+        "httpStatus": 404,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/openssl-3.5.9-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/openssl-3.5.9-r1.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/openssl-3.5.9-r1.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "openssl",
+        "V": "3.5.9-r1",
+        "A": "x86_64",
+        "C": "Q1bFNY6buBJ9lOFFMnMz6XVI+5hZw=",
+        "D": "libssl3=3.5.9-r1 libcrypto3=3.5.9-r1 so:libc.musl-x86_64.so.1 so:libcrypto.so.3 so:libssl.so.3",
+        "o": "openssl",
+        "t": "1795044707",
+        "c": "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "openssl"
+        ],
+        "pkgver": [
+          "3.5.9-r1"
+        ],
+        "arch": [
+          "x86_64"
+        ],
+        "origin": [
+          "openssl"
+        ],
+        "commit": [
+          "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2"
+        ],
+        "depend": [
+          "libssl3=3.5.9-r1",
+          "libcrypto3=3.5.9-r1",
+          "so:libc.musl-x86_64.so.1",
+          "so:libcrypto.so.3",
+          "so:libssl.so.3"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": null
+    },
+    {
+      "architecture": "x86_64",
+      "name": "p11-kit",
+      "oldVersion": "0.26.2-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-0.26.2-r0.apk",
+      "oldSha256": "134d653aeeb4ada32746fbc3e2a7ae4201f584725de9263e4f32503658f3ddd8",
+      "currentVersion": "0.26.2-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-0.26.2-r0.apk",
+      "currentSha256": "134d653aeeb4ada32746fbc3e2a7ae4201f584725de9263e4f32503658f3ddd8",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-0.26.2-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-0.26.2-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-0.26.2-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-0.26.2-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "p11-kit",
+        "V": "0.26.2-r0",
+        "A": "x86_64",
+        "C": "Q1LnVzyqXTfa2bTyKUwAVGF6UIN8Q=",
+        "D": "so:libc.musl-x86_64.so.1 so:libffi.so.8 so:libtasn1.so.6",
+        "o": "p11-kit",
+        "t": "1782380770",
+        "c": "922ca1ffc9cc326f7d95b093b365e31da5cba1a9"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "p11-kit"
+        ],
+        "pkgver": [
+          "0.26.2-r0"
+        ],
+        "arch": [
+          "x86_64"
+        ],
+        "origin": [
+          "p11-kit"
+        ],
+        "commit": [
+          "922ca1ffc9cc326f7d95b093b365e31da5cba1a9"
+        ],
+        "depend": [
+          "so:libc.musl-x86_64.so.1",
+          "so:libffi.so.8",
+          "so:libtasn1.so.6"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": true
+    },
+    {
+      "architecture": "x86_64",
+      "name": "p11-kit-trust",
+      "oldVersion": "0.26.2-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-trust-0.26.2-r0.apk",
+      "oldSha256": "f79c696b960d974832723215431b93e21ecb29b2449892b3fd6587713f1f2f50",
+      "currentVersion": "0.26.2-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-trust-0.26.2-r0.apk",
+      "currentSha256": "f79c696b960d974832723215431b93e21ecb29b2449892b3fd6587713f1f2f50",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-trust-0.26.2-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-trust-0.26.2-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-trust-0.26.2-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-trust-0.26.2-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "p11-kit-trust",
+        "V": "0.26.2-r0",
+        "A": "x86_64",
+        "C": "Q1JonTuA880GnqDZNb3DIgj4CA9OA=",
+        "D": "so:libc.musl-x86_64.so.1 so:libp11-kit.so.0 so:libtasn1.so.6",
+        "o": "p11-kit",
+        "t": "1782380770",
+        "c": "922ca1ffc9cc326f7d95b093b365e31da5cba1a9"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "p11-kit-trust"
+        ],
+        "pkgver": [
+          "0.26.2-r0"
+        ],
+        "arch": [
+          "x86_64"
+        ],
+        "origin": [
+          "p11-kit"
+        ],
+        "commit": [
+          "922ca1ffc9cc326f7d95b093b365e31da5cba1a9"
+        ],
+        "depend": [
+          "so:libc.musl-x86_64.so.1",
+          "so:libp11-kit.so.0",
+          "so:libtasn1.so.6"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": true
+    },
+    {
+      "architecture": "x86_64",
+      "name": "sqlite-libs",
+      "oldVersion": "3.53.4-r0",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/sqlite-libs-3.53.4-r0.apk",
+      "oldSha256": "a8a216e53d22faa3f04d2e3650c1991af66f8d0b42fadff5afcdb9afb60b19e5",
+      "currentVersion": "3.53.4-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/sqlite-libs-3.53.4-r0.apk",
+      "currentSha256": "a8a216e53d22faa3f04d2e3650c1991af66f8d0b42fadff5afcdb9afb60b19e5",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/sqlite-libs-3.53.4-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/sqlite-libs-3.53.4-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/sqlite-libs-3.53.4-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/sqlite-libs-3.53.4-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "sqlite-libs",
+        "V": "3.53.4-r0",
+        "A": "x86_64",
+        "C": "Q192MM6zfCMrZgmGGuq2zbnNEg5vo=",
+        "D": "so:libc.musl-x86_64.so.1",
+        "o": "sqlite",
+        "t": "1787333779",
+        "c": "a9c3ba8b9129ec0f294d0a9bf538c2f1632bb016"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "sqlite-libs"
+        ],
+        "pkgver": [
+          "3.53.4-r0"
+        ],
+        "arch": [
+          "x86_64"
+        ],
+        "origin": [
+          "sqlite"
+        ],
+        "commit": [
+          "a9c3ba8b9129ec0f294d0a9bf538c2f1632bb016"
+        ],
+        "depend": [
+          "so:libc.musl-x86_64.so.1"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": true
+    },
+    {
+      "architecture": "x86_64",
+      "name": "zlib",
+      "oldVersion": "1.3.2-r1",
+      "oldUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/zlib-1.3.2-r1.apk",
+      "oldSha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
+      "currentVersion": "1.4-r0",
+      "currentUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/zlib-1.4-r0.apk",
+      "currentSha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
+      "oldUrlObservation": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/zlib-1.3.2-r1.apk",
+        "httpStatus": 404,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/zlib-1.3.2-r1.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentDownload": {
+        "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/zlib-1.4-r0.apk",
+        "httpStatus": 200,
+        "effectiveUrl": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/zlib-1.4-r0.apk",
+        "exitCode": 0,
+        "error": ""
+      },
+      "currentIndexRecord": {
+        "P": "zlib",
+        "V": "1.4-r0",
+        "A": "x86_64",
+        "C": "Q14j+c5OMsvdJ78cidhOg7phxCkLw=",
+        "D": "so:libc.musl-x86_64.so.1",
+        "o": "zlib",
+        "t": "1793989322",
+        "c": "bdf501c870a92a05c097857401f69c48c4810384"
+      },
+      "packageMetadata": {
+        "pkgname": [
+          "zlib"
+        ],
+        "pkgver": [
+          "1.4-r0"
+        ],
+        "arch": [
+          "x86_64"
+        ],
+        "origin": [
+          "zlib"
+        ],
+        "commit": [
+          "bdf501c870a92a05c097857401f69c48c4810384"
+        ],
+        "depend": [
+          "so:libc.musl-x86_64.so.1"
+        ]
+      },
+      "signatureMembers": [
+        ".SIGN.RSA.alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+      ],
+      "gzipMembers": 3,
+      "indexControlChecksumMatches": true,
+      "originalChecksumStillMatches": null
+    }
+  ],
+  "signatureVerification": "Signature members are inventoried; cryptographic APK verification is NOT executed here. Retain apk add without --allow-untrusted for normal Alpine trust verification.",
+  "complete": true,
+  "offlinePublisherSignatureVerification": {
+    "observedAtUtc": "2026-11-26T13:00:52.194382+00:00",
+    "sourceAuditSha256": "4a510f53f86af6bfa7f101ed5eaea9f68836b1d9d598fc0e8f69cc26293b3877",
+    "scope": "APK v2 RSA/SHA1 signatures checked against exact public keys fetched over validated HTTPS from official alpinelinux.org/keys; package install/build not executed",
+    "opensslVersion": "LibreSSL 3.3.6",
+    "keys": [
+      {
+        "name": "alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "url": "https://alpinelinux.org/keys/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "sha256": "207e4696d3c05f7cb05966aee557307151f1f00217af4143c1bcaf33b8df733f"
+      },
+      {
+        "name": "alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "url": "https://alpinelinux.org/keys/alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "sha256": "d11f6b21c61b4274e182eb888883a8ba8acdbf820dcc7a6d82a7d9fc2fd2836d"
+      }
+    ],
+    "packages": [
+      {
+        "architecture": "aarch64",
+        "name": "libcrypto3",
+        "version": "3.5.9-r1",
+        "archiveSha256": "58ea027d8bd64fffac7d2106a9034341d6735387298a5e01b551429c73a13c71",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "aarch64",
+        "name": "libexpat",
+        "version": "2.11.0-r0",
+        "archiveSha256": "cf19455af9c5c9dcd3915294d299f743553855519431bba38577b8c4a23c4373",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "aarch64",
+        "name": "libpng",
+        "version": "1.6.59-r0",
+        "archiveSha256": "bccd127f8c42bc5c21c018b6b1dc977128f3bad64c3412e541c09e96e8b227a4",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "aarch64",
+        "name": "libssl3",
+        "version": "3.5.9-r1",
+        "archiveSha256": "4aff30f84e7ac922b026f8b2dd574d91bb3bb01d22767a8a9a0a10c5ef64a44b",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "aarch64",
+        "name": "openssl",
+        "version": "3.5.9-r1",
+        "archiveSha256": "4f5adffa94887a87807d9222cf26930e906ae47e6a15ee9b8d1da034d695614d",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "aarch64",
+        "name": "p11-kit",
+        "version": "0.26.2-r0",
+        "archiveSha256": "0ad7cbbc011491b604b4d8fb8aafb6ce2a271c19eb8b785dd51f1704c61c58a5",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "aarch64",
+        "name": "p11-kit-trust",
+        "version": "0.26.2-r0",
+        "archiveSha256": "6a39cb8ba9a68a178f404300409398b7f806bdfe3060621b5428f42abcf7173c",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "aarch64",
+        "name": "sqlite-libs",
+        "version": "3.53.4-r0",
+        "archiveSha256": "b39d8d73c1208838a436f2d481ba605b52a095f8d6ff781556eafc81cd1a13e9",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "aarch64",
+        "name": "zlib",
+        "version": "1.4-r0",
+        "archiveSha256": "d3e30d012a3445222b0b4a28f1d4d97ce67387f8b48561921111696da174f0de",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "x86_64",
+        "name": "libcrypto3",
+        "version": "3.5.9-r1",
+        "archiveSha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "x86_64",
+        "name": "libexpat",
+        "version": "2.11.0-r0",
+        "archiveSha256": "3779d8b0dfac33f82fd4ca0749318066e6beabe77cd788aa2d9f502e74a87b07",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "x86_64",
+        "name": "libpng",
+        "version": "1.6.59-r0",
+        "archiveSha256": "d16aeb0597f2bc43e0583ac9ff779388ec160c3e22568b640122e94ba55be6d7",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "x86_64",
+        "name": "libssl3",
+        "version": "3.5.9-r1",
+        "archiveSha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "x86_64",
+        "name": "openssl",
+        "version": "3.5.9-r1",
+        "archiveSha256": "ed11241475e5757ce8eb9788b18116a804a579395d4813605df12989a2acbabf",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "x86_64",
+        "name": "p11-kit",
+        "version": "0.26.2-r0",
+        "archiveSha256": "134d653aeeb4ada32746fbc3e2a7ae4201f584725de9263e4f32503658f3ddd8",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "x86_64",
+        "name": "p11-kit-trust",
+        "version": "0.26.2-r0",
+        "archiveSha256": "f79c696b960d974832723215431b93e21ecb29b2449892b3fd6587713f1f2f50",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "x86_64",
+        "name": "sqlite-libs",
+        "version": "3.53.4-r0",
+        "archiveSha256": "a8a216e53d22faa3f04d2e3650c1991af66f8d0b42fadff5afcdb9afb60b19e5",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      },
+      {
+        "architecture": "x86_64",
+        "name": "zlib",
+        "version": "1.4-r0",
+        "archiveSha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
+        "signatureKey": "alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+        "exitCode": 0,
+        "output": "Verified OK",
+        "error": "",
+        "verified": true
+      }
+    ],
+    "complete": true
+  }
+}

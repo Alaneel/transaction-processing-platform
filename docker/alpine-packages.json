@@ -1,24 +1,24 @@
 {
-  "retrievedAtUtc": "2026-10-13T16:23:29.189416+00:00",
+  "retrievedAtUtc": "2026-11-26T12:59:32.626566+00:00",
   "source": "Official Alpine 3.24 main APK indexes and HTTPS artifacts; apk installation retains signature checking against upstream trust keys",
   "packages": [
     {
       "arch": "aarch64",
       "package": "libcrypto3",
-      "version": "3.5.9-r0",
-      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libcrypto3-3.5.9-r0.apk",
-      "sha256": "2676a2b0b6e23ea2edccf3ee982b9842a665d52603d047de3d0a185dc316d983",
+      "version": "3.5.9-r1",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libcrypto3-3.5.9-r1.apk",
+      "sha256": "58ea027d8bd64fffac7d2106a9034341d6735387298a5e01b551429c73a13c71",
       "license": "Apache-2.0",
-      "indexChecksum": "Q1nd3DZ6uRv/vKf+I4jGECIMBUisw="
+      "indexChecksum": "Q1j5FX8zPYDUksvHpLIk6b6ymqKZM="
     },
     {
       "arch": "aarch64",
       "package": "libexpat",
-      "version": "2.8.5-r0",
-      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libexpat-2.8.5-r0.apk",
-      "sha256": "568a12a4889a00711d1c80c197a5540ee1cdec26c1c59da38f8342ad69e7eff9",
+      "version": "2.11.0-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libexpat-2.11.0-r0.apk",
+      "sha256": "cf19455af9c5c9dcd3915294d299f743553855519431bba38577b8c4a23c4373",
       "license": "MIT",
-      "indexChecksum": "Q1gu/0K4CAhLRRQcP0EyW2FGL1Nz4="
+      "indexChecksum": "Q120RoTMlugaugM6Mq0N/cxoXcJi0="
     },
     {
       "arch": "aarch64",
@@ -32,20 +32,20 @@
     {
       "arch": "aarch64",
       "package": "libssl3",
-      "version": "3.5.9-r0",
-      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libssl3-3.5.9-r0.apk",
-      "sha256": "20ac252b276d73f2c69c1d25f84537c7fba81caefc026c6be1094b394af2082e",
+      "version": "3.5.9-r1",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libssl3-3.5.9-r1.apk",
+      "sha256": "4aff30f84e7ac922b026f8b2dd574d91bb3bb01d22767a8a9a0a10c5ef64a44b",
       "license": "Apache-2.0",
-      "indexChecksum": "Q1fPvgmLY6scIS37WtG8V+V3AmPLY="
+      "indexChecksum": "Q1KNkgX8ENzbEIhoMADjj6YaImHMI="
     },
     {
       "arch": "aarch64",
       "package": "openssl",
-      "version": "3.5.9-r0",
-      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/openssl-3.5.9-r0.apk",
-      "sha256": "aa27b9edfeffbf7ebafbcf29df3f02eef4bf50f793a4874ae2f52aba6b53e653",
+      "version": "3.5.9-r1",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/openssl-3.5.9-r1.apk",
+      "sha256": "4f5adffa94887a87807d9222cf26930e906ae47e6a15ee9b8d1da034d695614d",
       "license": "Apache-2.0",
-      "indexChecksum": "Q16QwfKekwxt9pU5AWIsTgaPeDpqE="
+      "indexChecksum": "Q1nQedBPJeQHtMqI7vE0ZBsRuszyQ="
     },
     {
       "arch": "aarch64",
@@ -77,29 +77,29 @@
     {
       "arch": "aarch64",
       "package": "zlib",
-      "version": "1.3.2-r1",
-      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/zlib-1.3.2-r1.apk",
-      "sha256": "1f77a542ac6634761b9fe38d8bdca19b154071dcfa25432e73f2bc8a0740a33f",
+      "version": "1.4-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/zlib-1.4-r0.apk",
+      "sha256": "d3e30d012a3445222b0b4a28f1d4d97ce67387f8b48561921111696da174f0de",
       "license": "Zlib",
-      "indexChecksum": "Q1jP3JcWVZiDTJ6FovhLCh8M8Qt1I="
+      "indexChecksum": "Q1cAnIFG+QhV4gjN8LYPNd8Iv+wcM="
     },
     {
       "arch": "x86_64",
       "package": "libcrypto3",
-      "version": "3.5.9-r0",
-      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libcrypto3-3.5.9-r0.apk",
-      "sha256": "6632d758d8f5e9ea3b650fe966f23bbf9a202f8b8dceecac93da135dec5e3689",
+      "version": "3.5.9-r1",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libcrypto3-3.5.9-r1.apk",
+      "sha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
       "license": "Apache-2.0",
-      "indexChecksum": "Q1HA3ulzTPIvyXzdGBkTu9cQ5t+wg="
+      "indexChecksum": "Q1I05gx2S9sTHg77/A+WuZaCWiHJo="
     },
     {
       "arch": "x86_64",
       "package": "libexpat",
-      "version": "2.8.5-r0",
-      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libexpat-2.8.5-r0.apk",
-      "sha256": "2e56946bc495cbed9eb1ad70859a79cba9db6420016453e065a0628848b32c7e",
+      "version": "2.11.0-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libexpat-2.11.0-r0.apk",
+      "sha256": "3779d8b0dfac33f82fd4ca0749318066e6beabe77cd788aa2d9f502e74a87b07",
       "license": "MIT",
-      "indexChecksum": "Q1H6vHuQDzoSWyIP9VB9qmd331BI0="
+      "indexChecksum": "Q1SIkwd1A0L0JkLzL6ZhtEEzKhlGg="
     },
     {
       "arch": "x86_64",
@@ -113,20 +113,20 @@
     {
       "arch": "x86_64",
       "package": "libssl3",
-      "version": "3.5.9-r0",
-      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libssl3-3.5.9-r0.apk",
-      "sha256": "05e3393fb95aa5751ca2f9d242f659f6cff82c1cc7767cc2df4a086f7ad01877",
+      "version": "3.5.9-r1",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libssl3-3.5.9-r1.apk",
+      "sha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
       "license": "Apache-2.0",
-      "indexChecksum": "Q1IMTJDqnSCp3ToE3q3yxsT2QjNkM="
+      "indexChecksum": "Q1liSMx7iQMBbzF6s3hvx1ksKDoFw="
     },
     {
       "arch": "x86_64",
       "package": "openssl",
-      "version": "3.5.9-r0",
-      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/openssl-3.5.9-r0.apk",
-      "sha256": "9358e8f38eb19a1e035355626570c76bda1e5a49084c768fb0edc1e607251e99",
+      "version": "3.5.9-r1",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/openssl-3.5.9-r1.apk",
+      "sha256": "ed11241475e5757ce8eb9788b18116a804a579395d4813605df12989a2acbabf",
       "license": "Apache-2.0",
-      "indexChecksum": "Q16pTwH+6xSahfRAL19xOiXpD3cBE="
+      "indexChecksum": "Q1bFNY6buBJ9lOFFMnMz6XVI+5hZw="
     },
     {
       "arch": "x86_64",
@@ -158,11 +158,16 @@
     {
       "arch": "x86_64",
       "package": "zlib",
-      "version": "1.3.2-r1",
-      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/zlib-1.3.2-r1.apk",
-      "sha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
+      "version": "1.4-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/zlib-1.4-r0.apk",
+      "sha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
       "license": "Zlib",
-      "indexChecksum": "Q1T1JcjMIE+EuLTKQNs744mVjwVsY="
+      "indexChecksum": "Q14j+c5OMsvdJ78cidhOg7phxCkLw="
     }
-  ]
+  ],
+  "previousLockSha256": "0c705424b7282458295ad48b4f5977daf5edda7a85c194020087facf4a321b79",
+  "indexArchiveSha256": {
+    "aarch64": "55f7cf13ad6e9ea591948a7e614fb6dc0bb6b596c134b48995ca61e97fc1e536",
+    "x86_64": "faaffa3f65ddfac0c38946e7ffca3c35be07a173dd9a7fdf29dd84b6df1b83ef"
+  }
 }

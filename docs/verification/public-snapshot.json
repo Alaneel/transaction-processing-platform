@@ -2,7 +2,6 @@
   "sourceReference": "7a43792d2961e54cb86bb0ac82ac07071bd88276 plus the separately verified October release workspace",
   "historicalCommitIdsAreLocalReferences": true,
   "publishedSourceHistoryStartsAtSnapshot": true,
-  "unchangedApplicationAndBuildInputs": true,
   "releaseTestFixtureChange": "Rejection-accounting test allocates a worker for each of its four scheduled requests so delayed scheduling cannot create unrelated local shedding. Benchmark workload implementation is unchanged.",
   "omittedLocalEvidence": {
     "docs/benchmarks/phase3-profile/baseline.jfr": {
@@ -33,5 +32,23 @@
     "commit": "ee6b2a4fbe94bfc88e6682e805034003a0ec4801",
     "status": "failed",
     "summary": "The 60-second migration test timeout interrupted the first cold build of the PostgreSQL test image; static image initialization then failed in three other classes. A separately bounded image setup retains the original migration test timeout and every assertion."
+  },
+  "applicationSourceAndSchemaUnchanged": true,
+  "publicBuildInputRefresh": {
+    "reason": "Ten October APK URLs now return 404 on official stable branch for both supported architectures. Public source refresh retains digest pinning and normal APK signature checks.",
+    "evidence": "public-alpine-refresh.json",
+    "affectedBuildInputs": [
+      "docker/alpine-packages.lock",
+      "docker/alpine-packages.json",
+      "docker/postgres/Dockerfile",
+      "compose.yaml"
+    ],
+    "benchmarksAndSecurityScanRemainHistorical": true
+  },
+  "hostedVerificationSecondAttempt": {
+    "runId": 45824024594,
+    "commit": "369d11488ed041468e787290a20b393a1303e441",
+    "status": "failed",
+    "summary": "The relocated fixture setup reached the build dependency failure. Upstream no longer served the exact October zlib package URL, which returned 404 for both architectures."
   }
 }
