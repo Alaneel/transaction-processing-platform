@@ -10,13 +10,22 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import org.flywaydb.core.Flyway;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 
 /** Tests an actual populated Phase 1 upgrade rather than only a fresh three-migration database. */
 class OutboxMigrationUpgradeTest {
+  @BeforeAll
+  @Timeout(value = 5, unit = TimeUnit.MINUTES)
+  static void preparePostgresImage() {
+    // Pulling pinned bases and compiling the server image is a fixture setup cost.
+    TestImages.postgres();
+  }
+
   @Test
   @Timeout(60)
   void phase1HistoryIsBackfilledOnceWithoutChangingLedgerBalancesOrDurableIdempotency()

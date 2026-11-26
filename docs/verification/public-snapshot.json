@@ -22,6 +22,16 @@
     "scripts/test_event_benchmark.py": {
       "localSha256": "ec0f52f1602415fce6605d50cd4317986f62f8fcc91edb183e4d9fc1282c56b0",
       "publicationSha256": "69a21c02f60100fc6ccccf7508b138634496fe3c65468506fce64c0bab3dd5be"
+    },
+    "src/test/java/dev/tpp/events/OutboxMigrationUpgradeTest.java": {
+      "localSha256": "b0ddbf65ef8a1551796c859f03828a95231703f5d8dc5987636daaf8a09b9aa7",
+      "publicationSha256": "a243e0a7759e741f09a571f3b9d8094db4f0746dd54f354a69f98e8ee91e47d5"
     }
+  },
+  "hostedVerificationFirstAttempt": {
+    "runId": 45823341287,
+    "commit": "ee6b2a4fbe94bfc88e6682e805034003a0ec4801",
+    "status": "failed",
+    "summary": "The 60-second migration test timeout interrupted the first cold build of the PostgreSQL test image; static image initialization then failed in three other classes. A separately bounded image setup retains the original migration test timeout and every assertion."
   }
 }
