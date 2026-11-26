@@ -128,6 +128,8 @@ Activity is eventually consistent and never determines spendable balances. `GET 
 
 `event.publicationStatus` describes what the relay recorded. Consumers can observe Kafka before the relay commits that record, so `PROJECTED` does not require the publication status to be `PUBLISHED`. It also does not prove the Kafka group offset was acknowledged. `nextAttemptAt` is present only for pending events and is a scheduling boundary, not a promise that the next attempt starts then. Timestamps come from the stored database records. No account identifiers, transfer amount, payload, idempotency key, claim token or detailed error text are included. Use the endpoint only in the existing trusted local environment.
 
+For financial evidence, `GET /internal/transfers/{id}/ledger-proof` reads the transfer intent and matching immutable postings in a single PostgreSQL snapshot. `BALANCED_PAIR` confirms the exact signed source debit and destination credit for that ID. `NO_POSTINGS` indicates a rejected transfer without ledger postings. `INCONSISTENT` means the rows do not match the expected effects. It returns up to three observed rows, which is enough to detect extras without scanning an account's journal. Entry IDs are strings so a browser preserves their precision. This trusted-local endpoint includes account IDs and the transfer amount, unlike the delivery endpoint. Neither response establishes the current balances or the absence of effects under a different transfer ID.
+
 ## Build and test
 
 Host development requires a Java 21 JDK and a working Docker daemon. Point `JAVA_HOME` at Java 21 if another version is the default. Maven Wrapper pins and verifies Maven 3.9.16.

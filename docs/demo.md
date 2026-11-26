@@ -37,8 +37,19 @@ With the local stack running, open [Transfer Lab](http://127.0.0.1:38080/demo/in
 1. Select an account direction and amount, then send a transfer. The page saves a receipt in this browser before the request can leave it.
 2. To practice a lost reply, check **Lose the reply on purpose** before sending a new transfer. Wait for the page to report that the result is unknown. Reload the page if you want to simulate restarting the client, then click **Recover this transfer**. Recovery uses the same request identity and payload.
 3. Use the prefilled transfer ID or paste another ID, then select **Check delivery**. The lookup separates the committed ledger decision from recorded publication and committed activity projection. Click again if publication or projection is still pending.
+4. Inspect the ledger evidence for that ID. The page shows the exact signed debit and credit and their immutable entry IDs, or no postings for a rejected transfer. Read this separately from event delivery. It shows what was recorded for the selected transfer, not what happened under other IDs or the current account balance.
+
+On a freshly seeded demo, try entering `2000001` FIC minor units with response loss unchecked. That exceeds the two demo accounts' combined funding, so the transfer is rejected. **Check delivery** for that receipt to see the difference between **No ledger postings** and a completed transfer whose event has not been delivered yet.
 
 Use a modern browser with local storage and Web Locks to submit and recover transfers. The loss switch also requires a service worker on the local page. The worker intercepts only a transfer explicitly marked for the demo. It drops the browser-facing response after the real service returns a new committed result. Regular transfers, rejections and read-only lookups still use their ordinary responses. A pending receipt survives a reload in the same browser and origin. Keep that origin pointed at the same demo database. Clearing browser data or replacing its database can remove the recovery path.
+
+### Move a receipt to another browser
+
+1. In **Your saved receipt**, choose **Download private receipt** after the original request has been saved. Back it up before clearing browser data or switching browser profiles. The JSON file contains the request key and transfer intent, so keep it private.
+2. Open the **exact same local demo URL** with the **same retained database** in the other browser. Use **Import a receipt file**. The import runs locally and sends no request. It will not replace a different unresolved receipt. Importing an already saved request keeps its current state.
+3. Choose **Recover this transfer** when ready. The file does not contain a verified outcome. Recovery contacts the original local service with the same key and intent. It returns the original result if the database already knows the request or may submit that exact request if the database never received it.
+
+The browser requires the same scheme, host, and port, so `localhost` and `127.0.0.1` are not interchangeable. A matching URL does not prove the database was retained. Use files you created yourself, do not edit them, and do not import them against a rebuilt demo database. These files are specific to Transfer Lab and are not the command-line client's receipt format.
 
 ## Demonstrate broker outage and recovery
 

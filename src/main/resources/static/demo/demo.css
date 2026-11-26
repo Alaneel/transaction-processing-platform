@@ -102,6 +102,15 @@ input[aria-invalid="true"] { border-color: var(--red); }
 .receipt-details dd { margin: 0; }
 .receipt-details code, .receipt-details output, .event-identity output { display: block; color: #53634f; font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: 10px; line-height: 1.65; overflow-wrap: anywhere; }
 .panel-footnote { color: var(--muted); margin: 16px 0 0; font-size: 10px; line-height: 1.7; }
+.portable-receipt { min-width: 0; margin-top: 21px; padding-top: 18px; border-top: 1px solid #d6dccf; }
+.portable-receipt h3 { margin: 0 0 13px; font-size: 12px; font-weight: 650; }
+.portable-import { min-width: 0; margin-top: 16px; }
+.portable-import label { font-size: 11px; }
+.portable-import input[type="file"] { display: block; width: 100%; max-width: 100%; min-width: 0; min-height: 45px; padding: 7px; overflow: hidden; border: 1px solid #cfd4c9; border-radius: 9px; background: var(--surface); color: var(--muted); font-size: 11px; line-height: 1.5; }
+.portable-import input::file-selector-button { margin-right: 8px; padding: 7px 9px; border: 0; border-radius: 5px; background: var(--green-pale); color: var(--green-dark); font: inherit; font-weight: 650; cursor: pointer; }
+.portable-import input:disabled::file-selector-button { opacity: .6; cursor: not-allowed; }
+.portable-receipt .field-help { overflow-wrap: anywhere; }
+.portable-receipt .action-message { min-height: 0; margin-top: 11px; }
 .identifier-input { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: 11px !important; letter-spacing: -.15px; }
 .lookup-form .field { margin-bottom: 16px; }
 .lookup-panel .action-message { min-height: 36px; }
@@ -121,6 +130,23 @@ input[aria-invalid="true"] { border-color: var(--red); }
 .event-identity { margin-top: 18px; }
 .event-identity output { margin-top: 7px; }
 .delivery-result > .field-help { font-size: 10px; margin-top: 16px; }
+.ledger-proof { margin-top: 21px; padding-top: 18px; border-top: 1px solid var(--line); min-width: 0; }
+.proof-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 9px; }
+.proof-heading h3 { margin: 0; font-size: 12px; font-weight: 650; }
+.proof-identity { margin-top: 15px; }
+.proof-identity output, .proof-account code, .proof-entry-id { display: block; max-width: 100%; min-width: 0; font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: 10px; line-height: 1.65; overflow-wrap: anywhere; }
+.proof-identity output { margin-top: 6px; color: #53634f; }
+.proof-postings { list-style: none; margin: 14px 0 0; padding: 0; }
+.proof-posting { padding: 11px 12px; border: 1px solid #dde2d5; border-radius: 9px; background: #f8f9f2; min-width: 0; }
+.proof-posting + .proof-posting { margin-top: 9px; }
+.proof-posting-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 6px; font-size: 11px; line-height: 1.5; }
+.proof-direction { color: var(--muted); }
+.proof-amount { font-weight: 700; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.proof-amount[data-direction="credit"] { color: var(--green); }
+.proof-account { margin: 8px 0 0; color: #53634f; font-size: 10px; line-height: 1.6; }
+.proof-account code { margin-top: 2px; }
+.proof-entry { display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 7px; min-width: 0; margin-top: 7px; font-size: 9px; color: var(--muted); }
+.proof-entry-id { color: #53634f; }
 .boundary-note { display: flex; align-items: flex-start; gap: 15px; max-width: 690px; margin: 29px 0 38px; }
 .boundary-mark { color: #778d69; font-size: 25px; line-height: 1.25; }
 .boundary-note p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.75; }

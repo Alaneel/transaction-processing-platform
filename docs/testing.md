@@ -49,9 +49,15 @@ python3 scripts/verify-browser-demo.py --base-url http://127.0.0.1:38080 \
   --channel chrome --output benchmark-results/browser-verification.json
 ```
 
-The verifier requires an explicit loopback origin and a new report file. It clicks through two fictional transfers and one same-receipt replay. It observes the worker dropping a real committed response, reloads without submitting, recovers through the receipt and checks delivery by ID. It also reads account balances, old and new ledger/activity entries, reconciliation, and narrow-screen layout. The two test transfers remain in the selected demo history. Use an isolated project and avoid concurrent transfers while the verifier measures that history. Add `--screenshots-dir` with an existing directory to retain the rendered states.
+The verifier requires an explicit loopback origin and a new report file. It clicks through two fictional transfers and one same-receipt replay. It observes the worker dropping a real committed response, reloads without submitting, recovers through the receipt and checks delivery by ID. It independently finds the lost transfer in both account journals before replay, then confirms that recovery reveals the same persisted entry IDs and signed amounts on desktop and narrow screens. A missing-ID lookup must clear earlier evidence. The fixture's account balances, old and new ledger/activity entries, and reconciliations also rule out an extra debit in that run. The two test transfers remain in the selected demo history. Use an isolated project and avoid concurrent transfers while the verifier measures that history. Add `--screenshots-dir` with an existing directory to retain the rendered states.
 
-The [local browser acceptance record](verification/browser-demo.json) includes the real network failure, unchanged saved receipt after reload, HTTP 200 replay, exact PostgreSQL evidence and final regression counts.
+Recovery now includes a real browser download and import into an independent browser profile with no saved receipt. Import and reload must not send a transfer. The verifier rejects malformed, oversized, wrong-origin and conflicting files without replacing the browser's saved intent. Only explicit recovery may reuse the key and payload, and the committed test request must replay as HTTP 200. Do not share the downloaded JSON file, which contains the original request key.
+
+The [portable receipt acceptance record](verification/portable-receipt.json) records the closed original session, zero import or reload submissions, exact replay, matching PostgreSQL rows, and additional cross-tab and corrupt-storage checks. It retains hashes, not the exported file or raw key.
+
+The [ledger-proof acceptance record](verification/ledger-proof.json) includes the exact tested image and assets, a real Kafka outage with unchanged ledger evidence, real Chrome recovery and direct PostgreSQL counts. The full local run passed 109 Java and 54 Python tests.
+
+The [v0.2.2 browser acceptance record](verification/browser-demo.json) is the previous verification snapshot. It includes the real network failure, unchanged saved receipt after reload, HTTP 200 replay, exact PostgreSQL evidence and final regression counts.
 
 ## Release history and Docker boundary
 

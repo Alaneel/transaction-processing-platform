@@ -1,0 +1,291 @@
+{
+  "description": "Local verification of the trusted-local, read-only ledger evidence view added after v0.2.2.",
+  "buildSha256ByInput": {
+    "src/main/java/dev/tpp/http/TransferLedgerProofController.java": "072f724237e743342ed05c17e6a77362f8840ca89b6cb2f97cf5682bc44e751e",
+    "src/test/java/dev/tpp/LedgerProofPostgresTest.java": "cd04dd0a511ee548bec7218418c0bc0bc624d2b57d5d1307fae9b9efe2a63ee1",
+    "scripts/verify-browser-demo.py": "50355958a53ffb59f2a1049a2a7fdf2077e103b90a96dc6329a35ec73c46b688"
+  },
+  "compose": {
+    "images": {
+      "app": "sha256:c50a6442db5e17af8a91c1a2729a28d34ff6c085f05f91b46f4790ae9e8e54e0",
+      "db": "sha256:18971e73fe1067d2c25869fca5fa73e190977a5621a47b2a1156b9d89e7b2d08",
+      "kafka": "sha256:1d04117637131229af0274b8363f4a9c4be3fd2733f1fb2f960f9f40fd07a8ac"
+    },
+    "servedAssetSha256": {
+      "demo/delivery-worker.js": "69e98e88bd2593b9f2a38d9af7572eef483c733f8d546a5971c82cd758688662",
+      "demo/demo.css": "fd5a8f5e42193be19d58825006208cbbabdb344b31539a5cc19bcbb088be838e",
+      "demo/demo.js": "a4b48c2a026053ec795fbb6ca2a9c14d29f7ade4bb34cd03b9f2792c559721de",
+      "demo/favicon.svg": "60ad99791664060d5b45e97701d6234d10d3c483fd5be90a88da2c55ae95e52c",
+      "demo/index.html": "fa83a2d13269e79b1574f2b20867d5ab8fec4e1361de406f23d7746eef2ff84f",
+      "openapi.yaml": "dce80d2fdf4dd896cf39782cb4c6c20b942e500c89621ffb12b9332187130fb7"
+    },
+    "preservedDbAndBrokerContainers": true
+  },
+  "browser": {
+    "scope": "System Chrome via Playwright, resident PostgreSQL/Kafka, two new fictional transfers and one same-key replay.",
+    "startedAt": "2026-11-26T14:47:01.876176+00:00",
+    "finishedAt": "2026-11-26T14:47:05.327684+00:00",
+    "proof": {
+      "unchangedAcrossReplay": true,
+      "observedBeforeReplay": {
+        "transferId": "9d4b3730-1e24-49cf-b0dc-e283997194be",
+        "transferStatus": "COMPLETED",
+        "sourceAccountId": "00000000-0000-0000-0000-000000000002",
+        "destinationAccountId": "00000000-0000-0000-0000-000000000003",
+        "amount": 7,
+        "unit": "FIC",
+        "proofState": "BALANCED_PAIR",
+        "postings": [
+          {
+            "entryId": "11",
+            "accountId": "00000000-0000-0000-0000-000000000002",
+            "delta": -7
+          },
+          {
+            "entryId": "12",
+            "accountId": "00000000-0000-0000-0000-000000000003",
+            "delta": 7
+          }
+        ]
+      },
+      "observedAfterReplay": {
+        "transferId": "9d4b3730-1e24-49cf-b0dc-e283997194be",
+        "transferStatus": "COMPLETED",
+        "sourceAccountId": "00000000-0000-0000-0000-000000000002",
+        "destinationAccountId": "00000000-0000-0000-0000-000000000003",
+        "amount": 7,
+        "unit": "FIC",
+        "proofState": "BALANCED_PAIR",
+        "postings": [
+          {
+            "entryId": "11",
+            "accountId": "00000000-0000-0000-0000-000000000002",
+            "delta": -7
+          },
+          {
+            "entryId": "12",
+            "accountId": "00000000-0000-0000-0000-000000000003",
+            "delta": 7
+          }
+        ]
+      },
+      "unknownLookupClearedPreviousProof": true
+    },
+    "network": {
+      "firstSuccessfulSubmissionStatus": 201,
+      "lostResponseUpstream201": [
+        {
+          "type": "tpp-response-dropped",
+          "status": 201
+        }
+      ],
+      "browserFailure": "net::ERR_FAILED",
+      "sameReceiptAfterReload": true,
+      "reloadPostCount": 0,
+      "sameReceiptReplayStatus": 200,
+      "deliveryState": "PROJECTED"
+    },
+    "independentEffects": {
+      "00000000-0000-0000-0000-000000000002": {
+        "balanceBefore": 999980,
+        "balanceAfter": 999966,
+        "ledger": [
+          {
+            "id": 9,
+            "transferId": "2d26e6b2-4620-49f7-8135-78150b0891d6",
+            "accountId": "00000000-0000-0000-0000-000000000002",
+            "delta": -7,
+            "createdAt": "2026-11-26T14:47:03.884067Z"
+          },
+          {
+            "id": 11,
+            "transferId": "9d4b3730-1e24-49cf-b0dc-e283997194be",
+            "accountId": "00000000-0000-0000-0000-000000000002",
+            "delta": -7,
+            "createdAt": "2026-11-26T14:47:04.311713Z"
+          }
+        ],
+        "activity": [
+          {
+            "id": 9,
+            "eventId": "68c6f7d8-645b-4957-bbcc-ff92609bbe37",
+            "transferId": "2d26e6b2-4620-49f7-8135-78150b0891d6",
+            "accountId": "00000000-0000-0000-0000-000000000002",
+            "deltaMinor": -7,
+            "unit": "FIC",
+            "occurredAt": "2026-11-26T14:47:03.893926Z",
+            "projectedAt": "2026-11-26T14:47:04.135915Z"
+          },
+          {
+            "id": 11,
+            "eventId": "20a2cbe8-33dc-4441-823e-37b83cad11f3",
+            "transferId": "9d4b3730-1e24-49cf-b0dc-e283997194be",
+            "accountId": "00000000-0000-0000-0000-000000000002",
+            "deltaMinor": -7,
+            "unit": "FIC",
+            "occurredAt": "2026-11-26T14:47:04.314421Z",
+            "projectedAt": "2026-11-26T14:47:04.339700Z"
+          }
+        ]
+      },
+      "00000000-0000-0000-0000-000000000003": {
+        "balanceBefore": 1000020,
+        "balanceAfter": 1000034,
+        "ledger": [
+          {
+            "id": 10,
+            "transferId": "2d26e6b2-4620-49f7-8135-78150b0891d6",
+            "accountId": "00000000-0000-0000-0000-000000000003",
+            "delta": 7,
+            "createdAt": "2026-11-26T14:47:03.884067Z"
+          },
+          {
+            "id": 12,
+            "transferId": "9d4b3730-1e24-49cf-b0dc-e283997194be",
+            "accountId": "00000000-0000-0000-0000-000000000003",
+            "delta": 7,
+            "createdAt": "2026-11-26T14:47:04.311713Z"
+          }
+        ],
+        "activity": [
+          {
+            "id": 10,
+            "eventId": "68c6f7d8-645b-4957-bbcc-ff92609bbe37",
+            "transferId": "2d26e6b2-4620-49f7-8135-78150b0891d6",
+            "accountId": "00000000-0000-0000-0000-000000000003",
+            "deltaMinor": 7,
+            "unit": "FIC",
+            "occurredAt": "2026-11-26T14:47:03.893926Z",
+            "projectedAt": "2026-11-26T14:47:04.136257Z"
+          },
+          {
+            "id": 12,
+            "eventId": "20a2cbe8-33dc-4441-823e-37b83cad11f3",
+            "transferId": "9d4b3730-1e24-49cf-b0dc-e283997194be",
+            "accountId": "00000000-0000-0000-0000-000000000003",
+            "deltaMinor": 7,
+            "unit": "FIC",
+            "occurredAt": "2026-11-26T14:47:04.314421Z",
+            "projectedAt": "2026-11-26T14:47:04.339789Z"
+          }
+        ]
+      }
+    },
+    "reconciliation": {
+      "ledgerConsistent": true,
+      "eventDiscrepancies": 0,
+      "missingProjection": 0
+    },
+    "browserErrors": {
+      "unexpectedConsoleErrors": 0,
+      "pageErrors": 0
+    },
+    "viewports": {
+      "desktop": {
+        "viewport": 1365,
+        "content": 1365
+      },
+      "narrow": {
+        "viewport": 390,
+        "content": 390
+      }
+    },
+    "separateClientFailureChecks": {
+      "delivery": {
+        "availableEndpoint": "ledger-proof",
+        "realOtherEndpointReturned": 200,
+        "panelDisplayedValidPartialEvidence": true,
+        "postCount": 0
+      },
+      "ledger-proof": {
+        "availableEndpoint": "delivery",
+        "realOtherEndpointReturned": 200,
+        "panelDisplayedValidPartialEvidence": true,
+        "postCount": 0
+      }
+    },
+    "rejectedTransferCheck": {
+      "realResponse": 422,
+      "reason": "INSUFFICIENT_FUNDS",
+      "transferId": "1e9230e2-a30f-4351-8fd4-618fb28f94e0",
+      "visibleProof": "NO_POSTINGS",
+      "visibleDelivery": "NOT_APPLICABLE",
+      "bothBalancesAndJournalsUnchanged": true
+    }
+  },
+  "postgreSqlDirectReadOnly": {
+    "normal": {
+      "transferId": "2d26e6b2-4620-49f7-8135-78150b0891d6",
+      "eventId": "68c6f7d8-645b-4957-bbcc-ff92609bbe37",
+      "completedTransfer": 1,
+      "ledgerEntries": 2,
+      "ledgerDeltaSum": 0,
+      "outboxEvents": 1,
+      "matchingPublishedEvent": 1,
+      "inbox": 1,
+      "projection": 1,
+      "activityRows": 2,
+      "activitySum": 0
+    },
+    "lostResponse": {
+      "transferId": "9d4b3730-1e24-49cf-b0dc-e283997194be",
+      "eventId": "20a2cbe8-33dc-4441-823e-37b83cad11f3",
+      "completedTransfer": 1,
+      "ledgerEntries": 2,
+      "ledgerDeltaSum": 0,
+      "outboxEvents": 1,
+      "matchingPublishedEvent": 1,
+      "inbox": 1,
+      "projection": 1,
+      "activityRows": 2,
+      "activitySum": 0
+    }
+  },
+  "realBrokerOutage": {
+    "proofWhileBrokerStopped": {
+      "transferId": "721f8948-79ea-425d-b94f-1b2e0e1f22c0",
+      "transferStatus": "COMPLETED",
+      "sourceAccountId": "00000000-0000-0000-0000-000000000002",
+      "destinationAccountId": "00000000-0000-0000-0000-000000000003",
+      "amount": 13,
+      "unit": "FIC",
+      "proofState": "BALANCED_PAIR",
+      "postings": [
+        {
+          "entryId": "7",
+          "accountId": "00000000-0000-0000-0000-000000000002",
+          "delta": -13
+        },
+        {
+          "entryId": "8",
+          "accountId": "00000000-0000-0000-0000-000000000003",
+          "delta": 13
+        }
+      ]
+    },
+    "deliveryWhileStopped": "AWAITING_PUBLICATION",
+    "deliveryAfterRestart": "PROJECTED",
+    "ledgerProofUnchanged": true,
+    "stableEvent": true,
+    "appNotRestarted": true,
+    "reconciliationClean": true
+  },
+  "regression": {
+    "javaTests": 109,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "spotBugsFindings": 0,
+    "pythonTests": 54
+  },
+  "environmentRecovery": {
+    "initialComposeAndJavaStartupFailed": "Docker Desktop virtual disk had zero allocatable space; PostgreSQL initdb and Kafka format could not write.",
+    "scopedDockerCacheOnly": "Six exact IDs for unused, unshared build cache entries were removed. No artifacts, containers or data volumes were removed during disk recovery.",
+    "finalStaticAssetCheck": "An earlier app rebuild sampled frontend files while still being edited, and byte-check rejected it before the browser run. The subsequent exact rebuild served byte-matching assets."
+  },
+  "limits": [
+    "Evidence is for locally seeded FIC and a scoped transfer ID, not all transfers or production balances.",
+    "A narrow Chrome viewport is not a compatibility claim for native devices or other browsers.",
+    "No publishing or production deployment was performed for this iteration."
+  ]
+}

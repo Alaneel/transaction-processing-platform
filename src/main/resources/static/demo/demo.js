@@ -7,6 +7,8 @@
   const WORKER_PATH = "/demo/delivery-worker.js";
   const TIMEOUT_MS = 10000;
   const MAX_BYTES = 65536;
+  const PORTABLE_RECEIPT_KIND = "tpp.transfer-lab-recovery";
+  const MAX_RECEIPT_FILE_BYTES = 4096;
   const ALICE = "00000000-0000-0000-0000-000000000002";
   const BOB = "00000000-0000-0000-0000-000000000003";
   const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -15,11 +17,14 @@
   const DELIVERY_STATES = new Set([
     "NOT_APPLICABLE", "AWAITING_PUBLICATION", "AWAITING_PROJECTION", "BLOCKED", "PROJECTED", "INCONSISTENT",
   ]);
+  const PROOF_STATES = new Set(["BALANCED_PAIR", "NO_POSTINGS", "INCONSISTENT"]);
   const ids = [
     "submit-form", "direction", "amount", "drop-response", "submit-transfer", "simulation-status",
     "submit-message", "receipt-state", "receipt-key", "receipt-summary", "resume-transfer", "resume-message",
     "transfer-id", "lookup-form", "lookup-id", "lookup-transfer", "lookup-message", "delivery-result",
+    "download-receipt", "import-receipt", "portable-receipt-message",
     "ledger-state", "publication-state", "projection-state", "delivery-state", "event-id", "origin-message",
+    "proof-state", "proof-transfer-id", "proof-summary", "proof-postings",
   ];
   const ui = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
   if (ids.some((id) => !ui[id])) return;
@@ -32,10 +37,27 @@
   let simulationReady = false;
   let observedWorker = null;
   let automaticLookup = "";
+  let lookupVersion = 0;
 
   function display(id, text, state = "") {
     ui[id].textContent = text;
     ui[id].dataset.state = state;
+  }
+
+  function resetProof(label = "Not loaded", message = "Check delivery to read this transfer’s ledger evidence.", state = "pending") {
+    display("proof-state", label, state);
+    delete ui["proof-state"].dataset.proofState;
+    display("proof-transfer-id", "Not loaded");
+    display("proof-summary", message);
+    ui["proof-postings"].replaceChildren();
+    ui["proof-postings"].hidden = true;
+  }
+
+  function clearLookupObservation() {
+    lookupVersion += 1;
+    ui["delivery-result"].hidden = true;
+    resetDelivery();
+    resetProof();
   }
 
   function loopbackOrigin() {
@@ -85,6 +107,7 @@
       || !/^lab-[0-9a-f-]{36}$/i.test(value.idempotencyKey)
       || !UUID.test(value.idempotencyKey.slice(4)) || !validPayload(value.payload)
       || typeof value.createdAt !== "string" || !Number.isFinite(Date.parse(value.createdAt))
+      || (Object.hasOwn(value, "imported") && value.imported !== true)
       || !RECEIPT_STATES.has(value.state)) {
       throw new Error("The saved request is invalid or belongs to another origin.");
     }
@@ -113,6 +136,112 @@
       throw new Error("The saved request could not be read back. No new request can be sent.");
     }
     return { raw, receipt };
+  }
+
+  class PortableReceiptError extends Error {}
+
+  function parsePortableReceipt(text) {
+    const fields = ["kind", "version", "endpoint", "idempotencyKey", "payload", "createdAt"];
+    let value;
+    try { value = JSON.parse(text); } catch (_) {
+      throw new PortableReceiptError("This file is not a valid JSON recovery receipt.");
+    }
+    if (!value || typeof value !== "object" || Array.isArray(value)
+      || Object.keys(value).length !== fields.length || !fields.every((key) => Object.hasOwn(value, key))
+      || value.kind !== PORTABLE_RECEIPT_KIND || value.version !== 1) {
+      throw new PortableReceiptError("This file is not a supported Transfer Lab recovery receipt.");
+    }
+    if (value.endpoint !== location.origin) {
+      throw new PortableReceiptError("This receipt belongs to a different local URL. Open the original demo URL.");
+    }
+    if (!validPayload(value.payload)) {
+      throw new PortableReceiptError("The recovery receipt does not contain a valid fictional transfer.");
+    }
+    const { sourceAccountId, destinationAccountId, amount, unit } = value.payload;
+    try {
+      // Reconstruct the original wire field order. Never trust a file to establish a terminal result.
+      return validatedReceipt({
+        version: 1, endpoint: location.origin, idempotencyKey: value.idempotencyKey,
+        payload: { sourceAccountId, destinationAccountId, amount, unit }, createdAt: value.createdAt,
+        imported: true, state: "UNRESOLVED", result: null,
+      });
+    } catch (_) {
+      throw new PortableReceiptError("The receipt request key or creation time is invalid.");
+    }
+  }
+
+  function downloadReceipt() {
+    if (!local || !storageReady || receiptInvalid) return;
+    let url;
+    try {
+      const { receipt } = readReceipt();
+      if (!receipt) throw new PortableReceiptError("There is no saved receipt to download.");
+      const { endpoint, idempotencyKey, payload, createdAt } = receipt;
+      const contents = JSON.stringify({
+        kind: PORTABLE_RECEIPT_KIND, version: 1, endpoint, idempotencyKey, payload,
+        createdAt: new Date(createdAt).toISOString(),
+      }, null, 2) + "\n";
+      const file = new Blob([contents], { type: "application/json" });
+      if (file.size > MAX_RECEIPT_FILE_BYTES) throw new PortableReceiptError("The saved receipt exceeds the file size limit.");
+      url = URL.createObjectURL(file);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "transfer-lab-recovery.json";
+      document.body.append(link);
+      try { link.click(); } finally { link.remove(); }
+      display("portable-receipt-message", "The recovery file contains the original request key. Keep it private.", "positive");
+    } catch (error) {
+      display("portable-receipt-message", error instanceof PortableReceiptError
+        ? error.message : "The saved receipt could not be downloaded.", "negative");
+    } finally {
+      if (url) setTimeout(() => URL.revokeObjectURL(url), 10000);
+    }
+  }
+
+  async function importReceipt(file) {
+    if (!local || !storageReady || receiptInvalid || busy || !navigator.locks?.request) return;
+    busy = true;
+    updateControls();
+    display("portable-receipt-message", "Reading the recovery file locally…", "pending");
+    try {
+      if (file.size === 0 || file.size > MAX_RECEIPT_FILE_BYTES) {
+        throw new PortableReceiptError("Choose a nonempty recovery file no larger than 4 KiB.");
+      }
+      let text;
+      try { text = new TextDecoder("utf-8", { fatal: true }).decode(await file.arrayBuffer()); } catch (_) {
+        throw new PortableReceiptError("The recovery file could not be read as UTF-8.");
+      }
+      const incoming = parsePortableReceipt(text);
+      await navigator.locks.request(LOCK_NAME, { mode: "exclusive", ifAvailable: true }, (lock) => {
+        if (!lock) throw new PortableReceiptError("Another tab is working on the receipt. Try importing again when it finishes.");
+        // Check the last saved state under the same lock used for submit and resume, not the rendered snapshot.
+        const snapshot = readReceipt();
+        if (snapshot.receipt?.idempotencyKey === incoming.idempotencyKey) {
+          if (!samePayload(snapshot.receipt.payload, incoming.payload)) {
+            throw new PortableReceiptError("The imported key matches this receipt but the transfer details differ.");
+          }
+          display("portable-receipt-message", "This exact transfer is already saved. The existing receipt was kept.", "positive");
+          return;
+        }
+        if (snapshot.receipt && !TERMINAL.has(snapshot.receipt.state)) {
+          throw new PortableReceiptError("Recover the current unresolved transfer before importing a different receipt.");
+        }
+        current = storeReceipt(incoming, snapshot.raw);
+        automaticLookup = "";
+        ui["lookup-id"].value = "";
+        clearLookupObservation();
+        display("lookup-message", "The imported outcome is not established. Recover the saved request to get its transfer ID.");
+        display("submit-message", "Recover the imported transfer before starting another request.");
+        display("resume-message", "Recovery is optional. It sends the exact saved request and may commit it if the database never received it.", "unknown");
+        display("portable-receipt-message", "Receipt imported locally. No request was sent. Choose Recover this transfer when ready.", "positive");
+      });
+    } catch (error) {
+      display("portable-receipt-message", error instanceof PortableReceiptError ? error.message
+        : "The receipt could not be saved. The file was not sent to the server.", "negative");
+    } finally {
+      busy = false;
+      refreshReceipt();
+    }
   }
 
   function probeStorage() {
@@ -148,11 +277,12 @@
         : ["REJECTED", "CONFLICT"].includes(receipt.state) ? "negative" : "unknown";
       display("receipt-state", labels[receipt.state], state);
       display("receipt-key", receipt.idempotencyKey);
-      display("receipt-summary", `${names} · ${receipt.payload.amount} FIC minor units · saved before submission`);
+      const source = receipt.imported ? "restored from a recovery file" : "saved before submission";
+      display("receipt-summary", `${names} · ${receipt.payload.amount} FIC minor units · ${source}`);
       display("transfer-id", receipt.result?.id ?? "Not established · resume the saved request");
       if (receipt.result && (!ui["lookup-id"].value || ui["lookup-id"].value === automaticLookup)) {
         if (ui["lookup-id"].value !== receipt.result.id) {
-          ui["delivery-result"].hidden = true;
+          clearLookupObservation();
           display("lookup-message", "Check delivery for the transfer on this receipt.");
         }
         automaticLookup = receipt.result.id;
@@ -161,7 +291,7 @@
         // An older prefilled identifier must not look like evidence for the unresolved transfer.
         ui["lookup-id"].value = "";
         automaticLookup = "";
-        ui["delivery-result"].hidden = true;
+        clearLookupObservation();
         display("lookup-message", "The current transfer ID is unknown. Recover it from the saved receipt first.");
       }
     }
@@ -173,6 +303,8 @@
     const unresolved = current?.receipt && !TERMINAL.has(current.receipt.state);
     ui["submit-transfer"].disabled = !canWrite || Boolean(unresolved);
     ui["resume-transfer"].disabled = !canWrite || !unresolved;
+    ui["download-receipt"].disabled = !local || !storageReady || receiptInvalid || !current?.receipt;
+    ui["import-receipt"].disabled = !canWrite;
     ui["lookup-transfer"].disabled = !local || busy;
     ui["drop-response"].disabled = !canWrite || Boolean(unresolved) || !simulationReady;
     if (ui["drop-response"].disabled) ui["drop-response"].checked = false;
@@ -299,6 +431,7 @@
             payload, createdAt: new Date().toISOString(), state: "UNRESOLVED", result: null };
           snapshot = storeReceipt(receipt, snapshot.raw);
           current = snapshot;
+          display("portable-receipt-message", "Download this receipt to use the same request in another browser.");
           renderReceipt();
           display(messageId, "Request saved and read back. Waiting for the server response…", "pending");
         }
@@ -334,8 +467,103 @@
     return result;
   }
 
+  function verifiedLedgerProof(result, transferId, transferStatus = null) {
+    if (!result || typeof result !== "object" || result.transferId?.toLowerCase() !== transferId
+      || !TERMINAL.has(result.transferStatus) || (transferStatus && result.transferStatus !== transferStatus)
+      || !UUID.test(result.sourceAccountId)
+      || !UUID.test(result.destinationAccountId) || !validAmount(result.amount) || result.unit !== "FIC"
+      || !PROOF_STATES.has(result.proofState) || !Array.isArray(result.postings) || result.postings.length > 3) {
+      throw new Error("The ledger evidence did not match this transfer.");
+    }
+    const source = result.sourceAccountId.toLowerCase();
+    const destination = result.destinationAccountId.toLowerCase();
+    const postings = result.postings.map((posting) => {
+      if (!posting || typeof posting.entryId !== "string" || !/^[1-9]\d{0,18}$/.test(posting.entryId)
+        || !UUID.test(posting.accountId) || !Number.isSafeInteger(posting.delta)) {
+        throw new Error("The ledger posting details were incomplete.");
+      }
+      // Keep the decimal entry ID as text: a PostgreSQL bigint can exceed JavaScript's safe integer range.
+      return { entryId: posting.entryId, accountId: posting.accountId.toLowerCase(), delta: posting.delta };
+    });
+    if (result.proofState === "BALANCED_PAIR"
+      && (result.transferStatus !== "COMPLETED" || source === destination || postings.length !== 2
+        || postings[0].entryId === postings[1].entryId
+        || !postings.some((posting) => posting.accountId === source && posting.delta === -result.amount)
+        || !postings.some((posting) => posting.accountId === destination && posting.delta === result.amount))) {
+      throw new Error("The reported ledger pair did not match the transfer amount and accounts.");
+    }
+    if (result.proofState === "NO_POSTINGS" && (result.transferStatus !== "REJECTED" || postings.length !== 0)) {
+      throw new Error("The reported absence of postings did not match the rejected transfer.");
+    }
+    return { ...result, transferId, sourceAccountId: source, destinationAccountId: destination, postings };
+  }
+
+  function textElement(tag, className, text) {
+    const element = document.createElement(tag);
+    element.className = className;
+    element.textContent = text;
+    return element;
+  }
+
+  function postingRow(posting) {
+    const row = document.createElement("li");
+    row.className = "proof-posting";
+    row.dataset.entryId = posting.entryId;
+    const heading = document.createElement("div");
+    heading.className = "proof-posting-heading";
+    const direction = posting.delta < 0 ? "Debit" : posting.delta > 0 ? "Credit" : "Zero posting";
+    const amount = textElement("span", "proof-amount", `${posting.delta > 0 ? "+" : ""}${posting.delta} FIC`);
+    amount.dataset.direction = posting.delta < 0 ? "debit" : posting.delta > 0 ? "credit" : "zero";
+    heading.append(textElement("span", "proof-direction", direction), amount);
+    const name = posting.accountId === ALICE ? "Alice" : posting.accountId === BOB ? "Bob" : "Account";
+    const account = textElement("p", "proof-account", name);
+    account.append(textElement("code", "proof-account-id", posting.accountId));
+    const entry = textElement("div", "proof-entry", "Entry ID");
+    entry.append(textElement("code", "proof-entry-id", posting.entryId));
+    row.append(heading, account, entry);
+    return row;
+  }
+
+  function renderLedgerProof(proof) {
+    const labels = { BALANCED_PAIR: "Balanced pair", NO_POSTINGS: "No ledger postings", INCONSISTENT: "Needs verification" };
+    display("proof-transfer-id", proof.transferId);
+    display("proof-summary", proof.proofState === "BALANCED_PAIR"
+      ? `Completed transfer. One debit and one credit match ${proof.amount} FIC minor units for this transfer ID.`
+      : proof.proofState === "NO_POSTINGS"
+        ? "This transfer ID was rejected. No ledger postings were recorded."
+        : `This transfer ID has inconsistent ledger evidence. ${proof.postings.length ? "The observed postings are shown below." : "No postings were returned."}`);
+    ui["proof-postings"].replaceChildren(...proof.postings.map(postingRow));
+    ui["proof-postings"].hidden = proof.postings.length === 0;
+    display("proof-state", labels[proof.proofState], proof.proofState === "INCONSISTENT" ? "negative" : "positive");
+    ui["proof-state"].dataset.proofState = proof.proofState;
+  }
+
+  function resetDelivery(label = "Not observed", state = "pending") {
+    display("delivery-state", label, state);
+    display("ledger-state", "Not observed");
+    display("publication-state", "Not observed");
+    display("projection-state", "Not observed");
+    display("event-id", "Not available");
+  }
+
+  function renderDelivery(result) {
+    const event = result.event;
+    const projected = result.deliveryState === "PROJECTED";
+    const inconsistent = result.deliveryState === "INCONSISTENT";
+    const projectionText = projected ? "PROJECTED · account activity verified"
+      : inconsistent ? "Needs verification · inconsistent delivery evidence"
+        : event?.projectedAt ? "Projection recorded · delivery not verified"
+          : event ? "Not yet projected" : "Not applicable";
+    display("ledger-state", result.transferStatus === "COMPLETED" ? "COMPLETED · financial effect committed" : "REJECTED · no financial transfer effect", result.transferStatus === "COMPLETED" ? "positive" : "negative");
+    display("publication-state", event?.publicationStatus ?? "Not applicable", event?.publicationStatus === "PUBLISHED" ? "positive" : "pending");
+    display("projection-state", projectionText, projected ? "positive" : inconsistent ? "negative" : "pending");
+    display("delivery-state", result.deliveryState, result.deliveryState === "PROJECTED" ? "positive" : ["BLOCKED", "INCONSISTENT"].includes(result.deliveryState) ? "negative" : "pending");
+    display("event-id", event?.eventId ?? "No event for this result");
+  }
+
   async function lookup() {
     if (!local || busy) return;
+    clearLookupObservation();
     const transferId = ui["lookup-id"].value.trim().toLowerCase();
     if (!UUID.test(transferId)) {
       display("lookup-message", "Enter a valid transfer UUID. No request was sent.", "negative");
@@ -343,31 +571,57 @@
     }
     busy = true;
     updateControls();
-    ui["delivery-result"].hidden = true;
-    display("lookup-message", "Reading delivery status…", "pending");
+    const version = lookupVersion;
+    resetProof("Reading postings…", "Reading ledger evidence for this transfer ID.");
+    display("proof-transfer-id", transferId);
+    display("lookup-message", "Reading delivery status and ledger postings…", "pending");
     try {
-      const response = await jsonRequest(`/internal/transfers/${transferId}/delivery`);
-      if (response.status === 404 && response.result?.code === "TRANSFER_NOT_FOUND") {
-        display("lookup-message", "No transfer with that ID was found. No financial request was submitted.", "negative");
-        return;
+      const [deliveryRead, proofRead] = await Promise.allSettled([
+        jsonRequest(`/internal/transfers/${transferId}/delivery`),
+        jsonRequest(`/internal/transfers/${transferId}/ledger-proof`),
+      ]);
+      if (version !== lookupVersion || ui["lookup-id"].value.trim().toLowerCase() !== transferId) return;
+      let delivery = null;
+      try {
+        if (deliveryRead.status !== "fulfilled" || deliveryRead.value.status !== 200) {
+          throw new Error("Delivery lookup was unavailable.");
+        }
+        delivery = verifiedDelivery(deliveryRead.value.result, transferId);
+        renderDelivery(delivery);
+      } catch (_) {
+        resetDelivery("Unavailable", "unknown");
       }
-      if (response.status !== 200) throw new Error("Delivery lookup was unavailable.");
-      const result = verifiedDelivery(response.result, transferId);
-      const event = result.event;
-      const projected = result.deliveryState === "PROJECTED";
-      const inconsistent = result.deliveryState === "INCONSISTENT";
-      const projectionText = projected ? "PROJECTED · account activity verified"
-        : inconsistent ? "Needs verification · inconsistent delivery evidence"
-          : event?.projectedAt ? "Projection recorded · delivery not verified"
-            : event ? "Not yet projected" : "Not applicable";
-      display("ledger-state", result.transferStatus === "COMPLETED" ? "COMPLETED · financial effect committed" : "REJECTED · no financial transfer effect", result.transferStatus === "COMPLETED" ? "positive" : "negative");
-      display("publication-state", event?.publicationStatus ?? "Not applicable", event?.publicationStatus === "PUBLISHED" ? "positive" : "pending");
-      display("projection-state", projectionText, projected ? "positive" : inconsistent ? "negative" : "pending");
-      display("delivery-state", result.deliveryState, result.deliveryState === "PROJECTED" ? "positive" : ["BLOCKED", "INCONSISTENT"].includes(result.deliveryState) ? "negative" : "pending");
-      display("event-id", event?.eventId ?? "No event for this result");
-      ui["delivery-result"].hidden = false;
-      display("lookup-message", "Delivery status read. This lookup submitted no transfer and did not change the saved receipt.", "positive");
+      let proof = null;
+      try {
+        if (proofRead.status !== "fulfilled" || proofRead.value.status !== 200) {
+          throw new Error("Ledger lookup was unavailable.");
+        }
+        proof = verifiedLedgerProof(proofRead.value.result, transferId, delivery?.transferStatus);
+        renderLedgerProof(proof);
+      } catch (_) {
+        resetProof("Unavailable", "Ledger evidence could not be established for this transfer ID. Check again to retry this read.", "unknown");
+        display("proof-transfer-id", transferId);
+      }
+      // Either point read remains useful when the other is unavailable.
+      ui["delivery-result"].hidden = !delivery && !proof;
+      if (delivery && proof) {
+        display("lookup-message", proof.proofState === "INCONSISTENT"
+          ? "Delivery status read. Ledger evidence for this transfer ID needs inspection."
+          : "Delivery status and ledger evidence read. This lookup submitted no transfer and did not change the saved receipt.",
+        proof.proofState === "INCONSISTENT" ? "negative" : "positive");
+      } else if (delivery) {
+        display("lookup-message", "Delivery status read. Ledger evidence is unavailable; check again to retry this read.", "unknown");
+      } else if (proof) {
+        display("lookup-message", "Ledger evidence read for this transfer ID. Delivery status is unavailable; check again to retry that read.", "unknown");
+      } else {
+        const missing = [deliveryRead, proofRead].every((read) => read.status === "fulfilled"
+          && read.value.status === 404 && read.value.result?.code === "TRANSFER_NOT_FOUND");
+        display("lookup-message", missing
+          ? "No transfer with that ID was found. No financial request was submitted."
+          : "Delivery and ledger evidence could not be established. Retry this read; no transfer was submitted.", missing ? "negative" : "unknown");
+      }
     } catch (_) {
+      resetProof("Unavailable", "Ledger evidence was not established for this lookup.", "unknown");
       display("lookup-message", "Delivery status could not be established. Retry this read; no transfer was submitted.", "unknown");
     } finally {
       busy = false;
@@ -393,8 +647,28 @@
 
   ui["submit-form"].addEventListener("submit", (event) => { event.preventDefault(); financialAction(false); });
   ui["resume-transfer"].addEventListener("click", (event) => { event.preventDefault(); financialAction(true); });
+  ui["download-receipt"].addEventListener("click", downloadReceipt);
+  ui["import-receipt"].addEventListener("change", async () => {
+    const file = ui["import-receipt"].files?.[0];
+    try { if (file) await importReceipt(file); }
+    finally { ui["import-receipt"].value = ""; }
+  });
   ui["lookup-form"].addEventListener("submit", (event) => { event.preventDefault(); lookup(); });
-  addEventListener("storage", (event) => { if (local && (event.key === STORAGE_KEY || event.key === null)) refreshReceipt(); });
+  ui["lookup-id"].addEventListener("input", () => {
+    clearLookupObservation();
+    display("lookup-message", "Check delivery for the transfer ID now entered.");
+  });
+  ui["lookup-form"].addEventListener("reset", () => {
+    automaticLookup = "";
+    clearLookupObservation();
+    display("lookup-message", "Enter a transfer ID to read its delivery and ledger evidence.");
+  });
+  addEventListener("storage", (event) => {
+    if (local && (event.key === STORAGE_KEY || event.key === null)) {
+      clearLookupObservation();
+      refreshReceipt();
+    }
+  });
 
   local = loopbackOrigin();
   if (!local) {
@@ -407,8 +681,10 @@
     probeStorage();
     storageReady = true;
     display("origin-message", `Local origin: ${location.origin}. Saved requests are kept in this browser.`, "positive");
+    display("portable-receipt-message", "Import a file from this demo, or download your receipt after saving a transfer.");
   } catch (_) {
     display("origin-message", "Saving a request safely is unavailable. Transfers are disabled; read-only delivery lookup remains available.", "negative");
+    display("portable-receipt-message", "Receipt files are unavailable because this browser cannot safely save a request.", "negative");
   }
   refreshReceipt();
   if ("serviceWorker" in navigator) {

@@ -120,6 +120,20 @@
             </button>
             <p id="resume-message" class="action-message" role="status" aria-live="polite" aria-atomic="true">A saved receipt lets you recover the same request after an interrupted response.</p>
             <p class="panel-footnote">One current receipt is kept in this browser. Keep the local demo’s history when restarting it.</p>
+
+            <section class="portable-receipt" aria-labelledby="portable-receipt-heading">
+              <h3 id="portable-receipt-heading">Receipt file</h3>
+              <button id="download-receipt" class="button button-secondary" type="button" disabled aria-describedby="portable-receipt-help">
+                <span>Download private receipt</span><span class="button-arrow" aria-hidden="true">↓</span>
+              </button>
+              <div class="portable-import">
+                <label for="import-receipt">Import a receipt file</label>
+                <input id="import-receipt" name="receipt-file" type="file" accept=".json,application/json" disabled aria-describedby="portable-receipt-help portable-import-help portable-receipt-message">
+              </div>
+              <p id="portable-receipt-help" class="field-help">Receipt files contain your request key. Keep them private. Use them only with the same local URL and retained demo database.</p>
+              <p id="portable-import-help" class="field-help">Import sends no HTTP request. Recover may submit the exact request if this database has never processed it.</p>
+              <p id="portable-receipt-message" class="action-message" role="status" aria-live="polite" aria-atomic="true">Receipt file controls are not ready yet.</p>
+            </section>
           </section>
 
           <section class="panel lookup-panel" aria-labelledby="lookup-heading">
@@ -130,7 +144,7 @@
                 <h2 id="lookup-heading">Follow delivery</h2>
               </div>
             </header>
-            <p class="panel-description">Check a transfer’s saved decision and delivery progress. This only reads its status.</p>
+            <p class="panel-description">Read a transfer’s delivery progress and the ledger postings for that transfer ID.</p>
 
             <form id="lookup-form" class="lookup-form" novalidate>
               <div class="field">
@@ -144,7 +158,7 @@
             </form>
             <p id="lookup-message" class="action-message" role="status" aria-live="polite" aria-atomic="true">Look up your receipt’s transfer, or paste another transfer ID from this demo.</p>
 
-            <section id="delivery-result" class="delivery-result" hidden aria-label="Observed transfer delivery">
+            <section id="delivery-result" class="delivery-result" hidden aria-label="Transfer delivery and ledger observations">
               <div class="delivery-summary">
                 <span class="receipt-caption">Observed delivery</span>
                 <output id="delivery-state" class="state-label">Not observed</output>
@@ -168,6 +182,19 @@
                 <output id="event-id">Not available</output>
               </div>
               <p class="field-help">Delivery may continue after the transfer commits. Check again to refresh this observation.</p>
+
+              <section id="ledger-proof" class="ledger-proof" aria-labelledby="proof-heading">
+                <div class="proof-heading">
+                  <h3 id="proof-heading">Ledger postings</h3>
+                  <output id="proof-state" class="state-label" role="status" aria-live="polite" aria-atomic="true">Not loaded</output>
+                </div>
+                <div class="proof-identity">
+                  <span class="receipt-caption">For this transfer ID</span>
+                  <output id="proof-transfer-id">Not loaded</output>
+                </div>
+                <p id="proof-summary" class="field-help">Check delivery to read this transfer’s ledger evidence.</p>
+                <ol id="proof-postings" class="proof-postings" aria-label="Ledger postings for this transfer" hidden></ol>
+              </section>
             </section>
 
             <div class="delivery-empty" aria-hidden="true">

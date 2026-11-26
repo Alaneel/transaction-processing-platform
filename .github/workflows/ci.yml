@@ -63,7 +63,7 @@ jobs:
               raise SystemExit("Receipt recovery and delivery status disagree about the original transfer")
           print("PASS: a post-commit response loss recovered the original transfer; read-only lookup found its single projection.")
           PY_VERIFY
-      - name: Verify browser transfer, lost response and recovery on the running demo
+      - name: Verify browser receipt handoff and ledger proof on the running demo
         timeout-minutes: 5
         run: |
           google-chrome --version

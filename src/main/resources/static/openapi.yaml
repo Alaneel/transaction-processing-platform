@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Transaction Processing Platform
-  version: 0.2.2
+  version: 0.2.3
   description: Educational ledger and asynchronous transfer activity using fictional FIC integer minor units. No authentication; bind locally.
 servers:
   - url: http://localhost:8080
@@ -199,6 +199,29 @@ paths:
           content:
             application/json:
               schema: {$ref: '#/components/schemas/Error'}
+  /internal/transfers/{id}/ledger-proof:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: Inspect the immutable postings recorded for one transfer ID
+      operationId: inspectTransferLedgerProof
+      description: >-
+        Trusted local, read-only inspection using one PostgreSQL snapshot. A balanced
+        pair confirms the exact debit and credit underlying the terminal decision for
+        this ID. It does not inspect other transfers, current account balances,
+        Kafka publication, or projection. Inconsistent data may return a bounded
+        sample of up to three postings, not an exhaustive account history.
+      responses:
+        '200':
+          description: Terminal transfer intent and its observed immutable posting rows
+          headers:
+            Cache-Control: {schema: {type: string, const: no-store}}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/TransferLedgerProof'}
+        '400': {$ref: '#/components/responses/Invalid'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '503': {$ref: '#/components/responses/Unavailable'}
   /internal/reconciliation:
     get:
       summary: Reconcile all balances and journals in one read-only repeatable-read snapshot
@@ -611,6 +634,39 @@ components:
         publishedAt: {type: [string, 'null'], format: date-time}
         processedAt: {type: [string, 'null'], format: date-time}
         projectedAt: {type: [string, 'null'], format: date-time}
+    TransferLedgerProof:
+      type: object
+      additionalProperties: false
+      required: [transferId, transferStatus, sourceAccountId, destinationAccountId, amount, unit, proofState, postings]
+      properties:
+        transferId: {type: string, format: uuid}
+        transferStatus: {type: string, enum: [COMPLETED, REJECTED]}
+        sourceAccountId: {type: string, format: uuid}
+        destinationAccountId: {type: string, format: uuid}
+        amount: {type: integer, format: int64, minimum: 1, maximum: 9000000000000000}
+        unit: {type: string, const: FIC}
+        proofState:
+          type: string
+          enum: [BALANCED_PAIR, NO_POSTINGS, INCONSISTENT]
+          description: >-
+            BALANCED_PAIR means exactly one matching source debit and one matching
+            destination credit for the stored transfer amount. NO_POSTINGS means a
+            rejected transfer without postings. INCONSISTENT means the observed
+            rows do not match the terminal decision and stored transfer intent.
+        postings:
+          type: array
+          maxItems: 3
+          items:
+            type: object
+            additionalProperties: false
+            required: [entryId, accountId, delta]
+            properties:
+              entryId:
+                type: string
+                pattern: '^[1-9][0-9]*$'
+                description: Exact decimal identifier, represented as a string for browser precision.
+              accountId: {type: string, format: uuid}
+              delta: {type: integer, format: int64, minimum: -9000000000000000, maximum: 9000000000000000}
     LedgerEntry:
       type: object
       required: [id, transferId, accountId, delta, createdAt]

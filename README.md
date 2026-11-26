@@ -13,12 +13,18 @@ An independent backend engineering project: exact integer transfers, an immutabl
 On macOS or Linux, start local Docker with Compose and use Python 3.10 or newer. The first run builds the app and starts PostgreSQL and Kafka. You do not need a host JDK.
 
 ```sh
-git clone --branch v0.2.2 --depth 1 https://github.com/Alaneel/transaction-processing-platform.git
+git clone --branch v0.2.3 --depth 1 https://github.com/Alaneel/transaction-processing-platform.git
 cd transaction-processing-platform
 python3 scripts/demo.py
 ```
 
-When the stack is running, open [Browser demo](http://127.0.0.1:38080/demo/index.html), also printed by the startup script. The page lets you send fictional funds, deliberately lose a response, recover with the saved receipt and look up delivery without entering commands. [Walk through the browser demo](docs/demo.md#try-the-browser-demo).
+Open the **Browser demo** URL printed by the launcher. The default is [Transfer Lab](http://127.0.0.1:38080/demo/index.html). After startup, the full flow uses buttons.
+
+1. Leave the default 7 FIC amount, enable **Lose the reply on purpose**, and choose **Save receipt & send**.
+2. When the result is unknown, choose **Download private receipt**. In a fresh browser session, open the **same URL** against the **same retained database**, import the file, then choose **Recover this transfer**. Keep the file private. Import alone does not submit a transfer.
+3. Choose **Check delivery**. Compare the debit, credit and immutable entry IDs with the independently reported Kafka publication and projection.
+
+For the shortest test in the same browser, skip the file and select **Recover this transfer** on the saved receipt. [Walk through the browser demo](docs/demo.md#try-the-browser-demo).
 
 For a CLI alternative, the printed **Transfer delivery** URL shows the sample transfer. To look up your own transfer, pass its `result.id` from the transfer client's response:
 
@@ -42,8 +48,8 @@ The demo uses fictional value and loopback ports `38080`, `55436` and `39092`. R
 
 | Engineering result | Recorded evidence |
 |---|---|
-| **Browser recovery verified against real PostgreSQL and Kafka** | [Browser acceptance record](docs/verification/browser-demo.json) · [GitHub CI](https://github.com/Alaneel/transaction-processing-platform/actions/workflows/ci.yml) |
-| **105 Java and 54 Python checks passed locally** for transfer recovery and delivery lookup | [Local verification and real broker-outage observations](docs/verification/transfer-delivery-status.json) · [Hosted runs](https://github.com/Alaneel/transaction-processing-platform/actions/workflows/ci.yml) |
+| **A fresh browser session recovered the same committed transfer** without a second debit | [Portable receipt acceptance](docs/verification/portable-receipt.json) · [Hosted runs](https://github.com/Alaneel/transaction-processing-platform/actions/workflows/ci.yml) |
+| **109 Java tests and 54 Python checks passed locally**, with ledger evidence visible during a real Kafka outage | [Ledger proof acceptance](docs/verification/ledger-proof.json) |
 | **188,884 completed events reconciled** across outbox, inbox and projection | [Historical runtime acceptance](docs/verification/phase3-final-acceptance.json), 12 October 2026; zero discrepancies, backlog or quarantine at that prior snapshot |
 | **28 retained benchmark trials**, including negative results | [Matched methodology](docs/phase3-benchmark-methodology.md) and [performance report](docs/phase3-performance.md) |
 | Recovery across broker outages, relay crashes, uncertain commits and consumer redelivery | [Failure matrix](docs/failure-matrix.md) and [real dependency scenarios](src/test/java/dev/tpp/events/EventPipelineTest.java) |

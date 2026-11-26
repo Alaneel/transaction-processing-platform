@@ -1,5 +1,11 @@
 # Release and verification
 
+## v0.2.3
+
+Transfer Lab can show the signed immutable postings for a single transfer ID and move a private receipt to another browser session. Import only saves the original intent. Explicit recovery reuses its key and payload against the same local URL and retained database. Delivery and the financial postings are read independently, so missing or delayed event state does not erase the ledger evidence.
+
+The browser verifier closes the original session after a real post-commit response loss, imports without submitting from a fresh session, and checks the original postings again after an HTTP 200 replay. [Quick start](../README.md#run-the-demo) · [Portable receipt acceptance](verification/portable-receipt.json) · [Ledger proof acceptance](verification/ledger-proof.json)
+
 ## v0.2.2
 
 Transfer Lab brings transfer submission, receipt recovery and transfer-ID delivery lookup together in a browser. After startup, the full walkthrough uses buttons, including an opt-in loss of the response to a real committed transfer. Reload the page and recover the original result with the saved receipt. Delivery lookup shows recorded publication and committed activity independently of the financial decision.
