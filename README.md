@@ -8,9 +8,37 @@ An independent backend engineering project: exact integer transfers, an immutabl
 
 [Run the demo](#run-the-demo) · [Read the engineering story](docs/portfolio-walkthrough.md) · [Inspect the evidence](docs/evidence.md) · [Browse the code](docs/code-map.md)
 
+## Run the demo
+
+Start Docker with Compose and have Python 3.10+ available. The first run builds the app and starts PostgreSQL and Kafka locally. You do not need a host JDK.
+
+```sh
+git clone --branch v0.2.1 --depth 1 https://github.com/Alaneel/transaction-processing-platform.git
+cd transaction-processing-platform
+python3 scripts/demo.py
+```
+
+Open the **Transfer delivery** URL printed by the demo. It shows the committed ledger decision, Kafka publication record and activity projection for the sample transfer. To look up your own transfer, pass its `result.id` from the transfer client's response:
+
+```sh
+python3 scripts/transfer-client.py status --transfer-id YOUR_TRANSFER_UUID
+```
+
+From that same running demo, try either failure path:
+
+```sh
+# Drop a committed HTTP response, then recover the original result in a new process.
+python3 scripts/verify-transfer-client.py --base-url http://127.0.0.1:38080 --cli scripts/transfer-client.py
+
+# Stop this demo's Kafka broker and see the same event go from waiting to projected.
+python3 scripts/demo.py --no-build --broker-outage
+```
+
+The demo uses fictional value and loopback ports `38080`, `55436` and `39092`. Run `python3 scripts/demo.py --stop` to stop its containers and retain the data. [Make and resume your own transfer](docs/demo.md#make-and-recover-your-own-transfer) · [State definitions](docs/operations.md#transfer-delivery-progress) · [Local security scope](SECURITY.md)
+
 | Engineering result | Recorded evidence |
 |---|---|
-| **104 checks passed**: 34 unit + 60 real PostgreSQL/Kafka integration + 10 local-Docker guards | [Release candidate verification](docs/verification/release-readiness.json), 14 October 2026 Singapore time; zero failures, errors or skips |
+| **105 Java and 54 Python checks passed locally** for transfer recovery and delivery lookup | [Local verification and real broker-outage observations](docs/verification/transfer-delivery-status.json) · [Hosted runs](https://github.com/Alaneel/transaction-processing-platform/actions/workflows/ci.yml) |
 | **188,884 completed events reconciled** across outbox, inbox and projection | [Historical runtime acceptance](docs/verification/phase3-final-acceptance.json), 12 October 2026; zero discrepancies, backlog or quarantine at that prior snapshot |
 | **28 retained benchmark trials**, including negative results | [Matched methodology](docs/phase3-benchmark-methodology.md) and [performance report](docs/phase3-performance.md) |
 | Recovery across broker outages, relay crashes, uncertain commits and consumer redelivery | [Failure matrix](docs/failure-matrix.md) and [real dependency scenarios](src/test/java/dev/tpp/events/EventPipelineTest.java) |
@@ -26,29 +54,6 @@ The final patched app/PostgreSQL/Kafka stack passed both guarded demos and a sep
 3. **Apply the projection once.** The consumer atomically commits its inbox identity and paired account activity before advancing Kafka offsets. Poison data instead commits quarantine evidence, with bounded audited replay. Activity never determines spendable balances.
 
 See the [architecture](docs/architecture.md), [ledger invariants](docs/ledger-and-invariants.md), [outbox algorithm](docs/outbox.md), [consumer boundary](docs/consumer-reliability.md) and [ten design decisions](docs/adr/).
-
-## Run the demo
-
-Requires a running Docker daemon with Compose and Python 3. The application builds inside a Java 21 container; host Java is unnecessary.
-
-```sh
-python3 scripts/demo.py
-```
-
-The demo starts its own `tpp-portfolio-demo` Compose project on loopback ports **38080 / 55436 / 39092**, provisions a balanced fictional fixture, checks the restricted runtime database role, then verifies a real transfer, same-key replay, Kafka-derived paired activity and both reconciliations. Its report is saved to `benchmark-results/demo.json`.
-
-```sh
-# Demonstrate durable commit while this demo's Kafka broker is stopped, then recover.
-python3 scripts/demo.py --broker-outage
-
-# Review the commands before starting; adjust ports when necessary.
-python3 scripts/demo.py --dry-run
-
-# Stop this project's containers and retain its complete history.
-python3 scripts/demo.py --stop
-```
-
-Open [the local OpenAPI contract](http://127.0.0.1:38080/openapi.yaml) after startup. [The guided demo](docs/demo.md) explains the expected results, manual API calls, failure boundaries and cleanup. Ports bind to loopback; the development credentials are local fixture values. [Security posture](SECURITY.md) explains the deployment limits.
 
 ## A measured optimization, including its cost
 
@@ -72,7 +77,7 @@ python3 -m unittest discover -s scripts -p 'test_*.py'
 python3 scripts/render-showcase.py --check
 ```
 
-The full suite uses real PostgreSQL and Kafka, with no H2 fallback or automatic integration skip. [Testing instructions](docs/testing.md) explain the optional real PostgreSQL subset. [GitHub Actions](.github/workflows/ci.yml) is configured to verify, build the image and run both guarded normal and broker-outage demos; configured CI is distinct from executed local evidence.
+The full suite uses real PostgreSQL and Kafka, with no H2 fallback or automatic integration skip. [Testing instructions](docs/testing.md) explain the optional real PostgreSQL subset. [GitHub Actions](.github/workflows/ci.yml) runs the real-dependency suite, builds the image and checks normal delivery, broker recovery and client recovery after a lost response. The release notes link the hosted result for that version.
 
 | Start here | Go deeper |
 |---|---|

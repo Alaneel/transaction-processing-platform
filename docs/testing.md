@@ -14,7 +14,7 @@ The Maven wrapper selects Maven 3.9.16 and verifies the distribution checksum. M
 
 Production/build images and PostgreSQL/Kafka fixtures use immutable multiarch digest pins recorded in [the image inventory](verification/release-image-pins.json). Ryuk cleanup and the startup-check helper are also pinned; cleanup and startup checks remain enabled.
 
-On Docker Desktop for macOS, if you explicitly select its host-side Unix socket through `DOCKER_HOST`, Ryuk must mount the daemon-side socket rather than the macOS path:
+On Docker Desktop for macOS, Testcontainers can resolve the host-side Unix socket even without a `DOCKER_HOST` override. If Ryuk fails to mount a path below `.docker/run`, use the daemon-side socket for its mount:
 
 ```sh
 DOCKER_HOST="unix://$HOME/.docker/run/docker.sock" \
@@ -40,15 +40,17 @@ Run unit tests separately during development:
 
 That command deliberately excludes PostgreSQL tests and is insufficient acceptance evidence for the transactional core.
 
-## Current release verification and Docker boundary
+## Release history and Docker boundary
 
 The final clean verification completed at **13 October 2026, 23:09:14 UTC** (14 October in Singapore): **104 checks, zero failures/errors/skips**. It retains all original 34 unit and 60 real dependency tests, with ten additional separate-process preconnection guards. The final build-only Snappy patch passed a subsequent plugin/static verification; unchanged backend and integration assertions were not repeated solely for that tool change. [Release evidence](verification/release-readiness.json) separates these runs from the historical phases below.
 
-`TestImages` builds the reviewed server derivatives using only fixed public input bytes, rather than uploading the checkout as Docker context. It rejects symlinked or oversized inputs, fingerprints the context and records the actual local image ID. Only Linux arm64 execution is validated; arm64/amd64 build inputs are prepared.
+`TestImages` builds the reviewed server derivatives using only fixed public input bytes, rather than uploading the checkout as Docker context. It rejects symlinked or oversized inputs, fingerprints the context and records the actual local image ID. The October run was Linux arm64. The [November public release](verification/public-release-2026-11-26.json) also exercised Linux amd64 on GitHub and rebuilt the Linux arm64 demos locally.
 
 Before constructing or connecting a Docker SDK client, `TestDockerBoundary` rejects remote or ambiguous endpoints, Docker contexts/machine selection, TLS/host overrides, custom providers and unsafe configuration files. It validates a canonical Unix socket and pins that socket in memory. If an inherited configuration is refused, deliberately select a trusted local Unix socket and remove the conflicting override. It does not rewrite your home configuration. Guard tests invoke the actual lazy fixture path in separate Java processes; fake remote listeners observe no connections. The shaded vendor HTTP client remains a [documented test-tool risk](dependency-security.md).
 
 The explicit `TPP_TEST_DB_URL` path below retains its existing behavior and is separate from the Docker endpoint guard. It creates/drops a uniquely named database on the selected PostgreSQL server; use it only deliberately with a dedicated server.
+
+The local [transfer delivery iteration](verification/transfer-delivery-status.json) passed **105 Java tests and 54 Python tests** on 26 November 2026. Delivery tests use real PostgreSQL and Kafka for rejected, pending, claimed, blocked, published, and projected observations. One test also proves that projection can commit while the relay's publication record is still `CLAIMED`. The isolated Compose demo verifies the same event before and after broker recovery with the restricted runtime role. These local observations predate tagging v0.2.1. The v0.2.1 release notes separately link its hosted verification.
 
 ## PostgreSQL lifecycle and isolation
 

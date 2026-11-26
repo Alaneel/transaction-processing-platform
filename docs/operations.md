@@ -113,6 +113,21 @@ A new completed transfer returns 201 and a Location. Repeat the identical transf
 
 Activity is eventually consistent and never determines spendable balances. `GET /internal/outbox/{eventId}` inspects stable identity, claim/publication metadata, errors and projection/quarantine state. Event reconciliation separates ordinary lag from structural discrepancies. Inspect a quarantine record and its audits with `GET /internal/quarantine/{id}` and `GET /internal/quarantine/{id}/replays`. Replay uses `POST /internal/quarantine/{id}/replays` with a nonblank `reason` and optional `correctedPayload` JSON text. Requeue a BLOCKED outbox after correcting its operational cause with `POST /internal/outbox/{eventId}/requeues` and a reason. These are trusted local operator interfaces.
 
+### Transfer delivery progress
+
+`GET /internal/transfers/{id}/delivery` looks up one terminal transfer from PostgreSQL. It does not connect to Kafka. Successful responses use `Cache-Control: no-store` and include the terminal financial decision, the observed delivery state and the event ID if available.
+
+| Delivery state | What the snapshot establishes |
+|---|---|
+| `NOT_APPLICABLE` | The transfer was rejected and has no event. |
+| `AWAITING_PUBLICATION` | Finance committed. The event is pending or claimed and no projection has committed. A failed or interrupted send can have an uncertain broker outcome. |
+| `AWAITING_PROJECTION` | The relay recorded publication, but the consumer's projection has not committed. |
+| `BLOCKED` | The event is blocked and has no committed projection. Inspect the stored error code and event ID before taking action. |
+| `PROJECTED` | The matching inbox and activity projection committed. The relay's recorded publication status can still be pending, claimed or blocked. |
+| `INCONSISTENT` | Required durable records are missing or disagree. Investigate using reconciliation. |
+
+`event.publicationStatus` describes what the relay recorded. Consumers can observe Kafka before the relay commits that record, so `PROJECTED` does not require the publication status to be `PUBLISHED`. It also does not prove the Kafka group offset was acknowledged. `nextAttemptAt` is present only for pending events and is a scheduling boundary, not a promise that the next attempt starts then. Timestamps come from the stored database records. No account identifiers, transfer amount, payload, idempotency key, claim token or detailed error text are included. Use the endpoint only in the existing trusted local environment.
+
 ## Build and test
 
 Host development requires a Java 21 JDK and a working Docker daemon. Point `JAVA_HOME` at Java 21 if another version is the default. Maven Wrapper pins and verifies Maven 3.9.16.

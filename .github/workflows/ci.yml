@@ -28,12 +28,10 @@ jobs:
           python3 scripts/phase3-experiments.py --help
           python3 scripts/analyze-jfr.py --help
           python3 scripts/summarize-phase3.py --help
-          python3 scripts/test_event_benchmark.py
           python3 scripts/demo.py --help
           python3 scripts/demo.py --dry-run
-          python3 scripts/test_demo.py
           python3 scripts/security-patch-comparison.py --help
-          python3 scripts/test_security_patch_comparison.py
+          python3 -m unittest discover -s scripts -p 'test_*.py'
           python3 scripts/render-showcase.py --check
       - name: Build runtime image
         run: docker build -t transaction-processing-platform:ci .
@@ -46,6 +44,25 @@ jobs:
         run: |
           python3 scripts/demo.py --project "$COMPOSE_PROJECT_NAME" --app-port 18080 --db-port 55432 --kafka-port 19092 --output benchmark-results/ci-normal.json
           python3 scripts/demo.py --project "$COMPOSE_PROJECT_NAME" --app-port 18080 --db-port 55432 --kafka-port 19092 --no-build --broker-outage --output benchmark-results/ci-outage.json
+      - name: Verify receipt recovery and delivery lookup on the running demo
+        run: |
+          python3 scripts/verify-transfer-client.py --base-url http://127.0.0.1:18080 --cli scripts/transfer-client.py > benchmark-results/ci-transfer-recovery.json
+          transfer_id=$(python3 -c 'import json,uuid; print(uuid.UUID(json.load(open("benchmark-results/ci-transfer-recovery.json"))["transferId"]))')
+          python3 scripts/transfer-client.py status --endpoint http://127.0.0.1:18080 --transfer-id "$transfer_id" > benchmark-results/ci-transfer-status.json
+          python3 - <<'PY_VERIFY'
+          import json
+          from pathlib import Path
+          recovery = json.loads(Path("benchmark-results/ci-transfer-recovery.json").read_text())
+          status = json.loads(Path("benchmark-results/ci-transfer-status.json").read_text())
+          if not (recovery["complete"] and all(recovery["checks"].values())
+                  and status["httpStatus"] == 200 and status["state"] == "OBSERVED"
+                  and status["result"]["transferStatus"] == "COMPLETED"
+                  and status["result"]["deliveryState"] == "PROJECTED"
+                  and status["result"]["transferId"] == recovery["transferId"]
+                  and status["result"]["event"]["eventId"] == recovery["eventId"]):
+              raise SystemExit("Receipt recovery and delivery status disagree about the original transfer")
+          print("PASS: a post-commit response loss recovered the original transfer; read-only lookup found its single projection.")
+          PY_VERIFY
       - name: Retain test reports
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7 (Node 24)

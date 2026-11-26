@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Transaction Processing Platform
-  version: 0.2.0
+  version: 0.2.1
   description: Educational ledger and asynchronous transfer activity using fictional FIC integer minor units. No authentication; bind locally.
 servers:
   - url: http://localhost:8080
@@ -171,6 +171,34 @@ paths:
         '400': {$ref: '#/components/responses/Invalid'}
         '404': {$ref: '#/components/responses/NotFound'}
         '503': {$ref: '#/components/responses/Unavailable'}
+  /internal/transfers/{id}/delivery:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: Inspect durable transfer and event delivery progress by transfer ID
+      operationId: inspectTransferDelivery
+      description: >-
+        Trusted local, read-only inspection of a single PostgreSQL snapshot. A completed
+        transfer has already committed its financial effects even if delivery is pending.
+        PROJECTED can be observed before the relay commits PUBLISHED, because the consumer
+        can receive the event first. The result does not confirm a Kafka group offset commit.
+      responses:
+        '200':
+          description: Terminal transfer decision and observed event progress
+          headers:
+            Cache-Control: {schema: {type: string, const: no-store}}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/TransferDelivery'}
+        '400': {$ref: '#/components/responses/Invalid'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '503':
+          description: Delivery progress could not be read. Retry this status request.
+          headers:
+            Retry-After: {schema: {type: string, const: '1'}}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
   /internal/reconciliation:
     get:
       summary: Reconcile all balances and journals in one read-only repeatable-read snapshot
@@ -546,6 +574,43 @@ components:
           enum: [null, ACCOUNT_NOT_FOUND, ACCOUNT_NOT_TRANSFERABLE, ACCOUNT_INACTIVE, UNIT_MISMATCH, INSUFFICIENT_FUNDS, BALANCE_LIMIT_EXCEEDED]
         createdAt: {type: string, format: date-time}
         completedAt: {type: string, format: date-time}
+    TransferDelivery:
+      type: object
+      additionalProperties: false
+      required: [transferId, transferStatus, decidedAt, deliveryState, event]
+      properties:
+        transferId: {type: string, format: uuid}
+        transferStatus: {type: string, enum: [COMPLETED, REJECTED]}
+        decidedAt: {type: string, format: date-time, description: Stored terminal decision timestamp.}
+        deliveryState:
+          type: string
+          enum: [NOT_APPLICABLE, AWAITING_PUBLICATION, AWAITING_PROJECTION, BLOCKED, PROJECTED, INCONSISTENT]
+          description: >-
+            NOT_APPLICABLE is a rejected transfer with no event. AWAITING_PUBLICATION is a pending
+            or claimed event without a projection. AWAITING_PROJECTION is a published event without
+            a projection. BLOCKED is an unpublished blocked event without a projection. PROJECTED
+            means matching inbox and projection records committed. INCONSISTENT indicates missing
+            or conflicting durable records, rather than ordinary lag.
+        event:
+          oneOf:
+            - {$ref: '#/components/schemas/TransferDeliveryEvent'}
+            - {type: 'null'}
+    TransferDeliveryEvent:
+      type: object
+      additionalProperties: false
+      required: [eventId, publicationStatus, attemptCount, nextAttemptAt, lastErrorCode, publishedAt, processedAt, projectedAt]
+      properties:
+        eventId: {type: string, format: uuid}
+        publicationStatus: {type: string, enum: [PENDING, CLAIMED, PUBLISHED, BLOCKED]}
+        attemptCount: {type: integer, format: int32, minimum: 0}
+        nextAttemptAt:
+          type: [string, 'null']
+          format: date-time
+          description: Earliest scheduled attempt for a PENDING event. Null otherwise.
+        lastErrorCode: {type: [string, 'null'], maxLength: 64}
+        publishedAt: {type: [string, 'null'], format: date-time}
+        processedAt: {type: [string, 'null'], format: date-time}
+        projectedAt: {type: [string, 'null'], format: date-time}
     LedgerEntry:
       type: object
       required: [id, transferId, accountId, delta, createdAt]

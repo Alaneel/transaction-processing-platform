@@ -1,0 +1,46 @@
+{
+  "publishedAt": "2026-11-26T13:12:26Z",
+  "repository": "https://github.com/Alaneel/transaction-processing-platform",
+  "visibility": "PUBLIC",
+  "tag": "v0.2.0",
+  "releaseId": 459431957,
+  "releaseUrl": "https://github.com/Alaneel/transaction-processing-platform/releases/tag/v0.2.0",
+  "commit": "67c91da9c8a1c72cc19921290ce80105aebe03f1",
+  "anonymousChecks": {
+    "releaseApiReturnedPublishedVersion": true,
+    "mainAndTagResolvedToVerifiedCommit": true
+  },
+  "githubHostedVerification": {
+    "runId": 45825298166,
+    "url": "https://github.com/Alaneel/transaction-processing-platform/actions/runs/45825298166",
+    "platform": "Linux amd64",
+    "jobSeconds": 491,
+    "tests": 104,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "spotBugsFindings": 0,
+    "enforcerPassed": true,
+    "imageBuildPassed": true,
+    "normalDemoPassed": true,
+    "brokerOutageDemoPassed": true
+  },
+  "priorAttempts": [
+    {
+      "runId": 45823341287,
+      "failure": "Cold PostgreSQL fixture image build was interrupted by migration test deadline."
+    },
+    {
+      "runId": 45824024594,
+      "failure": "The upstream Alpine CDN no longer served the exact October PostgreSQL zlib APK. Official pin audit found ten replaced URLs."
+    }
+  ],
+  "localArm64": {
+    "normalDemoPassed": true,
+    "brokerOutageDemoPassed": true,
+    "applicationRestartedDuringOutageRecovery": false,
+    "postReleaseClientProof": "transfer-client-recovery.json"
+  },
+  "packageInputVerification": "public-alpine-refresh.json",
+  "scope": "Public source release and documentation. No unauthenticated service deployed publicly. Historical October dependency scans do not describe the rebuilt November images."
+}

@@ -1,0 +1,262 @@
+{
+  "workingTreeSourceHashes": {
+    "src/main/java/dev/tpp/events/TransferDeliveryController.java": "af03fa2a0eea24eb70139e162deaa9dcb1f37a56433616c1ad6d240af44dec89",
+    "src/main/resources/static/openapi.yaml": "67c2fc765b0e98918a40ef4739b8abff912be1fc625bad498b0db500da65bc70",
+    "src/test/java/dev/tpp/events/EventPipelineTest.java": "f47aa9952e9637f551ae765bb74e11d8095d716469500092ea1ad094a7471842",
+    "scripts/transfer-client.py": "84cbe2205e2d0b4a5032df18830186c5ce929366c3b7c9c852544144f2259964",
+    "scripts/test_transfer_client.py": "8f4cc9a1fcd6c81e9a639f8b27fb1c761e14dbb4d0e64c39f294f18a37ede6f0",
+    "scripts/demo.py": "57d66f292215034e5abdb4a946a039ce0792b8db1b3977c0dae228a7d354788a"
+  },
+  "javaVerification": {
+    "command": "JAVA_HOME=<JDK 21> TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock ./mvnw -B -ntp clean verify",
+    "status": "PASS",
+    "tests": 105,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "eventPipelineTests": 28,
+    "deliveryCoverageMethods": [
+      "deliveryLookupIsPrivateReadOnlyAndDistinguishesRejectedPublishedAndProjected",
+      "permanentKafkaTopicFailurePreservesBlockedEvidenceAndAuditedRequeueRecovers",
+      "f3KafkaOutagePreservesHttpAvailabilityAndDurableBacklogUntilRecovery",
+      "f4CrashAfterDurableClaimBeforeSendRecoversAfterLeaseExpiry",
+      "f5CrashAfterKafkaAckCausesStableDuplicateTransportAndSingleBusinessEffect"
+    ],
+    "classes": [
+      {
+        "class": "dev.tpp.ApiErrorMappingTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.008
+      },
+      {
+        "class": "dev.tpp.BackpressurePostgresTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 8.358
+      },
+      {
+        "class": "dev.tpp.DatabaseErrorsTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.005
+      },
+      {
+        "class": "dev.tpp.DomainRulesTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.007
+      },
+      {
+        "class": "dev.tpp.EventContractTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.022
+      },
+      {
+        "class": "dev.tpp.EventPipelineTest",
+        "tests": 28,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 212.61
+      },
+      {
+        "class": "dev.tpp.OutboxMigrationUpgradeTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 2.398
+      },
+      {
+        "class": "dev.tpp.TestDockerBoundaryTest",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 2.122
+      },
+      {
+        "class": "dev.tpp.TransferPostgresTest",
+        "tests": 28,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 12.766
+      },
+      {
+        "class": "dev.tpp.application.BacklogAdmissionTest",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.06
+      },
+      {
+        "class": "dev.tpp.events.relay.PublicationBatchTest",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.033
+      }
+    ],
+    "spotBugsFindings": 0,
+    "spotBugsErrors": 0,
+    "dependencyAndVersionRulesPassed": 4,
+    "duration": "04:17 min",
+    "finishedAt": "2026-11-26T21:24:01+08:00",
+    "logSha256": "b7b93da941ce00dba9340b8099e97fd559cd8918454f4c0e84c1d195996ad8b9"
+  },
+  "pythonVerification": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "tests": 54,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "transferClientLoopbackSubprocessTests": 17
+  },
+  "earlierAttempt": {
+    "status": "FAILED_TEST_SETUP",
+    "testsReported": 48,
+    "fixtureErrors": 4,
+    "reason": "Ryuk tried to bind-mount the macOS host socket path inside the Docker VM. The rerun used the daemon-side socket mount, preserving real dependencies and cleanup.",
+    "logSha256": "0091c666a9e875eb1b0b51306da8939e7d7aa3a3f009bcb382a754c1b74f07c0"
+  },
+  "contractVerification": {
+    "openApiVersion": "3.1",
+    "paths": 18,
+    "resolvedInternalReferences": 88,
+    "newResponseSchemasValid": true,
+    "realPayloadsValidated": 3
+  },
+  "localRuntime": {
+    "composeProject": "tpp-transfer-delivery-20261126",
+    "platform": "Linux arm64 in Docker Desktop",
+    "baseUrl": "http://127.0.0.1:38118",
+    "demoObservedAt": "2026-11-26T13:25:20Z",
+    "roleRestrictionProbePassed": true,
+    "normalDelivery": {
+      "transferId": "b20bee2c-fddb-4659-830a-c0f6b4bb7412",
+      "transferStatus": "COMPLETED",
+      "decidedAt": "2026-11-26T13:25:20.700587Z",
+      "deliveryState": "PROJECTED",
+      "event": {
+        "eventId": "dcfd7776-c262-4e96-a653-2e4704479961",
+        "publicationStatus": "PUBLISHED",
+        "attemptCount": 1,
+        "nextAttemptAt": null,
+        "lastErrorCode": null,
+        "publishedAt": "2026-11-26T13:25:20.732918Z",
+        "processedAt": "2026-11-26T13:25:20.740132Z",
+        "projectedAt": "2026-11-26T13:25:20.741102Z"
+      }
+    },
+    "duringBrokerOutage": {
+      "transferId": "5c84a8e3-7809-447d-b33d-f98444379e4e",
+      "transferStatus": "COMPLETED",
+      "decidedAt": "2026-11-26T13:25:22.174383Z",
+      "deliveryState": "AWAITING_PUBLICATION",
+      "event": {
+        "eventId": "53d47e69-9e92-412f-8dcb-0abac30919ab",
+        "publicationStatus": "CLAIMED",
+        "attemptCount": 1,
+        "nextAttemptAt": null,
+        "lastErrorCode": null,
+        "publishedAt": null,
+        "processedAt": null,
+        "projectedAt": null
+      }
+    },
+    "afterBrokerRecovery": {
+      "transferId": "5c84a8e3-7809-447d-b33d-f98444379e4e",
+      "transferStatus": "COMPLETED",
+      "decidedAt": "2026-11-26T13:25:22.174383Z",
+      "deliveryState": "PROJECTED",
+      "event": {
+        "eventId": "53d47e69-9e92-412f-8dcb-0abac30919ab",
+        "publicationStatus": "PUBLISHED",
+        "attemptCount": 5,
+        "nextAttemptAt": null,
+        "lastErrorCode": "DELIVERY_UNCERTAIN",
+        "publishedAt": "2026-11-26T13:25:30.164163Z",
+        "processedAt": "2026-11-26T13:25:30.167513Z",
+        "projectedAt": "2026-11-26T13:25:30.168152Z"
+      }
+    },
+    "applicationNotRestartedDuringRecovery": true,
+    "sameKeyReplayHttp": 200,
+    "changedPayloadHttp": 409,
+    "durableEffect": {
+      "inbox": 1,
+      "activityRows": 2,
+      "activityDeltaSum": 0
+    },
+    "ledgerConsistent": true,
+    "projectionDiscrepancies": 0,
+    "reportSha256": "d85c38b6f66880a9c610ad2a7a10a19ee0bd5a23d8bf2958784fd1a8c2a87e92",
+    "cli": {
+      "completedRead": {
+        "command": "status",
+        "endpoint": "http://127.0.0.1:38118",
+        "transferId": "5c84a8e3-7809-447d-b33d-f98444379e4e",
+        "state": "OBSERVED",
+        "httpStatus": 200,
+        "result": {
+          "transferId": "5c84a8e3-7809-447d-b33d-f98444379e4e",
+          "transferStatus": "COMPLETED",
+          "decidedAt": "2026-11-26T13:25:22.174383Z",
+          "deliveryState": "PROJECTED",
+          "event": {
+            "projectedAt": "2026-11-26T13:25:30.168152Z",
+            "publishedAt": "2026-11-26T13:25:30.164163Z",
+            "processedAt": "2026-11-26T13:25:30.167513Z",
+            "lastErrorCode": "DELIVERY_UNCERTAIN",
+            "publicationStatus": "PUBLISHED",
+            "eventId": "53d47e69-9e92-412f-8dcb-0abac30919ab",
+            "attemptCount": 5,
+            "nextAttemptAt": null
+          }
+        }
+      },
+      "unknownRead": {
+        "command": "status",
+        "endpoint": "http://127.0.0.1:38118",
+        "transferId": "0fbafd82-0aef-4826-9ccc-f9300938c38c",
+        "state": "NOT_FOUND",
+        "httpStatus": 404
+      },
+      "completedReadCacheControl": "no-store"
+    },
+    "lostResponseClientRegression": {
+      "complete": true,
+      "httpStatuses": [
+        201,
+        200
+      ],
+      "exitCodes": [
+        3,
+        0
+      ],
+      "effects": {
+        "PrivateImmutableIntentExistedBeforeFirstPost": true,
+        "NewProcessResumedSameKeyPayloadAndOriginalResult": true,
+        "ExactlyTwoBalancedLedgerEntries": true,
+        "ExactlyOnePairedKafkaActivityEffect": true,
+        "SingleBalanceEffectAndCleanReconciliation": true
+      }
+    }
+  },
+  "publication": "At the time of this local run, only v0.2.0 was public. Hosted verification for v0.2.1 is recorded separately in its release notes."
+}

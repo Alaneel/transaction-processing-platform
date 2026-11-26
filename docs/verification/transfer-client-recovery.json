@@ -1,0 +1,214 @@
+{
+  "passed": true,
+  "startedAt": "2026-11-26T12:55:40.050062+00:00",
+  "finishedAt": "2026-11-26T12:55:40.390601+00:00",
+  "scope": "One fresh 7-FIC transfer and same-key resume; HTTP observations only",
+  "checks": {
+    "PrivateImmutableIntentExistedBeforeFirstPost": true,
+    "NewProcessResumedSameKeyPayloadAndOriginalResult": true,
+    "ExactlyTwoBalancedLedgerEntries": true,
+    "ExactlyOnePairedKafkaActivityEffect": true,
+    "SingleBalanceEffectAndCleanReconciliation": true
+  },
+  "transferId": "06834a50-1c01-435b-80cb-a0f19a3418dc",
+  "eventId": "6b2c3353-42eb-4e04-ac82-8b491583c28b",
+  "ledger": {
+    "00000000-0000-0000-0000-000000000002": [
+      {
+        "id": 9,
+        "transferId": "06834a50-1c01-435b-80cb-a0f19a3418dc",
+        "accountId": "00000000-0000-0000-0000-000000000002",
+        "delta": -7,
+        "createdAt": "2026-11-26T12:55:40.182403Z"
+      }
+    ],
+    "00000000-0000-0000-0000-000000000003": [
+      {
+        "id": 10,
+        "transferId": "06834a50-1c01-435b-80cb-a0f19a3418dc",
+        "accountId": "00000000-0000-0000-0000-000000000003",
+        "delta": 7,
+        "createdAt": "2026-11-26T12:55:40.182403Z"
+      }
+    ]
+  },
+  "activity": {
+    "00000000-0000-0000-0000-000000000002": [
+      {
+        "id": 9,
+        "eventId": "6b2c3353-42eb-4e04-ac82-8b491583c28b",
+        "transferId": "06834a50-1c01-435b-80cb-a0f19a3418dc",
+        "accountId": "00000000-0000-0000-0000-000000000002",
+        "deltaMinor": -7,
+        "unit": "FIC",
+        "occurredAt": "2026-11-26T12:55:40.190952Z",
+        "projectedAt": "2026-11-26T12:55:40.303152Z"
+      }
+    ],
+    "00000000-0000-0000-0000-000000000003": [
+      {
+        "id": 10,
+        "eventId": "6b2c3353-42eb-4e04-ac82-8b491583c28b",
+        "transferId": "06834a50-1c01-435b-80cb-a0f19a3418dc",
+        "accountId": "00000000-0000-0000-0000-000000000003",
+        "deltaMinor": 7,
+        "unit": "FIC",
+        "occurredAt": "2026-11-26T12:55:40.190952Z",
+        "projectedAt": "2026-11-26T12:55:40.303407Z"
+      }
+    ]
+  },
+  "balances": {
+    "before": {
+      "00000000-0000-0000-0000-000000000002": {
+        "accountId": "00000000-0000-0000-0000-000000000002",
+        "unit": "FIC",
+        "amount": 999986
+      },
+      "00000000-0000-0000-0000-000000000003": {
+        "accountId": "00000000-0000-0000-0000-000000000003",
+        "unit": "FIC",
+        "amount": 1000014
+      }
+    },
+    "after": {
+      "00000000-0000-0000-0000-000000000002": {
+        "accountId": "00000000-0000-0000-0000-000000000002",
+        "unit": "FIC",
+        "amount": 999979
+      },
+      "00000000-0000-0000-0000-000000000003": {
+        "accountId": "00000000-0000-0000-0000-000000000003",
+        "unit": "FIC",
+        "amount": 1000021
+      }
+    }
+  },
+  "ledgerReconciliation": {
+    "consistent": true,
+    "balanceMismatches": [],
+    "invalidTransfers": [],
+    "totalLedgerDelta": 0,
+    "totalMaterializedBalance": 0
+  },
+  "projectionReconciliation": {
+    "completedTransfers": 5,
+    "processedEvents": 5,
+    "projectedTransfers": 5,
+    "quarantinedRecords": 0,
+    "missingProjection": 0,
+    "publishedAwaitingProjection": 0,
+    "inboxWithoutProjection": 0,
+    "projectionWithoutInbox": 0,
+    "activityShapeDiscrepancies": 0,
+    "originDiscrepancies": 0,
+    "discrepancies": 0,
+    "oldestUnprocessedAgeSeconds": null,
+    "lastProcessedAt": "2026-11-26T12:55:40.300673Z",
+    "lastProcessedEventOccurredAt": "2026-11-26T12:55:40.190952Z",
+    "checkedAt": "2026-11-26T12:55:40.337827467Z"
+  },
+  "relayObservations": [
+    {
+      "ordinal": 1,
+      "observedAt": "2026-11-26T12:55:40.200613+00:00",
+      "backendHttpStatus": 201,
+      "backendResult": {
+        "id": "06834a50-1c01-435b-80cb-a0f19a3418dc",
+        "sourceAccountId": "00000000-0000-0000-0000-000000000002",
+        "destinationAccountId": "00000000-0000-0000-0000-000000000003",
+        "amount": 7,
+        "unit": "FIC",
+        "status": "COMPLETED",
+        "rejectionCode": null,
+        "createdAt": "2026-11-26T12:55:40.182403Z",
+        "completedAt": "2026-11-26T12:55:40.190952Z"
+      },
+      "idempotencyReplayed": "false",
+      "privateIntentExistedBeforeForwarding": true,
+      "clientResponse": "deliberately dropped after full backend response"
+    },
+    {
+      "ordinal": 2,
+      "observedAt": "2026-11-26T12:55:40.288994+00:00",
+      "backendHttpStatus": 200,
+      "backendResult": {
+        "id": "06834a50-1c01-435b-80cb-a0f19a3418dc",
+        "sourceAccountId": "00000000-0000-0000-0000-000000000002",
+        "destinationAccountId": "00000000-0000-0000-0000-000000000003",
+        "amount": 7,
+        "unit": "FIC",
+        "status": "COMPLETED",
+        "rejectionCode": null,
+        "createdAt": "2026-11-26T12:55:40.182403Z",
+        "completedAt": "2026-11-26T12:55:40.190952Z"
+      },
+      "idempotencyReplayed": "true",
+      "privateIntentExistedBeforeForwarding": true,
+      "clientResponse": "forwarded exact original result"
+    }
+  ],
+  "sameIdempotencyKey": true,
+  "samePayload": true,
+  "clientExitCodes": [
+    3,
+    0
+  ],
+  "sql": {
+    "completedTransfer": 1,
+    "ledgerEntries": 2,
+    "publishedEvent": 1,
+    "outboxEvents": 1,
+    "inboxEvent": 1,
+    "projection": 1,
+    "activityRows": 2,
+    "activitySum": 0
+  },
+  "earlierFixtureAttempt": {
+    "sentRequests": 0,
+    "exitCode": 2,
+    "reason": "Noncanonical macOS temporary path crossed a symlink. Client declined before sending. Verification helper now uses the canonical path."
+  },
+  "loopbackSubprocessTestsPassed": 10,
+  "clientSha256": "acdd0a6f8632c36314786a677a8faea3225f8eb05eea3b8f097edef011f348ac",
+  "regressionSha256": "a6498595d289c2077229fe5ff54cd1b8356c0d7f5ad8ff41dd9fda5457d4626f",
+  "liveCheckerSha256": "0856309776cf0a65711225043a3105ffa9e7060c17598a20fb8f5520875b70f9",
+  "refreshedReleaseStackRepeat": {
+    "sourceCommit": "67c91da9c8a1c72cc19921290ce80105aebe03f1",
+    "platform": "Linux arm64 on Docker Desktop",
+    "images": {
+      "app": "sha256:244e362ebe665d0bfbb226ff88a020d55c0436274e457902918a8e19dace2c89",
+      "db": "sha256:b860446d9803899bb93cc2097aa141d6abb540e6fd16ac337d148cc96b3337e9",
+      "kafka": "sha256:1fbb2bfc7f647999d04b950e9137e57fcd402d4ab92d114a45b3e54f613e2fd9"
+    },
+    "finishedAt": "2026-11-26T13:03:58.449074+00:00",
+    "checks": {
+      "PrivateImmutableIntentExistedBeforeFirstPost": true,
+      "NewProcessResumedSameKeyPayloadAndOriginalResult": true,
+      "ExactlyTwoBalancedLedgerEntries": true,
+      "ExactlyOnePairedKafkaActivityEffect": true,
+      "SingleBalanceEffectAndCleanReconciliation": true
+    },
+    "transferId": "be384f48-653e-42b1-9f79-38a03fe9e5b0",
+    "eventId": "846c6cdf-08b1-41fe-9634-4150ba9e8d8f",
+    "relayHttpStatuses": [
+      201,
+      200
+    ],
+    "clientExitCodes": [
+      3,
+      0
+    ],
+    "cliSha256": "acdd0a6f8632c36314786a677a8faea3225f8eb05eea3b8f097edef011f348ac",
+    "sql": {
+      "completedTransfer": 1,
+      "ledgerEntries": 2,
+      "publishedEvent": 1,
+      "outboxEvents": 1,
+      "inboxEvent": 1,
+      "projection": 1,
+      "activityRows": 2,
+      "activitySum": 0
+    }
+  }
+}

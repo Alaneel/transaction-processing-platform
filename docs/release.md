@@ -1,4 +1,14 @@
-# Local release preparation
+# Release and verification
+
+## v0.2.1
+
+The receipt-based CLI saves the endpoint, idempotency key and transfer payload before its first request. `resume` reuses that intent after a lost response. `status` reads the financial decision, publication and projection by transfer ID. The release workflow exercises both against real PostgreSQL and Kafka. [Quick start](../README.md#run-the-demo) · [Delivery states](operations.md#transfer-delivery-progress)
+
+## v0.2.0
+
+[`v0.2.0`](https://github.com/Alaneel/transaction-processing-platform/releases/tag/v0.2.0) was publicly released on 26 November 2026 from commit `67c91da9c8a1c72cc19921290ce80105aebe03f1`. The [Linux amd64 hosted run](https://github.com/Alaneel/transaction-processing-platform/actions/runs/45825298166) passed all 104 tests, static and dependency checks, the image build, and normal and broker-outage demos. The same source passed local rebuilt Linux arm64 demos. [Public release evidence](verification/public-release-2026-11-26.json) records the exact version, both retained failed attempts and anonymous verification of the final public tag.
+
+## October preparation record
 
 **Historical preparation and public source.** The October results below apply to their recorded local candidate. Before the first public release, a clean GitHub runner exposed two issues: cold image construction consumed the migration test's own time budget, and upstream removed exact Alpine APK URLs. The public build separates fixture setup from the test deadline and [refreshes signed, checksum-pinned APKs](verification/public-alpine-refresh.json) for both architectures. The upstream archive can replace APK revisions again, and content hashes do not retain upstream files. Refresh and verify the lock if a new cold build reports an unavailable APK.
 

@@ -42,6 +42,55 @@ The broker is restarted in a `finally` block, retaining its volume. The applicat
 
 Both modes were executed successfully on 14 October 2026, finishing at 13:11:24 UTC, using the final patched application/PostgreSQL/Kafka images and ownership/output safeguards: [normal result](verification/release-normal-demo.json), [outage result](verification/release-outage-demo.json), and [complete release verification](verification/release-readiness.json). The outage report proves 201/200/409 responses, the same recovered event, unchanged application container/start time, one inbox row, two activity rows with delta sum zero, and both reconciliations. The earlier showcase refresh had only offline checks; that limitation is historical.
 
+## Make and recover your own transfer
+
+With the demo running, use the [transfer client](../scripts/transfer-client.py) on macOS or Linux with Python 3.10 or newer. It writes a private receipt before the first POST. Each invocation sends one request. Choose a new receipt path only for a genuinely new transfer.
+
+```sh
+python3 scripts/transfer-client.py transfer \
+  --source 00000000-0000-0000-0000-000000000002 \
+  --destination 00000000-0000-0000-0000-000000000003 \
+  --amount 7 --receipt benchmark-results/intents/alice-to-bob.json
+
+python3 scripts/transfer-client.py resume \
+  --receipt benchmark-results/intents/alice-to-bob.json
+```
+
+The default endpoint is `http://127.0.0.1:38080`. Set `--endpoint` on the initial `transfer` when using a different local port. `resume` uses the saved endpoint, key and payload without overrides. Use the same demo database and volume when resuming. Reusing the port with a replacement database cannot recover a result from the previous one. On macOS use a canonical path if storing receipts under a temporary directory. The client refuses linked receipt paths and requires a private directory.
+
+| Outcome | Meaning and next action |
+|---|---|
+| `COMPLETED` (exit 0) | HTTP 201 committed a new transfer or HTTP 200 returned the original result. |
+| `REJECTED` (exit 1) | HTTP 422 recorded a durable business rejection. |
+| Invalid input or receipt (exit 2) | No request was sent. |
+| `UNKNOWN` (exit 3) | The result is uncertain. Resume the **same** receipt. |
+| Other HTTP refusal (exit 4) | Inspect the response status. A 409 is an identity conflict. Keep the original receipt. |
+
+To reproduce a lost response against the running, idle demo, use this bounded [verification script](../scripts/verify-transfer-client.py). It moves seven fictional units between the two seeded accounts once, even though two client processes issue POSTs.
+
+```sh
+python3 scripts/verify-transfer-client.py --base-url http://127.0.0.1:38080 \
+  --cli scripts/transfer-client.py
+```
+
+[Observed recovery](verification/transfer-client-recovery.json) records the captured HTTP 201, dropped response, subsequent HTTP 200 with the same transfer ID, paired ledger and Kafka activity entries, and a direct PostgreSQL check for one published event, inbox row and projection. The client receipt preserves request identity through a process restart. It does not identify a replacement database or recover a deleted volume.
+
+## Check a transfer's delivery progress
+
+Copy `result.id` from a completed or rejected transfer response. The demo prints a direct link for its sample transfer. You can check progress without the original receipt or idempotency key:
+
+```sh
+# Replace TRANSFER_ID with the UUID from the transfer response.
+python3 scripts/transfer-client.py status --transfer-id TRANSFER_ID
+curl -fsS http://127.0.0.1:38080/internal/transfers/TRANSFER_ID/delivery
+```
+
+Set `--endpoint` if the demo is on a different local port. `status` performs one read and never retries or submits a transfer. Its exit code 0 means the lookup succeeded, even if delivery is pending or blocked. Exit 4 identifies an unknown ID or another HTTP refusal, 3 means the observation is unavailable, and 2 means invalid local input.
+
+Read `transferStatus` first. `COMPLETED` means the ledger committed. `AWAITING_PUBLICATION` and `AWAITING_PROJECTION` describe asynchronous work after that commit. `PROJECTED` means the activity effect committed, and `BLOCKED` calls for operator investigation. A rejected transfer returns `NOT_APPLICABLE` and no event. If a response was lost and you do not have a transfer ID, resume the original receipt first.
+
+The broker-outage demo saves observations before and after recovery under `brokerOutage.deliveryDuringOutage` and `brokerOutage.deliveryAfterRecovery`. The [verified example](verification/transfer-delivery-status.json) shows the same completed transfer and event moving from `AWAITING_PUBLICATION` to `PROJECTED`. See the [full state meanings](operations.md#transfer-delivery-progress).
+
 ## Inspect the API manually
 
 Open [OpenAPI](http://127.0.0.1:38080/openapi.yaml), or read the [checked-in contract](../src/main/resources/static/openapi.yaml).
@@ -72,6 +121,6 @@ Use the same `--project` when you chose another name. This stops containers and 
 - **Existing volumes have no ownership record:** choose a fresh project name. The script leaves the unidentified history intact.
 - **Remote Docker context:** select your local Unix-socket Docker context; the demo does not operate remote infrastructure.
 - **Credentials changed on an existing volume:** initial role setup runs only on a fresh database volume. Changing `DB_PASSWORD`/`MIGRATION_PASSWORD` alone cannot update existing roles.
-- **Projection timeout:** inspect this project's app/Kafka logs and `/internal/outbox/{eventId}`. A committed transfer should be retried with the same key and payload to recover its result, not submitted under a new key.
+- **Projection timeout:** inspect delivery using the transfer ID first. For deeper diagnostics follow its event ID to `/internal/outbox/{eventId}` and inspect this project's app/Kafka logs. To recover an uncertain financial result, resume the original receipt or use the same key and payload.
 
 Do not expose these local ports publicly. [Security posture](../SECURITY.md) records the concrete limitations and fixture credentials.

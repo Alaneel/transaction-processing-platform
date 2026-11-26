@@ -267,8 +267,9 @@ def main():
     if args.broker_outage:
         plan["outageCommands"] = [compose + ["stop", "kafka"],
                                   ["HTTP", "POST /api/transfers: commit, replay, changed-payload conflict"],
+                                  ["HTTP", "GET /internal/transfers/{id}/delivery: awaiting publication"],
                                   compose + ["up", "--detach", "--wait", "--wait-timeout", "180", "kafka"],
-                                  ["HTTP/SQL", "verify the original event and paired effect after recovery"]]
+                                  ["HTTP/SQL", "verify projected delivery, original event and paired effect"]]
     if args.dry_run:
         print(json.dumps(plan, indent=2))
         return
@@ -312,13 +313,30 @@ def main():
         report = {"project": args.project, "baseUrl": base,
                   "observedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                   "smoke": json.loads(run(smoke, capture=True))}
+        http = benchmark.Http(base, 5)
+        try:
+            report["delivery"] = observe_delivery(
+                http, report["smoke"]["transferId"], report["smoke"]["eventId"], "PROJECTED")
+        finally:
+            http.close()
         if args.broker_outage:
             report["brokerOutage"] = outage(run, compose, seed, base)
         publish(report)
         print("PASS: committed transfer, durable same-key replay, paired Kafka activity and reconciliations.")
+        print(f"Transfer delivery: {base}/internal/transfers/{report['smoke']['transferId']}/delivery")
         if args.broker_outage:
             print("PASS: transfer committed with broker stopped; its stable event recovered without restarting the app.")
         print(f"Evidence: {args.output}\nOpenAPI: {base}/openapi.yaml\nStop and retain history: python3 scripts/demo.py --project {args.project} --stop")
+
+
+def observe_delivery(http, transfer_id, event_id, state):
+    status, result = http.request("GET", f"/internal/transfers/{transfer_id}/delivery")
+    event = result.get("event") if isinstance(result, dict) else None
+    if (status != 200 or not isinstance(event, dict) or result.get("transferId") != transfer_id
+            or result.get("transferStatus") != "COMPLETED" or result.get("deliveryState") != state
+            or event.get("eventId") != event_id):
+        raise RuntimeError(f"delivery inspection did not observe {state} for the original transfer and event")
+    return result
 
 
 def outage(run, compose, sql_command, base):
@@ -348,6 +366,7 @@ def outage(run, compose, sql_command, base):
         status, pending = http.request("GET", f"/internal/outbox/{event_id}")
         if status != 200 or pending.get("status") not in ("PENDING", "CLAIMED") or pending.get("processedAt") is not None:
             raise RuntimeError("outage event was not durably pending and unprocessed")
+        delivery_during = observe_delivery(http, transfer_id, event_id, "AWAITING_PUBLICATION")
     except BaseException:
         http.close()
         raise
@@ -372,6 +391,7 @@ def outage(run, compose, sql_command, base):
             time.sleep(0.25)
         else:
             raise RuntimeError("outage event did not recover within 90 seconds")
+        delivery_after = observe_delivery(http, transfer_id, event_id, "PROJECTED")
         ledger = benchmark.reconciliation(http)
         status, projection = http.request("GET", "/internal/events/reconciliation")
         if status != 200 or projection.get("discrepancies") != 0 or projection.get("missingProjection") != 0:
@@ -385,6 +405,7 @@ def outage(run, compose, sql_command, base):
             raise RuntimeError("recovered event did not have one inbox and one balanced activity pair")
         return {"transferId": transfer_id, "eventId": event_id, "newHttpStatus": 201, "replayHttpStatus": 200,
                 "changedPayloadHttpStatus": 409, "duringOutage": pending["status"], "afterRecovery": recovered["status"],
+                "deliveryDuringOutage": delivery_during, "deliveryAfterRecovery": delivery_after,
                 "applicationContainerAndStartTimeUnchanged": True, "effect": effect,
                 "ledgerReconciliation": ledger, "projectionReconciliation": projection}
     finally:

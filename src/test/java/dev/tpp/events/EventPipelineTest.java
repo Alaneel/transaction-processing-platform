@@ -201,6 +201,81 @@ class EventPipelineTest {
   }
 
   @Test
+  void deliveryLookupIsPrivateReadOnlyAndDistinguishesRejectedPublishedAndProjected()
+      throws Exception {
+    Pair pair = fundedPair();
+    worker(app).stop();
+    await(
+        "consumer stops before publication-only delivery observation",
+        Duration.ofSeconds(10),
+        () -> worker(app).isTerminated());
+    var publicationOnly = startApplication(Map.of("tpp.events.consumer-enabled", false));
+    assertThat(worker(publicationOnly).isRunning()).isFalse();
+    UUID transfer = completed(pair);
+    UUID event = eventId(transfer);
+    var rejected =
+        db.post(
+            app,
+            "/api/transfers",
+            PgTestSupport.transfer(pair.source(), pair.destination(), 2000),
+            key());
+    assertThat(rejected.status()).isEqualTo(422);
+    assertThat(rejected.<String>json("$.status")).isEqualTo("REJECTED");
+    String beforeReads = deliveryDatabaseSnapshot();
+    long recordsBeforeReads = kafka.endOffset(topic);
+    var pending =
+        assertDelivery(publicationOnly, transfer, "AWAITING_PUBLICATION", "PENDING");
+    assertThat(pending.<Number>json("$.event.attemptCount").intValue()).isZero();
+    assertThat(pending.<String>json("$.event.nextAttemptAt")).isNotBlank();
+    assertThat(pending.<Object>json("$.event.lastErrorCode")).isNull();
+    assertThat(pending.<Object>json("$.event.publishedAt")).isNull();
+    assertThat(pending.<Object>json("$.event.processedAt")).isNull();
+    assertThat(pending.<Object>json("$.event.projectedAt")).isNull();
+    assertThat(
+            db.get(publicationOnly, "/internal/transfers/" + transfer + "/delivery").body())
+        .isEqualTo(pending.body());
+    var rejectedDelivery =
+        db.get(publicationOnly, "/internal/transfers/" + rejected.id() + "/delivery");
+    assertDeliveryShape(rejectedDelivery, false);
+    assertThat(rejectedDelivery.<String>json("$.transferId"))
+        .isEqualTo(rejected.id().toString());
+    assertThat(rejectedDelivery.<String>json("$.transferStatus")).isEqualTo("REJECTED");
+    assertThat(rejectedDelivery.<String>json("$.decidedAt"))
+        .isEqualTo(rejected.<String>json("$.completedAt"));
+    assertThat(rejectedDelivery.<String>json("$.deliveryState")).isEqualTo("NOT_APPLICABLE");
+    assertThat(rejectedDelivery.<Object>json("$.event")).isNull();
+    var absent =
+        db.get(publicationOnly, "/internal/transfers/" + UUID.randomUUID() + "/delivery");
+    assertThat(absent.status()).isEqualTo(404);
+    assertThat(absent.<String>json("$.code")).isEqualTo("TRANSFER_NOT_FOUND");
+    var malformed = db.get(publicationOnly, "/internal/transfers/not-a-uuid/delivery");
+    assertThat(malformed.status()).isEqualTo(400);
+    assertThat(malformed.<String>json("$.code")).isEqualTo("INVALID_REQUEST");
+    assertThat(deliveryDatabaseSnapshot()).isEqualTo(beforeReads);
+    assertThat(kafka.endOffset(topic)).isEqualTo(recordsBeforeReads);
+
+    assertThat(relay(publicationOnly).relayOnce()).isEqualTo(1);
+    long offset = kafka.records(topic, event, 1).getFirst().offset();
+    String beforePublishedRead = deliveryDatabaseSnapshot();
+    var published =
+        assertDelivery(publicationOnly, transfer, "AWAITING_PROJECTION", "PUBLISHED");
+    assertThat(published.<Number>json("$.event.attemptCount").intValue()).isEqualTo(1);
+    assertThat(published.<String>json("$.event.publishedAt")).isNotBlank();
+    assertThat(published.<Object>json("$.event.processedAt")).isNull();
+    assertThat(published.<Object>json("$.event.projectedAt")).isNull();
+    assertThat(deliveryDatabaseSnapshot()).isEqualTo(beforePublishedRead);
+    worker(app).start();
+    assertProjectedOnce(transfer, event);
+    awaitCommitted(offset + 1);
+    var projected = assertDelivery(publicationOnly, transfer, "PROJECTED", "PUBLISHED");
+    assertThat(projected.<String>json("$.event.processedAt")).isNotBlank();
+    assertThat(projected.<String>json("$.event.projectedAt")).isNotBlank();
+    assertThat(db.scalar("SELECT count(*) FROM outbox_events WHERE transfer_id=?", rejected.id()))
+        .isZero();
+    assertLedgerAndOutboxInvariants();
+  }
+
+  @Test
   void permanentKafkaTopicFailurePreservesBlockedEvidenceAndAuditedRequeueRecovers()
       throws Exception {
     Pair pair = fundedPair();
@@ -213,6 +288,12 @@ class EventPipelineTest {
     assertThat(text("SELECT last_error_classification FROM outbox_events WHERE event_id=?", event))
         .isEqualTo("PERMANENT");
     assertThat(db.scalar("SELECT count(*) FROM event_inbox WHERE event_id=?", event)).isZero();
+    var blocked = assertDelivery(app, transfer, "BLOCKED", "BLOCKED");
+    assertThat(blocked.<String>json("$.event.lastErrorCode"))
+        .isEqualTo(text("SELECT last_error_code FROM outbox_events WHERE event_id=?", event));
+    assertThat(blocked.<Object>json("$.event.publishedAt")).isNull();
+    assertThat(blocked.<Object>json("$.event.processedAt")).isNull();
+    assertThat(blocked.<Object>json("$.event.projectedAt")).isNull();
     assertThat(
             db.post(
                     app,
@@ -222,6 +303,7 @@ class EventPipelineTest {
                 .status())
         .isEqualTo(200);
     assertThat(status(event)).isEqualTo("PENDING");
+    assertDelivery(app, transfer, "AWAITING_PUBLICATION", "PENDING");
     assertThat(db.scalar("SELECT count(*) FROM outbox_requeue_audit WHERE event_id=?", event))
         .isEqualTo(1);
     publishPending();
@@ -242,6 +324,8 @@ class EventPipelineTest {
       assertThat(result.status()).isEqualTo(201);
       transfers.add(result.id());
     }
+    for (UUID transfer : transfers)
+      assertDelivery(app, transfer, "AWAITING_PUBLICATION", "PENDING");
     assertThat(db.scalar("SELECT count(*) FROM outbox_events WHERE status<>'PUBLISHED'"))
         .isEqualTo(3);
     assertThat(relay(app).relayOnce()).isZero();
@@ -252,6 +336,13 @@ class EventPipelineTest {
                 "SELECT count(*) FROM transfer_activity_projection WHERE transfer_id IN (?,?,?)",
                 transfers.toArray()))
         .isZero();
+    for (UUID transfer : transfers) {
+      var pending = assertDelivery(app, transfer, "AWAITING_PUBLICATION", "PENDING");
+      assertThat(pending.<Number>json("$.event.attemptCount").intValue()).isEqualTo(1);
+      assertThat(pending.<String>json("$.event.lastErrorCode")).isNotBlank();
+      assertThat(pending.<Object>json("$.event.processedAt")).isNull();
+      assertThat(pending.<Object>json("$.event.projectedAt")).isNull();
+    }
     assertLedgerAndOutboxInvariants();
     kafka.restartBroker();
     stoppedBroker = false;
@@ -259,6 +350,7 @@ class EventPipelineTest {
     for (UUID transfer : transfers) {
       assertThat(kafka.records(topic, eventId(transfer), 1)).hasSize(1);
       assertProjectedOnce(transfer, eventId(transfer));
+      assertDelivery(app, transfer, "PROJECTED", "PUBLISHED");
     }
     assertLedgerAndOutboxInvariants();
   }
@@ -274,6 +366,10 @@ class EventPipelineTest {
     assertThat(status(event)).isEqualTo("CLAIMED");
     assertThat(db.scalar("SELECT count(*) FROM event_inbox WHERE event_id=?", event)).isZero();
     assertThat(kafka.endOffset(topic)).isEqualTo(brokerBefore);
+    var claimed = assertDelivery(app, transfer, "AWAITING_PUBLICATION", "CLAIMED");
+    assertThat(claimed.<Number>json("$.event.attemptCount").intValue()).isEqualTo(1);
+    assertThat(claimed.<Object>json("$.event.processedAt")).isNull();
+    assertThat(claimed.<Object>json("$.event.projectedAt")).isNull();
     awaitLeaseExpiry(event);
     publishPending();
     assertThat(kafka.records(topic, event, 1)).hasSize(1);
@@ -293,6 +389,10 @@ class EventPipelineTest {
     var first = kafka.records(topic, event, 1).getFirst();
     assertThat(status(event)).isEqualTo("CLAIMED");
     assertProjectedOnce(transfer, event);
+    var alreadyProjected = assertDelivery(app, transfer, "PROJECTED", "CLAIMED");
+    assertThat(alreadyProjected.<Object>json("$.event.publishedAt")).isNull();
+    assertThat(alreadyProjected.<String>json("$.event.processedAt")).isNotBlank();
+    assertThat(alreadyProjected.<String>json("$.event.projectedAt")).isNotBlank();
     awaitLeaseExpiry(event);
     publishPending();
     var delivered = kafka.records(topic, event, 2);
@@ -1631,6 +1731,74 @@ class EventPipelineTest {
         "Kafka offset durably committed",
         Duration.ofSeconds(25),
         () -> kafka.committedOffset(group, topic) >= offset);
+  }
+
+  private PgTestSupport.Response assertDelivery(
+      PgTestSupport.Application target,
+      UUID transfer,
+      String deliveryState,
+      String publicationStatus)
+      throws Exception {
+    var response = db.get(target, "/internal/transfers/" + transfer + "/delivery");
+    assertDeliveryShape(response, true);
+    assertThat(response.<String>json("$.transferId")).isEqualTo(transfer.toString());
+    assertThat(response.<String>json("$.transferStatus")).isEqualTo("COMPLETED");
+    assertThat(response.<String>json("$.decidedAt"))
+        .isEqualTo(db.get(target, "/api/transfers/" + transfer).<String>json("$.completedAt"));
+    assertThat(response.<String>json("$.deliveryState")).isEqualTo(deliveryState);
+    UUID event = eventId(transfer);
+    var durable = store(target).inspect(event);
+    assertThat(response.<String>json("$.event.eventId")).isEqualTo(event.toString());
+    assertThat(response.<String>json("$.event.publicationStatus")).isEqualTo(publicationStatus);
+    assertThat(response.<Number>json("$.event.attemptCount").intValue())
+        .isEqualTo(durable.attemptCount());
+    assertThat(response.<String>json("$.event.lastErrorCode")).isEqualTo(durable.lastErrorCode());
+    if (publicationStatus.equals("PENDING"))
+      assertDeliveryInstant(response, "$.event.nextAttemptAt", durable.nextAttemptAt());
+    else assertThat(response.<Object>json("$.event.nextAttemptAt")).isNull();
+    assertDeliveryInstant(response, "$.event.publishedAt", durable.publishedAt());
+    assertDeliveryInstant(response, "$.event.processedAt", durable.processedAt());
+    assertDeliveryInstant(response, "$.event.projectedAt", durable.projectedAt());
+    return response;
+  }
+
+  private static void assertDeliveryShape(PgTestSupport.Response response, boolean hasEvent) {
+    assertThat(response.status()).isEqualTo(200);
+    assertThat(response.headers().firstValue("Cache-Control")).hasValue("no-store");
+    assertThat(response.<Map<String, Object>>json("$").keySet())
+        .containsExactlyInAnyOrder(
+            "transferId", "transferStatus", "decidedAt", "deliveryState", "event");
+    if (hasEvent)
+      assertThat(response.<Map<String, Object>>json("$.event").keySet())
+          .containsExactlyInAnyOrder(
+              "eventId",
+              "publicationStatus",
+              "attemptCount",
+              "nextAttemptAt",
+              "lastErrorCode",
+              "publishedAt",
+              "processedAt",
+              "projectedAt");
+  }
+
+  private static void assertDeliveryInstant(
+      PgTestSupport.Response response, String path, java.time.Instant expected) {
+    if (expected == null) assertThat(response.<Object>json(path)).isNull();
+    else assertThat(java.time.Instant.parse(response.<String>json(path))).isEqualTo(expected);
+  }
+
+  private String deliveryDatabaseSnapshot() throws Exception {
+    return text(
+        "SELECT md5(jsonb_build_object("
+            + " 'transfers',(SELECT jsonb_agg(to_jsonb(t) ORDER BY t.id) FROM transfers t),"
+            + " 'balances',(SELECT jsonb_agg(to_jsonb(b) ORDER BY b.account_id) FROM balances b),"
+            + " 'ledger',(SELECT jsonb_agg(to_jsonb(l) ORDER BY l.id) FROM ledger_entries l),"
+            + " 'outbox',(SELECT jsonb_agg(to_jsonb(o) ORDER BY o.event_id) FROM outbox_events o),"
+            + " 'inbox',(SELECT jsonb_agg(to_jsonb(i) ORDER BY i.event_id) FROM event_inbox i),"
+            + " 'projection',(SELECT jsonb_agg(to_jsonb(p) ORDER BY p.transfer_id)"
+            + " FROM transfer_activity_projection p),"
+            + " 'activity',(SELECT jsonb_agg(to_jsonb(a) ORDER BY a.id) FROM account_activity a)"
+            + ")::text)");
   }
 
   private void assertProjectedOnce(UUID transfer, UUID event) throws Exception {
