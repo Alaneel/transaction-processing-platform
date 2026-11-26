@@ -6,9 +6,14 @@
   const LOCK_NAME = "tpp.transferLab.intent";
   const WORKER_PATH = "/demo/delivery-worker.js";
   const TIMEOUT_MS = 10000;
+  const WATCH_WINDOW_MS = 60000;
+  const WATCH_INTERVAL_MS = 2000;
+  const WATCH_REQUEST_MS = 4000;
+  const WATCH_READ_LIMIT = 30;
   const MAX_BYTES = 65536;
   const PORTABLE_RECEIPT_KIND = "tpp.transfer-lab-recovery";
   const MAX_RECEIPT_FILE_BYTES = 4096;
+  const HISTORY_PAGE_SIZE = 6;
   const ALICE = "00000000-0000-0000-0000-000000000002";
   const BOB = "00000000-0000-0000-0000-000000000003";
   const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -18,13 +23,18 @@
     "NOT_APPLICABLE", "AWAITING_PUBLICATION", "AWAITING_PROJECTION", "BLOCKED", "PROJECTED", "INCONSISTENT",
   ]);
   const PROOF_STATES = new Set(["BALANCED_PAIR", "NO_POSTINGS", "INCONSISTENT"]);
+  const observation = globalThis.TransferLabDelivery;
   const ids = [
     "submit-form", "direction", "amount", "drop-response", "submit-transfer", "simulation-status",
     "submit-message", "receipt-state", "receipt-key", "receipt-summary", "resume-transfer", "resume-message",
-    "transfer-id", "lookup-form", "lookup-id", "lookup-transfer", "lookup-message", "delivery-result",
+    "transfer-id", "lookup-heading", "lookup-form", "lookup-id", "lookup-transfer", "lookup-message", "delivery-result",
     "download-receipt", "import-receipt", "portable-receipt-message",
     "ledger-state", "publication-state", "projection-state", "delivery-state", "event-id", "origin-message",
+    "delivery-attempts", "delivery-error", "delivery-next-at", "delivery-observed-at",
+    "delivery-published-at", "delivery-projected-at",
+    "watch-start", "watch-stop", "watch-status", "download-observation", "observation-message",
     "proof-state", "proof-transfer-id", "proof-summary", "proof-postings",
+    "history-status", "history-items", "history-refresh", "history-older",
   ];
   const ui = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
   if (ids.some((id) => !ui[id])) return;
@@ -38,6 +48,15 @@
   let observedWorker = null;
   let automaticLookup = "";
   let lookupVersion = 0;
+  let deliverySeen = null;
+  let ledgerSeen = null;
+  let activeWatch = null;
+  let historyVersion = 0;
+  let historyLoading = false;
+  let historyReadingOlder = false;
+  let historyOnLatest = true;
+  let historyNext = null;
+  let historyDisplayed = false;
 
   function display(id, text, state = "") {
     ui[id].textContent = text;
@@ -55,9 +74,15 @@
 
   function clearLookupObservation() {
     lookupVersion += 1;
+    deliverySeen = null;
+    ledgerSeen = null;
+    cancelWatch();
     ui["delivery-result"].hidden = true;
     resetDelivery();
     resetProof();
+    watchStatus("idle", "Not following. Read delivery before starting.");
+    display("observation-message", "Read delivery before downloading an observation.");
+    updateControls();
   }
 
   function loopbackOrigin() {
@@ -306,6 +331,19 @@
     ui["download-receipt"].disabled = !local || !storageReady || receiptInvalid || !current?.receipt;
     ui["import-receipt"].disabled = !canWrite;
     ui["lookup-transfer"].disabled = !local || busy;
+    const selected = selectedTransferId();
+    const selectedDelivery = selected && deliverySeen?.value.transferId === selected ? deliverySeen.value : null;
+    ui["watch-start"].disabled = !local || busy || !observation || Boolean(activeWatch) || !selectedDelivery
+      || observation.classifyDelivery(selectedDelivery) !== "waiting";
+    ui["watch-stop"].disabled = !local || !activeWatch;
+    ui["download-observation"].disabled = !local || !observation || !selected
+      || !(selectedDelivery || ledgerSeen?.value.transferId === selected);
+    ui["history-refresh"].disabled = !local || historyLoading;
+    ui["history-older"].disabled = !local || historyLoading || !historyNext;
+    ui["history-older"].hidden = !historyNext;
+    for (const button of ui["history-items"].querySelectorAll(".history-inspect")) {
+      button.disabled = !local || busy;
+    }
     ui["drop-response"].disabled = !canWrite || Boolean(unresolved) || !simulationReady;
     if (ui["drop-response"].disabled) ui["drop-response"].checked = false;
   }
@@ -321,9 +359,12 @@
     renderReceipt();
   }
 
-  async function jsonRequest(path, options = {}) {
+  async function jsonRequest(path, options = {}, { signal, timeoutMs = TIMEOUT_MS } = {}) {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+    const abort = () => controller.abort();
+    if (signal?.aborted) abort();
+    else signal?.addEventListener("abort", abort, { once: true });
+    const timer = setTimeout(abort, timeoutMs);
     try {
       const response = await fetch(path, {
         ...options, signal: controller.signal, mode: "same-origin", credentials: "omit",
@@ -354,6 +395,7 @@
       return { status: response.status, result };
     } finally {
       clearTimeout(timer);
+      signal?.removeEventListener("abort", abort);
     }
   }
 
@@ -377,6 +419,7 @@
             ? "Recovered the original committed transfer. Check its delivery using the recovered ID."
             : "The financial transfer is complete. Use delivery lookup to inspect publication and activity.")
           : `The durable result is REJECTED (${result.rejectionCode}).`, state === "COMPLETED" ? "positive" : "negative");
+        if (historyOnLatest && !historyReadingOlder) void readHistory();
       } else {
         const state = response.status === 409 ? "CONFLICT" : "UNKNOWN";
         next = { ...snapshot.receipt, state, result: null };
@@ -453,9 +496,11 @@
       || !("event" in result)) throw new Error("The delivery response did not match this transfer.");
     if (result.event !== null) {
       const event = result.event;
-      if (!event || typeof event !== "object" || !UUID.test(event.eventId)
+      if (!event || typeof event !== "object" || typeof event.eventId !== "string" || !UUID.test(event.eventId)
         || !["PENDING", "CLAIMED", "PUBLISHED", "BLOCKED"].includes(event.publicationStatus)
-        || !Number.isSafeInteger(event.attemptCount) || event.attemptCount < 0) {
+        || !Number.isSafeInteger(event.attemptCount) || event.attemptCount < 0
+        || (event.lastErrorCode !== null && (typeof event.lastErrorCode !== "string"
+          || !/^[A-Z0-9_]{1,64}$/.test(event.lastErrorCode)))) {
         throw new Error("The delivery response was incomplete.");
       }
       for (const key of ["nextAttemptAt", "publishedAt", "processedAt", "projectedAt"]) {
@@ -464,7 +509,8 @@
         }
       }
     }
-    return result;
+    return { ...result, transferId, event: result.event
+      ? { ...result.event, eventId: result.event.eventId.toLowerCase() } : null };
   }
 
   function verifiedLedgerProof(result, transferId, transferStatus = null) {
@@ -503,6 +549,110 @@
     element.className = className;
     element.textContent = text;
     return element;
+  }
+
+  function verifiedHistory(value, before) {
+    if (!value || typeof value !== "object" || !Array.isArray(value.items)
+      || value.items.length > HISTORY_PAGE_SIZE
+      || (value.nextBefore !== null && (typeof value.nextBefore !== "string"
+        || !/^[A-Za-z0-9_-]{39}$/.test(value.nextBefore)
+        || value.nextBefore === before || value.items.length < HISTORY_PAGE_SIZE))) {
+      throw new Error("Transfer history is incomplete.");
+    }
+    const seen = new Set();
+    const items = value.items.map((item) => {
+      if (!item || typeof item !== "object" || typeof item.transferId !== "string" || !UUID.test(item.transferId)
+        || !validPayload({ sourceAccountId: item.sourceAccountId, destinationAccountId: item.destinationAccountId,
+          amount: item.amount, unit: item.unit })
+        || !TERMINAL.has(item.transferStatus) || typeof item.decidedAt !== "string"
+        || !Number.isFinite(Date.parse(item.decidedAt))
+        || (item.transferStatus === "COMPLETED" ? item.rejectionCode !== null
+          : typeof item.rejectionCode !== "string" || !/^[A-Z0-9_]{1,80}$/.test(item.rejectionCode))) {
+        throw new Error("Transfer history contains an invalid decision.");
+      }
+      const id = item.transferId.toLowerCase();
+      if (seen.has(id)) throw new Error("Transfer history contains a repeated transfer.");
+      seen.add(id);
+      return { id, fromAlice: item.sourceAccountId === ALICE, amount: item.amount,
+        state: item.transferStatus, decidedAt: item.decidedAt, rejectionCode: item.rejectionCode };
+    });
+    return { items, nextBefore: value.nextBefore };
+  }
+
+  function historyRow(item) {
+    const row = document.createElement("li");
+    row.className = "history-row";
+    row.dataset.transferId = item.id;
+    const summary = document.createElement("div");
+    summary.className = "history-summary";
+    const direction = item.fromAlice ? "Alice → Bob" : "Bob → Alice";
+    const amount = `${item.amount.toLocaleString()} FIC`;
+    const state = textElement("span", "history-state",
+      item.state === "COMPLETED" ? "Completed" : `Rejected · ${item.rejectionCode.replaceAll("_", " ").toLowerCase()}`);
+    state.dataset.state = item.state;
+    const timestamp = new Intl.DateTimeFormat(undefined, {
+      dateStyle: "medium", timeStyle: "medium",
+    }).format(new Date(item.decidedAt));
+    const metadata = document.createElement("div");
+    metadata.className = "history-time";
+    const time = textElement("time", "history-decided-at", timestamp);
+    time.dateTime = item.decidedAt;
+    time.title = item.decidedAt;
+    const reference = textElement("code", "history-reference", item.id.slice(0, 8));
+    reference.title = item.id;
+    metadata.append(time, reference);
+    summary.append(textElement("span", "history-direction", direction),
+      textElement("span", "history-amount", amount), state, metadata);
+    const inspect = textElement("button", "history-inspect", "Inspect");
+    inspect.type = "button";
+    inspect.setAttribute("aria-label", `Inspect ${direction}, ${amount}, ${timestamp}, transfer ${item.id}`);
+    inspect.addEventListener("click", () => {
+      if (!local || busy) return;
+      automaticLookup = "";
+      ui["lookup-id"].value = item.id;
+      ui["lookup-heading"].focus();
+      void lookup();
+    });
+    row.append(summary, inspect);
+    return row;
+  }
+
+  async function readHistory(older = false) {
+    if (!local || (older && (!historyNext || historyLoading))) return;
+    const before = older ? historyNext : null;
+    const version = ++historyVersion;
+    historyLoading = true;
+    historyReadingOlder = older;
+    updateControls();
+    display("history-status", older ? "Reading older transfers…" : "Reading recent transfers…", "pending");
+    try {
+      const params = new URLSearchParams({ limit: String(HISTORY_PAGE_SIZE) });
+      if (before) params.set("before", before);
+      const response = await jsonRequest(`/internal/demo/transfers?${params}`);
+      if (version !== historyVersion) return;
+      if (response.status !== 200) throw new Error("Transfer history is unavailable.");
+      const page = verifiedHistory(response.result, before);
+      ui["history-items"].replaceChildren(...page.items.map(historyRow));
+      historyOnLatest = !older;
+      historyDisplayed = true;
+      historyNext = page.nextBefore;
+      const count = page.items.length;
+      const status = count
+        ? `Showing ${count} ${older ? "older" : "recent"} ${count === 1 ? "transfer" : "transfers"}.`
+        : (older ? "There are no older transfers." : "No committed or rejected transfers between Alice and Bob yet.");
+      display("history-status", status, count ? "positive" : "");
+    } catch (_) {
+      if (version !== historyVersion) return;
+      display("history-status", historyDisplayed
+        ? "Could not read history. The last view is still shown."
+        : "Could not read history. Use Refresh latest to try again.", "unknown");
+    } finally {
+      if (version === historyVersion) {
+        historyLoading = false;
+        historyReadingOlder = false;
+        updateControls();
+      }
+    }
   }
 
   function postingRow(posting) {
@@ -544,9 +694,13 @@
     display("publication-state", "Not observed");
     display("projection-state", "Not observed");
     display("event-id", "Not available");
+    for (const key of ["attempts", "error", "next-at", "observed-at", "published-at", "projected-at"]) {
+      display(`delivery-${key}`, "Not observed");
+    }
   }
 
-  function renderDelivery(result) {
+  function observeDelivery(result, observedAt = new Date().toISOString()) {
+    deliverySeen = { observedAt, value: result };
     const event = result.event;
     const projected = result.deliveryState === "PROJECTED";
     const inconsistent = result.deliveryState === "INCONSISTENT";
@@ -559,13 +713,157 @@
     display("projection-state", projectionText, projected ? "positive" : inconsistent ? "negative" : "pending");
     display("delivery-state", result.deliveryState, result.deliveryState === "PROJECTED" ? "positive" : ["BLOCKED", "INCONSISTENT"].includes(result.deliveryState) ? "negative" : "pending");
     display("event-id", event?.eventId ?? "No event for this result");
+    display("delivery-attempts", event ? String(event.attemptCount) : "Not applicable");
+    display("delivery-error", event?.lastErrorCode ?? (event ? "None recorded" : "Not applicable"));
+    display("delivery-next-at", event?.nextAttemptAt ?? (event ? "Not scheduled" : "Not applicable"));
+    display("delivery-observed-at", deliverySeen.observedAt);
+    display("delivery-published-at", event?.publishedAt ?? (event ? "Not recorded" : "Not applicable"));
+    display("delivery-projected-at", event?.projectedAt ?? (event ? "Not recorded" : "Not applicable"));
+  }
+
+  function selectedTransferId() {
+    const id = ui["lookup-id"].value.trim().toLowerCase();
+    return UUID.test(id) ? id : null;
+  }
+
+  function watchStatus(state, text) {
+    const status = ui["watch-status"];
+    if (status.dataset.watchState !== state) status.dataset.watchState = state;
+    if (status.textContent !== text) status.textContent = text;
+  }
+
+  function describeWatch(state) {
+    return {
+      settled: "Follow complete. Publication is recorded and account activity is projected.",
+      blocked: "Follow stopped. Publication is blocked. Inspect the last recorded error.",
+      inconsistent: "Follow stopped. Delivery evidence is inconsistent. Inspect before taking action.",
+      "not-applicable": "No event to follow. This transfer was rejected.",
+      timeout: "Follow ended after up to 60 seconds. The last successful observation is still shown.",
+      stopped: "Following stopped. The last successful observation is still shown.",
+      unavailable: "Delivery is not available for this selection. Check again to obtain a new observation.",
+    }[state];
+  }
+
+  function cancelWatch() {
+    if (!activeWatch) return;
+    const previous = activeWatch;
+    activeWatch = null;
+    clearTimeout(previous.timer);
+    previous.controller.abort();
+  }
+
+  function finishWatch(watch, state, text = describeWatch(state)) {
+    if (activeWatch !== watch) return;
+    cancelWatch();
+    watchStatus(state, text);
+    updateControls();
+  }
+
+  function ownsWatch(watch) {
+    return activeWatch === watch && lookupVersion === watch.version && selectedTransferId() === watch.transferId;
+  }
+
+  async function pollDelivery(watch) {
+    if (!ownsWatch(watch)) return;
+    const remaining = watch.deadline - performance.now();
+    if (remaining <= 0 || watch.reads >= WATCH_READ_LIMIT) {
+      finishWatch(watch, "timeout");
+      return;
+    }
+    watch.reads += 1;
+    try {
+      const response = await jsonRequest(`/internal/transfers/${watch.transferId}/delivery`, {}, {
+        signal: watch.controller.signal, timeoutMs: Math.min(WATCH_REQUEST_MS, remaining),
+      });
+      if (!ownsWatch(watch)) return;
+      if (performance.now() >= watch.deadline) {
+        finishWatch(watch, "timeout");
+        return;
+      }
+      if (response.status === 404 && response.result?.code === "TRANSFER_NOT_FOUND") {
+        invalidateWatchedObservation("Unavailable", "This transfer is no longer visible to the local service.");
+        finishWatch(watch, "unavailable");
+        return;
+      }
+      if (response.status !== 200) throw new Error("Delivery read did not return an observation.");
+      const result = verifiedDelivery(response.result, watch.transferId);
+      const previous = deliverySeen.value;
+      if (result.transferStatus !== previous.transferStatus || result.decidedAt !== previous.decidedAt
+        || (previous.event && result.event && previous.event.eventId !== result.event.eventId)) {
+        invalidateWatchedObservation("Inconsistent", "The observed transfer identity changed. Check the local database.");
+        finishWatch(watch, "inconsistent", "Follow stopped because the transfer or event identity changed between reads.");
+        return;
+      }
+      observeDelivery(result);
+      const outcome = observation.classifyDelivery(result);
+      if (outcome !== "waiting") {
+        finishWatch(watch, outcome);
+        return;
+      }
+      watchStatus("watching", result.deliveryState === "PROJECTED"
+        ? "Activity is projected. Still waiting for the recorded publication."
+        : "Following delivery. Only this transfer’s delivery status is being read.");
+    } catch (_) {
+      if (!ownsWatch(watch)) return;
+      watchStatus("watching", "Delivery read unavailable. Retrying within the follow window. The last observation is still shown.");
+    }
+    const delay = watch.deadline - performance.now();
+    if (delay <= 0) finishWatch(watch, "timeout");
+    else watch.timer = setTimeout(() => { void pollDelivery(watch); }, Math.min(WATCH_INTERVAL_MS, delay));
+  }
+
+  function invalidateWatchedObservation(label, detail) {
+    deliverySeen = null;
+    ledgerSeen = null;
+    resetDelivery(label, "unknown");
+    resetProof("Unavailable", detail, "unknown");
+    display("observation-message", "No current observation can be downloaded.");
+    display("lookup-message", detail, "unknown");
+  }
+
+  function startWatch() {
+    const id = selectedTransferId();
+    if (!local || busy || activeWatch || !observation
+      || !id || deliverySeen?.value.transferId !== id
+      || observation.classifyDelivery(deliverySeen.value) !== "waiting") return;
+    const watch = {
+      transferId: id, version: lookupVersion, deadline: performance.now() + WATCH_WINDOW_MS,
+      controller: new AbortController(), timer: null, reads: 0,
+    };
+    activeWatch = watch;
+    watchStatus("watching", "Following delivery. Only this transfer’s delivery status is being read.");
+    updateControls();
+    void pollDelivery(watch);
+  }
+
+  function downloadObservation() {
+    const transferId = selectedTransferId();
+    if (!local || !observation || !transferId) return;
+    let url;
+    try {
+      const report = observation.buildReport({
+        transferId, exportedAt: new Date().toISOString(), delivery: deliverySeen, ledger: ledgerSeen,
+      });
+      const file = new Blob([JSON.stringify(report, null, 2) + "\n"], { type: "application/json" });
+      url = URL.createObjectURL(file);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `transfer-observation-${transferId.slice(0, 8)}.json`;
+      document.body.append(link);
+      try { link.click(); } finally { link.remove(); }
+      display("observation-message", "Observation downloaded. It contains transfer evidence, not recovery credentials.", "positive");
+    } catch (_) {
+      display("observation-message", "No valid observation can be downloaded for this transfer ID.", "negative");
+    } finally {
+      if (url) setTimeout(() => URL.revokeObjectURL(url), 10000);
+    }
   }
 
   async function lookup() {
     if (!local || busy) return;
     clearLookupObservation();
-    const transferId = ui["lookup-id"].value.trim().toLowerCase();
-    if (!UUID.test(transferId)) {
+    const transferId = selectedTransferId();
+    if (!transferId) {
       display("lookup-message", "Enter a valid transfer UUID. No request was sent.", "negative");
       return;
     }
@@ -576,18 +874,20 @@
     display("proof-transfer-id", transferId);
     display("lookup-message", "Reading delivery status and ledger postings…", "pending");
     try {
+      const observe = (path) => jsonRequest(path).then((response) =>
+        ({ ...response, observedAt: new Date().toISOString() }));
       const [deliveryRead, proofRead] = await Promise.allSettled([
-        jsonRequest(`/internal/transfers/${transferId}/delivery`),
-        jsonRequest(`/internal/transfers/${transferId}/ledger-proof`),
+        observe(`/internal/transfers/${transferId}/delivery`),
+        observe(`/internal/transfers/${transferId}/ledger-proof`),
       ]);
-      if (version !== lookupVersion || ui["lookup-id"].value.trim().toLowerCase() !== transferId) return;
+      if (version !== lookupVersion || selectedTransferId() !== transferId) return;
       let delivery = null;
       try {
         if (deliveryRead.status !== "fulfilled" || deliveryRead.value.status !== 200) {
           throw new Error("Delivery lookup was unavailable.");
         }
         delivery = verifiedDelivery(deliveryRead.value.result, transferId);
-        renderDelivery(delivery);
+        observeDelivery(delivery, deliveryRead.value.observedAt);
       } catch (_) {
         resetDelivery("Unavailable", "unknown");
       }
@@ -598,12 +898,26 @@
         }
         proof = verifiedLedgerProof(proofRead.value.result, transferId, delivery?.transferStatus);
         renderLedgerProof(proof);
+        ledgerSeen = { observedAt: proofRead.value.observedAt, value: proof };
       } catch (_) {
         resetProof("Unavailable", "Ledger evidence could not be established for this transfer ID. Check again to retry this read.", "unknown");
         display("proof-transfer-id", transferId);
       }
       // Either point read remains useful when the other is unavailable.
       ui["delivery-result"].hidden = !delivery && !proof;
+      if (delivery && observation) {
+        const state = observation.classifyDelivery(delivery);
+        watchStatus(state === "waiting" ? "idle" : state, ({
+          waiting: "Delivery has not settled. Follow it to check automatically.",
+          settled: "Publication and projection are already recorded.",
+          blocked: "Publication is blocked. Inspect the last recorded error before retrying.",
+          inconsistent: "Delivery evidence is inconsistent. Inspect before taking action.",
+          "not-applicable": "No event to follow. This transfer was rejected.",
+        })[state]);
+      } else {
+        watchStatus("unavailable", describeWatch("unavailable"));
+      }
+      if (delivery || proof) display("observation-message", "Download the observations shown for this transfer.");
       if (delivery && proof) {
         display("lookup-message", proof.proofState === "INCONSISTENT"
           ? "Delivery status read. Ledger evidence for this transfer ID needs inspection."
@@ -654,6 +968,12 @@
     finally { ui["import-receipt"].value = ""; }
   });
   ui["lookup-form"].addEventListener("submit", (event) => { event.preventDefault(); lookup(); });
+  ui["watch-start"].addEventListener("click", startWatch);
+  ui["watch-stop"].addEventListener("click", () => { if (activeWatch) finishWatch(activeWatch, "stopped"); });
+  ui["download-observation"].addEventListener("click", downloadObservation);
+  addEventListener("pagehide", () => { if (activeWatch) finishWatch(activeWatch, "stopped"); });
+  ui["history-refresh"].addEventListener("click", () => { void readHistory(); });
+  ui["history-older"].addEventListener("click", () => { void readHistory(true); });
   ui["lookup-id"].addEventListener("input", () => {
     clearLookupObservation();
     display("lookup-message", "Check delivery for the transfer ID now entered.");
@@ -673,6 +993,7 @@
   local = loopbackOrigin();
   if (!local) {
     display("origin-message", "Transfer Lab operates only on a loopback origin. No API request or saved-intent access was made.", "negative");
+    display("history-status", "History is available only on a local demo URL.", "negative");
     updateControls();
     return;
   }
@@ -693,4 +1014,5 @@
       .then(checkSimulation).catch(checkSimulation);
   }
   checkSimulation();
+  void readHistory();
 })();

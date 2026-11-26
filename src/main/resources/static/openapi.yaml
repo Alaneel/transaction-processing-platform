@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Transaction Processing Platform
-  version: 0.2.3
+  version: 0.2.4
   description: Educational ledger and asynchronous transfer activity using fictional FIC integer minor units. No authentication; bind locally.
 servers:
   - url: http://localhost:8080
@@ -221,6 +221,33 @@ paths:
               schema: {$ref: '#/components/schemas/TransferLedgerProof'}
         '400': {$ref: '#/components/responses/Invalid'}
         '404': {$ref: '#/components/responses/NotFound'}
+        '503': {$ref: '#/components/responses/Unavailable'}
+  /internal/demo/transfers:
+    get:
+      summary: Browse recent fictional transfer decisions
+      operationId: listRecentDemoTransfers
+      description: >-
+        Read-only pages of committed or rejected transfers between the two seeded
+        demo accounts, newest recorded decision first. Funding and unrelated accounts
+        are excluded. Keyset pagination uses the recorded decision time and transfer ID.
+        No receipts, idempotency keys, or event delivery decisions are returned.
+      parameters:
+        - name: limit
+          in: query
+          schema: {type: integer, minimum: 1, maximum: 20, default: 6}
+        - name: before
+          in: query
+          description: Opaque token returned as nextBefore on the previous page.
+          schema: {type: string, pattern: '^[A-Za-z0-9_-]{39}$'}
+      responses:
+        '200':
+          description: Page of terminal decisions
+          headers:
+            Cache-Control: {schema: {type: string, const: no-store}}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DemoTransferHistoryPage'}
+        '400': {$ref: '#/components/responses/Invalid'}
         '503': {$ref: '#/components/responses/Unavailable'}
   /internal/reconciliation:
     get:
@@ -667,6 +694,32 @@ components:
                 description: Exact decimal identifier, represented as a string for browser precision.
               accountId: {type: string, format: uuid}
               delta: {type: integer, format: int64, minimum: -9000000000000000, maximum: 9000000000000000}
+    DemoTransferHistoryPage:
+      type: object
+      additionalProperties: false
+      required: [items, nextBefore]
+      properties:
+        items:
+          type: array
+          maxItems: 20
+          items: {$ref: '#/components/schemas/DemoTransferHistoryRow'}
+        nextBefore:
+          type: [string, 'null']
+          pattern: '^[A-Za-z0-9_-]{39}$'
+          description: Null when no earlier matching transfer is visible.
+    DemoTransferHistoryRow:
+      type: object
+      additionalProperties: false
+      required: [transferId, sourceAccountId, destinationAccountId, amount, unit, transferStatus, decidedAt, rejectionCode]
+      properties:
+        transferId: {type: string, format: uuid}
+        sourceAccountId: {type: string, format: uuid}
+        destinationAccountId: {type: string, format: uuid}
+        amount: {type: integer, format: int64, minimum: 1, maximum: 9000000000000000}
+        unit: {type: string, const: FIC}
+        transferStatus: {type: string, enum: [COMPLETED, REJECTED]}
+        decidedAt: {type: string, format: date-time}
+        rejectionCode: {type: [string, 'null'], maxLength: 64}
     LedgerEntry:
       type: object
       required: [id, transferId, accountId, delta, createdAt]

@@ -33,6 +33,7 @@ jobs:
           python3 scripts/security-patch-comparison.py --help
           python3 -m unittest discover -s scripts -p 'test_*.py'
           python3 scripts/render-showcase.py --check
+          node --test scripts/test-delivery-observation.cjs
       - name: Build runtime image
         run: docker build -t transaction-processing-platform:ci .
       - name: Guarded normal and broker-outage demos
@@ -63,12 +64,21 @@ jobs:
               raise SystemExit("Receipt recovery and delivery status disagree about the original transfer")
           print("PASS: a post-commit response loss recovered the original transfer; read-only lookup found its single projection.")
           PY_VERIFY
-      - name: Verify browser receipt handoff and ledger proof on the running demo
-        timeout-minutes: 5
+      - name: Set up real browser verification
+        timeout-minutes: 3
         run: |
           google-chrome --version
           python3 -m venv "$RUNNER_TEMP/tpp-playwright"
           "$RUNNER_TEMP/tpp-playwright/bin/python" -m pip install --disable-pip-version-check playwright==1.57.0
+      - name: Watch a real Kafka outage and validate the observation download in Chrome
+        timeout-minutes: 6
+        env:
+          COMPOSE_PROJECT_NAME: tpp-ci-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          "$RUNNER_TEMP/tpp-playwright/bin/python" scripts/verify-delivery-watch.py --project "$COMPOSE_PROJECT_NAME" --base-url http://127.0.0.1:18080 --channel chrome --output benchmark-results/ci-delivery-watch.json
+      - name: Verify browser history, receipt handoff, and ledger evidence
+        timeout-minutes: 5
+        run: |
           "$RUNNER_TEMP/tpp-playwright/bin/python" scripts/verify-browser-demo.py --base-url http://127.0.0.1:18080 --channel chrome --output benchmark-results/ci-browser-demo.json
       - name: Retain test reports
         if: always()

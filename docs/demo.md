@@ -51,6 +51,20 @@ Use a modern browser with local storage and Web Locks to submit and recover tran
 
 The browser requires the same scheme, host, and port, so `localhost` and `127.0.0.1` are not interchangeable. A matching URL does not prove the database was retained. Use files you created yourself, do not edit them, and do not import them against a rebuilt demo database. These files are specific to Transfer Lab and are not the command-line client's receipt format.
 
+### Find an earlier transfer without its ID
+
+Open **Recent transfers** below the transfer panels, or use **Browse recent transfers** by the lookup form. It reads the latest completed and rejected decisions between the two demo accounts from PostgreSQL, including ones made in earlier browser sessions. Select **Inspect** to open the selected transfer's ledger and delivery observations. Use **Show older transfers** to page back or **Refresh latest** to return to the newest decisions.
+
+The list is read-only. It shows neither recovery keys nor private receipt contents and does not resolve a browser's saved intent. A similar amount or timestamp is not proof that a particular unknown request committed. Use its original receipt when you need to recover that exact request.
+
+### Follow delivery and save an observation
+
+After **Check delivery** or **Inspect**, the delivery pane shows how many publication attempts were recorded, the last error code, when the next retry becomes eligible, and when publication and projection were observed. A prior error code can still be present after a successful retry.
+
+If delivery is pending, choose **Follow delivery**. The page reads only the selected transfer's delivery status, at most once per two seconds and for up to 60 seconds. It stops when publication and projection are both recorded, when the backend reports a blocked or inconsistent result, or when you stop it or change the selection. It does not submit or replay a transfer, start a broker, or requeue an event.
+
+Use **Download observation** to save the latest verified delivery and available ledger observations as JSON. It is different from **Download private receipt**. The observation includes transfer and event IDs and signed posting IDs and amounts, but omits the local endpoint, account IDs, and idempotency key. The separate observation times do not imply a single database snapshot or a Kafka offset acknowledgement.
+
 ## Demonstrate broker outage and recovery
 
 ```sh

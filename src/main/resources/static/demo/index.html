@@ -9,6 +9,7 @@
     <title>Transfer Lab · Local demo</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="demo.css">
+    <script src="delivery-observation.js" defer></script>
     <script src="demo.js" defer></script>
   </head>
   <body>
@@ -141,7 +142,7 @@
               <span class="step-number" aria-hidden="true">03</span>
               <div>
                 <p class="section-kicker">Inspect</p>
-                <h2 id="lookup-heading">Follow delivery</h2>
+                <h2 id="lookup-heading" tabindex="-1">Follow delivery</h2>
               </div>
             </header>
             <p class="panel-description">Read a transfer’s delivery progress and the ledger postings for that transfer ID.</p>
@@ -155,6 +156,7 @@
               <button id="lookup-transfer" class="button button-secondary" type="submit" disabled>
                 <span>Check delivery</span><span class="button-arrow" aria-hidden="true">→</span>
               </button>
+              <p class="history-browse-link"><a href="#recent-transfers">Browse recent transfers <span aria-hidden="true">↓</span></a></p>
             </form>
             <p id="lookup-message" class="action-message" role="status" aria-live="polite" aria-atomic="true">Look up your receipt’s transfer, or paste another transfer ID from this demo.</p>
 
@@ -183,6 +185,45 @@
               </div>
               <p class="field-help">Delivery may continue after the transfer commits. Check again to refresh this observation.</p>
 
+              <section class="delivery-monitor" aria-labelledby="watch-heading">
+                <h3 id="watch-heading">Delivery observations</h3>
+                <p id="watch-help" class="field-help">Choose Follow delivery for read-only updates for up to 60 seconds. Each read is an independent observation.</p>
+                <dl class="delivery-observations">
+                  <div>
+                    <dt>Publication attempts</dt>
+                    <dd><output id="delivery-attempts" aria-live="off">Not observed</output></dd>
+                  </div>
+                  <div>
+                    <dt>Last error code</dt>
+                    <dd><output id="delivery-error" aria-live="off">Not observed</output></dd>
+                  </div>
+                  <div>
+                    <dt>Next attempt</dt>
+                    <dd><output id="delivery-next-at" aria-live="off">Not observed</output></dd>
+                  </div>
+                  <div>
+                    <dt>Observed at</dt>
+                    <dd><output id="delivery-observed-at" aria-live="off">Not observed</output></dd>
+                  </div>
+                  <div>
+                    <dt>Published at</dt>
+                    <dd><output id="delivery-published-at" aria-live="off">Not observed</output></dd>
+                  </div>
+                  <div>
+                    <dt>Projected at</dt>
+                    <dd><output id="delivery-projected-at" aria-live="off">Not observed</output></dd>
+                  </div>
+                </dl>
+                <div class="watch-controls">
+                  <button id="watch-start" class="button button-secondary" type="button" disabled aria-describedby="watch-help watch-status">Follow delivery</button>
+                  <button id="watch-stop" class="button button-secondary" type="button" disabled aria-describedby="watch-status">Stop following</button>
+                  <button id="download-observation" class="button button-secondary observation-download" type="button" disabled aria-describedby="observation-help observation-message">Download observation</button>
+                </div>
+                <p id="watch-status" class="field-help" role="status" aria-live="polite" aria-atomic="true" data-watch-state="idle">Not following. Read delivery before starting.</p>
+                <p id="observation-help" class="field-help">Observation files do not contain a receipt or recovery key.</p>
+                <p id="observation-message" class="action-message" role="status" aria-live="polite" aria-atomic="true">Read delivery before downloading an observation.</p>
+              </section>
+
               <section id="ledger-proof" class="ledger-proof" aria-labelledby="proof-heading">
                 <div class="proof-heading">
                   <h3 id="proof-heading">Ledger postings</h3>
@@ -204,6 +245,30 @@
             </div>
           </section>
         </div>
+
+        <section id="recent-transfers" class="panel history-panel" tabindex="-1" aria-labelledby="history-heading" aria-describedby="history-description">
+          <div class="history-heading">
+            <header class="panel-heading">
+              <span class="step-number" aria-hidden="true">04</span>
+              <div>
+                <p class="section-kicker">Browse</p>
+                <h2 id="history-heading">Recent transfers</h2>
+              </div>
+            </header>
+            <button id="history-refresh" class="button button-secondary history-refresh" type="button" disabled aria-controls="history-items">
+              <span>Refresh latest</span><span class="button-arrow" aria-hidden="true">↻</span>
+            </button>
+          </div>
+          <p id="history-description" class="panel-description">Recent completed and rejected fictional transfers between Alice and Bob. Browsing this list is read-only.</p>
+          <p id="history-status" class="history-status" role="status" aria-live="polite" aria-atomic="true">Recent transfers have not been loaded. Choose Refresh latest to read them.</p>
+          <ol id="history-items" class="history-items" aria-label="Recent fictional transfers"></ol>
+          <div class="history-pagination">
+            <button id="history-older" class="button button-secondary" type="button" hidden disabled aria-controls="history-items">
+              <span>Show older transfers</span><span class="button-arrow" aria-hidden="true">↓</span>
+            </button>
+          </div>
+          <p class="panel-footnote">Select Inspect to read that transfer’s delivery and ledger postings.</p>
+        </section>
 
         <section class="boundary-note" aria-label="About this demo">
           <span class="boundary-mark" aria-hidden="true">↔</span>

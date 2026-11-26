@@ -55,9 +55,29 @@ Recovery now includes a real browser download and import into an independent bro
 
 The [portable receipt acceptance record](verification/portable-receipt.json) records the closed original session, zero import or reload submissions, exact replay, matching PostgreSQL rows, and additional cross-tab and corrupt-storage checks. It retains hashes, not the exported file or raw key.
 
+Before importing the receipt, the verifier finds the committed transfer by clicking its history row in the empty browser session. The same action must work in a 390-pixel viewport. It also compares the displayed page with the server's order and verifies paging back and returning to the latest page when older rows are available. Viewing the history creates neither a saved receipt nor a transfer. The PostgreSQL history integration test additionally covers rejected and unrelated records, tied decision timestamps, cursor validation, and a full traversal without skips or duplicates.
+
+The [recent-transfer acceptance record](verification/recent-transfers.json) records the V3-to-V4 upgrade with unchanged financial rows and verifies real Chrome history navigation. The final local build passed 112 Java and 54 Python checks.
+
+The browser verifier also downloads a delivery observation, checks that publication and projection agree with the displayed state, and matches the signed entry IDs directly to the ledger point read. It verifies that export leaves the saved receipt untouched and emits no financial request. For the isolated formatting and redaction checks, run `node --test scripts/test-delivery-observation.cjs`.
+
+The [delivery-follow acceptance record](verification/delivery-follow.json) documents an actual owned Kafka stop and restart, no app restart, no browser POST, stable postings and a redacted download. A separate virtual-clock check verifies timeout and transfer-selection cancellation.
+
 The [ledger-proof acceptance record](verification/ledger-proof.json) includes the exact tested image and assets, a real Kafka outage with unchanged ledger evidence, real Chrome recovery and direct PostgreSQL counts. The full local run passed 109 Java and 54 Python tests.
 
 The [v0.2.2 browser acceptance record](verification/browser-demo.json) is the previous verification snapshot. It includes the real network failure, unchanged saved receipt after reload, HTTP 200 replay, exact PostgreSQL evidence and final regression counts.
+
+### Real broker outage in the browser
+
+With a seeded, idle demo already running and Python Playwright plus Chrome installed, run:
+
+```sh
+python3 scripts/verify-delivery-watch.py --project tpp-portfolio-demo \
+  --base-url http://127.0.0.1:38080 --channel chrome \
+  --output benchmark-results/browser-delivery-watch.json
+```
+
+Use the project name and loopback URL from the launcher. The verifier checks the launcher's ownership marker, the local Docker endpoint, the selected app binding and seeded identities before stopping the owned Kafka container. It submits one fictional 7-FIC transfer, watches it in Chrome, and restores the same broker even if validation fails. The application and database are not restarted. Use an isolated stack and avoid concurrent transfer or Docker operations during the test. The Chrome client itself sends no POST and the observation export contains no recovery credentials. CI runs this alongside the browser history and recovery checks.
 
 ## Release history and Docker boundary
 
@@ -173,7 +193,7 @@ After the local seed, run `docker compose exec -T db psql -U tpp -d tpp < script
 
 All F1–F10 boundaries execute, with assertions on absent/committed SQL effects, actual broker records or log end offsets, durable consumer offsets, inbox uniqueness and paired activity. Tests also cover concurrent request identity, fenced stale workers, permanent invalid-topic blocking and audited requeue, schema-enforced inbox atomicity, replay crash ambiguity, forged-origin/replay budget, and real database-lock retry while group membership changes. Two startup regressions inject Kafka construction errors: the exact unresolved-bootstrap cause retries before actual Kafka processing/offset progress, while other configuration failures stop without retry and retain the record for explicit recovery. Poison testing pauses immediately before offset commit to verify that its quarantine evidence is already committed. Production fault beans are stateless no-ops; test latches/failures are bounded. See the [failure matrix](failure-matrix.md) for individual methods and observations.
 
-`OutboxMigrationUpgradeTest` first migrates a populated database to V1, records complete account/balance/ledger/transfer rows, then applies V2/V3. It verifies exact preservation of those rows, one stable event per old completion (none for rejected history), immutable backfill and no changes on repeat migration, historical idempotency replay and reconciliation. This protects an existing Phase 1 installation rather than merely testing fresh migrations.
+`OutboxMigrationUpgradeTest` first migrates a populated database to V1, records complete account/balance/ledger/transfer rows, then applies V2 through V4. It verifies exact preservation of those rows, one stable event per old completion (none for rejected history), immutable backfill and no changes on repeat migration, historical idempotency replay and reconciliation. The V4 transfer-history index must be present. This protects an existing Phase 1 installation rather than merely testing fresh migrations.
 
 ## Recorded full Phase 2 execution
 

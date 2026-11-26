@@ -1,5 +1,11 @@
 # Release and verification
 
+## v0.2.4
+
+Recent transfers discovers committed and rejected decisions between the two fictional demo accounts. Inspect a result without entering an ID, follow pending publication and projection for up to 60 seconds, and download observations without a recovery key, account IDs or local endpoint. The bounded browser follow loop is read-only.
+
+The V4 migration adds the partial index for the terminal-history query, with no financial-row rewrite. Local verification retained the existing database and reconciled real broker recovery. [Quick start](../README.md#run-the-demo) · [History acceptance](verification/recent-transfers.json) · [Delivery follow acceptance](verification/delivery-follow.json)
+
 ## v0.2.3
 
 Transfer Lab can show the signed immutable postings for a single transfer ID and move a private receipt to another browser session. Import only saves the original intent. Explicit recovery reuses its key and payload against the same local URL and retained database. Delivery and the financial postings are read independently, so missing or delayed event state does not erase the ledger evidence.

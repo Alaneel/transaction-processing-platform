@@ -265,7 +265,98 @@ def storage_snapshot(page):
       Object.keys(localStorage).sort().map(key => [key, localStorage.getItem(key)]))""")
 
 
-def portable_recovery_context(browser, source_page, args, base, lost, saved, watch_errors):
+def inspect_history_item(page, proof):
+    transfer_id = proof["transferId"]
+    entry = page.locator(f'#history-items .history-row[data-transfer-id="{transfer_id}"]')
+    amount = page.evaluate("value => `${value.toLocaleString()} FIC`", proof["amount"])
+    require(entry.locator(".history-amount").inner_text() == amount,
+            "recent-transfer row did not show the amount of the seeded test transfer")
+    require(entry.locator(".history-reference").inner_text() == transfer_id[:8]
+            and entry.locator(".history-reference").get_attribute("title") == transfer_id,
+            "recent-transfer row did not show a disambiguating reference")
+    require(entry.locator(".history-state").get_attribute("data-state") == "COMPLETED",
+            "recent-transfer row did not show the committed financial decision")
+    entry.locator(".history-inspect").click()
+    require(page.locator("#lookup-id").input_value() == transfer_id,
+            "history inspect did not select the row's real transfer ID")
+    check_proof_panel(page, proof)
+
+
+def check_history_pages(page, http):
+    def matches(expected_ids):
+        page.wait_for_function("""expected => {
+          const rows = [...document.querySelectorAll('#history-items .history-row')];
+          return !document.querySelector('#history-refresh').disabled
+            && JSON.stringify(rows.map(row => row.dataset.transferId)) === JSON.stringify(expected);
+        }""", arg=expected_ids)
+
+    path = "/internal/demo/transfers?limit=6"
+    latest = http.get(path)
+    expected = [item["transferId"] for item in latest["items"]]
+    page.locator("#history-refresh").click()
+    matches(expected)
+    posts_before = len(observation(page)["posts"])
+    older_ids = None
+    if latest["nextBefore"]:
+        cursor = latest["nextBefore"]
+        require(re.fullmatch(r"[A-Za-z0-9_-]{39}", cursor) is not None, "invalid history cursor")
+        older = http.get(f"{path}&before={cursor}")
+        older_ids = [item["transferId"] for item in older["items"]]
+        require(older_ids and not (set(expected) & set(older_ids)), "recent and older history overlap")
+        page.locator("#history-older").click()
+        matches(older_ids)
+        page.locator("#history-refresh").click()
+        matches(expected)
+    else:
+        require(page.locator("#history-older").is_hidden(),
+                "browser offered an older page when none is available")
+    require(len(observation(page)["posts"]) == posts_before, "paging history submitted a transfer")
+    return {"latestTransferIds": expected, "olderTransferIds": older_ids, "pagingPostCount": 0}
+
+
+def check_observation_download(page, proof):
+    if page.locator("#watch-start").is_enabled():
+        page.locator("#watch-start").click()
+    page.wait_for_function(
+        "() => document.querySelector('#watch-status')?.dataset.watchState === 'settled'")
+    require(page.locator("#watch-stop").is_disabled(), "settled delivery kept a watch running")
+    before = storage_snapshot(page)
+    posts_before = len(observation(page)["posts"])
+    with tempfile.TemporaryDirectory(prefix="tpp-observation-") as private:
+        raw_path = Path(private) / "observation.json"
+        with page.expect_download() as downloaded:
+            page.locator("#download-observation").click()
+        downloaded.value.save_as(raw_path)
+        raw_path.chmod(0o600)
+        require(raw_path.stat().st_size <= 8192, "observation download exceeded its expected bound")
+        blob = raw_path.read_bytes()
+    report = json.loads(blob)
+    require(set(report) == {"kind", "version", "transferId", "exportedAt", "delivery", "ledger"}
+            and report["kind"] == "tpp.transfer-lab-delivery-observation" and report["version"] == 1
+            and report["transferId"] == proof["transferId"], "download did not describe the selected transfer")
+    delivery, ledger = report["delivery"], report["ledger"]
+    require(set(delivery) == {"observedAt", "transferStatus", "decidedAt", "deliveryState", "event"}
+            and set(delivery["event"]) == {"eventId", "publicationStatus", "attemptCount", "nextAttemptAt",
+                "lastErrorCode", "publishedAt", "processedAt", "projectedAt"}
+            and delivery["deliveryState"] == "PROJECTED" and delivery["event"]["publicationStatus"] == "PUBLISHED"
+            and delivery["observedAt"] == page.locator("#delivery-observed-at").inner_text(),
+            "download did not carry the final publication and projection observation")
+    require(set(ledger) == {"observedAt", "transferStatus", "proofState", "amount", "unit", "postings"}
+            and ledger["proofState"] == "BALANCED_PAIR", "download did not carry the scoped ledger proof")
+    expected = [{"entryId": row["entryId"], "delta": row["delta"],
+                 "role": "SOURCE" if row["accountId"] == proof["sourceAccountId"] else "DESTINATION"}
+                for row in proof["postings"]]
+    require(ledger["postings"] == expected, "download changed the exact posting IDs or roles")
+    require(ALICE.encode() not in blob and BOB.encode() not in blob and b"idempotencyKey" not in blob
+            and b"127.0.0.1" not in blob, "observation exposed account IDs, receipt fields or endpoint")
+    require(before == storage_snapshot(page) and posts_before == len(observation(page)["posts"]),
+            "downloading a read-only observation changed the receipt or submitted a transfer")
+    return {"transferId": proof["transferId"], "publication": "PUBLISHED", "projection": "PROJECTED",
+            "downloadSha256": hashlib.sha256(blob).hexdigest(), "redactedExport": True,
+            "unchangedLocalReceipt": True, "downloadPostCount": 0}
+
+
+def portable_recovery_context(browser, source_page, args, base, lost, saved, original_proof, watch_errors):
     """Export through the UI and import in a separate session without submitting the receipt."""
     source_storage = storage_snapshot(source_page)
     with tempfile.TemporaryDirectory(prefix="tpp-portable-receipt-") as temporary:
@@ -308,6 +399,10 @@ def portable_recovery_context(browser, source_page, args, base, lost, saved, wat
             "() => document.querySelector('#import-receipt') && !document.querySelector('#import-receipt').disabled")
         require(storage_snapshot(recovery_page) == {} and not actual_posts,
                 "independent browser context did not start with empty local storage")
+        inspect_history_item(recovery_page, original_proof)
+        require(storage_snapshot(recovery_page) == {} and not actual_posts
+                and not observation(recovery_page)["posts"],
+                "finding the transfer in history created a receipt or submitted a transfer")
 
         def import_file(upload, tone, preserve=True):
             previous = storage_snapshot(recovery_page)
@@ -337,6 +432,9 @@ def portable_recovery_context(browser, source_page, args, base, lost, saved, wat
             import_file(upload(name, value), "negative")
         import_file(str(private_path), "positive", preserve=False)
         wait_receipt(recovery_page, "UNRESOLVED")
+        require(recovery_page.locator("#lookup-id").input_value() == ""
+                and recovery_page.locator("#delivery-result").is_hidden(),
+                "receipt import carried over the independently inspected history observation")
         imported = json.loads(saved_receipt(recovery_page))
         require(imported["state"] == "UNRESOLVED" and imported["result"] is None
                 and all(imported[field] == portable[field]
@@ -481,7 +579,7 @@ def run_browser(args, report, http, base):
                     and page.locator("#resume-transfer").is_enabled(),
                     "unresolved receipt must offer resume and prevent a replacement submission")
             context, page, portable_evidence = portable_recovery_context(
-                browser, page, args, base, lost, saved, watch_errors)
+                browser, page, args, base, lost, saved, original_proof, watch_errors)
             report["portableReceipt"] = portable_evidence
             page.locator("#resume-transfer").click()
             wait_receipt(page, "COMPLETED")
@@ -515,6 +613,11 @@ def run_browser(args, report, http, base):
             check_proof_panel(page, after_proof)
             report["ledgerProof"] = {"unchangedAcrossReplay": True, "observedBeforeReplay": original_proof,
                                      "observedAfterReplay": after_proof}
+            report["recentTransfers"] = {"foundFromEmptyBrowserBeforeImport": True,
+                                         "foundTransferId": second,
+                                         "noReceiptOrPostFromHistoryInspection": True,
+                                         **check_history_pages(page, http)}
+            report["deliveryObservation"] = check_observation_download(page, after_proof)
             report["desktopLayout"] = layout(page)
             screenshot(page, args, "desktop-projected", report)
 
@@ -523,6 +626,9 @@ def run_browser(args, report, http, base):
             require(page.locator("#proof-state").get_attribute("data-proof-state") is None
                     and page.locator("#proof-postings .proof-posting").count() == 0,
                     "editing the lookup to another ID retained stale posting evidence")
+            require(page.locator("#download-observation").is_disabled()
+                    and page.locator("#watch-start").is_disabled() and page.locator("#watch-stop").is_disabled(),
+                    "editing the lookup kept the previous transfer's follow or export controls active")
             missing_path = base + f"/internal/transfers/{unknown_id}/ledger-proof"
             with page.expect_response(lambda response: response.url == missing_path) as missing:
                 page.locator("#lookup-transfer").click()
@@ -540,9 +646,8 @@ def run_browser(args, report, http, base):
             mobile_page.set_default_timeout(args.timeout * 1000)
             mobile_page.goto(base + "/demo/index.html")
             mobile_page.locator("#submit-form").wait_for(state="visible")
-            mobile_page.locator("#lookup-id").fill(second)
-            mobile_page.locator("#lookup-transfer").click()
-            check_proof_panel(mobile_page, after_proof)
+            inspect_history_item(mobile_page, after_proof)
+            report["recentTransfers"]["narrowViewportInspectedHistoryRow"] = True
             report["mobileLayout"] = layout(mobile_page)
             require(not observation(mobile_page)["posts"], "mobile page load submitted a transfer")
             screenshot(mobile_page, args, "mobile", report)

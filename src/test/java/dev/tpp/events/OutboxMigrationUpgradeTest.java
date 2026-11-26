@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 
-/** Tests an actual populated Phase 1 upgrade rather than only a fresh three-migration database. */
+/** Tests an actual populated Phase 1 upgrade rather than only a fresh database. */
 class OutboxMigrationUpgradeTest {
   @BeforeAll
   @Timeout(value = 5, unit = TimeUnit.MINUTES)
@@ -65,8 +65,10 @@ class OutboxMigrationUpgradeTest {
         String accountsBefore = snapshot(db, "accounts");
 
         Flyway upgraded = Flyway.configure().dataSource(db.url, "tpp", "tpp").load();
-        assertThat(upgraded.migrate().migrationsExecuted).isEqualTo(2);
+        assertThat(upgraded.migrate().migrationsExecuted).isEqualTo(3);
         upgraded.validate();
+        assertThat(db.scalar("SELECT count(*) FROM pg_indexes WHERE schemaname='public' AND tablename='transfers' AND indexname='transfers_terminal_pair_decided_idx'"))
+            .isEqualTo(1);
         assertThat(db.scalar("SELECT count(*) FROM outbox_events")).isEqualTo(2);
         assertThat(db.scalar("SELECT count(*) FROM outbox_events WHERE transfer_id=?", rejected)).isZero();
         assertThat(db.scalar("SELECT count(*) FROM transfers t JOIN outbox_events o ON o.transfer_id=t.id WHERE t.status='COMPLETED' AND o.created_at=t.completed_at AND o.status='PENDING' AND o.attempt_count=0 AND o.payload->>'correlationId'='migration-backfill'"))

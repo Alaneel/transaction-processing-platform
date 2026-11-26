@@ -1,0 +1,191 @@
+{
+  "scope": "Local Transfer Lab read-only delivery following and keyless observation export. No backend or database migrations changed.",
+  "verifierSha256": "5d9b0fedd6de455764c20027e7f5c9efefb1817ffcb03df80a7073ec16019b27",
+  "finalRuntime": {
+    "before": {
+      "flywayVersions": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "indexExists": true,
+      "transferCount": 13,
+      "transferDigest": "07f1381fe3aad0f42e311587ccbb92d5",
+      "ledgerCount": 24,
+      "ledgerDigest": "055ada5b9201b015410c4a8631ddfe44",
+      "balanceDigest": "697005c7924b0ab3b6232e326649c2a3"
+    },
+    "after": {
+      "flywayVersions": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "indexExists": true,
+      "transferCount": 13,
+      "transferDigest": "07f1381fe3aad0f42e311587ccbb92d5",
+      "ledgerCount": 24,
+      "ledgerDigest": "055ada5b9201b015410c4a8631ddfe44",
+      "balanceDigest": "697005c7924b0ab3b6232e326649c2a3"
+    },
+    "noFinancialRowsChanged": true,
+    "sameDBAndKafkaContainers": true,
+    "servedAssetSha256": {
+      "demo/delivery-observation.js": "c43abee61c4e0b76fcbd0c96ebce3b62406e005539ea4ee878847fe631798bf7",
+      "demo/delivery-worker.js": "69e98e88bd2593b9f2a38d9af7572eef483c733f8d546a5971c82cd758688662",
+      "demo/demo.css": "4931d2c10804d93484a33370479d0c4322242eed48810cc316477d650162acb9",
+      "demo/demo.js": "a6a571fac1b78f27919458a54924a84d54f5c8c884f0c51bee30bf24d93227c4",
+      "demo/favicon.svg": "60ad99791664060d5b45e97701d6234d10d3c483fd5be90a88da2c55ae95e52c",
+      "demo/index.html": "049a89ebe07e6b2bfbcd6383597b5f2da298e71915809924cc96fa400fe6077e",
+      "openapi.yaml": "0a16feb5f4e69a744a58eb3e8ed72302d0d75bd6dba7c342381f4081a9d12b21"
+    },
+    "images": {
+      "app": "sha256:bbeebf4e2d11fc9e69aa86c8e67a2f903c369d1ddb2f249bf980640431a646cc",
+      "db": "sha256:18971e73fe1067d2c25869fca5fa73e190977a5621a47b2a1156b9d89e7b2d08",
+      "kafka": "sha256:1d04117637131229af0274b8363f4a9c4be3fd2733f1fb2f960f9f40fd07a8ac"
+    }
+  },
+  "realKafkaOutage": {
+    "startedAt": "2026-11-26T15:44:15.505850+00:00",
+    "finishedAt": "2026-11-26T15:44:30.251387+00:00",
+    "transferId": "198bc49b-a865-47cf-a66a-2d7df50ea95d",
+    "newHttpStatus": 201,
+    "duringOutage": {
+      "deliveryState": "AWAITING_PUBLICATION",
+      "eventId": "1306991a-eafd-4dc0-a01e-012e5ac30e4c",
+      "attemptCount": 1,
+      "lastErrorCode": "DELIVERY_UNCERTAIN"
+    },
+    "observation": {
+      "kind": "tpp.transfer-lab-delivery-observation",
+      "version": 1,
+      "transferId": "198bc49b-a865-47cf-a66a-2d7df50ea95d",
+      "exportedAt": "2026-11-26T15:44:29.669Z",
+      "delivery": {
+        "observedAt": "2026-11-26T15:44:29.162Z",
+        "transferStatus": "COMPLETED",
+        "decidedAt": "2026-11-26T15:44:17.269843Z",
+        "deliveryState": "PROJECTED",
+        "event": {
+          "eventId": "1306991a-eafd-4dc0-a01e-012e5ac30e4c",
+          "publicationStatus": "PUBLISHED",
+          "attemptCount": 6,
+          "nextAttemptAt": null,
+          "lastErrorCode": "DELIVERY_UNCERTAIN",
+          "publishedAt": "2026-11-26T15:44:28.821447Z",
+          "processedAt": "2026-11-26T15:44:28.835613Z",
+          "projectedAt": "2026-11-26T15:44:28.840984Z"
+        }
+      },
+      "ledger": {
+        "observedAt": "2026-11-26T15:44:20.481Z",
+        "transferStatus": "COMPLETED",
+        "proofState": "BALANCED_PAIR",
+        "amount": 7,
+        "unit": "FIC",
+        "postings": [
+          {
+            "entryId": "25",
+            "delta": -7,
+            "role": "SOURCE"
+          },
+          {
+            "entryId": "26",
+            "delta": 7,
+            "role": "DESTINATION"
+          }
+        ]
+      }
+    },
+    "observationSha256": "96a1c985eb2b1457e8e5ef87563cc29e8d489df1c1276c01ddd3ac2b7047ed30",
+    "browser": {
+      "postCount": 0,
+      "watchState": "settled",
+      "automaticFollowReads": 4,
+      "settledAfterSeconds": 6.563,
+      "samePostingIdsAndEvent": true,
+      "userStopCancelledFutureReads": true,
+      "savedReceiptCreated": false,
+      "scriptErrors": []
+    },
+    "brokerRestored": true,
+    "applicationNotRestarted": true,
+    "ledgerReconciliation": true,
+    "sqlEffect": {
+      "outbox": 1,
+      "inbox": 1,
+      "projection": 1,
+      "activity": 2,
+      "activitySum": 0
+    }
+  },
+  "browserRegression": {
+    "deliveryObservation": {
+      "transferId": "4b3c038f-61fd-45a2-8238-d0562633345b",
+      "publication": "PUBLISHED",
+      "projection": "PROJECTED",
+      "downloadSha256": "bc2f1dd73bf5351728f185f07b4038c5f7e855c8f5db32621e284ce9561dd127",
+      "redactedExport": true,
+      "unchangedLocalReceipt": true,
+      "downloadPostCount": 0
+    },
+    "sameLedgerAfterCrossBrowserRecovery": true,
+    "historyPosts": 0,
+    "desktopLayout": {
+      "viewport": 1365,
+      "content": 1365
+    },
+    "narrowLayout": {
+      "viewport": 390,
+      "content": 390
+    },
+    "unexpectedBrowserErrors": 0,
+    "directPostgres": {
+      "normal": {
+        "transferId": "0d07b292-4481-4ca5-a21e-9d1988d69944",
+        "eventId": "d701d572-a41f-4515-a880-cbfa8b2c0568",
+        "completedTransfer": 1,
+        "ledgerEntries": 2,
+        "ledgerDeltaSum": 0,
+        "outboxEvents": 1,
+        "matchingPublishedEvent": 1,
+        "inbox": 1,
+        "projection": 1,
+        "activityRows": 2,
+        "activitySum": 0
+      },
+      "lostResponse": {
+        "transferId": "4b3c038f-61fd-45a2-8238-d0562633345b",
+        "eventId": "c0f48455-b3aa-448c-94be-747f57612d0b",
+        "completedTransfer": 1,
+        "ledgerEntries": 2,
+        "ledgerDeltaSum": 0,
+        "outboxEvents": 1,
+        "matchingPublishedEvent": 1,
+        "inbox": 1,
+        "projection": 1,
+        "activityRows": 2,
+        "activitySum": 0
+      }
+    }
+  },
+  "separateBrowserTimerSimulation": {
+    "scope": "Deterministic UI timer and selection checks with one simulated delivery GET response, no database writes.",
+    "expiredWatchStaysPendingDisplaysLastObservation": true,
+    "changingIDCancelledPollAndOldExport": true,
+    "postCount": 0
+  },
+  "checks": {
+    "nodeTests": 10,
+    "pythonTests": 54,
+    "javaBackendUnchangedFromPrevious112TestAcceptance": true
+  },
+  "limits": [
+    "The observed time to settle is measured for one local broker recovery, not an SLA.",
+    "The downloaded ledger and delivery views carry separate observation times, not one database snapshot.",
+    "The observation is not a recovery receipt, signature, or Kafka offset acknowledgment.",
+    "No publication was performed."
+  ]
+}

@@ -130,6 +130,18 @@ input[aria-invalid="true"] { border-color: var(--red); }
 .event-identity { margin-top: 18px; }
 .event-identity output { margin-top: 7px; }
 .delivery-result > .field-help { font-size: 10px; margin-top: 16px; }
+.delivery-monitor { min-width: 0; margin-top: 21px; padding-top: 18px; border-top: 1px solid var(--line); }
+.delivery-monitor h3 { margin: 0; font-size: 12px; font-weight: 650; }
+.delivery-monitor > .field-help { font-size: 10px; overflow-wrap: anywhere; }
+.delivery-observations { margin: 13px 0 16px; }
+.delivery-observations > div { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: baseline; gap: 8px 12px; padding: 9px 0; border-bottom: 1px solid #e5e7dc; }
+.delivery-observations dt { min-width: 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
+.delivery-observations dd { min-width: 0; margin: 0; text-align: right; }
+.delivery-observations output { display: block; max-width: 100%; font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: 10px; line-height: 1.65; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.watch-controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 9px; min-width: 0; }
+.watch-controls .button { min-width: 0; padding: 10px 9px; justify-content: center; font-size: 11px; text-align: center; overflow-wrap: anywhere; }
+.watch-controls .observation-download { grid-column: 1 / -1; }
+.delivery-monitor .action-message { min-height: 0; margin-top: 8px; font-size: 10px; }
 .ledger-proof { margin-top: 21px; padding-top: 18px; border-top: 1px solid var(--line); min-width: 0; }
 .proof-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 9px; }
 .proof-heading h3 { margin: 0; font-size: 12px; font-weight: 650; }
@@ -147,6 +159,30 @@ input[aria-invalid="true"] { border-color: var(--red); }
 .proof-account code { margin-top: 2px; }
 .proof-entry { display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 7px; min-width: 0; margin-top: 7px; font-size: 9px; color: var(--muted); }
 .proof-entry-id { color: #53634f; }
+.history-browse-link { margin: 12px 0 0; font-size: 11px; line-height: 1.6; }
+.history-browse-link a { color: var(--green); font-weight: 600; }
+.history-browse-link a > span { margin-left: 5px; }
+.history-panel { margin-top: 24px; scroll-margin-top: 24px; }
+.history-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; }
+.history-refresh { width: auto; min-width: 145px; }
+.history-panel > .panel-description { min-height: 0; max-width: 750px; margin: 15px 0 11px; }
+.history-status { min-height: 19px; margin: 0 0 13px; color: var(--muted); font-size: 11px; line-height: 1.7; overflow-wrap: anywhere; }
+.history-items { list-style: none; margin: 0; padding: 0; }
+.history-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 18px; padding: 16px 0; border-top: 1px solid var(--line); min-width: 0; }
+.history-row:last-child { border-bottom: 1px solid var(--line); }
+.history-summary { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .85fr) minmax(0, 1fr) minmax(0, 1.3fr); align-items: center; gap: 10px 18px; min-width: 0; }
+.history-summary > * { min-width: 0; overflow-wrap: anywhere; }
+.history-direction { font-size: 13px; font-weight: 650; line-height: 1.6; }
+.history-amount { color: var(--ink); font-size: 13px; font-weight: 650; line-height: 1.6; font-variant-numeric: tabular-nums; }
+.history-state { justify-self: start; max-width: 100%; padding: 5px 8px; border-radius: 5px; background: #f0f0e9; color: var(--muted); font-size: 10px; font-weight: 700; line-height: 1.5; }
+.history-state[data-state="COMPLETED"] { background: var(--green-pale); color: var(--green-dark); }
+.history-state[data-state="REJECTED"] { background: var(--red-pale); color: var(--red); }
+.history-time { display: grid; gap: 3px; color: var(--muted); font-size: 11px; line-height: 1.6; font-variant-numeric: tabular-nums; }
+.history-reference { color: #53634f; font-size: 10px; }
+.history-inspect { display: flex; align-items: center; justify-content: center; justify-self: end; gap: 8px; width: auto; min-height: 40px; padding: 9px 14px; border: 1px solid #cad1c3; border-radius: 8px; background: transparent; color: var(--ink); font: inherit; font-size: 11px; font-weight: 650; line-height: 1.5; text-align: center; }
+.history-inspect:hover:not(:disabled) { background: var(--green-pale); border-color: #b0c4ac; }
+.history-pagination { display: flex; justify-content: flex-end; }
+.history-pagination .button:not([hidden]) { width: auto; min-width: 190px; margin-top: 16px; }
 .boundary-note { display: flex; align-items: flex-start; gap: 15px; max-width: 690px; margin: 29px 0 38px; }
 .boundary-mark { color: #778d69; font-size: 25px; line-height: 1.25; }
 .boundary-note p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.75; }
@@ -187,6 +223,7 @@ button[aria-busy="true"] { cursor: progress; }
   .panel { padding: 25px; }
   h2 { font-size: 19px; }
   .delivery-stages dd { max-width: 51%; }
+  .history-summary { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 7px 18px; }
 }
 
 @media (max-width: 620px) {
@@ -215,6 +252,15 @@ button[aria-busy="true"] { cursor: progress; }
   .button { font-size: 13px; min-height: 47px; }
   input[type="text"], input[type="number"], select { min-height: 47px; font-size: 16px; }
   .identifier-input { font-size: 12px !important; }
+  .history-heading { gap: 16px; }
+  .history-refresh { width: 100%; }
+  .history-row { grid-template-columns: minmax(0, 1fr); align-items: start; gap: 13px; padding: 18px 0; }
+  .history-summary { gap: 8px 14px; }
+  .history-direction { font-size: 12px; }
+  .history-amount { justify-self: end; text-align: right; font-size: 12px; }
+  .history-time { text-align: right; }
+  .history-inspect { width: 100%; min-height: 44px; justify-self: stretch; font-size: 12px; }
+  .history-pagination .button:not([hidden]) { width: 100%; min-width: 0; }
   .boundary-note { margin-top: 25px; margin-bottom: 29px; gap: 12px; }
   .boundary-note p { font-size: 10px; }
   .footer { align-items: flex-start; padding-top: 19px; font-size: 9px; gap: 20px; }

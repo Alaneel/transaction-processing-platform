@@ -1,0 +1,201 @@
+{
+  "scope": "Trusted-local recent transfer discovery for the seeded Alice and Bob pair, after v0.2.3. No keys or receipt contents are retained here.",
+  "inputSha256": {
+    "src/main/java/dev/tpp/http/DemoTransferHistoryController.java": "dd55deea0b0e309c561a870ebb21b8132aa95e8fc89ffb8a72425ba48edc9cfd",
+    "src/main/resources/db/migration/V4__demo_transfer_history_index.sql": "c7d2bd59bd83f2a77829b08c3cc2393425abea92863623782044c96d84609c3c",
+    "src/test/java/dev/tpp/DemoTransferHistoryPostgresTest.java": "deadfd9ac66e42671890767b20499e681e1169e8b17126c03041e966820a1e99",
+    "src/test/java/dev/tpp/events/OutboxMigrationUpgradeTest.java": "f9a85bcccb3c8466559fbdd2bcdec906efb0aa4f67975a4b3938366d4cc29342",
+    "scripts/verify-browser-demo.py": "b41ca21a67a26df7f32287fb309ab7c2886e03d63b59c078d3d2216d992b8985"
+  },
+  "existingDatabaseUpgrade": {
+    "before": {
+      "flywayVersions": [
+        "1",
+        "2",
+        "3"
+      ],
+      "indexExists": false,
+      "transferCount": 9,
+      "transferDigest": "a16b6a6caa482571005b81ca56343dde",
+      "ledgerCount": 16,
+      "ledgerDigest": "beb9897dc0b000896e3748bae37d2407",
+      "balanceDigest": "b4960098192282abcf103edee1109b5b"
+    },
+    "after": {
+      "flywayVersions": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "indexExists": true,
+      "transferCount": 9,
+      "transferDigest": "a16b6a6caa482571005b81ca56343dde",
+      "ledgerCount": 16,
+      "ledgerDigest": "beb9897dc0b000896e3748bae37d2407",
+      "balanceDigest": "b4960098192282abcf103edee1109b5b"
+    },
+    "noFinancialRowsChanged": true,
+    "sameDBAndKafkaContainers": true
+  },
+  "finalRuntime": {
+    "before": {
+      "flywayVersions": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "indexExists": true,
+      "transferCount": 13,
+      "transferDigest": "07f1381fe3aad0f42e311587ccbb92d5",
+      "ledgerCount": 24,
+      "ledgerDigest": "055ada5b9201b015410c4a8631ddfe44",
+      "balanceDigest": "697005c7924b0ab3b6232e326649c2a3"
+    },
+    "after": {
+      "flywayVersions": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "indexExists": true,
+      "transferCount": 13,
+      "transferDigest": "07f1381fe3aad0f42e311587ccbb92d5",
+      "ledgerCount": 24,
+      "ledgerDigest": "055ada5b9201b015410c4a8631ddfe44",
+      "balanceDigest": "697005c7924b0ab3b6232e326649c2a3"
+    },
+    "noFinancialRowsChanged": true,
+    "sameDBAndKafkaContainers": true,
+    "servedAssetSha256": {
+      "demo/delivery-worker.js": "69e98e88bd2593b9f2a38d9af7572eef483c733f8d546a5971c82cd758688662",
+      "demo/demo.css": "40b9787a102a75016aa9b831c0c938b0734702663e8a9bf748a78a3915470dfc",
+      "demo/demo.js": "f61c7570a6c302d28f558cc802f67190107473f2c30abe5e34db75057304817d",
+      "demo/favicon.svg": "60ad99791664060d5b45e97701d6234d10d3c483fd5be90a88da2c55ae95e52c",
+      "demo/index.html": "4e1c6c18d0e7eda3f3c26da3d39a0b6e582bdc0ca4839c8e06802868c330b2cf",
+      "openapi.yaml": "0a16feb5f4e69a744a58eb3e8ed72302d0d75bd6dba7c342381f4081a9d12b21"
+    },
+    "images": {
+      "app": "sha256:39b67a9f9fbe4cf5af9837db362268edec2c142639304fe53e512b198eca11d2",
+      "db": "sha256:18971e73fe1067d2c25869fca5fa73e190977a5621a47b2a1156b9d89e7b2d08",
+      "kafka": "sha256:1d04117637131229af0274b8363f4a9c4be3fd2733f1fb2f960f9f40fd07a8ac"
+    }
+  },
+  "environmentRecovery": {
+    "observedCause": "Docker guest filesystem out of space while Kafka wrote its checkpoints",
+    "exactUnusedBuildCachesRemoved": 2,
+    "sameExistingKafkaContainerRestarted": true,
+    "retainedDataVolume": true,
+    "dockerVolumesRemoved": 0,
+    "firstJavaRun": "One Kafka restart case timed out while the shared Docker guest filesystem ran out of space. The three new history tests passed in that run.",
+    "staticFollowup": "A functional rerun passed all 112 tests; static analysis still flagged SQL String.formatted with line breaks. Two fixed statements replaced the formatter. The final clean verification passed all 112 tests and the static gate.",
+    "additionalFinalRebuildCacheRemoved": 1
+  },
+  "realBrowser": {
+    "startedAt": "2026-11-26T15:17:59.178817+00:00",
+    "finishedAt": "2026-11-26T15:18:02.565191+00:00",
+    "historyReadOnly": {
+      "foundFromEmptyBrowserBeforeImport": true,
+      "foundTransferId": "087ef7fa-6a98-4373-93c4-7e10044caed8",
+      "noReceiptOrPostFromHistoryInspection": true,
+      "latestTransferIds": [
+        "087ef7fa-6a98-4373-93c4-7e10044caed8",
+        "30b04e2c-30e9-41ec-88e2-dcecdfb3f89a",
+        "400d06ea-1b25-4849-bbf5-2c5eb164a4a7",
+        "6d5497f7-4659-4395-b878-ba460ed8e69c",
+        "59ab1345-7912-48f3-a314-9171896006fe",
+        "04b02499-117f-4585-ac12-8714d234d29e"
+      ],
+      "olderTransferIds": [
+        "1e9230e2-a30f-4351-8fd4-618fb28f94e0",
+        "9d4b3730-1e24-49cf-b0dc-e283997194be",
+        "2d26e6b2-4620-49f7-8135-78150b0891d6",
+        "721f8948-79ea-425d-b94f-1b2e0e1f22c0",
+        "3b3c8eaa-ecf6-43ba-aa52-d9d2126fd1f1"
+      ],
+      "pagingPostCount": 0,
+      "narrowViewportInspectedHistoryRow": true
+    },
+    "observedPreExistingRejection": {
+      "existingRejectedTransferId": "1e9230e2-a30f-4351-8fd4-618fb28f94e0",
+      "historyStatus": "REJECTED",
+      "historyReason": "INSUFFICIENT_FUNDS",
+      "inspectedLedger": "NO_POSTINGS",
+      "inspectedDelivery": "NOT_APPLICABLE",
+      "postCount": 0,
+      "createdReceipt": false,
+      "shortRefMatchesTransferId": true,
+      "olderPagesToLocateRejection": 1
+    },
+    "recoveredSameReceiptAsHttp200": true,
+    "ledgerProofUnchanged": true,
+    "viewports": {
+      "desktop": {
+        "viewport": 1365,
+        "content": 1365
+      },
+      "narrow": {
+        "viewport": 390,
+        "content": 390
+      }
+    },
+    "unexpectedBrowserErrors": 0,
+    "exactFinalImageReadOnlySmoke": {
+      "recentCount": 6,
+      "olderCount": 5,
+      "overlap": 0,
+      "httpHistoryResponsesNoStore": true,
+      "historyContainsNoReceiptFields": true,
+      "mobileInspectionSelectedRealTransfer": "087ef7fa-6a98-4373-93c4-7e10044caed8",
+      "postCount": 0,
+      "createdReceipt": false
+    },
+    "scopeNote": "The full UI flow used the same immutable static asset hashes before the final SQL formatter cleanup. The exact rebuilt final image was separately smoke-tested read-only in Chrome."
+  },
+  "postgreSqlDirectReadOnly": {
+    "normal": {
+      "transferId": "30b04e2c-30e9-41ec-88e2-dcecdfb3f89a",
+      "eventId": "303fe19e-395d-424b-8e29-586a2f572590",
+      "completedTransfer": 1,
+      "ledgerEntries": 2,
+      "ledgerDeltaSum": 0,
+      "outboxEvents": 1,
+      "matchingPublishedEvent": 1,
+      "inbox": 1,
+      "projection": 1,
+      "activityRows": 2,
+      "activitySum": 0
+    },
+    "lostResponse": {
+      "transferId": "087ef7fa-6a98-4373-93c4-7e10044caed8",
+      "eventId": "50529221-6736-4fb5-b05a-64fe81be4d08",
+      "completedTransfer": 1,
+      "ledgerEntries": 2,
+      "ledgerDeltaSum": 0,
+      "outboxEvents": 1,
+      "matchingPublishedEvent": 1,
+      "inbox": 1,
+      "projection": 1,
+      "activityRows": 2,
+      "activitySum": 0
+    }
+  },
+  "regression": {
+    "javaTests": 112,
+    "newRealPostgreSqlHistoryTests": 3,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "spotBugsFindings": 0,
+    "pythonTests": 54,
+    "populatedPhase1UpgradeTestPassed": true
+  },
+  "limits": [
+    "Ordering is by stored decision timestamp then transfer ID. A page is a snapshot, not a multi-page export.",
+    "The browser history is read-only and cannot prove which unknown request produced a similar transfer. Use the original receipt for recovery.",
+    "The partial B-tree is an additional write/index cost. This iteration does not include a throughput benchmark.",
+    "No publication or production deployment was performed."
+  ]
+}
