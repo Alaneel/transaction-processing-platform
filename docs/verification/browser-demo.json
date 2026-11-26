@@ -1,0 +1,381 @@
+{
+  "description": "Trusted-local browser acceptance of Transfer Lab with real PostgreSQL/Kafka on the isolated Compose project. No public release or deployment.",
+  "sourceFileSha256": {
+    "src/main/resources/static/demo/delivery-worker.js": "69e98e88bd2593b9f2a38d9af7572eef483c733f8d546a5971c82cd758688662",
+    "src/main/resources/static/demo/demo.css": "c2077677839065e42a5fba65974713139c26fc7e1a28fbac631086232917d3b6",
+    "src/main/resources/static/demo/demo.js": "1d439de11131d4fbe3a86afe0d2b221c8ee015049120a1ef338c5123cbe09ba2",
+    "src/main/resources/static/demo/favicon.svg": "60ad99791664060d5b45e97701d6234d10d3c483fd5be90a88da2c55ae95e52c",
+    "src/main/resources/static/demo/index.html": "21cef4e925f2a2716237906c0a19ab28473a0dac3713918428f6769e352d3b12",
+    "scripts/verify-browser-demo.py": "1fdd32d22cd053a65bd542c7d3589c8ba85c59b035c96a8fc1946ef8495943f2",
+    "scripts/demo.py": "152bacf17c6bb7e2629aaec6d52c8b1c16b0621ad0f23ec9fdc1d0790dbd08e5"
+  },
+  "fixture": {
+    "project": "tpp-browser-demo-20261126",
+    "baseUrl": "http://127.0.0.1:38120",
+    "runtimeRoleProbePassed": true,
+    "browserChannel": "Chrome",
+    "playwrightVersion": "1.57.0",
+    "chromeVersionPreflight": "158.0.8127.37",
+    "servedAssetsMatchSource": true,
+    "servedAssetSha256": {
+      "delivery-worker.js": "69e98e88bd2593b9f2a38d9af7572eef483c733f8d546a5971c82cd758688662",
+      "demo.css": "c2077677839065e42a5fba65974713139c26fc7e1a28fbac631086232917d3b6",
+      "demo.js": "1d439de11131d4fbe3a86afe0d2b221c8ee015049120a1ef338c5123cbe09ba2",
+      "favicon.svg": "60ad99791664060d5b45e97701d6234d10d3c483fd5be90a88da2c55ae95e52c",
+      "index.html": "21cef4e925f2a2716237906c0a19ab28473a0dac3713918428f6769e352d3b12"
+    },
+    "runtimeImageIds": {
+      "app": "sha256:cb0edc4f8f4a569147a97e703aa1b2aa287ee2889ea4b3680e49c17554d5dd01",
+      "db": "sha256:83b51dfb3fbcd8686bbe96f4db1e92259d2db416371aaa975b114f1cc01e74e4",
+      "kafka": "sha256:01664e90ae9cf5c0640ba50ce79e4a0d20649a870bfdd33f50c6457b03bd1038"
+    },
+    "databaseAndKafkaPreservedAcrossAppRebuild": true
+  },
+  "firstBrowserAttempt": {
+    "state": "FAILED_SWITCH_READINESS",
+    "reason": "The worker announced the page controller while it was activating. The page did not refresh after it became activated, so the switch remained disabled. One normal 201 completed and projected; no response-loss transfer was made.",
+    "normalTransferId": "d1286281-3a6e-4d1f-ad6a-56c9b0a3a2bc",
+    "reportSha256": "cd7cfdab506bb68b703196276b046986d50be55db494ef8cc185cc6f7f7f4770"
+  },
+  "intermediateBrowserPass": {
+    "reasonForFinalReverification": "Desk review found the previous automatically filled lookup ID persisted when the next receipt was unresolved. The final page clears that generated value until recovery, and labels HTTP 200 replay clearly.",
+    "reportSha256": "c1dc822e527acfc96be52b81b540122ba715302adb05c598bec041211940b7c7"
+  },
+  "realBrowser": {
+    "startedAt": "2026-11-26T14:00:54.659412+00:00",
+    "baseUrl": "http://127.0.0.1:38120",
+    "complete": true,
+    "scriptSha256": "1fdd32d22cd053a65bd542c7d3589c8ba85c59b035c96a8fc1946ef8495943f2",
+    "scope": "Two fresh 7-FIC UI transfers and one same-key replay; HTTP-only durable observations; no Docker operations",
+    "limits": "Fixture identity uses local origin and seeded funding history. PostgreSQL row counts remain a separate operator check.",
+    "fixtureGate": {
+      "ready": "UP",
+      "accounts": [
+        "00000000-0000-0000-0000-000000000002",
+        "00000000-0000-0000-0000-000000000003"
+      ],
+      "funding": [
+        {
+          "transferId": "10000000-0000-0000-0000-000000000002",
+          "transferStatus": "COMPLETED",
+          "decidedAt": "2026-11-26T13:51:33.412423Z",
+          "deliveryState": "PROJECTED",
+          "event": {
+            "eventId": "01dbac59-3452-42b1-86af-abd39d7998a9",
+            "publicationStatus": "PUBLISHED",
+            "attemptCount": 1,
+            "nextAttemptAt": null,
+            "lastErrorCode": null,
+            "publishedAt": "2026-11-26T13:51:33.592650Z",
+            "processedAt": "2026-11-26T13:51:33.597207Z",
+            "projectedAt": "2026-11-26T13:51:33.598982Z"
+          }
+        },
+        {
+          "transferId": "10000000-0000-0000-0000-000000000003",
+          "transferStatus": "COMPLETED",
+          "decidedAt": "2026-11-26T13:51:33.412423Z",
+          "deliveryState": "PROJECTED",
+          "event": {
+            "eventId": "cba3066e-8bdd-44f1-857c-5e6a1d63c5a5",
+            "publicationStatus": "PUBLISHED",
+            "attemptCount": 1,
+            "nextAttemptAt": null,
+            "lastErrorCode": null,
+            "publishedAt": "2026-11-26T13:51:33.592799Z",
+            "processedAt": "2026-11-26T13:51:33.615379Z",
+            "projectedAt": "2026-11-26T13:51:33.615813Z"
+          }
+        }
+      ]
+    },
+    "normal": {
+      "transferId": "22fb9f0a-cc3f-4e16-b174-d6d4962123dc",
+      "intent": {
+        "keySha256": "3d7f8c453250098e19c7af898134f0783a2c50cb3ae544892c009134ae868bdb",
+        "payload": {
+          "sourceAccountId": "00000000-0000-0000-0000-000000000002",
+          "destinationAccountId": "00000000-0000-0000-0000-000000000003",
+          "amount": 7,
+          "unit": "FIC"
+        },
+        "status": 201,
+        "replayed": "false",
+        "error": null,
+        "dropHeader": null
+      },
+      "delivery": {
+        "transferId": "22fb9f0a-cc3f-4e16-b174-d6d4962123dc",
+        "transferStatus": "COMPLETED",
+        "decidedAt": "2026-11-26T14:00:56.427714Z",
+        "deliveryState": "PROJECTED",
+        "event": {
+          "eventId": "a1749ef9-caff-441f-acb0-5c63d2645662",
+          "publicationStatus": "PUBLISHED",
+          "attemptCount": 1,
+          "nextAttemptAt": null,
+          "lastErrorCode": null,
+          "publishedAt": "2026-11-26T14:00:56.560820Z",
+          "processedAt": "2026-11-26T14:00:56.563038Z",
+          "projectedAt": "2026-11-26T14:00:56.565424Z"
+        }
+      }
+    },
+    "screenshots": [
+      {
+        "state": "unknown",
+        "sha256": "d1e6900bae49a06a88a8a2ff9ff10cbba7e11efefd31cb6253eb415a1129bb47",
+        "fileName": "browser-unknown.png"
+      },
+      {
+        "state": "desktop-projected",
+        "sha256": "5e8fbbf23def836975f3af4f0c437af366f44a96f8359d053de5de9547b0bab7",
+        "fileName": "browser-desktop-projected.png"
+      },
+      {
+        "state": "mobile",
+        "sha256": "f571907303e814928ae3837fa8476b6b1f306095a0147f7a80e48ecae4d69885",
+        "fileName": "browser-mobile.png"
+      }
+    ],
+    "lostResponse": {
+      "transferId": "ae610913-68de-48ac-aa68-2fcbac049492",
+      "intent": {
+        "keySha256": "3516dba6c10cfd9b94175022ecba13af572e58e6ec16694f0eb9673852122b2f",
+        "payload": {
+          "sourceAccountId": "00000000-0000-0000-0000-000000000002",
+          "destinationAccountId": "00000000-0000-0000-0000-000000000003",
+          "amount": 7,
+          "unit": "FIC"
+        },
+        "status": null,
+        "replayed": null,
+        "error": "TypeError",
+        "dropHeader": "1"
+      },
+      "workerProof": [
+        {
+          "type": "tpp-response-dropped",
+          "status": 201
+        }
+      ],
+      "browserNetworkFailures": [
+        {
+          "url": "http://127.0.0.1:38120/api/transfers",
+          "method": "POST",
+          "failure": "net::ERR_FAILED"
+        }
+      ],
+      "receiptSurvivedReloadUnchanged": true,
+      "reloadPostCount": 0,
+      "replay": {
+        "keySha256": "3516dba6c10cfd9b94175022ecba13af572e58e6ec16694f0eb9673852122b2f",
+        "payload": {
+          "sourceAccountId": "00000000-0000-0000-0000-000000000002",
+          "destinationAccountId": "00000000-0000-0000-0000-000000000003",
+          "amount": 7,
+          "unit": "FIC"
+        },
+        "status": 200,
+        "replayed": "true",
+        "error": null,
+        "dropHeader": null
+      },
+      "delivery": {
+        "transferId": "ae610913-68de-48ac-aa68-2fcbac049492",
+        "transferStatus": "COMPLETED",
+        "decidedAt": "2026-11-26T14:00:56.657386Z",
+        "deliveryState": "PROJECTED",
+        "event": {
+          "eventId": "d0101b71-3d56-426b-80d2-55faeccbbc04",
+          "publicationStatus": "PUBLISHED",
+          "attemptCount": 1,
+          "nextAttemptAt": null,
+          "lastErrorCode": null,
+          "publishedAt": "2026-11-26T14:00:56.667814Z",
+          "processedAt": "2026-11-26T14:00:56.669484Z",
+          "projectedAt": "2026-11-26T14:00:56.670018Z"
+        }
+      }
+    },
+    "desktopLayout": {
+      "viewport": 1365,
+      "content": 1365
+    },
+    "mobileLayout": {
+      "viewport": 390,
+      "content": 390
+    },
+    "browserErrors": {
+      "intentionalLostResponse": [
+        {
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "location": {
+            "url": "http://127.0.0.1:38120/api/transfers",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        }
+      ],
+      "unexpectedConsole": [],
+      "scriptErrors": []
+    },
+    "independentEffects": {
+      "00000000-0000-0000-0000-000000000002": {
+        "balanceBefore": 999972,
+        "balanceAfter": 999958,
+        "ledger": [
+          {
+            "id": 13,
+            "transferId": "22fb9f0a-cc3f-4e16-b174-d6d4962123dc",
+            "accountId": "00000000-0000-0000-0000-000000000002",
+            "delta": -7,
+            "createdAt": "2026-11-26T14:00:56.419458Z"
+          },
+          {
+            "id": 15,
+            "transferId": "ae610913-68de-48ac-aa68-2fcbac049492",
+            "accountId": "00000000-0000-0000-0000-000000000002",
+            "delta": -7,
+            "createdAt": "2026-11-26T14:00:56.654146Z"
+          }
+        ],
+        "activity": [
+          {
+            "id": 13,
+            "eventId": "a1749ef9-caff-441f-acb0-5c63d2645662",
+            "transferId": "22fb9f0a-cc3f-4e16-b174-d6d4962123dc",
+            "accountId": "00000000-0000-0000-0000-000000000002",
+            "deltaMinor": -7,
+            "unit": "FIC",
+            "occurredAt": "2026-11-26T14:00:56.427714Z",
+            "projectedAt": "2026-11-26T14:00:56.567098Z"
+          },
+          {
+            "id": 15,
+            "eventId": "d0101b71-3d56-426b-80d2-55faeccbbc04",
+            "transferId": "ae610913-68de-48ac-aa68-2fcbac049492",
+            "accountId": "00000000-0000-0000-0000-000000000002",
+            "deltaMinor": -7,
+            "unit": "FIC",
+            "occurredAt": "2026-11-26T14:00:56.657386Z",
+            "projectedAt": "2026-11-26T14:00:56.670527Z"
+          }
+        ]
+      },
+      "00000000-0000-0000-0000-000000000003": {
+        "balanceBefore": 1000028,
+        "balanceAfter": 1000042,
+        "ledger": [
+          {
+            "id": 14,
+            "transferId": "22fb9f0a-cc3f-4e16-b174-d6d4962123dc",
+            "accountId": "00000000-0000-0000-0000-000000000003",
+            "delta": 7,
+            "createdAt": "2026-11-26T14:00:56.419458Z"
+          },
+          {
+            "id": 16,
+            "transferId": "ae610913-68de-48ac-aa68-2fcbac049492",
+            "accountId": "00000000-0000-0000-0000-000000000003",
+            "delta": 7,
+            "createdAt": "2026-11-26T14:00:56.654146Z"
+          }
+        ],
+        "activity": [
+          {
+            "id": 14,
+            "eventId": "a1749ef9-caff-441f-acb0-5c63d2645662",
+            "transferId": "22fb9f0a-cc3f-4e16-b174-d6d4962123dc",
+            "accountId": "00000000-0000-0000-0000-000000000003",
+            "deltaMinor": 7,
+            "unit": "FIC",
+            "occurredAt": "2026-11-26T14:00:56.427714Z",
+            "projectedAt": "2026-11-26T14:00:56.567623Z"
+          },
+          {
+            "id": 16,
+            "eventId": "d0101b71-3d56-426b-80d2-55faeccbbc04",
+            "transferId": "ae610913-68de-48ac-aa68-2fcbac049492",
+            "accountId": "00000000-0000-0000-0000-000000000003",
+            "deltaMinor": 7,
+            "unit": "FIC",
+            "occurredAt": "2026-11-26T14:00:56.657386Z",
+            "projectedAt": "2026-11-26T14:00:56.670617Z"
+          }
+        ]
+      }
+    },
+    "finalReconciliation": {
+      "consistent": true,
+      "balanceMismatches": [],
+      "invalidTransfers": [],
+      "totalLedgerDelta": 0,
+      "totalMaterializedBalance": 0
+    },
+    "finalEventReconciliation": {
+      "completedTransfers": 8,
+      "processedEvents": 8,
+      "projectedTransfers": 8,
+      "quarantinedRecords": 0,
+      "missingProjection": 0,
+      "publishedAwaitingProjection": 0,
+      "inboxWithoutProjection": 0,
+      "projectionWithoutInbox": 0,
+      "activityShapeDiscrepancies": 0,
+      "originDiscrepancies": 0,
+      "discrepancies": 0,
+      "oldestUnprocessedAgeSeconds": null,
+      "lastProcessedAt": "2026-11-26T14:00:56.669484Z",
+      "lastProcessedEventOccurredAt": "2026-11-26T14:00:56.657386Z",
+      "checkedAt": "2026-11-26T14:00:57.395110044Z"
+    },
+    "finishedAt": "2026-11-26T14:00:57.397258+00:00"
+  },
+  "postgresReadOnlyChecks": {
+    "normal": {
+      "transferId": "22fb9f0a-cc3f-4e16-b174-d6d4962123dc",
+      "eventId": "a1749ef9-caff-441f-acb0-5c63d2645662",
+      "completedTransfer": 1,
+      "ledgerEntries": 2,
+      "ledgerDeltaSum": 0,
+      "outboxEvents": 1,
+      "matchingPublishedEvent": 1,
+      "inbox": 1,
+      "projection": 1,
+      "activityRows": 2,
+      "activitySum": 0
+    },
+    "lostResponse": {
+      "transferId": "ae610913-68de-48ac-aa68-2fcbac049492",
+      "eventId": "d0101b71-3d56-426b-80d2-55faeccbbc04",
+      "completedTransfer": 1,
+      "ledgerEntries": 2,
+      "ledgerDeltaSum": 0,
+      "outboxEvents": 1,
+      "matchingPublishedEvent": 1,
+      "inbox": 1,
+      "projection": 1,
+      "activityRows": 2,
+      "activitySum": 0
+    }
+  },
+  "javaRegression": {
+    "command": "JAVA_HOME=<JDK21> TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock ./mvnw -B -ntp clean verify",
+    "tests": 105,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "build": "SUCCESS",
+    "spotBugsFindings": 0,
+    "dependencyAndVersionRulesPassed": 4,
+    "finishedAt": "2026-11-26T21:59:45+08:00",
+    "logSha256": "93c13faa3d91c750d94e36d6a8efcdd45c6828a445d94bdf178e1e9564d3c6e0",
+    "scopeNote": "Regression ran against unchanged Java transaction, delivery and consumer code. The final browser-facing resources were separately read back from the delivered image and reverified in Chrome."
+  },
+  "pythonRegression": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "tests": 54,
+    "status": "PASS"
+  }
+}

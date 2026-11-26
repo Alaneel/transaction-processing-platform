@@ -63,6 +63,13 @@ jobs:
               raise SystemExit("Receipt recovery and delivery status disagree about the original transfer")
           print("PASS: a post-commit response loss recovered the original transfer; read-only lookup found its single projection.")
           PY_VERIFY
+      - name: Verify browser transfer, lost response and recovery on the running demo
+        timeout-minutes: 5
+        run: |
+          google-chrome --version
+          python3 -m venv "$RUNNER_TEMP/tpp-playwright"
+          "$RUNNER_TEMP/tpp-playwright/bin/python" -m pip install --disable-pip-version-check playwright==1.57.0
+          "$RUNNER_TEMP/tpp-playwright/bin/python" scripts/verify-browser-demo.py --base-url http://127.0.0.1:18080 --channel chrome --output benchmark-results/ci-browser-demo.json
       - name: Retain test reports
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7 (Node 24)

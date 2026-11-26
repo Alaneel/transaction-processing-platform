@@ -1,5 +1,11 @@
 # Release and verification
 
+## v0.2.2
+
+Transfer Lab brings transfer submission, receipt recovery and transfer-ID delivery lookup together in a browser. After startup, the full walkthrough uses buttons, including an opt-in loss of the response to a real committed transfer. Reload the page and recover the original result with the saved receipt. Delivery lookup shows recorded publication and committed activity independently of the financial decision.
+
+The release adds a real Chrome check to CI, alongside the existing Java, Python, broker-outage and CLI checks. [Quick start](../README.md#run-the-demo) · [Browser walkthrough](demo.md#try-the-browser-demo) · [Local acceptance](verification/browser-demo.json)
+
 ## v0.2.1
 
 The receipt-based CLI saves the endpoint, idempotency key and transfer payload before its first request. `resume` reuses that intent after a lost response. `status` reads the financial decision, publication and projection by transfer ID. The release workflow exercises both against real PostgreSQL and Kafka. [Quick start](../README.md#run-the-demo) · [Delivery states](operations.md#transfer-delivery-progress)

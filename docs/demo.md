@@ -30,6 +30,16 @@ The script waits for the full stack, runs the idempotent owner-only balanced fix
 
 Funding credits Alice and Bob 1,000,000 minor units each and debits the dedicated issuance account by 2,000,000. Rerunning the fixture does not fund twice. Containers and volumes are retained. Demo requests add real fictional history; the script never truncates tables.
 
+## Try the browser demo
+
+With the local stack running, open [Transfer Lab](http://127.0.0.1:38080/demo/index.html), or the **Browser demo** URL printed by the launcher. Use that URL if you changed the app port. The page uses the seeded Alice and Bob accounts and fictional FIC minor units.
+
+1. Select an account direction and amount, then send a transfer. The page saves a receipt in this browser before the request can leave it.
+2. To practice a lost reply, check **Lose the reply on purpose** before sending a new transfer. Wait for the page to report that the result is unknown. Reload the page if you want to simulate restarting the client, then click **Recover this transfer**. Recovery uses the same request identity and payload.
+3. Use the prefilled transfer ID or paste another ID, then select **Check delivery**. The lookup separates the committed ledger decision from recorded publication and committed activity projection. Click again if publication or projection is still pending.
+
+Use a modern browser with local storage and Web Locks to submit and recover transfers. The loss switch also requires a service worker on the local page. The worker intercepts only a transfer explicitly marked for the demo. It drops the browser-facing response after the real service returns a new committed result. Regular transfers, rejections and read-only lookups still use their ordinary responses. A pending receipt survives a reload in the same browser and origin. Keep that origin pointed at the same demo database. Clearing browser data or replacing its database can remove the recovery path.
+
 ## Demonstrate broker outage and recovery
 
 ```sh

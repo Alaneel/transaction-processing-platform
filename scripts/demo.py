@@ -323,6 +323,7 @@ def main():
             report["brokerOutage"] = outage(run, compose, seed, base)
         publish(report)
         print("PASS: committed transfer, durable same-key replay, paired Kafka activity and reconciliations.")
+        print(f"Browser demo: {base}/demo/index.html")
         print(f"Transfer delivery: {base}/internal/transfers/{report['smoke']['transferId']}/delivery")
         if args.broker_outage:
             print("PASS: transfer committed with broker stopped; its stable event recovered without restarting the app.")

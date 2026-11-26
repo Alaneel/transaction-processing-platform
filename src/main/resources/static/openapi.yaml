@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Transaction Processing Platform
-  version: 0.2.1
+  version: 0.2.2
   description: Educational ledger and asynchronous transfer activity using fictional FIC integer minor units. No authentication; bind locally.
 servers:
   - url: http://localhost:8080

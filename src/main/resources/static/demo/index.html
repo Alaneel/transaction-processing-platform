@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="description" content="Send a fictional transfer, recover its saved receipt, and inspect durable delivery progress in your local demo.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; worker-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
+    <title>Transfer Lab · Local demo</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="demo.css">
+    <script src="demo.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to the transfer demo</a>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Transfer Lab home">
+          <span class="brand-mark" aria-hidden="true">↗</span>
+          <span>Transfer <strong>Lab</strong></span>
+        </a>
+        <span class="environment-label">Local demo <span aria-hidden="true">/</span> Fictional FIC</span>
+      </header>
+
+      <main id="main" tabindex="-1">
+        <section class="introduction" aria-labelledby="page-title">
+          <div class="intro-copy">
+            <p class="eyebrow">A small transfer. A durable trail.</p>
+            <h1 id="page-title">See what survives<br>a lost response.</h1>
+            <p class="intro-description">Send fictional value, recover the result from a saved receipt, and follow its delivery. Everything stays in your local demo.</p>
+          </div>
+          <aside class="intro-note" aria-label="How to try the demo">
+            <span class="note-symbol" aria-hidden="true">↳</span>
+            <p>Start with <strong>7 FIC minor units</strong>. Then try losing the reply and recovering the same transfer.</p>
+          </aside>
+        </section>
+
+        <p id="origin-message" class="origin-message" role="status" aria-live="polite" data-state="pending">Checking local access…</p>
+
+        <div class="workspace">
+          <section class="panel transfer-panel" aria-labelledby="transfer-heading">
+            <header class="panel-heading">
+              <span class="step-number" aria-hidden="true">01</span>
+              <div>
+                <p class="section-kicker">Create</p>
+                <h2 id="transfer-heading">Make a transfer</h2>
+              </div>
+            </header>
+            <p class="panel-description">Move fictional FIC between the two seeded demo accounts.</p>
+
+            <form id="submit-form" novalidate>
+              <div class="field">
+                <label for="direction">Direction</label>
+                <div class="select-wrap">
+                  <select id="direction" name="direction">
+                    <option value="alice-to-bob">Alice → Bob</option>
+                    <option value="bob-to-alice">Bob → Alice</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="amount">Amount</label>
+                <div class="amount-wrap">
+                  <input id="amount" name="amount" type="number" min="1" max="9000000000000000" step="1" value="7" inputmode="numeric" required aria-describedby="amount-help">
+                  <span class="unit-label" aria-hidden="true">FIC</span>
+                </div>
+                <p id="amount-help" class="field-help">Whole minor units of fictional FIC.</p>
+              </div>
+
+              <div class="simulation-option">
+                <label class="checkbox-label" for="drop-response">
+                  <input id="drop-response" name="drop-response" type="checkbox" disabled aria-describedby="simulation-status">
+                  <span>
+                    <strong>Lose the reply on purpose</strong>
+                    <span class="checkbox-description">Try recovering after the transfer commits.</span>
+                  </span>
+                </label>
+                <p id="simulation-status" class="field-help" role="status" aria-live="polite">Checking whether this local demo supports response loss.</p>
+              </div>
+
+              <button id="submit-transfer" class="button button-primary" type="submit" disabled>
+                <span>Save receipt &amp; send</span><span class="button-arrow" aria-hidden="true">↗</span>
+              </button>
+              <p class="action-note">The receipt is saved in this browser before sending.</p>
+              <p id="submit-message" class="action-message" role="status" aria-live="polite" aria-atomic="true">Ready when local access is confirmed.</p>
+            </form>
+          </section>
+
+          <section class="panel receipt-panel" aria-labelledby="receipt-heading">
+            <header class="panel-heading">
+              <span class="step-number" aria-hidden="true">02</span>
+              <div>
+                <p class="section-kicker">Recover</p>
+                <h2 id="receipt-heading">Your saved receipt</h2>
+              </div>
+            </header>
+            <p class="panel-description">An interrupted reply can leave the result uncertain. Recover using the original receipt.</p>
+
+            <div class="receipt-paper">
+              <div class="receipt-topline">
+                <span class="receipt-caption">Browser receipt</span>
+                <span class="receipt-decoration" aria-hidden="true">✳</span>
+              </div>
+              <p id="receipt-state" class="state-label" data-state="empty">No saved receipt</p>
+              <p id="receipt-summary" class="receipt-summary">Your next transfer will appear here.</p>
+              <dl class="receipt-details">
+                <div>
+                  <dt>Request key</dt>
+                  <dd><code id="receipt-key">Created before you send.</code></dd>
+                </div>
+                <div>
+                  <dt>Transfer ID</dt>
+                  <dd><output id="transfer-id">Available after a response</output></dd>
+                </div>
+              </dl>
+            </div>
+
+            <button id="resume-transfer" class="button button-secondary" type="button" disabled>
+              <span>Recover this transfer</span><span class="button-arrow" aria-hidden="true">↻</span>
+            </button>
+            <p id="resume-message" class="action-message" role="status" aria-live="polite" aria-atomic="true">A saved receipt lets you recover the same request after an interrupted response.</p>
+            <p class="panel-footnote">One current receipt is kept in this browser. Keep the local demo’s history when restarting it.</p>
+          </section>
+
+          <section class="panel lookup-panel" aria-labelledby="lookup-heading">
+            <header class="panel-heading">
+              <span class="step-number" aria-hidden="true">03</span>
+              <div>
+                <p class="section-kicker">Inspect</p>
+                <h2 id="lookup-heading">Follow delivery</h2>
+              </div>
+            </header>
+            <p class="panel-description">Check a transfer’s saved decision and delivery progress. This only reads its status.</p>
+
+            <form id="lookup-form" class="lookup-form" novalidate>
+              <div class="field">
+                <label for="lookup-id">Transfer ID</label>
+                <input id="lookup-id" name="transfer-id" class="identifier-input" type="text" placeholder="Paste a transfer ID" required autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="lookup-help">
+                <p id="lookup-help" class="field-help">Use the Transfer ID shown on your receipt.</p>
+              </div>
+              <button id="lookup-transfer" class="button button-secondary" type="submit" disabled>
+                <span>Check delivery</span><span class="button-arrow" aria-hidden="true">→</span>
+              </button>
+            </form>
+            <p id="lookup-message" class="action-message" role="status" aria-live="polite" aria-atomic="true">Look up your receipt’s transfer, or paste another transfer ID from this demo.</p>
+
+            <section id="delivery-result" class="delivery-result" hidden aria-label="Observed transfer delivery">
+              <div class="delivery-summary">
+                <span class="receipt-caption">Observed delivery</span>
+                <output id="delivery-state" class="state-label">Not observed</output>
+              </div>
+              <dl class="delivery-stages">
+                <div>
+                  <dt><span class="stage-dot" aria-hidden="true"></span>Transfer decision</dt>
+                  <dd><output id="ledger-state">Not observed</output></dd>
+                </div>
+                <div>
+                  <dt><span class="stage-dot" aria-hidden="true"></span>Event publication</dt>
+                  <dd><output id="publication-state">Not observed</output></dd>
+                </div>
+                <div>
+                  <dt><span class="stage-dot" aria-hidden="true"></span>Account activity</dt>
+                  <dd><output id="projection-state">Not observed</output></dd>
+                </div>
+              </dl>
+              <div class="event-identity">
+                <span class="receipt-caption">Event ID</span>
+                <output id="event-id">Not available</output>
+              </div>
+              <p class="field-help">Delivery may continue after the transfer commits. Check again to refresh this observation.</p>
+            </section>
+
+            <div class="delivery-empty" aria-hidden="true">
+              <span class="empty-orbit"><span>↗</span></span>
+              <p>A decision, then a delivery.</p>
+              <span>The trail will appear here.</span>
+            </div>
+          </section>
+        </div>
+
+        <section class="boundary-note" aria-label="About this demo">
+          <span class="boundary-mark" aria-hidden="true">↔</span>
+          <p><strong>Fictional value. Real recovery.</strong> A lost reply can hide a committed result. The saved receipt keeps the same request identity when you recover it.</p>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>Transaction Processing Platform <span aria-hidden="true">·</span> Transfer Lab</span>
+        <a href="../openapi.yaml">API contract <span aria-hidden="true">↗</span></a>
+      </footer>
+    </div>
+    <noscript><p class="no-script-message">Enable JavaScript to send a fictional transfer, recover a browser receipt, or inspect delivery.</p></noscript>
+  </body>
+</html>

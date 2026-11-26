@@ -40,6 +40,19 @@ Run unit tests separately during development:
 
 That command deliberately excludes PostgreSQL tests and is insufficient acceptance evidence for the transactional core.
 
+### Browser demo on a real stack
+
+Start an idle, seeded local demo with PostgreSQL and Kafka. With Python Playwright and Chrome installed, run:
+
+```sh
+python3 scripts/verify-browser-demo.py --base-url http://127.0.0.1:38080 \
+  --channel chrome --output benchmark-results/browser-verification.json
+```
+
+The verifier requires an explicit loopback origin and a new report file. It clicks through two fictional transfers and one same-receipt replay. It observes the worker dropping a real committed response, reloads without submitting, recovers through the receipt and checks delivery by ID. It also reads account balances, old and new ledger/activity entries, reconciliation, and narrow-screen layout. The two test transfers remain in the selected demo history. Use an isolated project and avoid concurrent transfers while the verifier measures that history. Add `--screenshots-dir` with an existing directory to retain the rendered states.
+
+The [local browser acceptance record](verification/browser-demo.json) includes the real network failure, unchanged saved receipt after reload, HTTP 200 replay, exact PostgreSQL evidence and final regression counts.
+
 ## Release history and Docker boundary
 
 The final clean verification completed at **13 October 2026, 23:09:14 UTC** (14 October in Singapore): **104 checks, zero failures/errors/skips**. It retains all original 34 unit and 60 real dependency tests, with ten additional separate-process preconnection guards. The final build-only Snappy patch passed a subsequent plugin/static verification; unchanged backend and integration assertions were not repeated solely for that tool change. [Release evidence](verification/release-readiness.json) separates these runs from the historical phases below.
