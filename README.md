@@ -10,7 +10,7 @@ An independent backend engineering project: exact integer transfers, an immutabl
 
 ## Run the demo
 
-Start Docker with Compose and have Python 3.10+ available. The first run builds the app and starts PostgreSQL and Kafka locally. You do not need a host JDK.
+On macOS or Linux, start local Docker with Compose and use Python 3.10 or newer. The first run builds the app and starts PostgreSQL and Kafka. You do not need a host JDK.
 
 ```sh
 git clone --branch v0.2.1 --depth 1 https://github.com/Alaneel/transaction-processing-platform.git
@@ -36,6 +36,8 @@ python3 scripts/demo.py --no-build --broker-outage
 
 The demo uses fictional value and loopback ports `38080`, `55436` and `39092`. Run `python3 scripts/demo.py --stop` to stop its containers and retain the data. [Make and resume your own transfer](docs/demo.md#make-and-recover-your-own-transfer) · [State definitions](docs/operations.md#transfer-delivery-progress) · [Local security scope](SECURITY.md)
 
+## Verification and evidence
+
 | Engineering result | Recorded evidence |
 |---|---|
 | **105 Java and 54 Python checks passed locally** for transfer recovery and delivery lookup | [Local verification and real broker-outage observations](docs/verification/transfer-delivery-status.json) · [Hosted runs](https://github.com/Alaneel/transaction-processing-platform/actions/workflows/ci.yml) |
@@ -43,7 +45,7 @@ The demo uses fictional value and loopback ports `38080`, `55436` and `39092`. R
 | **28 retained benchmark trials**, including negative results | [Matched methodology](docs/phase3-benchmark-methodology.md) and [performance report](docs/phase3-performance.md) |
 | Recovery across broker outages, relay crashes, uncertain commits and consumer redelivery | [Failure matrix](docs/failure-matrix.md) and [real dependency scenarios](src/test/java/dev/tpp/events/EventPipelineTest.java) |
 
-The final patched app/PostgreSQL/Kafka stack passed both guarded demos and a separate [four-trial security-dependency comparison](docs/security-patch-performance.md): **28,065 scoped events reconciled**, with Kafka offsets caught up and wall/monotonic timing guards passing. The earlier 39,751-event comparison is retained separately with its timing limits. [Release verification](docs/verification/release-readiness.json) and [security assessment](docs/dependency-security.md) distinguish local functional acceptance from residual test-tool risks, host/architecture limits and unexecuted hosted CI.
+A separate October [four-trial dependency comparison](docs/security-patch-performance.md) reconciled **28,065 scoped events** with Kafka offsets caught up and clock checks passing. The earlier 39,751-event comparison is retained with its timing limits. The [dependency assessment](docs/dependency-security.md) applies to the exact recorded October images. See [release verification](docs/release.md) for the newer builds.
 
 ## The boundaries that matter
 
