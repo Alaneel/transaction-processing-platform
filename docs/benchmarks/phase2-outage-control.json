@@ -1,0 +1,25 @@
+{
+  "observedAt": "2026-10-11T13:55:06.507167+00:00",
+  "brokerState": "exited",
+  "appReadiness": [
+    200,
+    {
+      "status": "UP"
+    }
+  ],
+  "pipelineStatus": [
+    200,
+    {
+      "relayEnabled": true,
+      "consumerEnabled": true,
+      "outbox": {
+        "pending": 0,
+        "claimed": 0,
+        "published": 62362,
+        "blocked": 0,
+        "expiredClaims": 0,
+        "oldestPendingAgeSeconds": 0.0
+      }
+    }
+  ]
+}

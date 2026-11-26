@@ -1,0 +1,862 @@
+[
+  {
+    "@timestamp": "2026-10-11T14:00:36.87296988Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-1",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-4-6"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:36.87297363Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-3",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-5-7"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:36.872970005Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-4",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-3-6"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:36.872977589Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-2-6"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:36.873020089Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-9",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-1-7"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:36.87483888Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-6",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-7-7"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:36.87627563Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-2",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-0-6"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.151269214Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-7",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-0-7"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.151317589Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-6",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-6-14"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.152956422Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-2",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-5-10"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.154899589Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-9",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-3-8"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.16313038Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-1",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-4-9"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.409365256Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-3",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-0-8"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.414602381Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-9",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-6-15"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.416029089Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-7",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-5-11"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.424333797Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-2",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-2-12"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.424438506Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-6",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-7-14"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.425557756Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-8",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-4-10"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.427344506Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-4",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-4678afe7-50eb-499c-8611-9e150b1cd121-3-9"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:37.999195756Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-10",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-5-5"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.002108839Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-9",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-7-5"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.005798506Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-6",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-6-5"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.007583464Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-4",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-1-5"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.010682048Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-1",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-2-6"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.014774756Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-3-5"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.014913464Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-3",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-4-6"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.585612173Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-8",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-2-22"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.585613673Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-9",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-25"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.586929589Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-3-20"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.86319859Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-4",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-5-27"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.865253131Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-10",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-27"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:38.867718631Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-6-27"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.124569881Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-8",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-28"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.126423673Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-6",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-4-29"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.133235131Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-7-30"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.388480007Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-2",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-7-31"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.39067684Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-3",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-5-33"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.393006715Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-30"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.699551257Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-8",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-6-37"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.707271507Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-3",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-3-36"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.708604465Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-10",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-7-34"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.711396173Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-7",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-1-39"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.711795007Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-6",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-2-38"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.716152965Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-2",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-33"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.717255632Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-5-36"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:39.719130632Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-9",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-4-37"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.001705507Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-35"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.002595382Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-7",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-3-39"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.009839757Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-2",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-2-42"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.292509257Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-6",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-7-43"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.295422382Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-10",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-4-46"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.295818882Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-1",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-3-42"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.297189424Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-4",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-2-45"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.29916484Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-8",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-6-50"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.30188834Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-2",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-39"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.301965507Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-3",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-1-48"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.56626734Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-9",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-6-51"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.56944159Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-1",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-5-52"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.572930257Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-8",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-40"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.575541257Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-2-46"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.578290382Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-2",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-7-46"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.580710174Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-4",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-4-48"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.581058799Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-10",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-3-43"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.843995424Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-10",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-4-50"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:40.847136549Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-7",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-42"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.145137382Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-4",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-1-60"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.147616216Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-3",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-2-52"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.149972132Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-10",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-44"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.372645132Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-7",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-6-61"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.373082257Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=2 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-10",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-44"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.373179299Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-6",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-3-51"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.378291382Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=2 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-4",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-1-60"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.617885258Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-9",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-5-68"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.617885258Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-8",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-7-58"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.619517966Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-3-53"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.624711341Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=2 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-7",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-6-61"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.843613966Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=2 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-3-53"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:41.852170591Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=2 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-8",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-7-58"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:42.096325883Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-10",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-6-64"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:42.334768425Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-1",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-7-61"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:42.334768466Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=2 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-10",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-6-64"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:42.335626258Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-6",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-1-69"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:42.337901591Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-9",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-0-53"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:42.343610508Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-5",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-5-75"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:42.555667966Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-7",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-3-58"
+  },
+  {
+    "@timestamp": "2026-10-11T14:00:42.555711633Z",
+    "@version": "1",
+    "message": "Transfer transaction retry attempt=1 sqlstate=55P03",
+    "logger_name": "dev.tpp.application.TransferService",
+    "thread_name": "http-nio-8080-exec-4",
+    "level": "WARN",
+    "level_value": 30000,
+    "correlationId": "event-bench-019fb1fc-022a-487d-89c7-4dd2c92a09b0-2-67"
+  }
+]

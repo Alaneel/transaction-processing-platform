@@ -1,0 +1,101 @@
+{
+  "implementationCommit": "7668f94024ab5b6295f3662b3e89cd5ea480ea45",
+  "checkout": "/private/tmp/tpp-phase3-clean-7668f94",
+  "command": "JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home MAVEN_USER_HOME=/private/tmp/tpp-maven-wrapper ./mvnw -B -ntp -Dmaven.repo.local=/private/tmp/tpp-m2 clean verify",
+  "build": "FAILURE",
+  "exitCode": 1,
+  "tests": 94,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "classes": [
+    {
+      "class": "dev.tpp.ApiErrorMappingTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.006
+    },
+    {
+      "class": "dev.tpp.BackpressurePostgresTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 5.886
+    },
+    {
+      "class": "dev.tpp.DatabaseErrorsTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.002
+    },
+    {
+      "class": "dev.tpp.DomainRulesTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.003
+    },
+    {
+      "class": "dev.tpp.EventContractTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.013
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "tests": 27,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 194.013
+    },
+    {
+      "class": "dev.tpp.OutboxMigrationUpgradeTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.816
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 9.348
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.04
+    },
+    {
+      "class": "dev.tpp.events.relay.PublicationBatchTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.019
+    }
+  ],
+  "failingCase": "EventPipelineTest.shutdownWithActualOutstandingProducerWorkIsBoundedAndPreservesRetryEligibility",
+  "assertion": "Expected outstanding send 1.0, observed 0.0 at line 1257",
+  "classification": "Shutdown regression did not establish the asserted outstanding-send state after broker stop. Concrete fixture correction is being inspected separately; no production-bound violation is inferred from this failed setup assertion. The corrected partial-batch outstanding-bound case passed in this same run.",
+  "staticChecks": "Not reached after failed test phase",
+  "finishedAt": "2026-10-12T00:02:27+08:00",
+  "mavenTotalTime": "03:34 min",
+  "logSource": "/private/tmp/tpp-phase3-clean-final-7668f94.log",
+  "logSha256": "fc035324d3399e0aed8e34cd92e0d968c59cf2ae3a8d91a3daea646f637c3496"
+}

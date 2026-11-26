@@ -1,0 +1,61 @@
+{
+  "derivedAt": "2026-10-11T16:15:49.111117+00:00",
+  "beforeBuild": "docs/verification/phase3-final-build.json",
+  "afterDeployment": "docs/verification/phase3-final-runtime-provenance.json",
+  "inputSha256": {
+    "docs/verification/phase3-final-build.json": "313b1104118f85492e48b326d74f2c3e179159a8e53004d8e3744aece3eefa7b",
+    "docs/verification/phase3-final-runtime-provenance.json": "2c942e1d00cf5e82ad18f674116563df84a1d38c2d9dc056419dfec3c74427cc"
+  },
+  "checks": {
+    "tpp-phase1-validation": {
+      "app": {
+        "id": true,
+        "image": true,
+        "startedAt": true,
+        "mounts": true
+      },
+      "db": {
+        "id": true,
+        "image": true,
+        "startedAt": true,
+        "mounts": true
+      }
+    },
+    "tpp-phase2-validation": {
+      "app": {
+        "id": true,
+        "image": true,
+        "startedAt": true,
+        "mounts": true
+      },
+      "db": {
+        "id": true,
+        "image": true,
+        "startedAt": true,
+        "mounts": true
+      },
+      "kafka": {
+        "id": true,
+        "image": true,
+        "startedAt": true,
+        "mounts": true
+      }
+    },
+    "tpp-phase3-validation": {
+      "db": {
+        "id": true,
+        "image": true,
+        "startedAt": true,
+        "mounts": true
+      },
+      "kafka": {
+        "id": true,
+        "image": true,
+        "startedAt": true,
+        "mounts": true
+      }
+    }
+  },
+  "complete": true,
+  "scope": "All Phase 1/2 services and Phase 3 DB/Kafka retained IDs, images, start times and mounts across final build/deployment; only Phase 3 app was recreated."
+}

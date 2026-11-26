@@ -1,0 +1,1749 @@
+{
+  "definition": "Predeclared fixed worst-case UUID order: all eight destinations below shared source; unchanged images, workers, warmup and duration.",
+  "timeline": "docs/benchmarks/phase3-high-controlled/phase3-high-trial-order.json",
+  "harnessSourceCommit": "b11a593c7ec2f47252495a2af000de274d9872fd",
+  "gitExecutable": "/Library/Developer/CommandLineTools/usr/bin/git",
+  "plannedOrder": [
+    "baseline",
+    "optimized",
+    "optimized",
+    "baseline"
+  ],
+  "actualOrder": [
+    "baseline",
+    "optimized",
+    "optimized",
+    "baseline"
+  ],
+  "complete": true,
+  "trials": [
+    {
+      "position": 1,
+      "condition": "baseline",
+      "image": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+      "rawReport": "docs/benchmarks/phase3-high-controlled/phase3-high-1-baseline.json",
+      "loadExitCode": 1,
+      "load": {
+        "label": "high-1-baseline",
+        "loadModel": "closed-loop",
+        "offered": 450,
+        "started": 450,
+        "locallyShed": 0,
+        "completed": 443,
+        "failedOrAmbiguous": 7,
+        "httpErrors": {
+          "HTTP_503:DEPENDENCY_UNAVAILABLE": 7
+        },
+        "ambiguousClientErrors": 0,
+        "httpElapsedIncludingResponsesSeconds": 10.445409084000858,
+        "httpCompletedPerSecond": 42.4109765771203,
+        "httpLatencyMilliseconds": {
+          "count": 450,
+          "mean": 182.89866128490152,
+          "max": 700.6096660043113,
+          "p50_upper_bound": 32.9154327454093,
+          "p95_upper_bound": 691.2477231905001,
+          "p99_upper_bound": 711.9851548862151,
+          "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+        },
+        "successfulHttpLatencyMilliseconds": {
+          "count": 443,
+          "mean": 174.9387420863034,
+          "max": 700.6096660043113,
+          "p50_upper_bound": 31.02595225319002,
+          "p95_upper_bound": 691.2477231905001,
+          "p99_upper_bound": 711.9851548862151,
+          "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+        },
+        "scheduledArrivalLagMilliseconds": null,
+        "databaseObservationSeconds": 10.738492,
+        "observedEventRatesPerSecond": {
+          "creation": 41.253464639169074,
+          "publication": 41.253464639169074,
+          "processing": 17.7864824967975
+        },
+        "committedDuringLoad": 443,
+        "publishedDuringLoad": 443,
+        "processedDuringLoad": 191,
+        "unpublishedAfterLoad": 0,
+        "publishedUnprocessedAfterLoad": 252,
+        "peakSampledUnpublished": 21,
+        "peakSampledPublishedUnprocessed": 292,
+        "peakSampledMaxPartitionLag": 93.0,
+        "drainElapsedSeconds": 1.3700117080006748,
+        "drainPublicationCount": 0,
+        "drainProcessingCount": 160,
+        "drainRatesPerSecond": {
+          "publication": 0.0,
+          "processing": 116.78732310506736
+        },
+        "drainComplete": true,
+        "finalScopedEventsIncludingWarmup": 593,
+        "finalPropagationMillisecondsIncludingWarmup": {
+          "count": 593,
+          "p50": 2936.822,
+          "p95": 7711.688599999995,
+          "p99": 9143.76028,
+          "mean": 3174.747544688027,
+          "max": 9170.168
+        },
+        "finalPublicationMillisecondsIncludingWarmup": {
+          "count": 593,
+          "p50": 51.394,
+          "p95": 136.92779999999996,
+          "p99": 331.85488000000004,
+          "mean": 74.54656323777402,
+          "max": 341.815
+        },
+        "finalRetriedEvents": 0,
+        "finalPublicationAttempts": 593,
+        "finalMaximumAttemptCount": 1,
+        "finalMissingOutbox": 0,
+        "finalPublished": 593,
+        "finalProcessed": 593,
+        "finalActivityRows": 1186,
+        "ledgerConsistent": true,
+        "sampleCount": 10,
+        "lockWaitingSamples": 8,
+        "blockedSamples": 8,
+        "samplingErrors": {},
+        "sampledInvariantFailures": [],
+        "maxSampledResources": {
+          "hikaricp.connections.active": 10.0,
+          "hikaricp.connections.pending": 0.0,
+          "process.cpu.usage": 0.042729970326409496,
+          "jvm.memory.used": 182738848.0,
+          "jvm.threads.live": 32.0,
+          "events.outbox.inflight.records": null
+        },
+        "loadStageMetricDeltas": {
+          "transfer.requests": {
+            "COUNT": 450.0,
+            "TOTAL_TIME": 81.549968163,
+            "MEAN_MS": 181.22215147333333
+          },
+          "transfer.transaction": {
+            "COUNT": 628.0,
+            "TOTAL_TIME": 75.235200564,
+            "MEAN_MS": 119.80127478343948
+          },
+          "transfer.outcomes": {
+            "COUNT": 450.0
+          },
+          "transfer.retries": {
+            "COUNT": 178.0
+          },
+          "database.errors": {
+            "COUNT": 185.0
+          },
+          "http.server.requests": {
+            "COUNT": 587.0,
+            "TOTAL_TIME": 81.959563826,
+            "MEAN_MS": 139.62446989097103
+          },
+          "events.outbox.publications": {
+            "COUNT": 443.0
+          },
+          "events.outbox.retries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.recoveries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publication.latency": {
+            "COUNT": 443.0,
+            "TOTAL_TIME": 32.659550795,
+            "MEAN_MS": 73.72359095936795
+          },
+          "events.consumer.processing.duration": {
+            "COUNT": 217.0,
+            "TOTAL_TIME": 10.423925333,
+            "MEAN_MS": 48.036522271889396
+          },
+          "events.consumer.outcomes": {
+            "COUNT": 217.0
+          },
+          "events.projection.propagation.duration": {
+            "COUNT": 219.0,
+            "TOTAL_TIME": 1117.23336172,
+            "MEAN_MS": 5101.522199634703
+          },
+          "events.outbox.claim.records": {
+            "COUNT": 443.0
+          },
+          "events.outbox.claim.batch.size": {
+            "COUNT": 91.0,
+            "TOTAL": 443.0
+          },
+          "events.outbox.kafka.enqueue.duration": {
+            "COUNT": 443.0,
+            "TOTAL_TIME": 0.04023716599999999,
+            "MEAN_MS": 0.09082881715575618
+          },
+          "events.outbox.kafka.ack.duration": {
+            "COUNT": 443.0,
+            "TOTAL_TIME": 0.238208714,
+            "MEAN_MS": 0.5377171873589165
+          },
+          "events.outbox.kafka.wait.duration": {
+            "COUNT": 443.0,
+            "TOTAL_TIME": 0.20765994999999998,
+            "MEAN_MS": 0.4687583521444695
+          },
+          "events.outbox.batch.duration": {
+            "COUNT": 91.0,
+            "TOTAL_TIME": 1.4670924139999997,
+            "MEAN_MS": 16.121894659340658
+          },
+          "events.outbox.producer.create.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.poll.pause.duration": {
+            "COUNT": 91.0,
+            "TOTAL_TIME": 9.206116798,
+            "MEAN_MS": 101.16611865934067
+          },
+          "events.outbox.publications@outcome=success": {
+            "COUNT": 443.0
+          },
+          "events.outbox.publications@outcome=transient": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=ambiguous": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=permanent": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=stale": {
+            "COUNT": 0.0
+          },
+          "events.outbox.database.duration@operation=claim": {
+            "COUNT": 92.0,
+            "TOTAL_TIME": 0.19806591799999995,
+            "MEAN_MS": 2.152890413043478
+          },
+          "events.outbox.database.duration@operation=renew": {
+            "COUNT": 443.0,
+            "TOTAL_TIME": 0.41316854699999994,
+            "MEAN_MS": 0.9326603769751691
+          },
+          "events.outbox.database.duration@operation=publish": {
+            "COUNT": 443.0,
+            "TOTAL_TIME": 0.5342560030000001,
+            "MEAN_MS": 1.205995492099323
+          },
+          "events.outbox.kafka.acknowledgements@outcome=accepted": {
+            "COUNT": 443.0
+          },
+          "events.outbox.send.attempts@kind=first": {
+            "COUNT": 443.0
+          },
+          "events.consumer.ingestion.records": {
+            "COUNT": 231.0
+          },
+          "events.consumer.poll.duration@outcome=empty": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.consumer.poll.duration@outcome=received": {
+            "COUNT": 232.0,
+            "TOTAL_TIME": 0.2323799150000001,
+            "MEAN_MS": 1.0016375646551727
+          },
+          "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+            "COUNT": 232.0,
+            "TOTAL_TIME": 10.432928712,
+            "MEAN_MS": 44.96952031034483
+          },
+          "events.consumer.database.work.duration@operation=projection,result=completed": {
+            "COUNT": 233.0,
+            "TOTAL_TIME": 10.266420912,
+            "MEAN_MS": 44.061892326180256
+          },
+          "events.consumer.database.completion.duration@operation=projection,result=committed": {
+            "COUNT": 234.0,
+            "TOTAL_TIME": 0.157672002,
+            "MEAN_MS": 0.6738119743589743
+          },
+          "events.projection.commits@source=kafka,outcome=processed": {
+            "COUNT": 235.0
+          },
+          "events.consumer.offset.acknowledgement.duration@outcome=success": {
+            "COUNT": 235.0,
+            "TOTAL_TIME": 0.152926379,
+            "MEAN_MS": 0.6507505489361702
+          }
+        },
+        "drainStageMetricDeltas": {
+          "transfer.requests": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "transfer.transaction": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "transfer.outcomes": {
+            "COUNT": 0.0
+          },
+          "transfer.retries": {
+            "COUNT": 0.0
+          },
+          "database.errors": {
+            "COUNT": 0.0
+          },
+          "http.server.requests": {
+            "COUNT": 73.0,
+            "TOTAL_TIME": 0.038247828999999456,
+            "MEAN_MS": 0.5239428630136912
+          },
+          "events.outbox.publications": {
+            "COUNT": 0.0
+          },
+          "events.outbox.retries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.recoveries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publication.latency": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.consumer.processing.duration": {
+            "COUNT": 226.0,
+            "TOTAL_TIME": 0.39952746500000025,
+            "MEAN_MS": 1.7678206415929214
+          },
+          "events.consumer.outcomes": {
+            "COUNT": 226.0
+          },
+          "events.projection.propagation.duration": {
+            "COUNT": 224.0,
+            "TOTAL_TIME": 763.886842739,
+            "MEAN_MS": 3410.2091193705355
+          },
+          "events.outbox.claim.records": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.batch.size": {
+            "COUNT": 14.0,
+            "TOTAL": 0.0
+          },
+          "events.outbox.kafka.enqueue.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.ack.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.wait.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.batch.duration": {
+            "COUNT": 15.0,
+            "TOTAL_TIME": 0.024678832000000206,
+            "MEAN_MS": 1.6452554666666803
+          },
+          "events.outbox.producer.create.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.poll.pause.duration": {
+            "COUNT": 15.0,
+            "TOTAL_TIME": 1.533151710000002,
+            "MEAN_MS": 102.21011400000015
+          },
+          "events.outbox.publications@outcome=success": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=transient": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=ambiguous": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=permanent": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=stale": {
+            "COUNT": 0.0
+          },
+          "events.outbox.database.duration@operation=claim": {
+            "COUNT": 14.0,
+            "TOTAL_TIME": 0.022970336000000036,
+            "MEAN_MS": 1.6407382857142883
+          },
+          "events.outbox.database.duration@operation=renew": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.database.duration@operation=publish": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.acknowledgements@outcome=accepted": {
+            "COUNT": 0.0
+          },
+          "events.outbox.send.attempts@kind=first": {
+            "COUNT": 0.0
+          },
+          "events.consumer.ingestion.records": {
+            "COUNT": 212.0
+          },
+          "events.consumer.poll.duration@outcome=empty": {
+            "COUNT": 3.0,
+            "TOTAL_TIME": 0.758680043,
+            "MEAN_MS": 252.8933476666667
+          },
+          "events.consumer.poll.duration@outcome=received": {
+            "COUNT": 211.0,
+            "TOTAL_TIME": 0.010759041000000025,
+            "MEAN_MS": 0.050990715639810544
+          },
+          "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+            "COUNT": 211.0,
+            "TOTAL_TIME": 0.32587975100000044,
+            "MEAN_MS": 1.544453796208533
+          },
+          "events.consumer.database.work.duration@operation=projection,result=completed": {
+            "COUNT": 210.0,
+            "TOTAL_TIME": 0.24069203700000052,
+            "MEAN_MS": 1.1461525571428597
+          },
+          "events.consumer.database.completion.duration@operation=projection,result=committed": {
+            "COUNT": 209.0,
+            "TOTAL_TIME": 0.07702716399999998,
+            "MEAN_MS": 0.3685510239234449
+          },
+          "events.projection.commits@source=kafka,outcome=processed": {
+            "COUNT": 208.0
+          },
+          "events.consumer.offset.acknowledgement.duration@outcome=success": {
+            "COUNT": 208.0,
+            "TOTAL_TIME": 0.07671592000000002,
+            "MEAN_MS": 0.36882653846153857
+          }
+        }
+      },
+      "brokerOffsetsComplete": true,
+      "destinationsSortingBeforeSharedSource": 8,
+      "warmupHttpErrors": {},
+      "fixture": "docs/benchmarks/phase3-high-controlled/phase3-high-1-baseline.dataset.json"
+    },
+    {
+      "position": 2,
+      "condition": "optimized",
+      "image": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+      "rawReport": "docs/benchmarks/phase3-high-controlled/phase3-high-2-optimized.json",
+      "loadExitCode": 1,
+      "load": {
+        "label": "high-2-optimized",
+        "loadModel": "closed-loop",
+        "offered": 489,
+        "started": 489,
+        "locallyShed": 0,
+        "completed": 486,
+        "failedOrAmbiguous": 3,
+        "httpErrors": {
+          "HTTP_503:DEPENDENCY_UNAVAILABLE": 3
+        },
+        "ambiguousClientErrors": 0,
+        "httpElapsedIncludingResponsesSeconds": 10.185736625018762,
+        "httpCompletedPerSecond": 47.7137803471435,
+        "httpLatencyMilliseconds": {
+          "count": 489,
+          "mean": 166.01502984898605,
+          "max": 711.2192920176312,
+          "p50_upper_bound": 34.91998259960472,
+          "p95_upper_bound": 691.2477231905001,
+          "p99_upper_bound": 711.9851548862151,
+          "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+        },
+        "successfulHttpLatencyMilliseconds": {
+          "count": 486,
+          "mean": 162.78222516288554,
+          "max": 711.2192920176312,
+          "p50_upper_bound": 31.956730820785726,
+          "p95_upper_bound": 691.2477231905001,
+          "p99_upper_bound": 711.9851548862151,
+          "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+        },
+        "scheduledArrivalLagMilliseconds": null,
+        "databaseObservationSeconds": 10.448535,
+        "observedEventRatesPerSecond": {
+          "creation": 46.51369785333542,
+          "publication": 46.51369785333542,
+          "processing": 20.86416899594058
+        },
+        "committedDuringLoad": 486,
+        "publishedDuringLoad": 486,
+        "processedDuringLoad": 218,
+        "unpublishedAfterLoad": 0,
+        "publishedUnprocessedAfterLoad": 268,
+        "peakSampledUnpublished": 12,
+        "peakSampledPublishedUnprocessed": 316,
+        "peakSampledMaxPartitionLag": 90.0,
+        "drainElapsedSeconds": 1.394951416994445,
+        "drainPublicationCount": 0,
+        "drainProcessingCount": 151,
+        "drainRatesPerSecond": {
+          "publication": 0.0,
+          "processing": 108.24749748299034
+        },
+        "drainComplete": true,
+        "finalScopedEventsIncludingWarmup": 636,
+        "finalPropagationMillisecondsIncludingWarmup": {
+          "count": 636,
+          "p50": 2519.9885,
+          "p95": 7687.327249999999,
+          "p99": 8209.23085,
+          "mean": 3018.5957295597486,
+          "max": 8381.672
+        },
+        "finalPublicationMillisecondsIncludingWarmup": {
+          "count": 636,
+          "p50": 66.17150000000001,
+          "p95": 111.38275,
+          "p99": 125.41409999999999,
+          "mean": 64.73789779874214,
+          "max": 158.751
+        },
+        "finalRetriedEvents": 0,
+        "finalPublicationAttempts": 636,
+        "finalMaximumAttemptCount": 1,
+        "finalMissingOutbox": 0,
+        "finalPublished": 636,
+        "finalProcessed": 636,
+        "finalActivityRows": 1272,
+        "ledgerConsistent": true,
+        "sampleCount": 9,
+        "lockWaitingSamples": 8,
+        "blockedSamples": 8,
+        "samplingErrors": {},
+        "sampledInvariantFailures": [],
+        "maxSampledResources": {
+          "hikaricp.connections.active": 9.0,
+          "hikaricp.connections.pending": 0.0,
+          "process.cpu.usage": 0.04579710144927537,
+          "jvm.memory.used": 181971216.0,
+          "jvm.threads.live": 32.0,
+          "events.outbox.inflight.records": 0.0
+        },
+        "loadStageMetricDeltas": {
+          "transfer.requests": {
+            "COUNT": 489.0,
+            "TOTAL_TIME": 80.377453706,
+            "MEAN_MS": 164.37107097341513
+          },
+          "transfer.transaction": {
+            "COUNT": 672.0,
+            "TOTAL_TIME": 73.893586837,
+            "MEAN_MS": 109.96069469791667
+          },
+          "transfer.outcomes": {
+            "COUNT": 489.0
+          },
+          "transfer.retries": {
+            "COUNT": 183.0
+          },
+          "database.errors": {
+            "COUNT": 186.0
+          },
+          "http.server.requests": {
+            "COUNT": 626.0,
+            "TOTAL_TIME": 80.794349202,
+            "MEAN_MS": 129.0644555942492
+          },
+          "events.outbox.publications": {
+            "COUNT": 486.0
+          },
+          "events.outbox.retries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.recoveries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publication.latency": {
+            "COUNT": 486.0,
+            "TOTAL_TIME": 32.593565427,
+            "MEAN_MS": 67.06494943827161
+          },
+          "events.consumer.processing.duration": {
+            "COUNT": 259.0,
+            "TOTAL_TIME": 10.116533251,
+            "MEAN_MS": 39.059973942084945
+          },
+          "events.consumer.outcomes": {
+            "COUNT": 259.0
+          },
+          "events.projection.propagation.duration": {
+            "COUNT": 261.0,
+            "TOTAL_TIME": 1218.1045733610001,
+            "MEAN_MS": 4667.067330885057
+          },
+          "events.outbox.claim.records": {
+            "COUNT": 486.0
+          },
+          "events.outbox.claim.batch.size": {
+            "COUNT": 103.0,
+            "TOTAL": 486.0
+          },
+          "events.outbox.kafka.enqueue.duration": {
+            "COUNT": 486.0,
+            "TOTAL_TIME": 0.024780203,
+            "MEAN_MS": 0.050988072016460904
+          },
+          "events.outbox.kafka.ack.duration": {
+            "COUNT": 486.0,
+            "TOTAL_TIME": 0.52019996,
+            "MEAN_MS": 1.0703702880658437
+          },
+          "events.outbox.kafka.wait.duration": {
+            "COUNT": 61.0,
+            "TOTAL_TIME": 0.060561127000000006,
+            "MEAN_MS": 0.9928053606557378
+          },
+          "events.outbox.batch.duration": {
+            "COUNT": 103.0,
+            "TOTAL_TIME": 0.550389335,
+            "MEAN_MS": 5.343585776699029
+          },
+          "events.outbox.producer.create.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.poll.pause.duration": {
+            "COUNT": 98.0,
+            "TOTAL_TIME": 9.932322678,
+            "MEAN_MS": 101.35023140816327
+          },
+          "events.outbox.settlement.failures": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=success": {
+            "COUNT": 486.0
+          },
+          "events.outbox.publications@outcome=transient": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=ambiguous": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=permanent": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=stale": {
+            "COUNT": 0.0
+          },
+          "events.outbox.database.duration@operation=claim": {
+            "COUNT": 103.0,
+            "TOTAL_TIME": 0.19251429200000003,
+            "MEAN_MS": 1.8690707961165052
+          },
+          "events.outbox.database.duration@operation=renew_batch": {
+            "COUNT": 61.0,
+            "TOTAL_TIME": 0.10371554000000001,
+            "MEAN_MS": 1.7002547540983608
+          },
+          "events.outbox.database.duration@operation=settle": {
+            "COUNT": 61.0,
+            "TOTAL_TIME": 0.118152957,
+            "MEAN_MS": 1.9369337213114755
+          },
+          "events.outbox.kafka.acknowledgements@outcome=accepted": {
+            "COUNT": 486.0
+          },
+          "events.outbox.send.attempts@kind=first": {
+            "COUNT": 486.0
+          },
+          "events.consumer.ingestion.records": {
+            "COUNT": 269.0
+          },
+          "events.consumer.poll.duration@outcome=empty": {
+            "COUNT": 1.0,
+            "TOTAL_TIME": 0.2502648339999993,
+            "MEAN_MS": 250.26483399999933
+          },
+          "events.consumer.poll.duration@outcome=received": {
+            "COUNT": 269.0,
+            "TOTAL_TIME": 0.03728341000000013,
+            "MEAN_MS": 0.1386000371747217
+          },
+          "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+            "COUNT": 269.0,
+            "TOTAL_TIME": 10.104403087,
+            "MEAN_MS": 37.56283675464684
+          },
+          "events.consumer.database.work.duration@operation=projection,result=completed": {
+            "COUNT": 270.0,
+            "TOTAL_TIME": 9.940576835,
+            "MEAN_MS": 36.81695124074074
+          },
+          "events.consumer.database.completion.duration@operation=projection,result=committed": {
+            "COUNT": 271.0,
+            "TOTAL_TIME": 0.13995058500000002,
+            "MEAN_MS": 0.5164228228782288
+          },
+          "events.projection.commits@source=kafka,outcome=processed": {
+            "COUNT": 271.0
+          },
+          "events.consumer.offset.acknowledgement.duration@outcome=success": {
+            "COUNT": 272.0,
+            "TOTAL_TIME": 0.13826771100000002,
+            "MEAN_MS": 0.5083371727941177
+          }
+        },
+        "drainStageMetricDeltas": {
+          "transfer.requests": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "transfer.transaction": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "transfer.outcomes": {
+            "COUNT": 0.0
+          },
+          "transfer.retries": {
+            "COUNT": 0.0
+          },
+          "database.errors": {
+            "COUNT": 0.0
+          },
+          "http.server.requests": {
+            "COUNT": 73.0,
+            "TOTAL_TIME": 0.024728706000004763,
+            "MEAN_MS": 0.3387493972603392
+          },
+          "events.outbox.publications": {
+            "COUNT": 0.0
+          },
+          "events.outbox.retries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.recoveries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publication.latency": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.consumer.processing.duration": {
+            "COUNT": 227.0,
+            "TOTAL_TIME": 0.34223495900000067,
+            "MEAN_MS": 1.5076429911894302
+          },
+          "events.consumer.outcomes": {
+            "COUNT": 227.0
+          },
+          "events.projection.propagation.duration": {
+            "COUNT": 225.0,
+            "TOTAL_TIME": 701.94740671,
+            "MEAN_MS": 3119.7662520444446
+          },
+          "events.outbox.claim.records": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.batch.size": {
+            "COUNT": 14.0,
+            "TOTAL": 0.0
+          },
+          "events.outbox.kafka.enqueue.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.ack.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.wait.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.batch.duration": {
+            "COUNT": 14.0,
+            "TOTAL_TIME": 0.017560165999999988,
+            "MEAN_MS": 1.2542975714285707
+          },
+          "events.outbox.producer.create.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.poll.pause.duration": {
+            "COUNT": 14.0,
+            "TOTAL_TIME": 1.4160812509999978,
+            "MEAN_MS": 101.14866078571413
+          },
+          "events.outbox.settlement.failures": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=success": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=transient": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=ambiguous": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=permanent": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=stale": {
+            "COUNT": 0.0
+          },
+          "events.outbox.database.duration@operation=claim": {
+            "COUNT": 14.0,
+            "TOTAL_TIME": 0.01678566699999995,
+            "MEAN_MS": 1.1989762142857106
+          },
+          "events.outbox.database.duration@operation=renew_batch": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.database.duration@operation=settle": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.acknowledgements@outcome=accepted": {
+            "COUNT": 0.0
+          },
+          "events.outbox.send.attempts@kind=first": {
+            "COUNT": 0.0
+          },
+          "events.consumer.ingestion.records": {
+            "COUNT": 217.0
+          },
+          "events.consumer.poll.duration@outcome=empty": {
+            "COUNT": 4.0,
+            "TOTAL_TIME": 1.0034142080000006,
+            "MEAN_MS": 250.85355200000015
+          },
+          "events.consumer.poll.duration@outcome=received": {
+            "COUNT": 217.0,
+            "TOTAL_TIME": 0.010050620999999982,
+            "MEAN_MS": 0.046316225806451526
+          },
+          "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+            "COUNT": 217.0,
+            "TOTAL_TIME": 0.2935254140000012,
+            "MEAN_MS": 1.3526516774193604
+          },
+          "events.consumer.database.work.duration@operation=projection,result=completed": {
+            "COUNT": 216.0,
+            "TOTAL_TIME": 0.21839815899999948,
+            "MEAN_MS": 1.0111025879629605
+          },
+          "events.consumer.database.completion.duration@operation=projection,result=committed": {
+            "COUNT": 215.0,
+            "TOTAL_TIME": 0.07132896,
+            "MEAN_MS": 0.33176260465116275
+          },
+          "events.projection.commits@source=kafka,outcome=processed": {
+            "COUNT": 215.0
+          },
+          "events.consumer.offset.acknowledgement.duration@outcome=success": {
+            "COUNT": 214.0,
+            "TOTAL_TIME": 0.06701775499999998,
+            "MEAN_MS": 0.31316707943925226
+          }
+        }
+      },
+      "brokerOffsetsComplete": true,
+      "destinationsSortingBeforeSharedSource": 8,
+      "warmupHttpErrors": {},
+      "fixture": "docs/benchmarks/phase3-high-controlled/phase3-high-2-optimized.dataset.json"
+    },
+    {
+      "position": 3,
+      "condition": "optimized",
+      "image": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+      "rawReport": "docs/benchmarks/phase3-high-controlled/phase3-high-3-optimized.json",
+      "loadExitCode": 1,
+      "load": {
+        "label": "high-3-optimized",
+        "loadModel": "closed-loop",
+        "offered": 451,
+        "started": 451,
+        "locallyShed": 0,
+        "completed": 449,
+        "failedOrAmbiguous": 2,
+        "httpErrors": {
+          "HTTP_503:DEPENDENCY_UNAVAILABLE": 2
+        },
+        "ambiguousClientErrors": 0,
+        "httpElapsedIncludingResponsesSeconds": 10.078243374999147,
+        "httpCompletedPerSecond": 44.551414695325114,
+        "httpLatencyMilliseconds": {
+          "count": 451,
+          "mean": 178.37340991662458,
+          "max": 703.4617080062162,
+          "p50_upper_bound": 40.48183050272888,
+          "p95_upper_bound": 671.1142943597088,
+          "p99_upper_bound": 711.9851548862151,
+          "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+        },
+        "successfulHttpLatencyMilliseconds": {
+          "count": 449,
+          "mean": 176.11943438617027,
+          "max": 703.4617080062162,
+          "p50_upper_bound": 39.30274806090183,
+          "p95_upper_bound": 514.3532245122668,
+          "p99_upper_bound": 711.9851548862151,
+          "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+        },
+        "scheduledArrivalLagMilliseconds": null,
+        "databaseObservationSeconds": 10.374062,
+        "observedEventRatesPerSecond": {
+          "creation": 43.28102145524096,
+          "publication": 43.28102145524096,
+          "processing": 15.230292627902166
+        },
+        "committedDuringLoad": 449,
+        "publishedDuringLoad": 449,
+        "processedDuringLoad": 158,
+        "unpublishedAfterLoad": 0,
+        "publishedUnprocessedAfterLoad": 291,
+        "peakSampledUnpublished": 26,
+        "peakSampledPublishedUnprocessed": 318,
+        "peakSampledMaxPartitionLag": 97.0,
+        "drainElapsedSeconds": 1.362816084001679,
+        "drainPublicationCount": 0,
+        "drainProcessingCount": 196,
+        "drainRatesPerSecond": {
+          "publication": 0.0,
+          "processing": 143.8198464935042
+        },
+        "drainComplete": true,
+        "finalScopedEventsIncludingWarmup": 599,
+        "finalPropagationMillisecondsIncludingWarmup": {
+          "count": 599,
+          "p50": 3193.933,
+          "p95": 8660.3353,
+          "p99": 9517.077119999998,
+          "mean": 3352.845616026711,
+          "max": 9976.695
+        },
+        "finalPublicationMillisecondsIncludingWarmup": {
+          "count": 599,
+          "p50": 64.236,
+          "p95": 113.1296,
+          "p99": 126.21485999999999,
+          "mean": 64.53840901502504,
+          "max": 139.244
+        },
+        "finalRetriedEvents": 0,
+        "finalPublicationAttempts": 599,
+        "finalMaximumAttemptCount": 1,
+        "finalMissingOutbox": 0,
+        "finalPublished": 599,
+        "finalProcessed": 599,
+        "finalActivityRows": 1198,
+        "ledgerConsistent": true,
+        "sampleCount": 9,
+        "lockWaitingSamples": 8,
+        "blockedSamples": 8,
+        "samplingErrors": {},
+        "sampledInvariantFailures": [],
+        "maxSampledResources": {
+          "hikaricp.connections.active": 9.0,
+          "hikaricp.connections.pending": 0.0,
+          "process.cpu.usage": 0.046329723225030074,
+          "jvm.memory.used": 186482712.0,
+          "jvm.threads.live": 32.0,
+          "events.outbox.inflight.records": 3.0
+        },
+        "loadStageMetricDeltas": {
+          "transfer.requests": {
+            "COUNT": 451.0,
+            "TOTAL_TIME": 79.679686649,
+            "MEAN_MS": 176.67336285809316
+          },
+          "transfer.transaction": {
+            "COUNT": 622.0,
+            "TOTAL_TIME": 73.80537686000001,
+            "MEAN_MS": 118.65816215434084
+          },
+          "transfer.outcomes": {
+            "COUNT": 451.0
+          },
+          "transfer.retries": {
+            "COUNT": 171.0
+          },
+          "database.errors": {
+            "COUNT": 173.0
+          },
+          "http.server.requests": {
+            "COUNT": 588.0,
+            "TOTAL_TIME": 80.08990153,
+            "MEAN_MS": 136.20731552721088
+          },
+          "events.outbox.publications": {
+            "COUNT": 449.0
+          },
+          "events.outbox.retries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.recoveries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publication.latency": {
+            "COUNT": 449.0,
+            "TOTAL_TIME": 29.50102641,
+            "MEAN_MS": 65.70384501113587
+          },
+          "events.consumer.processing.duration": {
+            "COUNT": 186.0,
+            "TOTAL_TIME": 9.993850793,
+            "MEAN_MS": 53.73038060752688
+          },
+          "events.consumer.outcomes": {
+            "COUNT": 186.0
+          },
+          "events.projection.propagation.duration": {
+            "COUNT": 187.0,
+            "TOTAL_TIME": 1121.6462094550002,
+            "MEAN_MS": 5998.108071951873
+          },
+          "events.outbox.claim.records": {
+            "COUNT": 449.0
+          },
+          "events.outbox.claim.batch.size": {
+            "COUNT": 102.0,
+            "TOTAL": 449.0
+          },
+          "events.outbox.kafka.enqueue.duration": {
+            "COUNT": 449.0,
+            "TOTAL_TIME": 0.026565174999999996,
+            "MEAN_MS": 0.05916520044543429
+          },
+          "events.outbox.kafka.ack.duration": {
+            "COUNT": 449.0,
+            "TOTAL_TIME": 0.47172029500000007,
+            "MEAN_MS": 1.0506019933184858
+          },
+          "events.outbox.kafka.wait.duration": {
+            "COUNT": 64.0,
+            "TOTAL_TIME": 0.06318278899999999,
+            "MEAN_MS": 0.9872310781249999
+          },
+          "events.outbox.batch.duration": {
+            "COUNT": 103.0,
+            "TOTAL_TIME": 0.599899374,
+            "MEAN_MS": 5.824265766990292
+          },
+          "events.outbox.producer.create.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.poll.pause.duration": {
+            "COUNT": 97.0,
+            "TOTAL_TIME": 9.811576875000002,
+            "MEAN_MS": 101.15027706185569
+          },
+          "events.outbox.settlement.failures": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=success": {
+            "COUNT": 449.0
+          },
+          "events.outbox.publications@outcome=transient": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=ambiguous": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=permanent": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=stale": {
+            "COUNT": 0.0
+          },
+          "events.outbox.database.duration@operation=claim": {
+            "COUNT": 103.0,
+            "TOTAL_TIME": 0.23877141699999999,
+            "MEAN_MS": 2.3181690970873783
+          },
+          "events.outbox.database.duration@operation=renew_batch": {
+            "COUNT": 64.0,
+            "TOTAL_TIME": 0.101250168,
+            "MEAN_MS": 1.582033875
+          },
+          "events.outbox.database.duration@operation=settle": {
+            "COUNT": 64.0,
+            "TOTAL_TIME": 0.11927420700000001,
+            "MEAN_MS": 1.863659484375
+          },
+          "events.outbox.kafka.acknowledgements@outcome=accepted": {
+            "COUNT": 449.0
+          },
+          "events.outbox.send.attempts@kind=first": {
+            "COUNT": 449.0
+          },
+          "events.consumer.ingestion.records": {
+            "COUNT": 199.0
+          },
+          "events.consumer.poll.duration@outcome=empty": {
+            "COUNT": 1.0,
+            "TOTAL_TIME": 0.250215583000001,
+            "MEAN_MS": 250.215583000001
+          },
+          "events.consumer.poll.duration@outcome=received": {
+            "COUNT": 201.0,
+            "TOTAL_TIME": 0.05450013000000009,
+            "MEAN_MS": 0.2711449253731348
+          },
+          "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+            "COUNT": 201.0,
+            "TOTAL_TIME": 9.990151719,
+            "MEAN_MS": 49.70224735820895
+          },
+          "events.consumer.database.work.duration@operation=projection,result=completed": {
+            "COUNT": 201.0,
+            "TOTAL_TIME": 9.851381838,
+            "MEAN_MS": 49.011849940298504
+          },
+          "events.consumer.database.completion.duration@operation=projection,result=committed": {
+            "COUNT": 202.0,
+            "TOTAL_TIME": 0.130546749,
+            "MEAN_MS": 0.6462710346534652
+          },
+          "events.projection.commits@source=kafka,outcome=processed": {
+            "COUNT": 203.0
+          },
+          "events.consumer.offset.acknowledgement.duration@outcome=success": {
+            "COUNT": 204.0,
+            "TOTAL_TIME": 0.15741233200000004,
+            "MEAN_MS": 0.7716290784313727
+          }
+        },
+        "drainStageMetricDeltas": {
+          "transfer.requests": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "transfer.transaction": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "transfer.outcomes": {
+            "COUNT": 0.0
+          },
+          "transfer.retries": {
+            "COUNT": 0.0
+          },
+          "database.errors": {
+            "COUNT": 0.0
+          },
+          "http.server.requests": {
+            "COUNT": 73.0,
+            "TOTAL_TIME": 0.0313587519999885,
+            "MEAN_MS": 0.4295719452053219
+          },
+          "events.outbox.publications": {
+            "COUNT": 0.0
+          },
+          "events.outbox.retries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.recoveries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publication.latency": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.consumer.processing.duration": {
+            "COUNT": 263.0,
+            "TOTAL_TIME": 0.44544342500000056,
+            "MEAN_MS": 1.693701235741447
+          },
+          "events.consumer.outcomes": {
+            "COUNT": 263.0
+          },
+          "events.projection.propagation.duration": {
+            "COUNT": 262.0,
+            "TOTAL_TIME": 885.9613628959999,
+            "MEAN_MS": 3381.531919450381
+          },
+          "events.outbox.claim.records": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.batch.size": {
+            "COUNT": 15.0,
+            "TOTAL": 0.0
+          },
+          "events.outbox.kafka.enqueue.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.ack.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.wait.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.batch.duration": {
+            "COUNT": 14.0,
+            "TOTAL_TIME": 0.019514207999999922,
+            "MEAN_MS": 1.3938719999999944
+          },
+          "events.outbox.producer.create.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.poll.pause.duration": {
+            "COUNT": 14.0,
+            "TOTAL_TIME": 1.411066499999997,
+            "MEAN_MS": 100.79046428571407
+          },
+          "events.outbox.settlement.failures": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=success": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=transient": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=ambiguous": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=permanent": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=stale": {
+            "COUNT": 0.0
+          },
+          "events.outbox.database.duration@operation=claim": {
+            "COUNT": 14.0,
+            "TOTAL_TIME": 0.01892716900000002,
+            "MEAN_MS": 1.3519406428571443
+          },
+          "events.outbox.database.duration@operation=renew_batch": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.database.duration@operation=settle": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.acknowledgements@outcome=accepted": {
+            "COUNT": 0.0
+          },
+          "events.outbox.send.attempts@kind=first": {
+            "COUNT": 0.0
+          },
+          "events.consumer.ingestion.records": {
+            "COUNT": 250.0
+          },
+          "events.consumer.poll.duration@outcome=empty": {
+            "COUNT": 3.0,
+            "TOTAL_TIME": 0.7552068319999989,
+            "MEAN_MS": 251.7356106666663
+          },
+          "events.consumer.poll.duration@outcome=received": {
+            "COUNT": 248.0,
+            "TOTAL_TIME": 0.01302200099999995,
+            "MEAN_MS": 0.052508068548386896
+          },
+          "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+            "COUNT": 248.0,
+            "TOTAL_TIME": 0.382293709999999,
+            "MEAN_MS": 1.5415068951612863
+          },
+          "events.consumer.database.work.duration@operation=projection,result=completed": {
+            "COUNT": 248.0,
+            "TOTAL_TIME": 0.28400116599999947,
+            "MEAN_MS": 1.1451659919354815
+          },
+          "events.consumer.database.completion.duration@operation=projection,result=committed": {
+            "COUNT": 247.0,
+            "TOTAL_TIME": 0.09502838000000002,
+            "MEAN_MS": 0.38473028340080984
+          },
+          "events.projection.commits@source=kafka,outcome=processed": {
+            "COUNT": 246.0
+          },
+          "events.consumer.offset.acknowledgement.duration@outcome=success": {
+            "COUNT": 245.0,
+            "TOTAL_TIME": 0.09360794699999997,
+            "MEAN_MS": 0.38207325306122436
+          }
+        }
+      },
+      "brokerOffsetsComplete": true,
+      "destinationsSortingBeforeSharedSource": 8,
+      "warmupHttpErrors": {},
+      "fixture": "docs/benchmarks/phase3-high-controlled/phase3-high-3-optimized.dataset.json"
+    },
+    {
+      "position": 4,
+      "condition": "baseline",
+      "image": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+      "rawReport": "docs/benchmarks/phase3-high-controlled/phase3-high-4-baseline.json",
+      "loadExitCode": 1,
+      "load": {
+        "label": "high-4-baseline",
+        "loadModel": "closed-loop",
+        "offered": 424,
+        "started": 424,
+        "locallyShed": 0,
+        "completed": 414,
+        "failedOrAmbiguous": 10,
+        "httpErrors": {
+          "HTTP_503:DEPENDENCY_UNAVAILABLE": 10
+        },
+        "ambiguousClientErrors": 0,
+        "httpElapsedIncludingResponsesSeconds": 10.20414454099955,
+        "httpCompletedPerSecond": 40.57174987443352,
+        "httpLatencyMilliseconds": {
+          "count": 424,
+          "mean": 191.88186135819842,
+          "max": 724.2789170122705,
+          "p50_upper_bound": 205.73467787705465,
+          "p95_upper_bound": 691.2477231905001,
+          "p99_upper_bound": 711.9851548862151,
+          "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+        },
+        "successfulHttpLatencyMilliseconds": {
+          "count": 414,
+          "mean": 179.570249009274,
+          "max": 724.2789170122705,
+          "p50_upper_bound": 205.73467787705465,
+          "p95_upper_bound": 671.1142943597088,
+          "p99_upper_bound": 711.9851548862151,
+          "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+        },
+        "scheduledArrivalLagMilliseconds": null,
+        "databaseObservationSeconds": 10.460512,
+        "observedEventRatesPerSecond": {
+          "creation": 39.57741265437103,
+          "publication": 39.57741265437103,
+          "processing": 16.920777873970223
+        },
+        "committedDuringLoad": 414,
+        "publishedDuringLoad": 414,
+        "processedDuringLoad": 177,
+        "unpublishedAfterLoad": 0,
+        "publishedUnprocessedAfterLoad": 237,
+        "peakSampledUnpublished": 15,
+        "peakSampledPublishedUnprocessed": 291,
+        "peakSampledMaxPartitionLag": 77.0,
+        "drainElapsedSeconds": 1.3543349170067813,
+        "drainPublicationCount": 0,
+        "drainProcessingCount": 113,
+        "drainRatesPerSecond": {
+          "publication": 0.0,
+          "processing": 83.4357872495391
+        },
+        "drainComplete": true,
+        "finalScopedEventsIncludingWarmup": 564,
+        "finalPropagationMillisecondsIncludingWarmup": {
+          "count": 564,
+          "p50": 2675.4605,
+          "p95": 8294.315349999997,
+          "p99": 9229.624329999999,
+          "mean": 3127.6258670212765,
+          "max": 9246.31
+        },
+        "finalPublicationMillisecondsIncludingWarmup": {
+          "count": 564,
+          "p50": 67.6925,
+          "p95": 130.78915,
+          "p99": 303.27414999999996,
+          "mean": 75.52456028368795,
+          "max": 310.858
+        },
+        "finalRetriedEvents": 0,
+        "finalPublicationAttempts": 564,
+        "finalMaximumAttemptCount": 1,
+        "finalMissingOutbox": 0,
+        "finalPublished": 564,
+        "finalProcessed": 564,
+        "finalActivityRows": 1128,
+        "ledgerConsistent": true,
+        "sampleCount": 9,
+        "lockWaitingSamples": 8,
+        "blockedSamples": 8,
+        "samplingErrors": {},
+        "sampledInvariantFailures": [],
+        "maxSampledResources": {
+          "hikaricp.connections.active": 10.0,
+          "hikaricp.connections.pending": 0.0,
+          "process.cpu.usage": 0.0471976401179941,
+          "jvm.memory.used": 181295728.0,
+          "jvm.threads.live": 32.0,
+          "events.outbox.inflight.records": null
+        },
+        "loadStageMetricDeltas": {
+          "transfer.requests": {
+            "COUNT": 424.0,
+            "TOTAL_TIME": 80.58522147000001,
+            "MEAN_MS": 190.05948459905662
+          },
+          "transfer.transaction": {
+            "COUNT": 593.0,
+            "TOTAL_TIME": 74.62831949,
+            "MEAN_MS": 125.84876811129847
+          },
+          "transfer.outcomes": {
+            "COUNT": 424.0
+          },
+          "transfer.retries": {
+            "COUNT": 169.0
+          },
+          "database.errors": {
+            "COUNT": 179.0
+          },
+          "http.server.requests": {
+            "COUNT": 561.0,
+            "TOTAL_TIME": 80.999569829,
+            "MEAN_MS": 144.38425994474153
+          },
+          "events.outbox.publications": {
+            "COUNT": 414.0
+          },
+          "events.outbox.retries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.recoveries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publication.latency": {
+            "COUNT": 414.0,
+            "TOTAL_TIME": 32.08767093,
+            "MEAN_MS": 77.50645152173914
+          },
+          "events.consumer.processing.duration": {
+            "COUNT": 219.0,
+            "TOTAL_TIME": 10.201148248,
+            "MEAN_MS": 46.58058560730594
+          },
+          "events.consumer.outcomes": {
+            "COUNT": 220.0
+          },
+          "events.projection.propagation.duration": {
+            "COUNT": 221.0,
+            "TOTAL_TIME": 1219.0395632690002,
+            "MEAN_MS": 5516.016123389141
+          },
+          "events.outbox.claim.records": {
+            "COUNT": 414.0
+          },
+          "events.outbox.claim.batch.size": {
+            "COUNT": 90.0,
+            "TOTAL": 414.0
+          },
+          "events.outbox.kafka.enqueue.duration": {
+            "COUNT": 414.0,
+            "TOTAL_TIME": 0.039486426,
+            "MEAN_MS": 0.09537784057971015
+          },
+          "events.outbox.kafka.ack.duration": {
+            "COUNT": 414.0,
+            "TOTAL_TIME": 0.234094265,
+            "MEAN_MS": 0.5654450845410628
+          },
+          "events.outbox.kafka.wait.duration": {
+            "COUNT": 414.0,
+            "TOTAL_TIME": 0.20783157800000002,
+            "MEAN_MS": 0.5020086425120773
+          },
+          "events.outbox.batch.duration": {
+            "COUNT": 90.0,
+            "TOTAL_TIME": 1.3306455809999997,
+            "MEAN_MS": 14.784950899999997
+          },
+          "events.outbox.producer.create.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.poll.pause.duration": {
+            "COUNT": 90.0,
+            "TOTAL_TIME": 9.124419501,
+            "MEAN_MS": 101.3824389
+          },
+          "events.outbox.publications@outcome=success": {
+            "COUNT": 414.0
+          },
+          "events.outbox.publications@outcome=transient": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=ambiguous": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=permanent": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=stale": {
+            "COUNT": 0.0
+          },
+          "events.outbox.database.duration@operation=claim": {
+            "COUNT": 90.0,
+            "TOTAL_TIME": 0.20278382899999997,
+            "MEAN_MS": 2.2531536555555554
+          },
+          "events.outbox.database.duration@operation=renew": {
+            "COUNT": 414.0,
+            "TOTAL_TIME": 0.34690653700000007,
+            "MEAN_MS": 0.8379384951690823
+          },
+          "events.outbox.database.duration@operation=publish": {
+            "COUNT": 414.0,
+            "TOTAL_TIME": 0.46475887299999996,
+            "MEAN_MS": 1.1226059734299516
+          },
+          "events.outbox.kafka.acknowledgements@outcome=accepted": {
+            "COUNT": 414.0
+          },
+          "events.outbox.send.attempts@kind=first": {
+            "COUNT": 414.0
+          },
+          "events.consumer.ingestion.records": {
+            "COUNT": 232.0
+          },
+          "events.consumer.poll.duration@outcome=empty": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.consumer.poll.duration@outcome=received": {
+            "COUNT": 234.0,
+            "TOTAL_TIME": 0.20122841400000002,
+            "MEAN_MS": 0.8599504871794872
+          },
+          "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+            "COUNT": 234.0,
+            "TOTAL_TIME": 10.189108789,
+            "MEAN_MS": 43.54319995299145
+          },
+          "events.consumer.database.work.duration@operation=projection,result=completed": {
+            "COUNT": 235.0,
+            "TOTAL_TIME": 10.053179712,
+            "MEAN_MS": 42.779488136170215
+          },
+          "events.consumer.database.completion.duration@operation=projection,result=committed": {
+            "COUNT": 236.0,
+            "TOTAL_TIME": 0.124795042,
+            "MEAN_MS": 0.5287925508474576
+          },
+          "events.projection.commits@source=kafka,outcome=processed": {
+            "COUNT": 236.0
+          },
+          "events.consumer.offset.acknowledgement.duration@outcome=success": {
+            "COUNT": 237.0,
+            "TOTAL_TIME": 0.11888649999999999,
+            "MEAN_MS": 0.5016308016877637
+          }
+        },
+        "drainStageMetricDeltas": {
+          "transfer.requests": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "transfer.transaction": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "transfer.outcomes": {
+            "COUNT": 0.0
+          },
+          "transfer.retries": {
+            "COUNT": 0.0
+          },
+          "database.errors": {
+            "COUNT": 0.0
+          },
+          "http.server.requests": {
+            "COUNT": 73.0,
+            "TOTAL_TIME": 0.022031870000006393,
+            "MEAN_MS": 0.301806438356252
+          },
+          "events.outbox.publications": {
+            "COUNT": 0.0
+          },
+          "events.outbox.retries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.recoveries": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publication.latency": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.consumer.processing.duration": {
+            "COUNT": 195.0,
+            "TOTAL_TIME": 0.278282213999999,
+            "MEAN_MS": 1.4270882769230717
+          },
+          "events.consumer.outcomes": {
+            "COUNT": 194.0
+          },
+          "events.projection.propagation.duration": {
+            "COUNT": 193.0,
+            "TOTAL_TIME": 544.19461009,
+            "MEAN_MS": 2819.6611921761655
+          },
+          "events.outbox.claim.records": {
+            "COUNT": 0.0
+          },
+          "events.outbox.claim.batch.size": {
+            "COUNT": 13.0,
+            "TOTAL": 0.0
+          },
+          "events.outbox.kafka.enqueue.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.ack.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.wait.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.batch.duration": {
+            "COUNT": 13.0,
+            "TOTAL_TIME": 0.02043237400000031,
+            "MEAN_MS": 1.5717210769231007
+          },
+          "events.outbox.producer.create.duration": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.poll.pause.duration": {
+            "COUNT": 13.0,
+            "TOTAL_TIME": 1.3321602080000012,
+            "MEAN_MS": 102.47386215384624
+          },
+          "events.outbox.publications@outcome=success": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=transient": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=ambiguous": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=permanent": {
+            "COUNT": 0.0
+          },
+          "events.outbox.publications@outcome=stale": {
+            "COUNT": 0.0
+          },
+          "events.outbox.database.duration@operation=claim": {
+            "COUNT": 13.0,
+            "TOTAL_TIME": 0.019742419000000067,
+            "MEAN_MS": 1.5186476153846205
+          },
+          "events.outbox.database.duration@operation=renew": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.database.duration@operation=publish": {
+            "COUNT": 0.0,
+            "TOTAL_TIME": 0.0,
+            "MEAN_MS": null
+          },
+          "events.outbox.kafka.acknowledgements@outcome=accepted": {
+            "COUNT": 0.0
+          },
+          "events.outbox.send.attempts@kind=first": {
+            "COUNT": 0.0
+          },
+          "events.consumer.ingestion.records": {
+            "COUNT": 182.0
+          },
+          "events.consumer.poll.duration@outcome=empty": {
+            "COUNT": 4.0,
+            "TOTAL_TIME": 1.0057680429999998,
+            "MEAN_MS": 251.44201074999995
+          },
+          "events.consumer.poll.duration@outcome=received": {
+            "COUNT": 180.0,
+            "TOTAL_TIME": 0.007654125000000178,
+            "MEAN_MS": 0.04252291666666766
+          },
+          "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+            "COUNT": 180.0,
+            "TOTAL_TIME": 0.23963142200000043,
+            "MEAN_MS": 1.3312856777777802
+          },
+          "events.consumer.database.work.duration@operation=projection,result=completed": {
+            "COUNT": 179.0,
+            "TOTAL_TIME": 0.17493383599999923,
+            "MEAN_MS": 0.9772839999999958
+          },
+          "events.consumer.database.completion.duration@operation=projection,result=committed": {
+            "COUNT": 178.0,
+            "TOTAL_TIME": 0.06125504200000001,
+            "MEAN_MS": 0.3441294494382023
+          },
+          "events.projection.commits@source=kafka,outcome=processed": {
+            "COUNT": 178.0
+          },
+          "events.consumer.offset.acknowledgement.duration@outcome=success": {
+            "COUNT": 177.0,
+            "TOTAL_TIME": 0.04918957800000001,
+            "MEAN_MS": 0.27790722033898313
+          }
+        }
+      },
+      "brokerOffsetsComplete": true,
+      "destinationsSortingBeforeSharedSource": 8,
+      "warmupHttpErrors": {},
+      "fixture": "docs/benchmarks/phase3-high-controlled/phase3-high-4-baseline.dataset.json"
+    }
+  ]
+}

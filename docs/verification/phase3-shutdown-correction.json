@@ -1,0 +1,96 @@
+{
+  "recordedAt": "2026-10-11T16:07:36.631759+00:00",
+  "method": "shutdownWithActualOutstandingProducerWorkIsBoundedAndPreservesRetryEligibility",
+  "failedFullGate": {
+    "commitPrefix": "7668f94",
+    "log": "/private/tmp/tpp-phase3-clean-final-7668f94.log",
+    "surefireDirectory": "/private/tmp/tpp-phase3-clean-7668f94/target/surefire-reports",
+    "counts": {
+      "tests": 94,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "failure": "Expected one actual outstanding send at fourth BEFORE_SEND seam, observed zero. XML records two DELIVERY_UNCERTAIN outcomes after the assertion cleanup.",
+    "causeAndLimit": "Stopping the broker invalidated the assumption that the third send must stay pending. A synchronous send failure or fast error callback can release its permit before the next seam; the failing source did not record enough counters to distinguish those two mechanisms. The fourth seam was reached, so the coordinator had progressed past the third send rather than skipping it after its deadline.",
+    "staticGate": "Not reached because test gate failed",
+    "logSha256": "fc035324d3399e0aed8e34cd92e0d968c59cf2ae3a8d91a3daea646f637c3496",
+    "eventPipelineSurefireSha256": "a09d1c8d5e3f8f748cceb83b128daf786c96694b874318fe9209f65ad3693831"
+  },
+  "correction": "Freeze only the suite-owned actual broker process after waiting for two accepted ACKs and zero in-flight sends. Strictly assert three actual send/enqueue attempts, two accepted ACKs, zero failed ACKs, and exactly one outstanding send before stopping the relay. Keep all existing bounded shutdown, lease eligibility, recovery and projection/reconciliation checks.",
+  "testOnlySettings": {
+    "batchSize": 4,
+    "requestTimeoutMs": 5000,
+    "deliveryTimeoutMs": 5000,
+    "leaseMs": 10000,
+    "maxBlockMs": 500,
+    "setupBoundMs": 5000,
+    "outstandingObservationBoundMs": 6000,
+    "shutdownAssertionBoundMs": 8000,
+    "configuredStopBudgetMs": 7000
+  },
+  "cleanup": "A per-case finally unpauses the tracked owned broker, with the existing AfterEach fallback; bounded test pauses release before executor termination.",
+  "productionChanged": false,
+  "benchmarkHarnessOrImageChanged": false,
+  "productionSha256": "ec191c623cee90bbe88c2d5132a5511c870abb25080edb13a7d4f9c01b1df3ed",
+  "testBeforeSha256": "27c8e85f83c2fe35960fd11ae6a040e72ef0f795370eafda9fd5b0bd66ef7eb4",
+  "finalTestSha256": "cc971145a4484a2482f5eabb9f19e583e4ad8bb2f859a5d74c4ebdc6d754f830",
+  "helperSha256": "42eaa86f1fec13ba312b384df0dae352b5247bde1a8da3c9418301543e3903bf",
+  "diff": "/private/tmp/tpp-phase3-shutdown-final.patch",
+  "focusedRun": {
+    "status": "Passed",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suiteSeconds": 20.219,
+    "testSeconds": 16.085,
+    "log": "/private/tmp/tpp-phase3-shutdown-final-focused.log",
+    "logSha256": "7d99bc46764da8a9b2dc12640bbfd78fdfb9a12e3f59d921925be87d9d4efa07",
+    "surefire": "/private/tmp/tpp-phase3-shutdown-final-surefire.xml",
+    "surefireSha256": "6a720e5a6751a06e026d847e3f9238831d70b7b49b92bfef1e05b143477bc9fa",
+    "actualTransportEvidence": [
+      "ActualShutdown beforeStop {acceptedAcks=2.0, failedAcks=0.0, enqueueCompletions=3.0, inFlight=1.0, sendAttempts=3.0}",
+      "ActualShutdown afterStop millis=7002 inFlight=0.0 terminated=true"
+    ]
+  },
+  "finalSuiteExpected": {
+    "tests": 94,
+    "unit": 34,
+    "realDependencyIntegration": 60,
+    "status": "Confirmed by separate fresh-checkout final clean verification"
+  },
+  "initialPausedFocusedRun": {
+    "tests": 1,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "suiteSeconds": 20.24,
+    "testSeconds": 15.872,
+    "sourceSha256": "5861279d45ad4c4bb542f009de56be36b900601d34077cd23db293edbb2ad861",
+    "log": "/private/tmp/tpp-phase3-shutdown-paused-config-failure.log",
+    "surefire": "/private/tmp/tpp-phase3-shutdown-paused-config-failure-surefire.xml",
+    "actualEvidence": [
+      "ActualShutdown beforeStop {inFlight=1.0, sendAttempts=3.0, acceptedAcks=2.0, failedAcks=0.0, enqueueCompletions=3.0}",
+      "ActualShutdown afterStop millis=12005 inFlight=0.0 terminated=true"
+    ],
+    "failure": "Test changed delivery timeout from 5s to 10s but retained the 8s assertion; configured delivery + maxBlock + 1500 stop budget increased to 12s. Manual coordinator runs on a reusable executor thread, so joining that pool thread through its configured deadline takes 12s although the batch terminates. Restored original 5s delivery and 10s lease; use 5s request to keep actual paused producer work.",
+    "logSha256": "85850add1fe7b209b96427e02bfcacad88db8c4e8d72fd615afc655d018d3082",
+    "surefireSha256": "fcfaeefdd2347fb496fc6db485492d23ddf493691cb1aa7f5c753920988b49af"
+  },
+  "command": "JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home MAVEN_USER_HOME=/private/tmp/tpp-maven-wrapper ./mvnw -B -ntp -Dmaven.repo.local=/private/tmp/tpp-m2 '-Dtest=EventPipelineTest#shutdownWithActualOutstandingProducerWorkIsBoundedAndPreservesRetryEligibility' test",
+  "configuredStopBudgetLimit": "Manual relay coordinator runs on a reusable executor thread; joining that thread may consume the configured delivery + maxBlock + 1500ms shutdown budget even after batch termination. This controlled fixture retains the original 5s delivery/7s stop budget and unchanged <8s assertion.",
+  "resourceCleanupVerified": "Focused run completed successfully after finally-unpausing the suite-owned broker, lease-expiry recovery, projection/ledger reconciliation, and AfterAll owned-container removal.",
+  "finalTestCommit": "2c859cb28d3b1898a2a7d25c5c87d7a0a0a3dbe4",
+  "finalFullVerification": {
+    "status": "PASS",
+    "evidence": "phase3-clean-verify.json",
+    "tests": 94,
+    "unitTests": 34,
+    "realDependencyIntegrationTests": 60,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "finalAcceptanceSourceCommit": "2c859cb28d3b1898a2a7d25c5c87d7a0a0a3dbe4"
+}

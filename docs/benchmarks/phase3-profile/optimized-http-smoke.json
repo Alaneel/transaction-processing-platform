@@ -1,0 +1,51 @@
+{
+  "transferId": "e23c4d5e-b216-46ed-ab87-00742e079a30",
+  "eventId": "f216afa1-d283-4eb3-b4cc-ac276e0e2b04",
+  "idempotentRetry": "prior result",
+  "pairedActivity": {
+    "00000000-0000-0000-0000-000000000002": {
+      "id": 13871,
+      "eventId": "f216afa1-d283-4eb3-b4cc-ac276e0e2b04",
+      "transferId": "e23c4d5e-b216-46ed-ab87-00742e079a30",
+      "accountId": "00000000-0000-0000-0000-000000000002",
+      "deltaMinor": -7,
+      "unit": "FIC",
+      "occurredAt": "2026-10-11T14:59:46.144969Z",
+      "projectedAt": "2026-10-11T14:59:46.277505Z"
+    },
+    "00000000-0000-0000-0000-000000000003": {
+      "id": 13872,
+      "eventId": "f216afa1-d283-4eb3-b4cc-ac276e0e2b04",
+      "transferId": "e23c4d5e-b216-46ed-ab87-00742e079a30",
+      "accountId": "00000000-0000-0000-0000-000000000003",
+      "deltaMinor": 7,
+      "unit": "FIC",
+      "occurredAt": "2026-10-11T14:59:46.144969Z",
+      "projectedAt": "2026-10-11T14:59:46.277868Z"
+    }
+  },
+  "authoritativeReconciliation": {
+    "consistent": true,
+    "balanceMismatches": [],
+    "invalidTransfers": [],
+    "totalLedgerDelta": 0,
+    "totalMaterializedBalance": 0
+  },
+  "projectionReconciliation": {
+    "completedTransfers": 6936,
+    "processedEvents": 6936,
+    "projectedTransfers": 6936,
+    "quarantinedRecords": 0,
+    "missingProjection": 0,
+    "publishedAwaitingProjection": 0,
+    "inboxWithoutProjection": 0,
+    "projectionWithoutInbox": 0,
+    "activityShapeDiscrepancies": 0,
+    "originDiscrepancies": 0,
+    "discrepancies": 0,
+    "oldestUnprocessedAgeSeconds": null,
+    "lastProcessedAt": "2026-10-11T14:59:46.274790Z",
+    "lastProcessedEventOccurredAt": "2026-10-11T14:59:46.144969Z",
+    "checkedAt": "2026-10-11T14:59:46.449537218Z"
+  }
+}

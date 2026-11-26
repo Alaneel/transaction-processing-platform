@@ -1,0 +1,19 @@
+{
+  "implementationCommit": "1737a27ef2e7c2c81e45671866d70b7e05002667",
+  "build": "SUCCESS",
+  "tests": "explicitly skipped; lifecycle red/green and full clean checkout are separate gates",
+  "spotbugs": {
+    "bugs": 0,
+    "errors": 0
+  },
+  "dependencyChecks": [
+    "dependency convergence",
+    "release dependencies"
+  ],
+  "command": "JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home MAVEN_USER_HOME=/private/tmp/tpp-maven-wrapper ./mvnw -B -ntp -Dmaven.repo.local=/private/tmp/tpp-m2 -DskipTests verify",
+  "finishedAt": "2026-10-11T23:44:40+08:00",
+  "mavenTotalTime": "7.559 s",
+  "relaySha256": "ec191c623cee90bbe88c2d5132a5511c870abb25080edb13a7d4f9c01b1df3ed",
+  "logSource": "/private/tmp/tpp-phase3-lifecycle-static.log",
+  "logSha256": "992d06b4cbe2741c422a99d0dfa6624856b7ca5892e681132404a6b80042ff60"
+}

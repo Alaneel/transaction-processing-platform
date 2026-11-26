@@ -1,0 +1,19 @@
+flowchart LR
+    Client[HTTP client + idempotency key] --> Transfer[TransferService]
+    subgraph Financial[PostgreSQL transaction A · financial authority]
+        Transfer --> Key[Durable request/result]
+        Transfer --> Ledger[Balances + paired immutable ledger]
+        Ledger --> Outbox[One immutable outbox event]
+    end
+    Outbox --> Relay[Bounded relay · lease + generation fence]
+    Relay --> Kafka[Kafka · at-least-once transport]
+    Kafka --> Consumer[Event consumer]
+    subgraph Effect[PostgreSQL transaction B · activity effect]
+        Consumer --> Inbox[Inbox identity]
+        Inbox --> Activity[One transfer projection + two activity rows]
+        Consumer --> Quarantine[Durable quarantine + audited replay]
+    end
+    Activity --> Offset[Offset acknowledgement after durable commit]
+    Quarantine --> Offset
+    Offset -.-> Kafka
+    Note[One PostgreSQL database; activity is never balance authority]

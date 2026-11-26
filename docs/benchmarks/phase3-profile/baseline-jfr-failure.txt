@@ -1,0 +1,5 @@
+tpp-phase3-validation-app-1  | Picked up JAVA_TOOL_OPTIONS: -XX:StartFlightRecording=name=phase3-baseline,settings=profile,duration=60s,filename=/tmp/phase3-baseline.jfr,maxsize=16m
+tpp-phase3-validation-app-1  | [0.217s][info][jfr,startup] Started recording 1. The result will be written to:
+tpp-phase3-validation-app-1  | [0.217s][info][jfr,startup] 
+tpp-phase3-validation-app-1  | [0.217s][info][jfr,startup] /tmp/phase3-baseline.jfr
+tpp-phase3-validation-app-1  | [60.239s][error][jfr        ] Unable to complete I/O operation when dumping recording "phase3-baseline" (1)

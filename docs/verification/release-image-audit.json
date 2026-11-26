@@ -1,0 +1,237 @@
+{
+  "startedAtUtc": "2026-10-14T13:09:25.468121+00:00",
+  "scanner": "Trivy0.75.0 checksum-verified by root; signature bundle not cryptographically verified",
+  "source": "LocalDocker only, offline dependency lookup, telemetry disabled, empty config/ignorefile, freshcached DBs",
+  "scans": [
+    {
+      "label": "kafka",
+      "image": "sha256:5d8f118f60bca8e6662d420c88cab51c3e8abb5cc55816aa9e9ff930a4e19fca",
+      "exitCode": 0,
+      "output": "final-trivy-kafka.json",
+      "retrieval": "SUCCESS",
+      "severityCounts": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "UNKNOWN": 0
+      },
+      "vulnerabilityRecords": 0,
+      "sha256": "9f000b4409a213fef814863e38b4e2a394f26974abfd5329333b812d9563b2e8",
+      "resultTypes": [
+        {
+          "target": "sha256:5d8f118f60bca8e6662d420c88cab51c3e8abb5cc55816aa9e9ff930a4e19fca (alpine 3.23.4)",
+          "type": "alpine",
+          "packages": 80
+        },
+        {
+          "target": "Java",
+          "type": "jar",
+          "packages": 120
+        }
+      ],
+      "analysisStatus": "PASS"
+    },
+    {
+      "label": "runtime",
+      "image": "sha256:c2b35c339d32b795ba82ad27df7d24aa5d629dd98c5958233f779ea705c37751",
+      "exitCode": 0,
+      "output": "final-trivy-runtime.json",
+      "retrieval": "SUCCESS",
+      "severityCounts": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "UNKNOWN": 0
+      },
+      "vulnerabilityRecords": 0,
+      "sha256": "1abcc3ce954e300679738915cd865a0d3ce105b5449403b1f57673496ea9b9de",
+      "resultTypes": [
+        {
+          "target": "sha256:c2b35c339d32b795ba82ad27df7d24aa5d629dd98c5958233f779ea705c37751 (alpine 3.24.2)",
+          "type": "alpine",
+          "packages": 73
+        },
+        {
+          "target": "Java",
+          "type": "jar",
+          "packages": 61
+        }
+      ],
+      "analysisStatus": "PASS"
+    },
+    {
+      "label": "builder",
+      "image": "sha256:6b688950c3d5793a3792ddc029bee482479b4804862cb6f1fb4f11e32f2710a0",
+      "exitCode": 0,
+      "output": "final-trivy-builder.json",
+      "retrieval": "SUCCESS",
+      "severityCounts": {
+        "CRITICAL": 0,
+        "HIGH": 2,
+        "MEDIUM": 1,
+        "LOW": 0,
+        "UNKNOWN": 0
+      },
+      "vulnerabilityRecords": 3,
+      "sha256": "1059a3246866e4c8b2b382e5ebdc03b36153f90d2c5811f424093772d016fb8c",
+      "resultTypes": [
+        {
+          "target": "sha256:6b688950c3d5793a3792ddc029bee482479b4804862cb6f1fb4f11e32f2710a0 (alpine 3.24.2)",
+          "type": "alpine",
+          "packages": 77
+        },
+        {
+          "target": "Java",
+          "type": "jar",
+          "packages": 306
+        }
+      ],
+      "analysisStatus": "MITIGATED",
+      "assessment": "2 HIGH and1 MEDIUM shaded Docker HTTP findings are build/test-only; canonical local Unix preconnection guard +10 actual rejection cases constrain transport. Malicious local daemon remains a residual risk; no universal unreachable claim."
+    },
+    {
+      "label": "postgres",
+      "image": "sha256:dbbcf11a55e5f51d2cde3e5b49b12d98ab7ccc839c5e79cf780d24a2d54bf4bd",
+      "exitCode": 0,
+      "output": "final-trivy-postgres.json",
+      "retrieval": "SUCCESS",
+      "severityCounts": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "UNKNOWN": 1
+      },
+      "vulnerabilityRecords": 1,
+      "sha256": "24e8802dd5c4636609056da1b37dd953cf74f9b873183d81a28f4f62bd799e03",
+      "resultTypes": [
+        {
+          "target": "sha256:dbbcf11a55e5f51d2cde3e5b49b12d98ab7ccc839c5e79cf780d24a2d54bf4bd (alpine 3.24.2)",
+          "type": "alpine",
+          "packages": 45
+        },
+        {
+          "target": "usr/local/bin/gosu",
+          "type": "gobinary",
+          "packages": 4
+        }
+      ],
+      "analysisStatus": "PASS_WITH_NOT_AFFECTED_RECORD",
+      "assessment": "One UNKNOWN CVE-2026-39824 is Windows-only; exact Linux gosu artifact assessed not affected using platform/import/build metadata, not fresh final function-symbol analysis."
+    },
+    {
+      "label": "sdk_postgres",
+      "image": "sha256:91b0308cd3ffa5d13c73a60dfc662131cd0ed10a25d58ae583b7a39b02747cdf",
+      "exitCode": 0,
+      "output": "final-trivy-sdk_postgres.json",
+      "retrieval": "SUCCESS",
+      "severityCounts": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "UNKNOWN": 1
+      },
+      "vulnerabilityRecords": 1,
+      "sha256": "666e716b7ccd849acdafd111486584b49092ad9acec21da3c7cd24e5910b51c8",
+      "resultTypes": [
+        {
+          "target": "sha256:91b0308cd3ffa5d13c73a60dfc662131cd0ed10a25d58ae583b7a39b02747cdf (alpine 3.24.2)",
+          "type": "alpine",
+          "packages": 45
+        },
+        {
+          "target": "usr/local/bin/gosu",
+          "type": "gobinary",
+          "packages": 4
+        }
+      ],
+      "analysisStatus": "PASS_WITH_NOT_AFFECTED_RECORD",
+      "assessment": "One UNKNOWN CVE-2026-39824 is Windows-only; exact Linux gosu artifact assessed not affected using platform/import/build metadata, not fresh final function-symbol analysis."
+    },
+    {
+      "label": "sdk_kafka",
+      "image": "sha256:f18544a9ecb8595ed4ceb3eef627a0bbe5ac92ee5fb2f1fd6a3cdb19c9f53f3f",
+      "exitCode": 0,
+      "output": "final-trivy-sdk_kafka.json",
+      "retrieval": "SUCCESS",
+      "severityCounts": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "UNKNOWN": 0
+      },
+      "vulnerabilityRecords": 0,
+      "sha256": "a8a7ed3119b9103ed78e0c2ca40ad1611ddea36996e42fff6fa82350d5db349f",
+      "resultTypes": [
+        {
+          "target": "sha256:f18544a9ecb8595ed4ceb3eef627a0bbe5ac92ee5fb2f1fd6a3cdb19c9f53f3f (alpine 3.23.4)",
+          "type": "alpine",
+          "packages": 80
+        },
+        {
+          "target": "Java",
+          "type": "jar",
+          "packages": 120
+        }
+      ],
+      "analysisStatus": "PASS"
+    },
+    {
+      "label": "ryuk",
+      "image": "testcontainers/ryuk:0.14.0@sha256:7c1a8a9a47c780ed0f983770a662f80deb115d95cce3e2daa3d12115b8cd28f0",
+      "exitCode": 0,
+      "output": "final-trivy-ryuk.json",
+      "retrieval": "SUCCESS",
+      "sha256": "935fb0aedd087bff4c48de2a9760de8a4a8677aa9460c2916b681377f8ee71a2",
+      "resultTypes": [],
+      "analysisStatus": "NOT_VERIFIED",
+      "coverageLimit": "Image retrieval/inspection succeeded but no package analysis result; binary vulnerability coverage not established."
+    },
+    {
+      "label": "startup",
+      "image": "alpine:3.24@sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6",
+      "exitCode": 0,
+      "output": "final-trivy-startup.json",
+      "retrieval": "SUCCESS",
+      "severityCounts": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 1,
+        "LOW": 0,
+        "UNKNOWN": 0
+      },
+      "vulnerabilityRecords": 1,
+      "sha256": "4f24b7b2aff9f2eafc7e120edda5e22e07d94d8adf7346e87f82ce91bbf8ad51",
+      "resultTypes": [
+        {
+          "target": "alpine:3.24@sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6 (alpine 3.24.2)",
+          "type": "alpine",
+          "packages": 16
+        }
+      ],
+      "analysisStatus": "KNOWN_OPTIONAL_HELPER_FINDING",
+      "assessment": "One MEDIUM zlib version match in configured optional startup helper, not observed started during final104 test execution. Affected gzip-write path not verified; not a deployed service."
+    }
+  ],
+  "completedAtUtc": "2026-10-14T13:09:39.082466+00:00",
+  "vulnerabilityDbMetadata": {
+    "Version": 2,
+    "NextUpdate": "2026-10-15T07:11:52.271767002Z",
+    "UpdatedAt": "2026-10-14T07:11:52.271767627Z",
+    "DownloadedAt": "2026-10-14T13:07:06.707178Z"
+  },
+  "javaIndexMetadata": {
+    "Version": 1,
+    "NextUpdate": "2026-10-16T01:09:47.998142983Z",
+    "UpdatedAt": "2026-10-13T01:09:47.998143143Z",
+    "DownloadedAt": "2026-10-13T15:58:49.578744Z"
+  },
+  "databaseFileSha256": "88daf0f4f0789698811bec5ebf95ef9610cd0f4d0571394f754a5cdb8cf081c9",
+  "databaseMetadataSha256": "13eb34043d8aa42e11b2b81fbf27fd44e5b4765d104639d661a2065cd1a14888",
+  "javaIndexFileSha256": "8718fff42046c2485b31440313fd49fa487f81a03d339a7655f670f6447153f5",
+  "signatureVerification": "Scanner release checksum verified; release signature bundle was not cryptographically verified. Database bundle hashes bind observed bytes, not a signature verification claim."
+}

@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-10-11T13:41:18.976596+00:00",
+  "host": {
+    "hardware": "Apple M2 Max",
+    "logicalCpus": "12",
+    "memoryBytes": "34359738368",
+    "os": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.0"
+  },
+  "docker": {
+    "allocation": {
+      "ServerVersion": "24.0.6",
+      "NCPU": 13,
+      "MemTotal": 8232312832,
+      "Architecture": "aarch64",
+      "OperatingSystem": "Docker Desktop"
+    },
+    "composeVersion": "2.22.0-desktop.2"
+  },
+  "javaVersion": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+  "containers": {
+    "app": {
+      "image": "sha256:dc8eaa74cdddb7371ae10c94a3e79584c53acb3bbd225ffbb505a103478f4769",
+      "configuredImage": "tpp-phase2-validation-app",
+      "createdAt": "2026-10-11T13:40:59.093241085Z",
+      "eventSettings": [
+        "EVENTS_RELAY_BATCH_SIZE=16",
+        "EVENTS_RELAY_ENABLED=false",
+        "EVENTS_CONSUMER_ENABLED=true",
+        "EVENTS_BOOTSTRAP_SERVERS=kafka:9092",
+        "EVENTS_POLL_INTERVAL_MS=100",
+        "EVENTS_CONSUMER_MIN_INTERVAL_MS=0"
+      ]
+    },
+    "db": {
+      "image": "sha256:25a89970a83255ae96484d709005bb35aa71f7455f941bc1634514f31c5d5c62",
+      "configuredImage": "postgres:17.11-alpine",
+      "createdAt": "2026-10-11T13:38:55.484453125Z"
+    },
+    "kafka": {
+      "image": "sha256:33241f6eae1f4e20cd5c01dd3e38656201f7eaca675664276a87e8f440fcbaa4",
+      "configuredImage": "apache/kafka:4.3.1",
+      "createdAt": "2026-10-11T13:38:55.484494958Z"
+    }
+  }
+}

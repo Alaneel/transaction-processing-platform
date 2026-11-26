@@ -1,0 +1,11 @@
+# ADR 009: Bounded asynchronous publication with per-record fenced settlement
+
+Status: accepted, 2026-10-11. Extends [ADR 005](005-polling-relay.md).
+
+The instrumented serial baseline drained 2,986 scoped events at 116.3/s. Timers observed 19.330 seconds of configured polling pauses and 6.316 seconds of batch work, with 4.204 seconds of per-event renewal/status transactions inside that work. Mean Kafka ACK latency was 0.423 ms. The consumer mostly waited for publication. [Raw evidence](../benchmarks/phase3-baseline-diagnostic.json) supports removing productive-batch sleeps and reducing per-event SQL coordination before adding consumer parallelism or another infrastructure component.
+
+Keep PostgreSQL polling and the existing immutable event/lease schema. Claim a bounded batch, renew live generations together, enqueue asynchronously, freeze one deadline-bounded per-event result set, then settle it in one bounded transaction. Every update retains event/token/CLAIMED/live-lease fencing. Return applied IDs only after commit; Kafka callbacks never imply committed publication status. A status transaction failure may republish all accepted members, which the durable inbox safely deduplicates.
+
+One coordinator per instance prevents overlapping local batches. A record semaphore also bounds actual outstanding producer calls across timed-out batches; timeout cannot invent free producer capacity. Callbacks register only their captured generation, tolerate out-of-order completion, and cannot reopen a frozen result set. Shutdown leaves unresolved claims durable and prevents a still-live worker from being restarted concurrently. Full durable-success batches immediately reclaim; idle/partial/failure paths keep the configured pause and durable jittered retry scheduling.
+
+The trade-offs are a larger but fixed uncertainty set on crash, all-or-nothing status transactions that may replay healthy acknowledged members after one SQL failure, and lease tuning for batch duration. No global/per-account publication order is promised. The implemented one-event-per-terminal-transfer additive activity effect tolerates distinct-event reordering. Producer configuration remains unchanged initially; matched trials and the later consumer profile decide the next bottleneck. This does not change the financial transaction or establish production capacity.

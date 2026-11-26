@@ -1,0 +1,25 @@
+{
+  "scope": "Focused deferred commit rollback, reverse real acknowledgements and publication batch state",
+  "jdk": "21",
+  "postgres": "17.11-alpine",
+  "kafka": "apache/kafka:4.3.1",
+  "executed": 10,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "cases": [
+    "reverseRealAcknowledgementsSettleLiveRecordsWhileFencingOneReplacedGeneration",
+    "acknowledgedBatchCommitFailureRollsBackEveryStatusAndRecoversStableIdentities",
+    "invalidAcknowledgementsCannotBecomePublishedAndKnownPermanentErrorsRemainDistinct",
+    "callbackWakesAnInterruptibleMonotonicWaitWithoutRequiringAProducerThread",
+    "boundedClaimsAndFrozenResultsCannotBeMutatedOrAliasCallerLists",
+    "cancellationRacingCallbackFreezesExactlyOneOutcomeAndCannotBeReopened",
+    "deadlineDistinguishesNeverSubmittedWorkFromUncertainInFlightWorkAndIgnoresLateAck",
+    "reverseAcknowledgementsRetainTheExactClaimAndIndividualKafkaPosition",
+    "synchronousFailureWinsOverLaterCallbackAndEvidenceStaysBounded",
+    "unknownGenerationUnsubmittedAcknowledgementAndDuplicateCallbackCannotChangeOutcome"
+  ],
+  "log": "/private/tmp/tpp-phase3-commit-focused.log",
+  "limitations": "Focused test command only; full clean 93-test verification and static checks remain separate parent gates.",
+  "source_commit": "66dc7c9cbcdd312f9df5ed427520bc398d7696a0"
+}

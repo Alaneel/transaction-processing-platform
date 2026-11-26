@@ -1,0 +1,121 @@
+{
+  "recording": "docs/benchmarks/phase3-profile/baseline.jfr",
+  "windowReport": "docs/benchmarks/phase3-profile/baseline-catchup.json",
+  "windowStart": "2026-10-11T14:39:52.512353+00:00",
+  "windowEnd": "2026-10-11T14:40:10.932211+00:00",
+  "selection": "event starts inside observed report window; duration is full event duration; JFR thresholds omit brief waits",
+  "threads": [
+    {
+      "thread": "outbox-relay",
+      "event": "jdk.ExecutionSample",
+      "count": 10,
+      "durationSeconds": 0.0,
+      "states": {
+        "STATE_RUNNABLE": 10
+      },
+      "topFrames": {
+        "java/util/Arrays.copyOf": 1,
+        "java/time/format/DateTimeFormatterBuilder$OffsetIdPrinterParser.parse": 1,
+        "dev/tpp/events/relay/OutboxRelay.publishSerialBatch": 1,
+        "java/util/regex/Pattern$BmpCharProperty.match": 1,
+        "java/time/format/Parsed.resolveTimeLenient": 1,
+        "java/time/format/Parsed.resolveTimeFields": 1,
+        "java/util/Collections$UnmodifiableMap.entrySet": 1,
+        "java/util/ImmutableCollections$SetN.probe": 1,
+        "tools/jackson/databind/ser/SerializerCache.getReadOnlyLookupMap": 1,
+        "org/springframework/boot/json/JsonValueWriter.writeString": 1
+      }
+    },
+    {
+      "thread": "outbox-relay",
+      "event": "jdk.NativeMethodSample",
+      "count": 38,
+      "durationSeconds": 0.0,
+      "states": {
+        "STATE_RUNNABLE": 38
+      },
+      "topFrames": {
+        "sun/nio/ch/Net.poll": 33,
+        "sun/nio/ch/SocketDispatcher.write0": 3,
+        "sun/nio/ch/SocketDispatcher.read0": 1,
+        "java/lang/Thread.sleep0": 1
+      }
+    },
+    {
+      "thread": "outbox-relay",
+      "event": "jdk.SocketRead",
+      "count": 1,
+      "durationSeconds": 0.012853417,
+      "states": {},
+      "topFrames": {
+        "java/net/Socket$SocketInputStream.read": 1
+      }
+    },
+    {
+      "thread": "outbox-relay",
+      "event": "jdk.ThreadPark",
+      "count": 2,
+      "durationSeconds": 0.038152001000000005,
+      "states": {},
+      "topFrames": {
+        "jdk/internal/misc/Unsafe.park": 2
+      }
+    },
+    {
+      "thread": "outbox-relay",
+      "event": "jdk.ThreadSleep",
+      "count": 133,
+      "durationSeconds": 13.453295130000004,
+      "states": {},
+      "topFrames": {
+        "java/lang/Thread.afterSleep": 133
+      }
+    },
+    {
+      "thread": "tpp-event-consumer-d2dbd6de-bd13-467d-b625-8e79ae8d6354",
+      "event": "jdk.ExecutionSample",
+      "count": 10,
+      "durationSeconds": 0.0,
+      "states": {
+        "STATE_RUNNABLE": 10
+      },
+      "topFrames": {
+        "sun/security/util/CryptoAlgorithmConstraints.cachedCheckAlgorithm": 1,
+        "tools/jackson/core/json/WriterBasedJsonGenerator.writeEndObject": 1,
+        "sun/security/jca/ProviderList.getService": 1,
+        "org/apache/kafka/clients/NetworkClient$TelemetrySender.maybeUpdate": 1,
+        "org/apache/kafka/common/utils/Utils.toArray": 1,
+        "java/time/LocalDate.ofEpochDay": 1,
+        "java/time/LocalDateTime.of": 1,
+        "java/util/regex/Pattern.expr": 1,
+        "org/apache/kafka/clients/consumer/internals/ConsumerCoordinator$OffsetCommitResponseHandler.handle": 1,
+        "java/lang/Integer.getChars": 1
+      }
+    },
+    {
+      "thread": "tpp-event-consumer-d2dbd6de-bd13-467d-b625-8e79ae8d6354",
+      "event": "jdk.NativeMethodSample",
+      "count": 204,
+      "durationSeconds": 0.0,
+      "states": {
+        "STATE_RUNNABLE": 204
+      },
+      "topFrames": {
+        "sun/nio/ch/EPoll.wait": 171,
+        "sun/nio/ch/Net.poll": 29,
+        "sun/nio/ch/SocketDispatcher.write0": 2,
+        "sun/nio/ch/SocketDispatcher.read0": 2
+      }
+    },
+    {
+      "thread": "tpp-event-consumer-d2dbd6de-bd13-467d-b625-8e79ae8d6354",
+      "event": "jdk.SocketRead",
+      "count": 1,
+      "durationSeconds": 0.01171425,
+      "states": {},
+      "topFrames": {
+        "java/net/Socket$SocketInputStream.read": 1
+      }
+    }
+  ]
+}

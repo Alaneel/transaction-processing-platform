@@ -1,0 +1,38 @@
+{
+  "verifiedAtUtc": "2026-10-14T13:11:40.184359+00:00",
+  "component": "docker-java-transport-zerodep:3.7.1 in Testcontainers2.0.5",
+  "vendorLatestRetrieved": "3.7.1",
+  "actualBinaryJarSha256": "b89bdb1754160323597f9ea32a7fe7a4a3aa8f5b3b43b88e8d71fff3b267ab21",
+  "scope": "Build/test classpath only, absent from all63 deployed runtime jars. Preconnection boundary rejects remote transports/configuration before SDK resource allocation, and pins one canonical local Unix socket. The real 104-test suite includes10 separate-process rejection cases plus original strict94.",
+  "assessmentStatus": "MITIGATED_WITH_RESIDUAL_TRUSTED_LOCAL_TOOL_RISK",
+  "observedImplementation": "Primary vendor source plus actual shaded bytecode construct classic CloseableHttpClient, classic connection manager and executeOpen(ClassicHttpRequest/Response). Unix-scheme socket factory invokes UnixSocket.get(canonical path). HttpCore H2 is bundled, but observed classic HTTP/1 API path does not invoke HPACK. This is bounded path inspection, not whole-JVM exploit/callgraph proof.",
+  "findings": [
+    {
+      "id": "CVE-2026-54399",
+      "severity": "HIGH",
+      "installed": "httpcore5 5.3.6",
+      "fixed": "5.4.3",
+      "classification": "HTTP/1 response parsing exists and could be affected by malicious local daemon; remote attacker transport rejected. Keep residual local daemon trust, do not claim NOT AFFECTED."
+    },
+    {
+      "id": "CVE-2026-54428",
+      "severity": "HIGH",
+      "installed": "httpcore5-h2 5.3.6",
+      "fixed": "5.4.3",
+      "classification": "HTTP/2 HPACK exists in shaded archive; actual Docker transport uses classic HTTP/1 path, no HPACK observed. No universal unreachable-code proof."
+    },
+    {
+      "id": "CVE-2026-64607",
+      "severity": "MEDIUM",
+      "installed": "httpclient5 5.5.1",
+      "fixed": "5.6.3",
+      "classification": "Classic client path is used and content compression is not disabled; malformed Content-Encoding could leak a local-daemon connection. Same trusted-local mitigation, not absence-of-feature."
+    }
+  ],
+  "remediation": "Vendor remains latest3.7.1 with embedded shaded old classes. Maven overrides cannot replace shaded bytes; no unsupported byte patch applied. Reassess when vendor updates, or before any remote/untrusted Docker use.",
+  "evidence": [
+    "release-image-audit.json",
+    "release-build-tool-audit.json",
+    "release-readiness.json"
+  ]
+}

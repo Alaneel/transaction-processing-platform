@@ -1,0 +1,48 @@
+{
+  "purpose": "Finite local security-dependency control; not a distribution artifact",
+  "sourceHead": "7a43792d2961e54cb86bb0ac82ac07071bd88276",
+  "productionSourceIdentical": true,
+  "patchedPomSha256": "e8076fa99419cc9663b8ff78aa3ed2ab4db969890155829016c72f33cad1695a",
+  "baselineControlPomSha256": "424a43a082cebf31842a9c1197a13877adfc6dc5d540c42cd32265162ba3b018",
+  "commonDockerfileSha256": "51a3700234b0e1529cda136b312a93fc2f25c7422962c9ae85a7e5191dd9cb64",
+  "differences": "Only removal of Tomcat/Jackson/LZ4 security overrides; common patched Temurin runtime/build image and packaging timestamp/resources; updated attribution versions for control only. Test fixture image pins common and tests skipped during image build.",
+  "builderCacheImageId": "sha256:e397d69c67984740bc71cb1ebbdb9a02d24ace22aa7d9643b6a349ab5f1f3288",
+  "patchedRuntimeImageId": "sha256:a4b617d9f24c742406b6973686b652502793cdc2fa9fff4cc240712de5fa3131",
+  "controlDockerfileSha256": "56733f25b74a159723ac39456ab65b0ca90c1169e101e6d43a1e10b5bbb96526",
+  "controlBuild": "Same patched build-stage JDK+Maven cache; cleanpackage forces compilation. Cached unusedbuildtools are not a clean-builder claim. Runtime stages are identical except actual control dependency jars/notices.",
+  "controlRuntimeImageId": "sha256:77a0017c6861dedbcdfb083531a3d3c18e9ee4310d2521800a45e150bb5da590",
+  "containerRuntimeInventoriesFile": "container-runtime-inventories.json",
+  "sameCompiledApplicationAndConfiguration": true,
+  "actualRuntimeJarDifferences": [
+    {
+      "name": "tools.jackson.core:jackson-core",
+      "baselineVersion": "3.1.5",
+      "patchedVersion": "3.1.7"
+    },
+    {
+      "name": "tools.jackson.core:jackson-databind",
+      "baselineVersion": "3.1.5",
+      "patchedVersion": "3.1.7"
+    },
+    {
+      "name": "at.yawk.lz4:lz4-java",
+      "baselineVersion": "1.10.2",
+      "patchedVersion": "1.11.4"
+    },
+    {
+      "name": "org.apache.tomcat.embed:tomcat-embed-core",
+      "baselineVersion": "11.0.24",
+      "patchedVersion": "11.0.27"
+    },
+    {
+      "name": "org.apache.tomcat.embed:tomcat-embed-el",
+      "baselineVersion": "11.0.24",
+      "patchedVersion": "11.0.27"
+    },
+    {
+      "name": "org.apache.tomcat.embed:tomcat-embed-websocket",
+      "baselineVersion": "11.0.24",
+      "patchedVersion": "11.0.27"
+    }
+  ]
+}

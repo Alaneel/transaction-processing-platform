@@ -1,0 +1,250 @@
+{
+  "recordedAt": "2026-10-11T15:00:12.836778+00:00",
+  "sourceCommit": "66dc7c9cbcdd312f9df5ed427520bc398d7696a0",
+  "harnessSourceCommit": "66dc7c9cbcdd312f9df5ed427520bc398d7696a0",
+  "verification": "92-test full gate plus 10 focused tests and static verification 2026-10-11T22:58:20+08:00; final clean 93-test verification pending measured windows",
+  "host": {
+    "hardware": "Apple M2 Max",
+    "logicalCpus": "12",
+    "memoryBytes": "34359738368",
+    "os": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.0"
+  },
+  "docker": {
+    "allocation": {
+      "ServerVersion": "24.0.6",
+      "NCPU": 13,
+      "MemTotal": 8232312832,
+      "Architecture": "aarch64",
+      "OperatingSystem": "Docker Desktop"
+    },
+    "composeVersion": "2.22.0-desktop.2"
+  },
+  "containers": {
+    "app": {
+      "id": "bfc909dcd05cb732b32cb112cf1ae8361a42f26ec2735fe2a930b5c5574e3e54",
+      "image": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+      "configuredImage": "tpp-phase3-optimized:66dc7c9",
+      "createdAt": "2026-10-11T14:59:18.570600469Z",
+      "startedAt": "2026-10-11T14:59:19.070585011Z",
+      "health": "healthy",
+      "resourceLimits": {
+        "Memory": 0,
+        "NanoCpus": 0,
+        "CpuQuota": 0,
+        "CpuPeriod": 0
+      },
+      "effectiveEnvironment": [
+        "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS=60",
+        "BACKPRESSURE_MAX_UNPUBLISHED=10000",
+        "EVENTS_RELAY_BATCH_SIZE=16",
+        "EVENTS_RELAY_ENABLED=true",
+        "EVENTS_CONSUMER_MIN_INTERVAL_MS=0",
+        "BACKPRESSURE_QUERY_TIMEOUT_SECONDS=2",
+        "BACKPRESSURE_MAX_SAMPLE_AGE_MS=5000",
+        "EVENTS_POLL_INTERVAL_MS=100",
+        "BACKPRESSURE_SAMPLE_INTERVAL_MS=1000",
+        "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED=10000",
+        "EVENTS_CONSUMER_ENABLED=true",
+        "JAVA_TOOL_OPTIONS=",
+        "BACKPRESSURE_ENABLED=false",
+        "BACKPRESSURE_REOPEN_PERCENT=75",
+        "EVENTS_BOOTSTRAP_SERVERS=kafka:9092",
+        "BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS=60"
+      ],
+      "mounts": []
+    },
+    "db": {
+      "id": "f4653c2d0250ffec70b0d253dcb5b570130a9d72d9bdecbdcdf9d542ecc962ca",
+      "image": "sha256:25a89970a83255ae96484d709005bb35aa71f7455f941bc1634514f31c5d5c62",
+      "configuredImage": "postgres:17.11-alpine",
+      "createdAt": "2026-10-11T14:34:55.918674792Z",
+      "startedAt": "2026-10-11T14:34:56.249198667Z",
+      "health": "healthy",
+      "resourceLimits": {
+        "Memory": 0,
+        "NanoCpus": 0,
+        "CpuQuota": 0,
+        "CpuPeriod": 0
+      },
+      "effectiveEnvironment": [],
+      "mounts": [
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/docker-entrypoint-initdb.d/10-runtime-role.sh"
+        },
+        {
+          "type": "volume",
+          "name": "tpp-phase3-validation_pgdata",
+          "destination": "/var/lib/postgresql/data"
+        }
+      ]
+    },
+    "kafka": {
+      "id": "91f81ccd069f2d4a9c13343d646868eb8066a99bac055166f3dfc8758bc7bc28",
+      "image": "sha256:33241f6eae1f4e20cd5c01dd3e38656201f7eaca675664276a87e8f440fcbaa4",
+      "configuredImage": "apache/kafka:4.3.1",
+      "createdAt": "2026-10-11T14:34:55.91855575Z",
+      "startedAt": "2026-10-11T14:34:56.269207959Z",
+      "health": "healthy",
+      "resourceLimits": {
+        "Memory": 0,
+        "NanoCpus": 0,
+        "CpuQuota": 0,
+        "CpuPeriod": 0
+      },
+      "effectiveEnvironment": [],
+      "mounts": [
+        {
+          "type": "volume",
+          "name": "tpp-phase3-validation_kafkadata",
+          "destination": "/var/lib/kafka/data"
+        },
+        {
+          "type": "volume",
+          "name": "7f380012727fdd57d1fe59f07c1ca72ffc679a9c122aa833e474fbd84e454df4",
+          "destination": "/etc/kafka/secrets"
+        },
+        {
+          "type": "volume",
+          "name": "01b3f8627d6ef5889f5db88dab431b0a2e4d0f7b4b51b7cd3ebc164ef2b62358",
+          "destination": "/mnt/shared/config"
+        }
+      ]
+    }
+  },
+  "preservedProjects": {
+    "tpp-phase1-validation": {
+      "app": {
+        "id": "4ce9c10aae8e0f986493f1d2b08138fcc706de21491b767ac7e8e464459a56d5",
+        "image": "sha256:18f2aba048ad57d63f28ffaf630a68d6fc6e5d26b69200e54a1895c7f766b873",
+        "configuredImage": "tpp-phase1-validation-app",
+        "createdAt": "2026-10-11T12:55:27.194331459Z",
+        "startedAt": "2026-10-11T12:55:28.137976835Z",
+        "health": "healthy",
+        "resourceLimits": {
+          "Memory": 0,
+          "NanoCpus": 0,
+          "CpuQuota": 0,
+          "CpuPeriod": 0
+        },
+        "effectiveEnvironment": [],
+        "mounts": []
+      },
+      "db": {
+        "id": "b909edf3497bce6cdca42c273f4fc45681d6d29aa0e9cfc6c7eae462aa9d8320",
+        "image": "sha256:25a89970a83255ae96484d709005bb35aa71f7455f941bc1634514f31c5d5c62",
+        "configuredImage": "postgres:17.11-alpine",
+        "createdAt": "2026-10-11T12:48:24.904918333Z",
+        "startedAt": "2026-10-11T12:48:25.103496375Z",
+        "health": "healthy",
+        "resourceLimits": {
+          "Memory": 0,
+          "NanoCpus": 0,
+          "CpuQuota": 0,
+          "CpuPeriod": 0
+        },
+        "effectiveEnvironment": [],
+        "mounts": [
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/docker-entrypoint-initdb.d/10-runtime-role.sh"
+          },
+          {
+            "type": "volume",
+            "name": "tpp-phase1-validation_pgdata",
+            "destination": "/var/lib/postgresql/data"
+          }
+        ]
+      }
+    },
+    "tpp-phase2-validation": {
+      "app": {
+        "id": "71ee656b83dc79cb7e483541b6b8f74ff0439529a7f56b9c3c1b81ad7b3f9e33",
+        "image": "sha256:aa585ad7255b0a55ded7729456af46d79a3fb5743e2412c97fcfb6a2bb634948",
+        "configuredImage": "tpp-phase2-validation-app",
+        "createdAt": "2026-10-11T14:04:21.513526887Z",
+        "startedAt": "2026-10-11T14:04:21.869181887Z",
+        "health": "healthy",
+        "resourceLimits": {
+          "Memory": 0,
+          "NanoCpus": 0,
+          "CpuQuota": 0,
+          "CpuPeriod": 0
+        },
+        "effectiveEnvironment": [
+          "EVENTS_BOOTSTRAP_SERVERS=kafka:9092",
+          "EVENTS_RELAY_ENABLED=true",
+          "EVENTS_RELAY_BATCH_SIZE=16",
+          "EVENTS_CONSUMER_MIN_INTERVAL_MS=0",
+          "EVENTS_POLL_INTERVAL_MS=100",
+          "EVENTS_CONSUMER_ENABLED=true"
+        ],
+        "mounts": []
+      },
+      "db": {
+        "id": "bfb837a1b5bf468cd2e6654253c70c223f4ac484b6428d75256f218c82f1b09b",
+        "image": "sha256:25a89970a83255ae96484d709005bb35aa71f7455f941bc1634514f31c5d5c62",
+        "configuredImage": "postgres:17.11-alpine",
+        "createdAt": "2026-10-11T13:38:55.484453125Z",
+        "startedAt": "2026-10-11T13:38:55.758680542Z",
+        "health": "healthy",
+        "resourceLimits": {
+          "Memory": 0,
+          "NanoCpus": 0,
+          "CpuQuota": 0,
+          "CpuPeriod": 0
+        },
+        "effectiveEnvironment": [],
+        "mounts": [
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/docker-entrypoint-initdb.d/10-runtime-role.sh"
+          },
+          {
+            "type": "volume",
+            "name": "tpp-phase2-validation_pgdata",
+            "destination": "/var/lib/postgresql/data"
+          }
+        ]
+      },
+      "kafka": {
+        "id": "3a146692654415f14049e7d62a8ae8bfe981769599d5d8f86d8f7fc7dd4348f1",
+        "image": "sha256:33241f6eae1f4e20cd5c01dd3e38656201f7eaca675664276a87e8f440fcbaa4",
+        "configuredImage": "apache/kafka:4.3.1",
+        "createdAt": "2026-10-11T14:04:33.24447517Z",
+        "startedAt": "2026-10-11T14:04:33.407573795Z",
+        "health": "healthy",
+        "resourceLimits": {
+          "Memory": 0,
+          "NanoCpus": 0,
+          "CpuQuota": 0,
+          "CpuPeriod": 0
+        },
+        "effectiveEnvironment": [],
+        "mounts": [
+          {
+            "type": "volume",
+            "name": "tpp-phase2-validation_kafkadata",
+            "destination": "/var/lib/kafka/data"
+          },
+          {
+            "type": "volume",
+            "name": "492716b12412f05820813006b7d7da69db5c005a86444dd457eccdb487e342d1",
+            "destination": "/etc/kafka/secrets"
+          },
+          {
+            "type": "volume",
+            "name": "8837da49d4b4cfc02cebcaa3f771cea8df99da154ff647abd1f3f64042d2720a",
+            "destination": "/mnt/shared/config"
+          }
+        ]
+      }
+    }
+  },
+  "preservedProjectsUnchangedSinceBaseline": true,
+  "javaVersion": "Picked up JAVA_TOOL_OPTIONS: \nopenjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode, sharing)"
+}

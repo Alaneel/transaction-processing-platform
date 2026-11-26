@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: transaction-processing-platform
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/tpp}
+    username: ${DB_USERNAME:tpp}
+    password: ${DB_PASSWORD:tpp-local-only}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:16}
+      minimum-idle: 2
+      connection-timeout: 2000
+      validation-timeout: 1000
+  flyway:
+    user: ${MIGRATION_USERNAME:${DB_USERNAME:tpp}}
+    password: ${MIGRATION_PASSWORD:${DB_PASSWORD:tpp-local-only}}
+  lifecycle:
+    timeout-per-shutdown-phase: 10s
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+      accept-float-as-int: false
+server:
+  shutdown: graceful
+  tomcat:
+    threads:
+      max: 64
+    connection-timeout: 5s
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState,db
+logging:
+  structured:
+    format:
+      console: logstash
+tpp:
+  backpressure:
+    enabled: ${BACKPRESSURE_ENABLED:false}
+    max-unpublished: ${BACKPRESSURE_MAX_UNPUBLISHED:10000}
+    max-unpublished-age-seconds: ${BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS:60}
+    max-published-unprocessed: ${BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED:10000}
+    max-published-unprocessed-age-seconds: ${BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS:60}
+    reopen-percent: ${BACKPRESSURE_REOPEN_PERCENT:75}
+    sample-interval-ms: ${BACKPRESSURE_SAMPLE_INTERVAL_MS:1000}
+    max-sample-age-ms: ${BACKPRESSURE_MAX_SAMPLE_AGE_MS:5000}
+    query-timeout-seconds: ${BACKPRESSURE_QUERY_TIMEOUT_SECONDS:2}
+  transfer:
+    max-attempts: 3
+    lock-timeout-ms: 200
+    statement-timeout-ms: 3000
+    transaction-timeout-seconds: 5
+    backoff-ms: 20
+  events:
+    bootstrap-servers: ${EVENTS_BOOTSTRAP_SERVERS:localhost:9092}
+    topic: ${EVENTS_TOPIC:tpp.transfer-completed.v1}
+    consumer-group: ${EVENTS_CONSUMER_GROUP:tpp-activity-v1}
+    relay-enabled: ${EVENTS_RELAY_ENABLED:false}
+    consumer-enabled: ${EVENTS_CONSUMER_ENABLED:false}
+    poll-interval-ms: ${EVENTS_POLL_INTERVAL_MS:100}
+    batch-size: ${EVENTS_RELAY_BATCH_SIZE:16}
+    lease-ms: 15000
+    delivery-timeout-ms: 3000
+    request-timeout-ms: 1000
+    max-block-ms: 1000
+    retry-base-ms: 250
+    retry-max-ms: 30000
+    db-timeout-seconds: 3
+    max-replay-attempts: 5
+    consumer-min-interval-ms: ${EVENTS_CONSUMER_MIN_INTERVAL_MS:0}

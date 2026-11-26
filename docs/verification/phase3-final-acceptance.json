@@ -1,0 +1,149 @@
+{
+  "startedAt": "2026-10-11T16:14:32.668099+00:00",
+  "sourceCommit": "2c859cb28d3b1898a2a7d25c5c87d7a0a0a3dbe4",
+  "expectedImage": "sha256:3da213ca031c1f2aa0c229c35dcce2ee0bd5c719055e4c3186d335127bc5b0ee",
+  "smokeReport": "docs/verification/phase3-final-http-event-smoke.json",
+  "purpose": "Post-verification deployment acceptance; no performance measurement",
+  "checks": {
+    "immutableImageAndRuntimeUsername": true,
+    "readinessDefaultOffAdmissionAndGlobalReconciliation": true,
+    "OneDurableEventAndInboxProjectionPairAfterIdempotentReplay": true,
+    "IndependentCommittedOffsetCatchup": true,
+    "PreservedDatabaseBrokerAndEarlierProjectsAcrossFinalDeployment": true
+  },
+  "complete": true,
+  "application": {
+    "containerId": "ab3da6daf34e5c3605bb10648c6f0e28aa802c0ef994978741ad8faf629ac68c",
+    "image": "sha256:3da213ca031c1f2aa0c229c35dcce2ee0bd5c719055e4c3186d335127bc5b0ee",
+    "configuredImage": "sha256:3da213ca031c1f2aa0c229c35dcce2ee0bd5c719055e4c3186d335127bc5b0ee",
+    "startedAt": "2026-10-11T16:13:34.915564504Z",
+    "runtimeDatabaseUsername": "tpp_app"
+  },
+  "readiness": {
+    "httpCode": 200,
+    "body": {
+      "status": "UP"
+    },
+    "observedAt": "2026-10-11T16:14:32.914572+00:00"
+  },
+  "backpressure": {
+    "httpCode": 200,
+    "body": {
+      "enabled": false,
+      "bestEffort": true,
+      "admitting": true,
+      "reason": "disabled",
+      "pressure": null,
+      "observedAt": null,
+      "sampleAgeSeconds": null
+    },
+    "observedAt": "2026-10-11T16:14:32.917653+00:00"
+  },
+  "eventStatus": {
+    "httpCode": 200,
+    "body": {
+      "relayEnabled": true,
+      "consumerEnabled": true,
+      "outbox": {
+        "pending": 0,
+        "claimed": 0,
+        "published": 188884,
+        "blocked": 0,
+        "expiredClaims": 0,
+        "oldestPendingAgeSeconds": 0.0
+      }
+    },
+    "observedAt": "2026-10-11T16:14:32.959581+00:00"
+  },
+  "projectionReconciliation": {
+    "httpCode": 200,
+    "body": {
+      "completedTransfers": 188884,
+      "processedEvents": 188884,
+      "projectedTransfers": 188884,
+      "quarantinedRecords": 0,
+      "missingProjection": 0,
+      "publishedAwaitingProjection": 0,
+      "inboxWithoutProjection": 0,
+      "projectionWithoutInbox": 0,
+      "activityShapeDiscrepancies": 0,
+      "originDiscrepancies": 0,
+      "discrepancies": 0,
+      "oldestUnprocessedAgeSeconds": null,
+      "lastProcessedAt": "2026-10-11T16:14:13.664836Z",
+      "lastProcessedEventOccurredAt": "2026-10-11T16:14:13.609788Z",
+      "checkedAt": "2026-10-11T16:14:34.278184170Z"
+    },
+    "observedAt": "2026-10-11T16:14:34.279816+00:00"
+  },
+  "eventIdentitySql": {
+    "observedAt": "2026-10-11T16:14:34.421073+00:00",
+    "result": {
+      "eventId": "1b01c1e2-68ff-4658-806b-2dd1d172dc96",
+      "transferId": "30b6041f-0510-4e8f-8e3b-f884f6881f95",
+      "inboxEvents": 1,
+      "activityRows": 2,
+      "outboxEvents": 1,
+      "inboxIdentity": 1,
+      "inboxPosition": {
+        "topic": "tpp.transfer-completed.v1",
+        "offset": 63054,
+        "partition": 2
+      },
+      "ledgerEntries": 2,
+      "ledgerDeltaSum": 0,
+      "outboxPosition": {
+        "topic": "tpp.transfer-completed.v1",
+        "offset": 63054,
+        "partition": 2,
+        "attemptCount": 1
+      },
+      "payloadIdentity": 1,
+      "activityDeltaSum": 0,
+      "completedTransfers": 1,
+      "projectionIdentity": 1,
+      "transferProjections": 1,
+      "runtimeRoleRestricted": true,
+      "pairedActivityIdentity": 2,
+      "publishedOutboxIdentity": 1,
+      "applicationRoleConnections": 3
+    },
+    "executedQuery": "SELECT jsonb_build_object(\n      'transferId','30b6041f-0510-4e8f-8e3b-f884f6881f95', 'eventId','1b01c1e2-68ff-4658-806b-2dd1d172dc96',\n      'completedTransfers',(SELECT count(*) FROM transfers WHERE id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid AND status='COMPLETED'),\n      'ledgerEntries',(SELECT count(*) FROM ledger_entries WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid),\n      'ledgerDeltaSum',(SELECT coalesce(sum(delta),0) FROM ledger_entries WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid),\n      'outboxEvents',(SELECT count(*) FROM outbox_events WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid),\n      'publishedOutboxIdentity',(SELECT count(*) FROM outbox_events WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid AND event_id='1b01c1e2-68ff-4658-806b-2dd1d172dc96'::uuid AND status='PUBLISHED'),\n      'payloadIdentity',(SELECT count(*) FROM outbox_events WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid AND payload->>'eventId'='1b01c1e2-68ff-4658-806b-2dd1d172dc96' AND payload->>'transferId'='30b6041f-0510-4e8f-8e3b-f884f6881f95'),\n      'outboxPosition',(SELECT jsonb_build_object('topic',kafka_topic,'partition',kafka_partition,'offset',kafka_offset,'attemptCount',attempt_count) FROM outbox_events WHERE event_id='1b01c1e2-68ff-4658-806b-2dd1d172dc96'::uuid),\n      'inboxEvents',(SELECT count(*) FROM event_inbox WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid),\n      'inboxIdentity',(SELECT count(*) FROM event_inbox WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid AND event_id='1b01c1e2-68ff-4658-806b-2dd1d172dc96'::uuid),\n      'inboxPosition',(SELECT jsonb_build_object('topic',source_topic,'partition',source_partition,'offset',source_offset) FROM event_inbox WHERE event_id='1b01c1e2-68ff-4658-806b-2dd1d172dc96'::uuid),\n      'transferProjections',(SELECT count(*) FROM transfer_activity_projection WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid),\n      'projectionIdentity',(SELECT count(*) FROM transfer_activity_projection WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid AND event_id='1b01c1e2-68ff-4658-806b-2dd1d172dc96'::uuid AND amount_minor=7),\n      'activityRows',(SELECT count(*) FROM account_activity WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid),\n      'pairedActivityIdentity',(SELECT count(*) FROM account_activity WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid AND event_id='1b01c1e2-68ff-4658-806b-2dd1d172dc96'::uuid AND ((account_id='00000000-0000-0000-0000-000000000002'::uuid AND delta_minor=-7) OR (account_id='00000000-0000-0000-0000-000000000003'::uuid AND delta_minor=7))),\n      'activityDeltaSum',(SELECT coalesce(sum(delta_minor),0) FROM account_activity WHERE transfer_id='30b6041f-0510-4e8f-8e3b-f884f6881f95'::uuid),\n      'applicationRoleConnections',(SELECT count(*) FROM pg_stat_activity WHERE usename='tpp_app' AND client_addr IS NOT NULL),\n      'runtimeRoleRestricted',(SELECT NOT rolsuper AND NOT rolcreatedb AND NOT rolcreaterole AND NOT rolreplication FROM pg_roles WHERE rolname='tpp_app')\n    );"
+  },
+  "committedOffsets": {
+    "complete": true,
+    "observations": [
+      {
+        "observedAt": "2026-10-11T16:14:35.772986+00:00",
+        "exitCode": 0,
+        "output": "\nGROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID\ntpp-activity-v1 tpp.transfer-completed.v1 0          62627           62627           0               tpp-projection-129898a6-f12a-43d6-9a13-44a66ebf584a-773933ed-ea25-47be-8e7e-293a44ec69a5 /172.25.0.4     tpp-projection-129898a6-f12a-43d6-9a13-44a66ebf584a\ntpp-activity-v1 tpp.transfer-completed.v1 1          63202           63202           0               tpp-projection-129898a6-f12a-43d6-9a13-44a66ebf584a-773933ed-ea25-47be-8e7e-293a44ec69a5 /172.25.0.4     tpp-projection-129898a6-f12a-43d6-9a13-44a66ebf584a\ntpp-activity-v1 tpp.transfer-completed.v1 2          63055           63055           0               tpp-projection-129898a6-f12a-43d6-9a13-44a66ebf584a-773933ed-ea25-47be-8e7e-293a44ec69a5 /172.25.0.4     tpp-projection-129898a6-f12a-43d6-9a13-44a66ebf584a\n",
+        "diagnostic": "",
+        "partitions": [
+          {
+            "partition": 0,
+            "committedOffset": 62627,
+            "logEndOffset": 62627,
+            "lag": 0
+          },
+          {
+            "partition": 1,
+            "committedOffset": 63202,
+            "logEndOffset": 63202,
+            "lag": 0
+          },
+          {
+            "partition": 2,
+            "committedOffset": 63055,
+            "logEndOffset": 63055,
+            "lag": 0
+          }
+        ],
+        "complete": true
+      }
+    ],
+    "note": "Independent broker committed-offset checks after SQL/HTTP; all three partitions required"
+  },
+  "finishedAt": "2026-10-11T16:14:35.773135+00:00",
+  "inspectionProgramSha256": "9dceeb99c0362a15443bd00c00b4a51157a81c469badb35af93079cb660f5166",
+  "preservationEvidence": "docs/verification/phase3-final-preservation.json"
+}

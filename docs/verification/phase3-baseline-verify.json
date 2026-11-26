@@ -1,0 +1,78 @@
+{
+  "source_commit": "cba44277524cb6b10c688a225afee9d396dfd135",
+  "baseline_behavior": "Instrumented serial Phase2 relay, default100ms unconditionalpause/per-eventSQL/sendwait; consumer semantics unchanged",
+  "command": "./mvnw -B -ntp -Dmaven.repo.local=/private/tmp/tpp-m2 verify",
+  "java_home": "/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home",
+  "finished_at": "2026-10-11T22:32:48+08:00",
+  "build": "SUCCESS",
+  "tests": 64,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "classes": [
+    {
+      "test_class": "dev.tpp.EventPipelineTest",
+      "tests": 19,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 89.81
+    },
+    {
+      "test_class": "dev.tpp.EventContractTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 0.015
+    },
+    {
+      "test_class": "dev.tpp.OutboxMigrationUpgradeTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 1.887
+    },
+    {
+      "test_class": "dev.tpp.ApiErrorMappingTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 0.007
+    },
+    {
+      "test_class": "dev.tpp.DatabaseErrorsTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 0.001
+    },
+    {
+      "test_class": "dev.tpp.DomainRulesTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 0.003
+    },
+    {
+      "test_class": "dev.tpp.TransferPostgresTest",
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 9.901
+    }
+  ],
+  "spotbugs": {
+    "effort": "Max",
+    "threshold": "Medium",
+    "bugs": 0,
+    "errors": 0
+  },
+  "dependency_checks": "Maven Enforcer dependency convergence and release-only dependency rules passed",
+  "log_source": "/private/tmp/tpp-phase3-instrumentation-verify.log"
+}

@@ -1,0 +1,91 @@
+# Transaction Processing Platform
+
+**A transaction ledger that keeps its financial boundary intact when event delivery fails.**
+
+Java 21 · Spring Boot · PostgreSQL · Apache Kafka · Docker
+
+An independent backend engineering project: exact integer transfers, an immutable double-entry ledger, a transactional outbox and a durable consumer inbox. The system demonstrates **at-least-once delivery with idempotent PostgreSQL effects**. It uses fictional units, one modular application and real dependency tests.
+
+[Run the demo](#run-the-demo) · [Read the engineering story](docs/portfolio-walkthrough.md) · [Inspect the evidence](docs/evidence.md) · [Browse the code](docs/code-map.md)
+
+| Engineering result | Recorded evidence |
+|---|---|
+| **104 checks passed**: 34 unit + 60 real PostgreSQL/Kafka integration + 10 local-Docker guards | [Release candidate verification](docs/verification/release-readiness.json), 14 October 2026 Singapore time; zero failures, errors or skips |
+| **188,884 completed events reconciled** across outbox, inbox and projection | [Historical runtime acceptance](docs/verification/phase3-final-acceptance.json), 12 October 2026; zero discrepancies, backlog or quarantine at that prior snapshot |
+| **28 retained benchmark trials**, including negative results | [Matched methodology](docs/phase3-benchmark-methodology.md) and [performance report](docs/phase3-performance.md) |
+| Recovery across broker outages, relay crashes, uncertain commits and consumer redelivery | [Failure matrix](docs/failure-matrix.md) and [real dependency scenarios](src/test/java/dev/tpp/events/EventPipelineTest.java) |
+
+The final patched app/PostgreSQL/Kafka stack passed both guarded demos and a separate [four-trial security-dependency comparison](docs/security-patch-performance.md): **28,065 scoped events reconciled**, with Kafka offsets caught up and wall/monotonic timing guards passing. The earlier 39,751-event comparison is retained separately with its timing limits. [Release verification](docs/verification/release-readiness.json) and [security assessment](docs/dependency-security.md) distinguish local functional acceptance from residual test-tool risks, host/architecture limits and unexecuted hosted CI.
+
+## The boundaries that matter
+
+![Architecture: the financial transaction commits ledger, balances, result and outbox together; Kafka delivery occurs outside it; the consumer commits inbox and activity before acknowledging offsets.](docs/assets/architecture.svg)
+
+1. **Commit financial state once.** A globally unique idempotency key, ordered database locks and deferred checks protect the transfer result, paired postings, materialized balances and one immutable outbox event in a single PostgreSQL transaction. Repeating a completed or rejected request recovers its durable result; changing its payload returns 409.
+2. **Recover delivery without inventing success.** A bounded asynchronous relay claims leased batches, sends outside SQL and commits fenced publication status. A crash after Kafka accepts a record can cause a duplicate. Late callbacks and expired owners cannot overwrite a newer database claim.
+3. **Apply the projection once.** The consumer atomically commits its inbox identity and paired account activity before advancing Kafka offsets. Poison data instead commits quarantine evidence, with bounded audited replay. Activity never determines spendable balances.
+
+See the [architecture](docs/architecture.md), [ledger invariants](docs/ledger-and-invariants.md), [outbox algorithm](docs/outbox.md), [consumer boundary](docs/consumer-reliability.md) and [ten design decisions](docs/adr/).
+
+## Run the demo
+
+Requires a running Docker daemon with Compose and Python 3. The application builds inside a Java 21 container; host Java is unnecessary.
+
+```sh
+python3 scripts/demo.py
+```
+
+The demo starts its own `tpp-portfolio-demo` Compose project on loopback ports **38080 / 55436 / 39092**, provisions a balanced fictional fixture, checks the restricted runtime database role, then verifies a real transfer, same-key replay, Kafka-derived paired activity and both reconciliations. Its report is saved to `benchmark-results/demo.json`.
+
+```sh
+# Demonstrate durable commit while this demo's Kafka broker is stopped, then recover.
+python3 scripts/demo.py --broker-outage
+
+# Review the commands before starting; adjust ports when necessary.
+python3 scripts/demo.py --dry-run
+
+# Stop this project's containers and retain its complete history.
+python3 scripts/demo.py --stop
+```
+
+Open [the local OpenAPI contract](http://127.0.0.1:38080/openapi.yaml) after startup. [The guided demo](docs/demo.md) explains the expected results, manual API calls, failure boundaries and cleanup. Ports bind to loopback; the development credentials are local fixture values. [Security posture](SECURITY.md) explains the deployment limits.
+
+## A measured optimization, including its cost
+
+The serial relay spent 75.4% of its observed batch-plus-pause time in an explicit polling pause. The bounded batch implementation removes the pause after a fully successful batch and reduces SQL round trips while retaining claim fencing and the outstanding-send bound.
+
+![Four retained ABBA trials: propagation p99 fell from 94–109 seconds to 14.0–14.5 seconds, while committed HTTP throughput fell from 1,220–1,242/s to 1,079–1,084/s.](docs/assets/pipeline-tradeoff.svg)
+
+The chart shows every trial in the independent-pair comparison: **shorter event propagation with roughly 12% lower mean HTTP throughput**. Concurrent publication and projection also consume database resources. All sent requests completed and all effects ultimately reconciled in those four trials.
+
+At 250 scheduled arrivals/s for 30 seconds, the two optimized trials ended their input observations with no publication or processing backlog and 304–314 ms propagation p99. That finite operating point included local client shedding and an inspection failure between trials. At 500/s, consumer backlog still grew. Shared-source trials retained dependency 503s and fixture confounds. These measurements do not establish production capacity or a universal throughput gain.
+
+The measured optimized image uses `66dc7c9`; final verified source `2c859cb` includes a later lifecycle correction and was **not rebenchmarked in that historical optimization study**. The new [security-dependency comparison](docs/security-patch-performance.md) retains current lifecycle code on both images; it does not repeat the old serial-versus-batch experiment. [Raw chart data](docs/assets/pipeline-tradeoff-data.json), [full results](docs/phase3-performance.md), [environment and methodology](docs/phase3-benchmark-methodology.md) and [regeneration instructions](docs/evidence.md#regenerate-the-chart) preserve those distinctions.
+
+## Build, verify and explore
+
+Host development requires a Java 21 JDK and a running Docker daemon. The Maven Wrapper pins Maven 3.9.16 and verifies its distribution checksum.
+
+```sh
+./mvnw -B -ntp clean verify
+python3 -m unittest discover -s scripts -p 'test_*.py'
+python3 scripts/render-showcase.py --check
+```
+
+The full suite uses real PostgreSQL and Kafka, with no H2 fallback or automatic integration skip. [Testing instructions](docs/testing.md) explain the optional real PostgreSQL subset. [GitHub Actions](.github/workflows/ci.yml) is configured to verify, build the image and run both guarded normal and broker-outage demos; configured CI is distinct from executed local evidence.
+
+| Start here | Go deeper |
+|---|---|
+| [Five-minute engineering walkthrough](docs/portfolio-walkthrough.md) | [Code map and reading paths](docs/code-map.md) |
+| [Guided demo](docs/demo.md) | [API and complete operations reference](docs/operations.md) |
+| [Evidence index](docs/evidence.md) | [Benchmark reports and raw measurements](docs/benchmarks/) |
+| [Failure matrix](docs/failure-matrix.md) | [Database concurrency](docs/concurrency.md), [sampled admission](docs/backpressure.md) |
+| [Contributing](CONTRIBUTING.md) | [Security posture](SECURITY.md), [release checklist](docs/release.md) |
+
+## Scope and limits
+
+This is an educational portfolio system licensed [Apache-2.0](LICENSE). It handles no real money or customer data. There is no authentication, authorization, tenant isolation, real payment integration, database failover validation, multi-broker durability validation or automated archive/rebuild path. Compose uses one Kafka broker; `acks=all` therefore acknowledges that one replica. A privileged database owner can bypass protections.
+
+Ledger, outbox, inbox and audit history have no retention policy. Kafka retention can expire unread records; automatic projection rebuild after retention loss is unimplemented. Deferred checks and reconciliation scan history. Optional sampled backlog admission defaults off and allows concurrent overshoot. Local benchmarks describe one shared-host environment.
+
+Next investigations: a tested retention/rebuild design, database and multi-broker recovery experiments, and projection scaling measured against the existing correctness boundaries.

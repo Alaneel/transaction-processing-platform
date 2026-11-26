@@ -1,0 +1,45 @@
+{
+  "startedAt": "2026-10-11T16:13:34.043425+00:00",
+  "sourceCommit": "2c859cb28d3b1898a2a7d25c5c87d7a0a0a3dbe4",
+  "image": "sha256:3da213ca031c1f2aa0c229c35dcce2ee0bd5c719055e4c3186d335127bc5b0ee",
+  "tag": "tpp-phase3-final:2c859cb",
+  "command": [
+    "docker",
+    "compose",
+    "--project-name",
+    "tpp-phase3-validation",
+    "-f",
+    "compose.yaml",
+    "-f",
+    "/private/tmp/tpp-phase3-final-image.yaml",
+    "up",
+    "-d",
+    "--no-deps",
+    "--no-build",
+    "--force-recreate",
+    "--wait",
+    "--wait-timeout",
+    "120",
+    "app"
+  ],
+  "requestedSettings": {
+    "JAVA_TOOL_OPTIONS": "",
+    "EVENTS_RELAY_ENABLED": "true",
+    "EVENTS_CONSUMER_ENABLED": "true",
+    "EVENTS_CONSUMER_MIN_INTERVAL_MS": "0",
+    "EVENTS_RELAY_BATCH_SIZE": "16",
+    "EVENTS_POLL_INTERVAL_MS": "100",
+    "BACKPRESSURE_ENABLED": "false"
+  },
+  "ports": {
+    "DB_PORT": "55434",
+    "APP_PORT": "28080",
+    "KAFKA_PORT": "29092"
+  },
+  "scope": "Only owned Phase 3 app is recreated; DB/Kafka and Phase 1/2 untouched",
+  "complete": true,
+  "finishedAt": "2026-10-11T16:13:45.434754+00:00",
+  "exitCode": 0,
+  "output": "",
+  "diagnostic": " Container tpp-phase3-validation-app-1  Recreate\n Container tpp-phase3-validation-app-1  Recreated\n Container tpp-phase3-validation-app-1  Starting\n Container tpp-phase3-validation-app-1  Started\n Container tpp-phase3-validation-app-1  Waiting\n Container tpp-phase3-validation-app-1  Healthy\n"
+}

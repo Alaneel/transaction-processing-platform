@@ -1,0 +1,203 @@
+{
+  "purpose": "Security-dependency comparison; both app images retain the final bounded relay/lifecycle code",
+  "order": [
+    "baseline",
+    "patched",
+    "patched",
+    "baseline"
+  ],
+  "project": "tpp-release-readiness",
+  "images": {
+    "baseline": "sha256:77a0017c6861dedbcdfb083531a3d3c18e9ee4310d2521800a45e150bb5da590",
+    "patched": "sha256:a4b617d9f24c742406b6973686b652502793cdc2fa9fff4cc240712de5fa3131"
+  },
+  "startedAt": "2026-10-13T15:23:02.778594+00:00",
+  "durationSeconds": 10,
+  "workers": 8,
+  "methodology": "Independent pairs; closed-loop input;150 fixed-arrival warmup requests; fresh balanced fixture per trial",
+  "trials": [
+    {
+      "position": 1,
+      "condition": "baseline",
+      "image": "sha256:77a0017c6861dedbcdfb083531a3d3c18e9ee4310d2521800a45e150bb5da590",
+      "report": "trial-1-baseline.json",
+      "exitCode": 0,
+      "httpErrors": {},
+      "warmupErrors": {},
+      "ledgerReconciliation": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      },
+      "committedKafkaOffsets": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-13T15:23:41.063260+00:00",
+            "partitions": [
+              {
+                "partition": 0,
+                "committed": 2560,
+                "logEnd": 2560,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committed": 2650,
+                "logEnd": 2650,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committed": 2492,
+                "logEnd": 2492,
+                "lag": 0
+              }
+            ]
+          }
+        ]
+      },
+      "complete": true
+    },
+    {
+      "position": 2,
+      "condition": "patched",
+      "image": "sha256:a4b617d9f24c742406b6973686b652502793cdc2fa9fff4cc240712de5fa3131",
+      "report": "trial-2-patched.json",
+      "exitCode": 0,
+      "httpErrors": {},
+      "warmupErrors": {},
+      "ledgerReconciliation": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      },
+      "committedKafkaOffsets": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-13T15:24:22.138041+00:00",
+            "partitions": [
+              {
+                "partition": 0,
+                "committed": 6385,
+                "logEnd": 6385,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committed": 6257,
+                "logEnd": 6257,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committed": 6290,
+                "logEnd": 6290,
+                "lag": 0
+              }
+            ]
+          }
+        ]
+      },
+      "complete": true
+    },
+    {
+      "position": 3,
+      "condition": "patched",
+      "image": "sha256:a4b617d9f24c742406b6973686b652502793cdc2fa9fff4cc240712de5fa3131",
+      "report": "trial-3-patched.json",
+      "exitCode": 0,
+      "httpErrors": {},
+      "warmupErrors": {},
+      "ledgerReconciliation": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      },
+      "committedKafkaOffsets": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-13T15:25:05.665009+00:00",
+            "partitions": [
+              {
+                "partition": 0,
+                "committed": 10126,
+                "logEnd": 10126,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committed": 10150,
+                "logEnd": 10150,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committed": 10044,
+                "logEnd": 10044,
+                "lag": 0
+              }
+            ]
+          }
+        ]
+      },
+      "complete": true
+    },
+    {
+      "position": 4,
+      "condition": "baseline",
+      "image": "sha256:77a0017c6861dedbcdfb083531a3d3c18e9ee4310d2521800a45e150bb5da590",
+      "report": "trial-4-baseline.json",
+      "exitCode": 0,
+      "httpErrors": {},
+      "warmupErrors": {},
+      "ledgerReconciliation": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      },
+      "committedKafkaOffsets": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-13T15:25:48.046888+00:00",
+            "partitions": [
+              {
+                "partition": 0,
+                "committed": 13310,
+                "logEnd": 13310,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committed": 13354,
+                "logEnd": 13354,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committed": 13160,
+                "logEnd": 13160,
+                "lag": 0
+              }
+            ]
+          }
+        ]
+      },
+      "complete": true
+    }
+  ],
+  "complete": true,
+  "finishedAt": "2026-10-13T15:25:48.047341+00:00",
+  "patchedImageRestored": true
+}

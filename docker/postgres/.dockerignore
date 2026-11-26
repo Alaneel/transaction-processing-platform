@@ -1,0 +1,16 @@
+**
+!Dockerfile
+!gosu/
+!gosu/go.mod
+!gosu/go.sum
+!gosu/main.go
+!gosu/setup-user.go
+!gosu/version.go
+!gosu/security_test.go
+!user-fixture/
+!user-fixture/user_test.go
+!licenses/
+!licenses/gosu-LICENSE
+!licenses/user-LICENSE
+!licenses/sys-LICENSE
+!licenses/sys-PATENTS

@@ -1,0 +1,78 @@
+{
+  "recordedAt": "2026-10-11T15:44:22.682332+00:00",
+  "purpose": "Detect the measured implementation lifecycle race, then verify its minimal correction.",
+  "defect": "start can pass the stop-in-progress guard before stop CAS, install a new worker while stop waits for the shared monitor, and overwrite eager stop flags. The original stop captured only the prior worker and could miss the current live worker.",
+  "fix": "Retain eager stop fencing and initial interruptions. Under the start/producer monitor, reassert stopping=true and running=false, recapture current coordinator/worker and detach producer. Interrupt the recaptured threads, then close/join outside the monitor within the existing combined deadline.",
+  "schedulingRegressionLimit": "Test-only reflective writes under the lifecycle monitor explicitly model an admitted start finishing after the initial stop capture. This is deterministic lifecycle scheduling evidence, not an actual Kafka fault experiment or a production fault hook.",
+  "realGreenBehavior": "After the modeled worker is interrupted/joined and stopped flags restored, the same relay instance starts normally and publishes a fresh real HTTP completion through actual Kafka. Stable event identity, exactly one projected effect/paired activity, committed offset progress and ledger/outbox reconciliation pass. The separate outstanding-send shutdown case uses actual broker stop and real send work.",
+  "dependencies": {
+    "java": "21",
+    "postgres": "17.11-alpine",
+    "kafka": "apache/kafka:4.3.1"
+  },
+  "measuredProvenance": {
+    "optimizedSourceCommit": "66dc7c9cbcdd312f9df5ed427520bc398d7696a0",
+    "optimizedImage": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+    "controlledHarnessCommit": "b11a593c7ec2f47252495a2af000de274d9872fd",
+    "note": "All 28 measured load/drain/offset windows finished before this test/fix was applied. Final corrected source is a lifecycle-only production change and was not benchmarked again."
+  },
+  "red": {
+    "phase": "red test only",
+    "productionFile": "src/main/java/dev/tpp/events/relay/OutboxRelay.java",
+    "productionSha256": "58748004b93dcf4fc08e4c9d33b7680ccf055530d7ca6bf8912c43eb599eefdd",
+    "testFile": "src/test/java/dev/tpp/events/EventPipelineTest.java",
+    "testSha256": "b2b6e4015d0266c3fccf74ab90483736493adaa9963e0fa4d8fcab5fe8090691",
+    "note": "New scheduling regression added; production remains the measured relay implementation.",
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "method": "stopRecapturesAnAdmittedStartWorkerAndSameInstanceRestartPublishesRealEvent",
+    "failureMessage": "\nExpecting value to be true but was false",
+    "failureType": "org.opentest4j.AssertionFailedError",
+    "log": "/private/tmp/tpp-phase3-lifecycle-red.log",
+    "surefire": "/private/tmp/tpp-phase3-lifecycle-red-surefire.xml",
+    "cleanup": "Test-controlled worker interrupted/joined in finally; real application/database/container cleanup completed and Maven exited normally with the expected test failure.",
+    "tests": 1,
+    "mavenExitCode": 1,
+    "expectedFailure": true,
+    "command": "JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home MAVEN_USER_HOME=/private/tmp/tpp-maven-wrapper ./mvnw -B -ntp -Dmaven.repo.local=/private/tmp/tpp-m2 '-Dtest=EventPipelineTest#stopRecapturesAnAdmittedStartWorkerAndSameInstanceRestartPublishesRealEvent' test",
+    "logSha256": "c2a0031ccb69d4f5eeb6475a377a7090e4cd2d9f51c7fed2a1267866e89f188f",
+    "surefireSha256": "069b81aea064b327651f0ac5167201808d34fbb636c68384c424b3a213e7be3c"
+  },
+  "green": {
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suiteSeconds": 35.799,
+    "cases": [
+      {
+        "name": "stopRecapturesAnAdmittedStartWorkerAndSameInstanceRestartPublishesRealEvent",
+        "seconds": 4.963
+      },
+      {
+        "name": "shutdownWithActualOutstandingProducerWorkIsBoundedAndPreservesRetryEligibility",
+        "seconds": 26.22
+      }
+    ],
+    "mavenExitCode": 0,
+    "log": "/private/tmp/tpp-phase3-lifecycle-green.log",
+    "surefire": "/private/tmp/tpp-phase3-lifecycle-green-surefire.xml",
+    "productionSha256": "ec191c623cee90bbe88c2d5132a5511c870abb25080edb13a7d4f9c01b1df3ed",
+    "testSha256": "b2b6e4015d0266c3fccf74ab90483736493adaa9963e0fa4d8fcab5fe8090691",
+    "command": "JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home MAVEN_USER_HOME=/private/tmp/tpp-maven-wrapper ./mvnw -B -ntp -Dmaven.repo.local=/private/tmp/tpp-m2 '-Dtest=EventPipelineTest#stopRecapturesAnAdmittedStartWorkerAndSameInstanceRestartPublishesRealEvent+shutdownWithActualOutstandingProducerWorkIsBoundedAndPreservesRetryEligibility' test",
+    "logSha256": "27b8ba20455c580cb648c704d05c078f33fba61f4e4f77e5d82d1882a705da75",
+    "surefireSha256": "9fdbb4a75c9e00dfea31ad933cba612fb5270c5cdaccf6cf38d520dbd605c0e9"
+  },
+  "finalSuiteExpected": {
+    "tests": 94,
+    "unit": 34,
+    "realDependencyIntegration": 60,
+    "status": "Final clean/static/dependency verification remains a separate parent gate"
+  },
+  "cleanup": "Both executions reached Maven completion. Test finally interrupts/joins only the controlled worker; normal suite cleanup closes application contexts, drops its isolated database and stops only suite-owned containers.",
+  "confidenceLimits": [
+    "OS/JVM DNS construction can still hold the producer/start monitor beyond the tested shutdown bound.",
+    "Finite scheduled tests do not prove every possible lifecycle interleaving."
+  ]
+}

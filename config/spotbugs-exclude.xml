@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+  <!-- Spring owns shared JdbcTemplate/MeterRegistry instances. Copying injected
+       infrastructure would break connection/metric identity, not improve isolation. -->
+  <Match>
+    <Field type="org.springframework.jdbc.core.JdbcTemplate"/>
+    <Bug pattern="EI_EXPOSE_REP2"/>
+  </Match>
+  <Match>
+    <Field type="io.micrometer.core.instrument.MeterRegistry"/>
+    <Bug pattern="EI_EXPOSE_REP2"/>
+  </Match>
+  <!-- These two Spring components share the injected repository by design.
+       OutboxStore owns its bounded transactions; copying it would not isolate
+       database state and would break the managed repository's identity. -->
+  <Match>
+    <Class name="~dev\.tpp\.events\.relay\.Outbox(Monitor|Relay)"/>
+    <Field name="store" type="dev.tpp.events.relay.OutboxStore"/>
+    <Bug pattern="EI_EXPOSE_REP2"/>
+  </Match>
+  <!-- Exact ASCII whitelist [A-Za-z0-9._:-]{1,128} rejects CR/LF and all
+       control characters before this value is written into the response header. -->
+  <Match>
+    <Class name="dev.tpp.http.CorrelationFilter"/>
+    <Method name="doFilterInternal"/>
+    <Bug pattern="HRS_REQUEST_PARAMETER_TO_HTTP_HEADER"/>
+  </Match>
+</FindBugsFilter>

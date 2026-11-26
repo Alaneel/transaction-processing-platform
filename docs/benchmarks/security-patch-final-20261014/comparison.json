@@ -1,0 +1,2407 @@
+{
+  "purpose": "Security-dependency comparison; both app images retain the final bounded relay/lifecycle code",
+  "order": [
+    "baseline",
+    "patched",
+    "patched",
+    "baseline"
+  ],
+  "project": "tpp-release-readiness",
+  "images": {
+    "baseline": "sha256:4a76ec9fec2af937095a5cc0cdb17fb10724596d24f28f09c2305f435ebdf2b1",
+    "patched": "sha256:c2b35c339d32b795ba82ad27df7d24aa5d629dd98c5958233f779ea705c37751"
+  },
+  "startedAt": "2026-10-14T13:12:24.334547+00:00",
+  "durationSeconds": 10,
+  "workers": 8,
+  "methodology": "Independent pairs; closed-loop input;150 fixed-arrival warmup requests; fresh balanced fixture per trial",
+  "trials": [
+    {
+      "position": 1,
+      "condition": "baseline",
+      "image": "sha256:4a76ec9fec2af937095a5cc0cdb17fb10724596d24f28f09c2305f435ebdf2b1",
+      "report": "trial-1-baseline.json",
+      "exitCode": 0,
+      "clockGuard": {
+        "valid": true,
+        "toleranceSeconds": 1.0,
+        "sampleIntervalSeconds": 0.25,
+        "wallElapsedSeconds": 35.39575695991516,
+        "monotonicElapsedSeconds": 35.395441583998036,
+        "peakCumulativeDiscontinuitySeconds": 0.0003153759171254933,
+        "failures": [],
+        "samples": [
+          {
+            "wallSeconds": 1791983556.178802,
+            "monotonicSeconds": 365893.061218041
+          },
+          {
+            "wallSeconds": 1791983556.4292638,
+            "monotonicSeconds": 365893.311677791
+          },
+          {
+            "wallSeconds": 1791983556.6843781,
+            "monotonicSeconds": 365893.566789291
+          },
+          {
+            "wallSeconds": 1791983556.93579,
+            "monotonicSeconds": 365893.818198875
+          },
+          {
+            "wallSeconds": 1791983557.1859431,
+            "monotonicSeconds": 365894.068349125
+          },
+          {
+            "wallSeconds": 1791983557.436619,
+            "monotonicSeconds": 365894.319023875
+          },
+          {
+            "wallSeconds": 1791983557.6877089,
+            "monotonicSeconds": 365894.570111333
+          },
+          {
+            "wallSeconds": 1791983557.9427898,
+            "monotonicSeconds": 365894.82518975
+          },
+          {
+            "wallSeconds": 1791983558.193749,
+            "monotonicSeconds": 365895.076146458
+          },
+          {
+            "wallSeconds": 1791983558.447747,
+            "monotonicSeconds": 365895.330142875
+          },
+          {
+            "wallSeconds": 1791983558.701947,
+            "monotonicSeconds": 365895.58434
+          },
+          {
+            "wallSeconds": 1791983558.953738,
+            "monotonicSeconds": 365895.836129541
+          },
+          {
+            "wallSeconds": 1791983559.208792,
+            "monotonicSeconds": 365896.09118125
+          },
+          {
+            "wallSeconds": 1791983559.460546,
+            "monotonicSeconds": 365896.342932666
+          },
+          {
+            "wallSeconds": 1791983559.711243,
+            "monotonicSeconds": 365896.593627875
+          },
+          {
+            "wallSeconds": 1791983559.9633632,
+            "monotonicSeconds": 365896.845745208
+          },
+          {
+            "wallSeconds": 1791983560.213716,
+            "monotonicSeconds": 365897.096095958
+          },
+          {
+            "wallSeconds": 1791983560.4645061,
+            "monotonicSeconds": 365897.346883541
+          },
+          {
+            "wallSeconds": 1791983560.7150562,
+            "monotonicSeconds": 365897.597432
+          },
+          {
+            "wallSeconds": 1791983560.970416,
+            "monotonicSeconds": 365897.852788875
+          },
+          {
+            "wallSeconds": 1791983561.2209642,
+            "monotonicSeconds": 365898.103335041
+          },
+          {
+            "wallSeconds": 1791983561.474147,
+            "monotonicSeconds": 365898.356516333
+          },
+          {
+            "wallSeconds": 1791983561.7284648,
+            "monotonicSeconds": 365898.610831583
+          },
+          {
+            "wallSeconds": 1791983561.979897,
+            "monotonicSeconds": 365898.862261041
+          },
+          {
+            "wallSeconds": 1791983562.231742,
+            "monotonicSeconds": 365899.114103958
+          },
+          {
+            "wallSeconds": 1791983562.485875,
+            "monotonicSeconds": 365899.368235375
+          },
+          {
+            "wallSeconds": 1791983562.739281,
+            "monotonicSeconds": 365899.621639291
+          },
+          {
+            "wallSeconds": 1791983562.993321,
+            "monotonicSeconds": 365899.875675833
+          },
+          {
+            "wallSeconds": 1791983563.2456288,
+            "monotonicSeconds": 365900.127981458
+          },
+          {
+            "wallSeconds": 1791983563.496885,
+            "monotonicSeconds": 365900.379235833
+          },
+          {
+            "wallSeconds": 1791983563.747342,
+            "monotonicSeconds": 365900.629690791
+          },
+          {
+            "wallSeconds": 1791983563.998061,
+            "monotonicSeconds": 365900.880407583
+          },
+          {
+            "wallSeconds": 1791983564.2486022,
+            "monotonicSeconds": 365901.130945875
+          },
+          {
+            "wallSeconds": 1791983564.503849,
+            "monotonicSeconds": 365901.386190666
+          },
+          {
+            "wallSeconds": 1791983564.7558541,
+            "monotonicSeconds": 365901.638194
+          },
+          {
+            "wallSeconds": 1791983565.006928,
+            "monotonicSeconds": 365901.889264791
+          },
+          {
+            "wallSeconds": 1791983565.260503,
+            "monotonicSeconds": 365902.142837708
+          },
+          {
+            "wallSeconds": 1791983565.5108979,
+            "monotonicSeconds": 365902.393230958
+          },
+          {
+            "wallSeconds": 1791983565.764533,
+            "monotonicSeconds": 365902.646867541
+          },
+          {
+            "wallSeconds": 1791983566.01482,
+            "monotonicSeconds": 365902.897148375
+          },
+          {
+            "wallSeconds": 1791983566.265239,
+            "monotonicSeconds": 365903.147564416
+          },
+          {
+            "wallSeconds": 1791983566.518966,
+            "monotonicSeconds": 365903.401290291
+          },
+          {
+            "wallSeconds": 1791983566.772907,
+            "monotonicSeconds": 365903.655228
+          },
+          {
+            "wallSeconds": 1791983567.024391,
+            "monotonicSeconds": 365903.9067105
+          },
+          {
+            "wallSeconds": 1791983567.274633,
+            "monotonicSeconds": 365904.156950208
+          },
+          {
+            "wallSeconds": 1791983567.526905,
+            "monotonicSeconds": 365904.409220291
+          },
+          {
+            "wallSeconds": 1791983567.781662,
+            "monotonicSeconds": 365904.663974125
+          },
+          {
+            "wallSeconds": 1791983568.0328739,
+            "monotonicSeconds": 365904.915183833
+          },
+          {
+            "wallSeconds": 1791983568.2857978,
+            "monotonicSeconds": 365905.168106416
+          },
+          {
+            "wallSeconds": 1791983568.536652,
+            "monotonicSeconds": 365905.418957875
+          },
+          {
+            "wallSeconds": 1791983568.786995,
+            "monotonicSeconds": 365905.669298083
+          },
+          {
+            "wallSeconds": 1791983569.041885,
+            "monotonicSeconds": 365905.924186041
+          },
+          {
+            "wallSeconds": 1791983569.293727,
+            "monotonicSeconds": 365906.176025791
+          },
+          {
+            "wallSeconds": 1791983569.5439072,
+            "monotonicSeconds": 365906.426203333
+          },
+          {
+            "wallSeconds": 1791983569.7951329,
+            "monotonicSeconds": 365906.677428041
+          },
+          {
+            "wallSeconds": 1791983570.0456488,
+            "monotonicSeconds": 365906.927941375
+          },
+          {
+            "wallSeconds": 1791983570.2966442,
+            "monotonicSeconds": 365907.178933416
+          },
+          {
+            "wallSeconds": 1791983570.547772,
+            "monotonicSeconds": 365907.43006025
+          },
+          {
+            "wallSeconds": 1791983570.803006,
+            "monotonicSeconds": 365907.685291208
+          },
+          {
+            "wallSeconds": 1791983571.056094,
+            "monotonicSeconds": 365907.938377208
+          },
+          {
+            "wallSeconds": 1791983571.307153,
+            "monotonicSeconds": 365908.189434416
+          },
+          {
+            "wallSeconds": 1791983571.560353,
+            "monotonicSeconds": 365908.442631791
+          },
+          {
+            "wallSeconds": 1791983571.812758,
+            "monotonicSeconds": 365908.695035
+          },
+          {
+            "wallSeconds": 1791983572.066157,
+            "monotonicSeconds": 365908.948431958
+          },
+          {
+            "wallSeconds": 1791983572.3186328,
+            "monotonicSeconds": 365909.200905458
+          },
+          {
+            "wallSeconds": 1791983572.568887,
+            "monotonicSeconds": 365909.451156625
+          },
+          {
+            "wallSeconds": 1791983572.823384,
+            "monotonicSeconds": 365909.705651291
+          },
+          {
+            "wallSeconds": 1791983573.07571,
+            "monotonicSeconds": 365909.957974875
+          },
+          {
+            "wallSeconds": 1791983573.326682,
+            "monotonicSeconds": 365910.2089445
+          },
+          {
+            "wallSeconds": 1791983573.580837,
+            "monotonicSeconds": 365910.46309725
+          },
+          {
+            "wallSeconds": 1791983573.832675,
+            "monotonicSeconds": 365910.714933708
+          },
+          {
+            "wallSeconds": 1791983574.083113,
+            "monotonicSeconds": 365910.965369583
+          },
+          {
+            "wallSeconds": 1791983574.33377,
+            "monotonicSeconds": 365911.216024458
+          },
+          {
+            "wallSeconds": 1791983574.58385,
+            "monotonicSeconds": 365911.466101291
+          },
+          {
+            "wallSeconds": 1791983574.835135,
+            "monotonicSeconds": 365911.717384333
+          },
+          {
+            "wallSeconds": 1791983575.085678,
+            "monotonicSeconds": 365911.967925166
+          },
+          {
+            "wallSeconds": 1791983575.337729,
+            "monotonicSeconds": 365912.219974166
+          },
+          {
+            "wallSeconds": 1791983575.5885272,
+            "monotonicSeconds": 365912.47077
+          },
+          {
+            "wallSeconds": 1791983575.8389351,
+            "monotonicSeconds": 365912.721175875
+          },
+          {
+            "wallSeconds": 1791983576.089817,
+            "monotonicSeconds": 365912.972057041
+          },
+          {
+            "wallSeconds": 1791983576.3401039,
+            "monotonicSeconds": 365913.222339875
+          },
+          {
+            "wallSeconds": 1791983576.5917099,
+            "monotonicSeconds": 365913.4739435
+          },
+          {
+            "wallSeconds": 1791983576.843586,
+            "monotonicSeconds": 365913.7258175
+          },
+          {
+            "wallSeconds": 1791983577.096237,
+            "monotonicSeconds": 365913.978466833
+          },
+          {
+            "wallSeconds": 1791983577.351294,
+            "monotonicSeconds": 365914.233520875
+          },
+          {
+            "wallSeconds": 1791983577.601604,
+            "monotonicSeconds": 365914.483829208
+          },
+          {
+            "wallSeconds": 1791983577.8530629,
+            "monotonicSeconds": 365914.735286375
+          },
+          {
+            "wallSeconds": 1791983578.103874,
+            "monotonicSeconds": 365914.986094791
+          },
+          {
+            "wallSeconds": 1791983578.355961,
+            "monotonicSeconds": 365915.238179291
+          },
+          {
+            "wallSeconds": 1791983578.607166,
+            "monotonicSeconds": 365915.489382
+          },
+          {
+            "wallSeconds": 1791983578.8606012,
+            "monotonicSeconds": 365915.742816375
+          },
+          {
+            "wallSeconds": 1791983579.112106,
+            "monotonicSeconds": 365915.994318541
+          },
+          {
+            "wallSeconds": 1791983579.366789,
+            "monotonicSeconds": 365916.248998666
+          },
+          {
+            "wallSeconds": 1791983579.617406,
+            "monotonicSeconds": 365916.499613208
+          },
+          {
+            "wallSeconds": 1791983579.867597,
+            "monotonicSeconds": 365916.749801958
+          },
+          {
+            "wallSeconds": 1791983580.1185431,
+            "monotonicSeconds": 365917.000745541
+          },
+          {
+            "wallSeconds": 1791983580.368638,
+            "monotonicSeconds": 365917.250838625
+          },
+          {
+            "wallSeconds": 1791983580.623167,
+            "monotonicSeconds": 365917.50536575
+          },
+          {
+            "wallSeconds": 1791983580.873291,
+            "monotonicSeconds": 365917.755487875
+          },
+          {
+            "wallSeconds": 1791983581.127959,
+            "monotonicSeconds": 365918.010154541
+          },
+          {
+            "wallSeconds": 1791983581.380723,
+            "monotonicSeconds": 365918.262913583
+          },
+          {
+            "wallSeconds": 1791983581.6309912,
+            "monotonicSeconds": 365918.513179916
+          },
+          {
+            "wallSeconds": 1791983581.886034,
+            "monotonicSeconds": 365918.76822075
+          },
+          {
+            "wallSeconds": 1791983582.136309,
+            "monotonicSeconds": 365919.018493875
+          },
+          {
+            "wallSeconds": 1791983582.38796,
+            "monotonicSeconds": 365919.270142875
+          },
+          {
+            "wallSeconds": 1791983582.639898,
+            "monotonicSeconds": 365919.522078083
+          },
+          {
+            "wallSeconds": 1791983582.890878,
+            "monotonicSeconds": 365919.773056625
+          },
+          {
+            "wallSeconds": 1791983583.142735,
+            "monotonicSeconds": 365920.0249105
+          },
+          {
+            "wallSeconds": 1791983583.397776,
+            "monotonicSeconds": 365920.279949041
+          },
+          {
+            "wallSeconds": 1791983583.648988,
+            "monotonicSeconds": 365920.531158625
+          },
+          {
+            "wallSeconds": 1791983583.900234,
+            "monotonicSeconds": 365920.782403083
+          },
+          {
+            "wallSeconds": 1791983584.150809,
+            "monotonicSeconds": 365921.032975416
+          },
+          {
+            "wallSeconds": 1791983584.402339,
+            "monotonicSeconds": 365921.284502916
+          },
+          {
+            "wallSeconds": 1791983584.656151,
+            "monotonicSeconds": 365921.538313333
+          },
+          {
+            "wallSeconds": 1791983584.906514,
+            "monotonicSeconds": 365921.788673291
+          },
+          {
+            "wallSeconds": 1791983585.1570702,
+            "monotonicSeconds": 365922.039228083
+          },
+          {
+            "wallSeconds": 1791983585.411137,
+            "monotonicSeconds": 365922.293292125
+          },
+          {
+            "wallSeconds": 1791983585.662517,
+            "monotonicSeconds": 365922.544669416
+          },
+          {
+            "wallSeconds": 1791983585.914927,
+            "monotonicSeconds": 365922.797078125
+          },
+          {
+            "wallSeconds": 1791983586.166395,
+            "monotonicSeconds": 365923.048544041
+          },
+          {
+            "wallSeconds": 1791983586.4169118,
+            "monotonicSeconds": 365923.299058208
+          },
+          {
+            "wallSeconds": 1791983586.667001,
+            "monotonicSeconds": 365923.549145458
+          },
+          {
+            "wallSeconds": 1791983586.918765,
+            "monotonicSeconds": 365923.800906375
+          },
+          {
+            "wallSeconds": 1791983587.172908,
+            "monotonicSeconds": 365924.055046958
+          },
+          {
+            "wallSeconds": 1791983587.4241998,
+            "monotonicSeconds": 365924.306336833
+          },
+          {
+            "wallSeconds": 1791983587.67574,
+            "monotonicSeconds": 365924.557874708
+          },
+          {
+            "wallSeconds": 1791983587.925985,
+            "monotonicSeconds": 365924.808117916
+          },
+          {
+            "wallSeconds": 1791983588.1760378,
+            "monotonicSeconds": 365925.058168375
+          },
+          {
+            "wallSeconds": 1791983588.426262,
+            "monotonicSeconds": 365925.30839
+          },
+          {
+            "wallSeconds": 1791983588.680275,
+            "monotonicSeconds": 365925.562401291
+          },
+          {
+            "wallSeconds": 1791983588.930399,
+            "monotonicSeconds": 365925.812522666
+          },
+          {
+            "wallSeconds": 1791983589.181103,
+            "monotonicSeconds": 365926.063225583
+          },
+          {
+            "wallSeconds": 1791983589.4359071,
+            "monotonicSeconds": 365926.318026541
+          },
+          {
+            "wallSeconds": 1791983589.6907399,
+            "monotonicSeconds": 365926.572857041
+          },
+          {
+            "wallSeconds": 1791983589.940806,
+            "monotonicSeconds": 365926.822921875
+          },
+          {
+            "wallSeconds": 1791983590.193959,
+            "monotonicSeconds": 365927.076071791
+          },
+          {
+            "wallSeconds": 1791983590.447975,
+            "monotonicSeconds": 365927.330084791
+          },
+          {
+            "wallSeconds": 1791983590.6992052,
+            "monotonicSeconds": 365927.581312833
+          },
+          {
+            "wallSeconds": 1791983590.952987,
+            "monotonicSeconds": 365927.835092416
+          },
+          {
+            "wallSeconds": 1791983591.20318,
+            "monotonicSeconds": 365928.085283875
+          },
+          {
+            "wallSeconds": 1791983591.45399,
+            "monotonicSeconds": 365928.336091375
+          },
+          {
+            "wallSeconds": 1791983591.574559,
+            "monotonicSeconds": 365928.456659625
+          }
+        ]
+      },
+      "httpErrors": {},
+      "warmupErrors": {},
+      "ledgerReconciliation": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      },
+      "committedKafkaOffsets": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-14T13:13:13.158640+00:00",
+            "partitions": [
+              {
+                "partition": 0,
+                "committed": 15614,
+                "logEnd": 15614,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committed": 15715,
+                "logEnd": 15715,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committed": 15542,
+                "logEnd": 15542,
+                "lag": 0
+              }
+            ]
+          }
+        ]
+      },
+      "complete": true
+    },
+    {
+      "position": 2,
+      "condition": "patched",
+      "image": "sha256:c2b35c339d32b795ba82ad27df7d24aa5d629dd98c5958233f779ea705c37751",
+      "report": "trial-2-patched.json",
+      "exitCode": 0,
+      "clockGuard": {
+        "valid": true,
+        "toleranceSeconds": 1.0,
+        "sampleIntervalSeconds": 0.25,
+        "wallElapsedSeconds": 33.32003307342529,
+        "monotonicElapsedSeconds": 33.31973654200556,
+        "peakCumulativeDiscontinuitySeconds": 0.00029665406327694654,
+        "failures": [],
+        "samples": [
+          {
+            "wallSeconds": 1791983604.935061,
+            "monotonicSeconds": 365941.817041958
+          },
+          {
+            "wallSeconds": 1791983605.1868649,
+            "monotonicSeconds": 365942.068845375
+          },
+          {
+            "wallSeconds": 1791983605.441133,
+            "monotonicSeconds": 365942.32311075
+          },
+          {
+            "wallSeconds": 1791983605.6956139,
+            "monotonicSeconds": 365942.577589291
+          },
+          {
+            "wallSeconds": 1791983605.948779,
+            "monotonicSeconds": 365942.830750708
+          },
+          {
+            "wallSeconds": 1791983606.204206,
+            "monotonicSeconds": 365943.086176166
+          },
+          {
+            "wallSeconds": 1791983606.456241,
+            "monotonicSeconds": 365943.338208875
+          },
+          {
+            "wallSeconds": 1791983606.7084758,
+            "monotonicSeconds": 365943.590441791
+          },
+          {
+            "wallSeconds": 1791983606.96278,
+            "monotonicSeconds": 365943.844743291
+          },
+          {
+            "wallSeconds": 1791983607.214956,
+            "monotonicSeconds": 365944.096916666
+          },
+          {
+            "wallSeconds": 1791983607.4692311,
+            "monotonicSeconds": 365944.351189833
+          },
+          {
+            "wallSeconds": 1791983607.7205372,
+            "monotonicSeconds": 365944.602493458
+          },
+          {
+            "wallSeconds": 1791983607.972203,
+            "monotonicSeconds": 365944.854157291
+          },
+          {
+            "wallSeconds": 1791983608.222822,
+            "monotonicSeconds": 365945.104773666
+          },
+          {
+            "wallSeconds": 1791983608.473804,
+            "monotonicSeconds": 365945.355754166
+          },
+          {
+            "wallSeconds": 1791983608.72502,
+            "monotonicSeconds": 365945.606967625
+          },
+          {
+            "wallSeconds": 1791983608.9790652,
+            "monotonicSeconds": 365945.861010458
+          },
+          {
+            "wallSeconds": 1791983609.2307808,
+            "monotonicSeconds": 365946.112724791
+          },
+          {
+            "wallSeconds": 1791983609.4841979,
+            "monotonicSeconds": 365946.36613825
+          },
+          {
+            "wallSeconds": 1791983609.736396,
+            "monotonicSeconds": 365946.61833425
+          },
+          {
+            "wallSeconds": 1791983609.989202,
+            "monotonicSeconds": 365946.871138541
+          },
+          {
+            "wallSeconds": 1791983610.2408268,
+            "monotonicSeconds": 365947.122760708
+          },
+          {
+            "wallSeconds": 1791983610.492151,
+            "monotonicSeconds": 365947.374082416
+          },
+          {
+            "wallSeconds": 1791983610.744738,
+            "monotonicSeconds": 365947.626667541
+          },
+          {
+            "wallSeconds": 1791983610.9953978,
+            "monotonicSeconds": 365947.877325583
+          },
+          {
+            "wallSeconds": 1791983611.2480419,
+            "monotonicSeconds": 365948.129967083
+          },
+          {
+            "wallSeconds": 1791983611.49951,
+            "monotonicSeconds": 365948.381433791
+          },
+          {
+            "wallSeconds": 1791983611.754464,
+            "monotonicSeconds": 365948.636385166
+          },
+          {
+            "wallSeconds": 1791983612.0077178,
+            "monotonicSeconds": 365948.889636125
+          },
+          {
+            "wallSeconds": 1791983612.258131,
+            "monotonicSeconds": 365949.140046708
+          },
+          {
+            "wallSeconds": 1791983612.508186,
+            "monotonicSeconds": 365949.390099458
+          },
+          {
+            "wallSeconds": 1791983612.759718,
+            "monotonicSeconds": 365949.641629875
+          },
+          {
+            "wallSeconds": 1791983613.010491,
+            "monotonicSeconds": 365949.892400291
+          },
+          {
+            "wallSeconds": 1791983613.2610009,
+            "monotonicSeconds": 365950.1429085
+          },
+          {
+            "wallSeconds": 1791983613.515091,
+            "monotonicSeconds": 365950.39699575
+          },
+          {
+            "wallSeconds": 1791983613.766521,
+            "monotonicSeconds": 365950.648424291
+          },
+          {
+            "wallSeconds": 1791983614.017223,
+            "monotonicSeconds": 365950.899123333
+          },
+          {
+            "wallSeconds": 1791983614.271997,
+            "monotonicSeconds": 365951.153895208
+          },
+          {
+            "wallSeconds": 1791983614.5238242,
+            "monotonicSeconds": 365951.405719416
+          },
+          {
+            "wallSeconds": 1791983614.7746592,
+            "monotonicSeconds": 365951.656552416
+          },
+          {
+            "wallSeconds": 1791983615.025035,
+            "monotonicSeconds": 365951.906926208
+          },
+          {
+            "wallSeconds": 1791983615.275701,
+            "monotonicSeconds": 365952.157590333
+          },
+          {
+            "wallSeconds": 1791983615.528888,
+            "monotonicSeconds": 365952.41077525
+          },
+          {
+            "wallSeconds": 1791983615.779478,
+            "monotonicSeconds": 365952.661367708
+          },
+          {
+            "wallSeconds": 1791983616.0329669,
+            "monotonicSeconds": 365952.914848916
+          },
+          {
+            "wallSeconds": 1791983616.283072,
+            "monotonicSeconds": 365953.1649515
+          },
+          {
+            "wallSeconds": 1791983616.534183,
+            "monotonicSeconds": 365953.416060541
+          },
+          {
+            "wallSeconds": 1791983616.785426,
+            "monotonicSeconds": 365953.667302291
+          },
+          {
+            "wallSeconds": 1791983617.036161,
+            "monotonicSeconds": 365953.918035333
+          },
+          {
+            "wallSeconds": 1791983617.287762,
+            "monotonicSeconds": 365954.169633291
+          },
+          {
+            "wallSeconds": 1791983617.543333,
+            "monotonicSeconds": 365954.42520225
+          },
+          {
+            "wallSeconds": 1791983617.7942138,
+            "monotonicSeconds": 365954.676080208
+          },
+          {
+            "wallSeconds": 1791983618.0484369,
+            "monotonicSeconds": 365954.930300875
+          },
+          {
+            "wallSeconds": 1791983618.30097,
+            "monotonicSeconds": 365955.182831833
+          },
+          {
+            "wallSeconds": 1791983618.552733,
+            "monotonicSeconds": 365955.434593375
+          },
+          {
+            "wallSeconds": 1791983618.8034182,
+            "monotonicSeconds": 365955.685276791
+          },
+          {
+            "wallSeconds": 1791983619.056895,
+            "monotonicSeconds": 365955.938750916
+          },
+          {
+            "wallSeconds": 1791983619.310669,
+            "monotonicSeconds": 365956.192521875
+          },
+          {
+            "wallSeconds": 1791983619.563715,
+            "monotonicSeconds": 365956.445566083
+          },
+          {
+            "wallSeconds": 1791983619.814294,
+            "monotonicSeconds": 365956.696142833
+          },
+          {
+            "wallSeconds": 1791983620.073987,
+            "monotonicSeconds": 365956.9558335
+          },
+          {
+            "wallSeconds": 1791983620.3258932,
+            "monotonicSeconds": 365957.2077375
+          },
+          {
+            "wallSeconds": 1791983620.57915,
+            "monotonicSeconds": 365957.460991583
+          },
+          {
+            "wallSeconds": 1791983620.830074,
+            "monotonicSeconds": 365957.711913708
+          },
+          {
+            "wallSeconds": 1791983621.0822122,
+            "monotonicSeconds": 365957.964050458
+          },
+          {
+            "wallSeconds": 1791983621.333035,
+            "monotonicSeconds": 365958.214870375
+          },
+          {
+            "wallSeconds": 1791983621.584367,
+            "monotonicSeconds": 365958.466199833
+          },
+          {
+            "wallSeconds": 1791983621.836277,
+            "monotonicSeconds": 365958.718108333
+          },
+          {
+            "wallSeconds": 1791983622.0894442,
+            "monotonicSeconds": 365958.971271958
+          },
+          {
+            "wallSeconds": 1791983622.3412821,
+            "monotonicSeconds": 365959.223107833
+          },
+          {
+            "wallSeconds": 1791983622.59236,
+            "monotonicSeconds": 365959.474183541
+          },
+          {
+            "wallSeconds": 1791983622.8432581,
+            "monotonicSeconds": 365959.72508
+          },
+          {
+            "wallSeconds": 1791983623.098284,
+            "monotonicSeconds": 365959.980103
+          },
+          {
+            "wallSeconds": 1791983623.3511171,
+            "monotonicSeconds": 365960.232934416
+          },
+          {
+            "wallSeconds": 1791983623.602614,
+            "monotonicSeconds": 365960.484428583
+          },
+          {
+            "wallSeconds": 1791983623.8562849,
+            "monotonicSeconds": 365960.7380975
+          },
+          {
+            "wallSeconds": 1791983624.1073458,
+            "monotonicSeconds": 365960.989157125
+          },
+          {
+            "wallSeconds": 1791983624.357572,
+            "monotonicSeconds": 365961.239380041
+          },
+          {
+            "wallSeconds": 1791983624.608725,
+            "monotonicSeconds": 365961.490530916
+          },
+          {
+            "wallSeconds": 1791983624.8593311,
+            "monotonicSeconds": 365961.741134083
+          },
+          {
+            "wallSeconds": 1791983625.109889,
+            "monotonicSeconds": 365961.991690583
+          },
+          {
+            "wallSeconds": 1791983625.360265,
+            "monotonicSeconds": 365962.242064833
+          },
+          {
+            "wallSeconds": 1791983625.6147861,
+            "monotonicSeconds": 365962.496582958
+          },
+          {
+            "wallSeconds": 1791983625.869451,
+            "monotonicSeconds": 365962.751245583
+          },
+          {
+            "wallSeconds": 1791983626.123311,
+            "monotonicSeconds": 365963.005103416
+          },
+          {
+            "wallSeconds": 1791983626.378355,
+            "monotonicSeconds": 365963.260145833
+          },
+          {
+            "wallSeconds": 1791983626.632231,
+            "monotonicSeconds": 365963.514018791
+          },
+          {
+            "wallSeconds": 1791983626.885474,
+            "monotonicSeconds": 365963.767260041
+          },
+          {
+            "wallSeconds": 1791983627.140018,
+            "monotonicSeconds": 365964.021800875
+          },
+          {
+            "wallSeconds": 1791983627.390083,
+            "monotonicSeconds": 365964.271864291
+          },
+          {
+            "wallSeconds": 1791983627.641382,
+            "monotonicSeconds": 365964.523160916
+          },
+          {
+            "wallSeconds": 1791983627.894599,
+            "monotonicSeconds": 365964.776375916
+          },
+          {
+            "wallSeconds": 1791983628.1489139,
+            "monotonicSeconds": 365965.0306885
+          },
+          {
+            "wallSeconds": 1791983628.401348,
+            "monotonicSeconds": 365965.283119833
+          },
+          {
+            "wallSeconds": 1791983628.653384,
+            "monotonicSeconds": 365965.535154291
+          },
+          {
+            "wallSeconds": 1791983628.908444,
+            "monotonicSeconds": 365965.790211833
+          },
+          {
+            "wallSeconds": 1791983629.163486,
+            "monotonicSeconds": 365966.045250625
+          },
+          {
+            "wallSeconds": 1791983629.415724,
+            "monotonicSeconds": 365966.29748675
+          },
+          {
+            "wallSeconds": 1791983629.666215,
+            "monotonicSeconds": 365966.547975708
+          },
+          {
+            "wallSeconds": 1791983629.919297,
+            "monotonicSeconds": 365966.8010555
+          },
+          {
+            "wallSeconds": 1791983630.172918,
+            "monotonicSeconds": 365967.054674375
+          },
+          {
+            "wallSeconds": 1791983630.423628,
+            "monotonicSeconds": 365967.305382291
+          },
+          {
+            "wallSeconds": 1791983630.676112,
+            "monotonicSeconds": 365967.557863666
+          },
+          {
+            "wallSeconds": 1791983630.9261591,
+            "monotonicSeconds": 365967.807908708
+          },
+          {
+            "wallSeconds": 1791983631.177381,
+            "monotonicSeconds": 365968.059127791
+          },
+          {
+            "wallSeconds": 1791983631.432723,
+            "monotonicSeconds": 365968.314468125
+          },
+          {
+            "wallSeconds": 1791983631.685419,
+            "monotonicSeconds": 365968.567161291
+          },
+          {
+            "wallSeconds": 1791983631.93562,
+            "monotonicSeconds": 365968.817360666
+          },
+          {
+            "wallSeconds": 1791983632.190402,
+            "monotonicSeconds": 365969.072140541
+          },
+          {
+            "wallSeconds": 1791983632.440932,
+            "monotonicSeconds": 365969.322668416
+          },
+          {
+            "wallSeconds": 1791983632.694313,
+            "monotonicSeconds": 365969.576046875
+          },
+          {
+            "wallSeconds": 1791983632.949127,
+            "monotonicSeconds": 365969.830858791
+          },
+          {
+            "wallSeconds": 1791983633.20001,
+            "monotonicSeconds": 365970.081739333
+          },
+          {
+            "wallSeconds": 1791983633.45008,
+            "monotonicSeconds": 365970.33180725
+          },
+          {
+            "wallSeconds": 1791983633.7003572,
+            "monotonicSeconds": 365970.582081958
+          },
+          {
+            "wallSeconds": 1791983633.951244,
+            "monotonicSeconds": 365970.832966541
+          },
+          {
+            "wallSeconds": 1791983634.2022269,
+            "monotonicSeconds": 365971.083947
+          },
+          {
+            "wallSeconds": 1791983634.453399,
+            "monotonicSeconds": 365971.335117041
+          },
+          {
+            "wallSeconds": 1791983634.704393,
+            "monotonicSeconds": 365971.5861095
+          },
+          {
+            "wallSeconds": 1791983634.957325,
+            "monotonicSeconds": 365971.83903875
+          },
+          {
+            "wallSeconds": 1791983635.208721,
+            "monotonicSeconds": 365972.090431916
+          },
+          {
+            "wallSeconds": 1791983635.458994,
+            "monotonicSeconds": 365972.340703375
+          },
+          {
+            "wallSeconds": 1791983635.7132401,
+            "monotonicSeconds": 365972.594947875
+          },
+          {
+            "wallSeconds": 1791983635.967243,
+            "monotonicSeconds": 365972.848947458
+          },
+          {
+            "wallSeconds": 1791983636.218133,
+            "monotonicSeconds": 365973.099836083
+          },
+          {
+            "wallSeconds": 1791983636.475678,
+            "monotonicSeconds": 365973.35737775
+          },
+          {
+            "wallSeconds": 1791983636.728037,
+            "monotonicSeconds": 365973.609735291
+          },
+          {
+            "wallSeconds": 1791983636.9822972,
+            "monotonicSeconds": 365973.863992625
+          },
+          {
+            "wallSeconds": 1791983637.232725,
+            "monotonicSeconds": 365974.114417875
+          },
+          {
+            "wallSeconds": 1791983637.4828181,
+            "monotonicSeconds": 365974.364508708
+          },
+          {
+            "wallSeconds": 1791983637.733085,
+            "monotonicSeconds": 365974.614985208
+          },
+          {
+            "wallSeconds": 1791983637.984912,
+            "monotonicSeconds": 365974.866598875
+          },
+          {
+            "wallSeconds": 1791983638.2397702,
+            "monotonicSeconds": 365975.1214545
+          },
+          {
+            "wallSeconds": 1791983638.255094,
+            "monotonicSeconds": 365975.1367785
+          }
+        ]
+      },
+      "httpErrors": {},
+      "warmupErrors": {},
+      "ledgerReconciliation": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      },
+      "committedKafkaOffsets": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-14T13:13:59.833324+00:00",
+            "partitions": [
+              {
+                "partition": 0,
+                "committed": 18049,
+                "logEnd": 18049,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committed": 18203,
+                "logEnd": 18203,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committed": 17999,
+                "logEnd": 17999,
+                "lag": 0
+              }
+            ]
+          }
+        ]
+      },
+      "complete": true
+    },
+    {
+      "position": 3,
+      "condition": "patched",
+      "image": "sha256:c2b35c339d32b795ba82ad27df7d24aa5d629dd98c5958233f779ea705c37751",
+      "report": "trial-3-patched.json",
+      "exitCode": 0,
+      "clockGuard": {
+        "valid": true,
+        "toleranceSeconds": 1.0,
+        "sampleIntervalSeconds": 0.25,
+        "wallElapsedSeconds": 33.779048919677734,
+        "monotonicElapsedSeconds": 33.778747332980856,
+        "peakCumulativeDiscontinuitySeconds": 0.0003015866968780756,
+        "failures": [],
+        "samples": [
+          {
+            "wallSeconds": 1791983651.690548,
+            "monotonicSeconds": 365988.572112
+          },
+          {
+            "wallSeconds": 1791983651.940901,
+            "monotonicSeconds": 365988.822463458
+          },
+          {
+            "wallSeconds": 1791983652.195287,
+            "monotonicSeconds": 365989.076846666
+          },
+          {
+            "wallSeconds": 1791983652.448334,
+            "monotonicSeconds": 365989.32989175
+          },
+          {
+            "wallSeconds": 1791983652.699178,
+            "monotonicSeconds": 365989.580732916
+          },
+          {
+            "wallSeconds": 1791983652.949654,
+            "monotonicSeconds": 365989.831207166
+          },
+          {
+            "wallSeconds": 1791983653.201034,
+            "monotonicSeconds": 365990.082584458
+          },
+          {
+            "wallSeconds": 1791983653.452557,
+            "monotonicSeconds": 365990.334105458
+          },
+          {
+            "wallSeconds": 1791983653.7075121,
+            "monotonicSeconds": 365990.589058333
+          },
+          {
+            "wallSeconds": 1791983653.961584,
+            "monotonicSeconds": 365990.843128541
+          },
+          {
+            "wallSeconds": 1791983654.2121449,
+            "monotonicSeconds": 365991.093686875
+          },
+          {
+            "wallSeconds": 1791983654.462226,
+            "monotonicSeconds": 365991.343765791
+          },
+          {
+            "wallSeconds": 1791983654.715571,
+            "monotonicSeconds": 365991.59710825
+          },
+          {
+            "wallSeconds": 1791983654.970528,
+            "monotonicSeconds": 365991.852063541
+          },
+          {
+            "wallSeconds": 1791983655.22127,
+            "monotonicSeconds": 365992.102802833
+          },
+          {
+            "wallSeconds": 1791983655.4723918,
+            "monotonicSeconds": 365992.35392325
+          },
+          {
+            "wallSeconds": 1791983655.7266822,
+            "monotonicSeconds": 365992.608210625
+          },
+          {
+            "wallSeconds": 1791983655.978375,
+            "monotonicSeconds": 365992.85990175
+          },
+          {
+            "wallSeconds": 1791983656.2325592,
+            "monotonicSeconds": 365993.114082208
+          },
+          {
+            "wallSeconds": 1791983656.483954,
+            "monotonicSeconds": 365993.365475375
+          },
+          {
+            "wallSeconds": 1791983656.734464,
+            "monotonicSeconds": 365993.615982791
+          },
+          {
+            "wallSeconds": 1791983656.987863,
+            "monotonicSeconds": 365993.86938
+          },
+          {
+            "wallSeconds": 1791983657.2396421,
+            "monotonicSeconds": 365994.121196375
+          },
+          {
+            "wallSeconds": 1791983657.49279,
+            "monotonicSeconds": 365994.374302833
+          },
+          {
+            "wallSeconds": 1791983657.745444,
+            "monotonicSeconds": 365994.626953916
+          },
+          {
+            "wallSeconds": 1791983657.9996421,
+            "monotonicSeconds": 365994.881149541
+          },
+          {
+            "wallSeconds": 1791983658.250588,
+            "monotonicSeconds": 365995.132094
+          },
+          {
+            "wallSeconds": 1791983658.501618,
+            "monotonicSeconds": 365995.383122041
+          },
+          {
+            "wallSeconds": 1791983658.753272,
+            "monotonicSeconds": 365995.634772875
+          },
+          {
+            "wallSeconds": 1791983659.0076292,
+            "monotonicSeconds": 365995.889127791
+          },
+          {
+            "wallSeconds": 1791983659.260082,
+            "monotonicSeconds": 365996.141578791
+          },
+          {
+            "wallSeconds": 1791983659.5144918,
+            "monotonicSeconds": 365996.395986083
+          },
+          {
+            "wallSeconds": 1791983659.765651,
+            "monotonicSeconds": 365996.647142791
+          },
+          {
+            "wallSeconds": 1791983660.018532,
+            "monotonicSeconds": 365996.900022
+          },
+          {
+            "wallSeconds": 1791983660.2718961,
+            "monotonicSeconds": 365997.153383875
+          },
+          {
+            "wallSeconds": 1791983660.5236428,
+            "monotonicSeconds": 365997.4051285
+          },
+          {
+            "wallSeconds": 1791983660.77516,
+            "monotonicSeconds": 365997.656643625
+          },
+          {
+            "wallSeconds": 1791983661.0286999,
+            "monotonicSeconds": 365997.910181208
+          },
+          {
+            "wallSeconds": 1791983661.281547,
+            "monotonicSeconds": 365998.163026041
+          },
+          {
+            "wallSeconds": 1791983661.531627,
+            "monotonicSeconds": 365998.413103708
+          },
+          {
+            "wallSeconds": 1791983661.783345,
+            "monotonicSeconds": 365998.664819375
+          },
+          {
+            "wallSeconds": 1791983662.033489,
+            "monotonicSeconds": 365998.91496125
+          },
+          {
+            "wallSeconds": 1791983662.283682,
+            "monotonicSeconds": 365999.165151875
+          },
+          {
+            "wallSeconds": 1791983662.538723,
+            "monotonicSeconds": 365999.420190916
+          },
+          {
+            "wallSeconds": 1791983662.7903879,
+            "monotonicSeconds": 365999.671853875
+          },
+          {
+            "wallSeconds": 1791983663.040832,
+            "monotonicSeconds": 365999.922294875
+          },
+          {
+            "wallSeconds": 1791983663.2922618,
+            "monotonicSeconds": 366000.173722375
+          },
+          {
+            "wallSeconds": 1791983663.5428412,
+            "monotonicSeconds": 366000.4243065
+          },
+          {
+            "wallSeconds": 1791983663.793534,
+            "monotonicSeconds": 366000.67499025
+          },
+          {
+            "wallSeconds": 1791983664.043828,
+            "monotonicSeconds": 366000.925282083
+          },
+          {
+            "wallSeconds": 1791983664.294562,
+            "monotonicSeconds": 366001.176013458
+          },
+          {
+            "wallSeconds": 1791983664.548356,
+            "monotonicSeconds": 366001.429806291
+          },
+          {
+            "wallSeconds": 1791983664.803503,
+            "monotonicSeconds": 366001.684950625
+          },
+          {
+            "wallSeconds": 1791983665.053681,
+            "monotonicSeconds": 366001.935125583
+          },
+          {
+            "wallSeconds": 1791983665.307522,
+            "monotonicSeconds": 366002.188964833
+          },
+          {
+            "wallSeconds": 1791983665.557646,
+            "monotonicSeconds": 366002.439086916
+          },
+          {
+            "wallSeconds": 1791983665.807852,
+            "monotonicSeconds": 366002.689290916
+          },
+          {
+            "wallSeconds": 1791983666.060292,
+            "monotonicSeconds": 366002.941728
+          },
+          {
+            "wallSeconds": 1791983666.310685,
+            "monotonicSeconds": 366003.192118666
+          },
+          {
+            "wallSeconds": 1791983666.561662,
+            "monotonicSeconds": 366003.443094
+          },
+          {
+            "wallSeconds": 1791983666.812542,
+            "monotonicSeconds": 366003.6939715
+          },
+          {
+            "wallSeconds": 1791983667.065241,
+            "monotonicSeconds": 366003.946668791
+          },
+          {
+            "wallSeconds": 1791983667.319568,
+            "monotonicSeconds": 366004.200993458
+          },
+          {
+            "wallSeconds": 1791983667.574303,
+            "monotonicSeconds": 366004.455725416
+          },
+          {
+            "wallSeconds": 1791983667.824488,
+            "monotonicSeconds": 366004.705908375
+          },
+          {
+            "wallSeconds": 1791983668.0754838,
+            "monotonicSeconds": 366004.956902541
+          },
+          {
+            "wallSeconds": 1791983668.3260329,
+            "monotonicSeconds": 366005.207449541
+          },
+          {
+            "wallSeconds": 1791983668.5764182,
+            "monotonicSeconds": 366005.457832291
+          },
+          {
+            "wallSeconds": 1791983668.827543,
+            "monotonicSeconds": 366005.70895475
+          },
+          {
+            "wallSeconds": 1791983669.07846,
+            "monotonicSeconds": 366005.959869708
+          },
+          {
+            "wallSeconds": 1791983669.331958,
+            "monotonicSeconds": 366006.213364916
+          },
+          {
+            "wallSeconds": 1791983669.5825431,
+            "monotonicSeconds": 366006.4639485
+          },
+          {
+            "wallSeconds": 1791983669.833536,
+            "monotonicSeconds": 366006.714938708
+          },
+          {
+            "wallSeconds": 1791983670.084689,
+            "monotonicSeconds": 366006.966089791
+          },
+          {
+            "wallSeconds": 1791983670.335655,
+            "monotonicSeconds": 366007.217053375
+          },
+          {
+            "wallSeconds": 1791983670.585886,
+            "monotonicSeconds": 366007.467281708
+          },
+          {
+            "wallSeconds": 1791983670.8360581,
+            "monotonicSeconds": 366007.717452041
+          },
+          {
+            "wallSeconds": 1791983671.091168,
+            "monotonicSeconds": 366007.972562791
+          },
+          {
+            "wallSeconds": 1791983671.3427572,
+            "monotonicSeconds": 366008.224146625
+          },
+          {
+            "wallSeconds": 1791983671.595781,
+            "monotonicSeconds": 366008.477169041
+          },
+          {
+            "wallSeconds": 1791983671.850044,
+            "monotonicSeconds": 366008.731429041
+          },
+          {
+            "wallSeconds": 1791983672.100396,
+            "monotonicSeconds": 366008.981778625
+          },
+          {
+            "wallSeconds": 1791983672.354756,
+            "monotonicSeconds": 366009.236136083
+          },
+          {
+            "wallSeconds": 1791983672.609765,
+            "monotonicSeconds": 366009.491142458
+          },
+          {
+            "wallSeconds": 1791983672.86464,
+            "monotonicSeconds": 366009.746015208
+          },
+          {
+            "wallSeconds": 1791983673.1177971,
+            "monotonicSeconds": 366009.99917075
+          },
+          {
+            "wallSeconds": 1791983673.368007,
+            "monotonicSeconds": 366010.249378291
+          },
+          {
+            "wallSeconds": 1791983673.619586,
+            "monotonicSeconds": 366010.500954666
+          },
+          {
+            "wallSeconds": 1791983673.873633,
+            "monotonicSeconds": 366010.754999333
+          },
+          {
+            "wallSeconds": 1791983674.124506,
+            "monotonicSeconds": 366011.005870083
+          },
+          {
+            "wallSeconds": 1791983674.3767722,
+            "monotonicSeconds": 366011.258134166
+          },
+          {
+            "wallSeconds": 1791983674.62699,
+            "monotonicSeconds": 366011.508350208
+          },
+          {
+            "wallSeconds": 1791983674.8782809,
+            "monotonicSeconds": 366011.759638666
+          },
+          {
+            "wallSeconds": 1791983675.1320739,
+            "monotonicSeconds": 366012.013429333
+          },
+          {
+            "wallSeconds": 1791983675.386488,
+            "monotonicSeconds": 366012.267840791
+          },
+          {
+            "wallSeconds": 1791983675.637584,
+            "monotonicSeconds": 366012.518935291
+          },
+          {
+            "wallSeconds": 1791983675.891685,
+            "monotonicSeconds": 366012.773033375
+          },
+          {
+            "wallSeconds": 1791983676.141867,
+            "monotonicSeconds": 366013.02321325
+          },
+          {
+            "wallSeconds": 1791983676.392905,
+            "monotonicSeconds": 366013.274248875
+          },
+          {
+            "wallSeconds": 1791983676.643609,
+            "monotonicSeconds": 366013.524950625
+          },
+          {
+            "wallSeconds": 1791983676.896735,
+            "monotonicSeconds": 366013.778074833
+          },
+          {
+            "wallSeconds": 1791983677.147797,
+            "monotonicSeconds": 366014.029134541
+          },
+          {
+            "wallSeconds": 1791983677.402459,
+            "monotonicSeconds": 366014.28379425
+          },
+          {
+            "wallSeconds": 1791983677.6548202,
+            "monotonicSeconds": 366014.536153416
+          },
+          {
+            "wallSeconds": 1791983677.906898,
+            "monotonicSeconds": 366014.788229041
+          },
+          {
+            "wallSeconds": 1791983678.162198,
+            "monotonicSeconds": 366015.043526458
+          },
+          {
+            "wallSeconds": 1791983678.413553,
+            "monotonicSeconds": 366015.294879166
+          },
+          {
+            "wallSeconds": 1791983678.670936,
+            "monotonicSeconds": 366015.552259375
+          },
+          {
+            "wallSeconds": 1791983678.921113,
+            "monotonicSeconds": 366015.802434375
+          },
+          {
+            "wallSeconds": 1791983679.1715672,
+            "monotonicSeconds": 366016.052886791
+          },
+          {
+            "wallSeconds": 1791983679.4218738,
+            "monotonicSeconds": 366016.3031915
+          },
+          {
+            "wallSeconds": 1791983679.672193,
+            "monotonicSeconds": 366016.553507666
+          },
+          {
+            "wallSeconds": 1791983679.9228349,
+            "monotonicSeconds": 366016.804147416
+          },
+          {
+            "wallSeconds": 1791983680.174966,
+            "monotonicSeconds": 366017.056276333
+          },
+          {
+            "wallSeconds": 1791983680.427538,
+            "monotonicSeconds": 366017.308846125
+          },
+          {
+            "wallSeconds": 1791983680.6798568,
+            "monotonicSeconds": 366017.561162916
+          },
+          {
+            "wallSeconds": 1791983680.93234,
+            "monotonicSeconds": 366017.813644375
+          },
+          {
+            "wallSeconds": 1791983681.1843169,
+            "monotonicSeconds": 366018.065618208
+          },
+          {
+            "wallSeconds": 1791983681.4376478,
+            "monotonicSeconds": 366018.318947291
+          },
+          {
+            "wallSeconds": 1791983681.688844,
+            "monotonicSeconds": 366018.570140791
+          },
+          {
+            "wallSeconds": 1791983681.93991,
+            "monotonicSeconds": 366018.821204291
+          },
+          {
+            "wallSeconds": 1791983682.1916428,
+            "monotonicSeconds": 366019.072935625
+          },
+          {
+            "wallSeconds": 1791983682.444389,
+            "monotonicSeconds": 366019.325679875
+          },
+          {
+            "wallSeconds": 1791983682.699017,
+            "monotonicSeconds": 366019.580304833
+          },
+          {
+            "wallSeconds": 1791983682.953846,
+            "monotonicSeconds": 366019.83513125
+          },
+          {
+            "wallSeconds": 1791983683.2090912,
+            "monotonicSeconds": 366020.090374875
+          },
+          {
+            "wallSeconds": 1791983683.4600818,
+            "monotonicSeconds": 366020.341363958
+          },
+          {
+            "wallSeconds": 1791983683.714484,
+            "monotonicSeconds": 366020.595763083
+          },
+          {
+            "wallSeconds": 1791983683.964833,
+            "monotonicSeconds": 366020.846109875
+          },
+          {
+            "wallSeconds": 1791983684.2159848,
+            "monotonicSeconds": 366021.097259625
+          },
+          {
+            "wallSeconds": 1791983684.478762,
+            "monotonicSeconds": 366021.360034083
+          },
+          {
+            "wallSeconds": 1791983684.737379,
+            "monotonicSeconds": 366021.6186495
+          },
+          {
+            "wallSeconds": 1791983684.991074,
+            "monotonicSeconds": 366021.872342083
+          },
+          {
+            "wallSeconds": 1791983685.245247,
+            "monotonicSeconds": 366022.126512625
+          },
+          {
+            "wallSeconds": 1791983685.4695969,
+            "monotonicSeconds": 366022.350859333
+          }
+        ]
+      },
+      "httpErrors": {},
+      "warmupErrors": {},
+      "ledgerReconciliation": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      },
+      "committedKafkaOffsets": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-14T13:14:47.099385+00:00",
+            "partitions": [
+              {
+                "partition": 0,
+                "committed": 20493,
+                "logEnd": 20493,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committed": 20577,
+                "logEnd": 20577,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committed": 20426,
+                "logEnd": 20426,
+                "lag": 0
+              }
+            ]
+          }
+        ]
+      },
+      "complete": true
+    },
+    {
+      "position": 4,
+      "condition": "baseline",
+      "image": "sha256:4a76ec9fec2af937095a5cc0cdb17fb10724596d24f28f09c2305f435ebdf2b1",
+      "report": "trial-4-baseline.json",
+      "exitCode": 0,
+      "clockGuard": {
+        "valid": true,
+        "toleranceSeconds": 1.0,
+        "sampleIntervalSeconds": 0.25,
+        "wallElapsedSeconds": 32.083178997039795,
+        "monotonicElapsedSeconds": 32.08289341599448,
+        "peakCumulativeDiscontinuitySeconds": 0.0002855810453183949,
+        "failures": [],
+        "samples": [
+          {
+            "wallSeconds": 1791983699.261087,
+            "monotonicSeconds": 366036.142226875
+          },
+          {
+            "wallSeconds": 1791983699.515727,
+            "monotonicSeconds": 366036.39686475
+          },
+          {
+            "wallSeconds": 1791983699.765801,
+            "monotonicSeconds": 366036.646937375
+          },
+          {
+            "wallSeconds": 1791983700.0184278,
+            "monotonicSeconds": 366036.89956175
+          },
+          {
+            "wallSeconds": 1791983700.270933,
+            "monotonicSeconds": 366037.152064625
+          },
+          {
+            "wallSeconds": 1791983700.522055,
+            "monotonicSeconds": 366037.403183916
+          },
+          {
+            "wallSeconds": 1791983700.776729,
+            "monotonicSeconds": 366037.657856083
+          },
+          {
+            "wallSeconds": 1791983701.027463,
+            "monotonicSeconds": 366037.908587333
+          },
+          {
+            "wallSeconds": 1791983701.278018,
+            "monotonicSeconds": 366038.159140166
+          },
+          {
+            "wallSeconds": 1791983701.5289779,
+            "monotonicSeconds": 366038.410098291
+          },
+          {
+            "wallSeconds": 1791983701.78101,
+            "monotonicSeconds": 366038.662127875
+          },
+          {
+            "wallSeconds": 1791983702.033022,
+            "monotonicSeconds": 366038.914137625
+          },
+          {
+            "wallSeconds": 1791983702.2877529,
+            "monotonicSeconds": 366039.168866208
+          },
+          {
+            "wallSeconds": 1791983702.542837,
+            "monotonicSeconds": 366039.423948625
+          },
+          {
+            "wallSeconds": 1791983702.7954712,
+            "monotonicSeconds": 366039.676579708
+          },
+          {
+            "wallSeconds": 1791983703.046314,
+            "monotonicSeconds": 366039.927420125
+          },
+          {
+            "wallSeconds": 1791983703.301408,
+            "monotonicSeconds": 366040.182512375
+          },
+          {
+            "wallSeconds": 1791983703.553015,
+            "monotonicSeconds": 366040.434116958
+          },
+          {
+            "wallSeconds": 1791983703.805048,
+            "monotonicSeconds": 366040.686148458
+          },
+          {
+            "wallSeconds": 1791983704.056475,
+            "monotonicSeconds": 366040.937572083
+          },
+          {
+            "wallSeconds": 1791983704.3068402,
+            "monotonicSeconds": 366041.187934791
+          },
+          {
+            "wallSeconds": 1791983704.558583,
+            "monotonicSeconds": 366041.439676166
+          },
+          {
+            "wallSeconds": 1791983704.8104582,
+            "monotonicSeconds": 366041.691548583
+          },
+          {
+            "wallSeconds": 1791983705.060993,
+            "monotonicSeconds": 366041.942081208
+          },
+          {
+            "wallSeconds": 1791983705.3135319,
+            "monotonicSeconds": 366042.194621083
+          },
+          {
+            "wallSeconds": 1791983705.5639832,
+            "monotonicSeconds": 366042.445066541
+          },
+          {
+            "wallSeconds": 1791983705.8153322,
+            "monotonicSeconds": 366042.696414208
+          },
+          {
+            "wallSeconds": 1791983706.069519,
+            "monotonicSeconds": 366042.950599083
+          },
+          {
+            "wallSeconds": 1791983706.322007,
+            "monotonicSeconds": 366043.203084458
+          },
+          {
+            "wallSeconds": 1791983706.5753841,
+            "monotonicSeconds": 366043.456458625
+          },
+          {
+            "wallSeconds": 1791983706.830485,
+            "monotonicSeconds": 366043.711557625
+          },
+          {
+            "wallSeconds": 1791983707.0810509,
+            "monotonicSeconds": 366043.962121208
+          },
+          {
+            "wallSeconds": 1791983707.331852,
+            "monotonicSeconds": 366044.21292025
+          },
+          {
+            "wallSeconds": 1791983707.58338,
+            "monotonicSeconds": 366044.464446583
+          },
+          {
+            "wallSeconds": 1791983707.834848,
+            "monotonicSeconds": 366044.715911625
+          },
+          {
+            "wallSeconds": 1791983708.0867589,
+            "monotonicSeconds": 366044.96782075
+          },
+          {
+            "wallSeconds": 1791983708.3369558,
+            "monotonicSeconds": 366045.218015833
+          },
+          {
+            "wallSeconds": 1791983708.587487,
+            "monotonicSeconds": 366045.468544291
+          },
+          {
+            "wallSeconds": 1791983708.8381739,
+            "monotonicSeconds": 366045.719229
+          },
+          {
+            "wallSeconds": 1791983709.089,
+            "monotonicSeconds": 366045.97005225
+          },
+          {
+            "wallSeconds": 1791983709.3449159,
+            "monotonicSeconds": 366046.225966208
+          },
+          {
+            "wallSeconds": 1791983709.5953631,
+            "monotonicSeconds": 366046.476411416
+          },
+          {
+            "wallSeconds": 1791983709.8482938,
+            "monotonicSeconds": 366046.729339333
+          },
+          {
+            "wallSeconds": 1791983710.100171,
+            "monotonicSeconds": 366046.981214375
+          },
+          {
+            "wallSeconds": 1791983710.353966,
+            "monotonicSeconds": 366047.235007125
+          },
+          {
+            "wallSeconds": 1791983710.605033,
+            "monotonicSeconds": 366047.486072083
+          },
+          {
+            "wallSeconds": 1791983710.855459,
+            "monotonicSeconds": 366047.736495875
+          },
+          {
+            "wallSeconds": 1791983711.106994,
+            "monotonicSeconds": 366047.988032083
+          },
+          {
+            "wallSeconds": 1791983711.357141,
+            "monotonicSeconds": 366048.238173041
+          },
+          {
+            "wallSeconds": 1791983711.608758,
+            "monotonicSeconds": 366048.4897885
+          },
+          {
+            "wallSeconds": 1791983711.859191,
+            "monotonicSeconds": 366048.740218916
+          },
+          {
+            "wallSeconds": 1791983712.112926,
+            "monotonicSeconds": 366048.993951375
+          },
+          {
+            "wallSeconds": 1791983712.3643122,
+            "monotonicSeconds": 366049.245335708
+          },
+          {
+            "wallSeconds": 1791983712.615196,
+            "monotonicSeconds": 366049.4962175
+          },
+          {
+            "wallSeconds": 1791983712.866399,
+            "monotonicSeconds": 366049.747417583
+          },
+          {
+            "wallSeconds": 1791983713.117119,
+            "monotonicSeconds": 366049.998135416
+          },
+          {
+            "wallSeconds": 1791983713.370647,
+            "monotonicSeconds": 366050.251661583
+          },
+          {
+            "wallSeconds": 1791983713.621257,
+            "monotonicSeconds": 366050.502269208
+          },
+          {
+            "wallSeconds": 1791983713.872131,
+            "monotonicSeconds": 366050.753140958
+          },
+          {
+            "wallSeconds": 1791983714.123178,
+            "monotonicSeconds": 366051.004186208
+          },
+          {
+            "wallSeconds": 1791983714.373656,
+            "monotonicSeconds": 366051.254662083
+          },
+          {
+            "wallSeconds": 1791983714.625002,
+            "monotonicSeconds": 366051.506005333
+          },
+          {
+            "wallSeconds": 1791983714.875303,
+            "monotonicSeconds": 366051.756304625
+          },
+          {
+            "wallSeconds": 1791983715.126306,
+            "monotonicSeconds": 366052.00730475
+          },
+          {
+            "wallSeconds": 1791983715.378002,
+            "monotonicSeconds": 366052.258998708
+          },
+          {
+            "wallSeconds": 1791983715.6291971,
+            "monotonicSeconds": 366052.510191916
+          },
+          {
+            "wallSeconds": 1791983715.8799412,
+            "monotonicSeconds": 366052.760933541
+          },
+          {
+            "wallSeconds": 1791983716.130187,
+            "monotonicSeconds": 366053.011177166
+          },
+          {
+            "wallSeconds": 1791983716.3809521,
+            "monotonicSeconds": 366053.261940291
+          },
+          {
+            "wallSeconds": 1791983716.631538,
+            "monotonicSeconds": 366053.51252375
+          },
+          {
+            "wallSeconds": 1791983716.8820999,
+            "monotonicSeconds": 366053.7630835
+          },
+          {
+            "wallSeconds": 1791983717.133795,
+            "monotonicSeconds": 366054.014776
+          },
+          {
+            "wallSeconds": 1791983717.387893,
+            "monotonicSeconds": 366054.268871625
+          },
+          {
+            "wallSeconds": 1791983717.6410182,
+            "monotonicSeconds": 366054.521994833
+          },
+          {
+            "wallSeconds": 1791983717.895018,
+            "monotonicSeconds": 366054.775992416
+          },
+          {
+            "wallSeconds": 1791983718.147563,
+            "monotonicSeconds": 366055.028534875
+          },
+          {
+            "wallSeconds": 1791983718.399629,
+            "monotonicSeconds": 366055.280598375
+          },
+          {
+            "wallSeconds": 1791983718.6501691,
+            "monotonicSeconds": 366055.531136208
+          },
+          {
+            "wallSeconds": 1791983718.900672,
+            "monotonicSeconds": 366055.781637625
+          },
+          {
+            "wallSeconds": 1791983719.150971,
+            "monotonicSeconds": 366056.031933708
+          },
+          {
+            "wallSeconds": 1791983719.401454,
+            "monotonicSeconds": 366056.282414791
+          },
+          {
+            "wallSeconds": 1791983719.651637,
+            "monotonicSeconds": 366056.532596083
+          },
+          {
+            "wallSeconds": 1791983719.9017239,
+            "monotonicSeconds": 366056.782680416
+          },
+          {
+            "wallSeconds": 1791983720.152089,
+            "monotonicSeconds": 366057.033042916
+          },
+          {
+            "wallSeconds": 1791983720.4043741,
+            "monotonicSeconds": 366057.285326208
+          },
+          {
+            "wallSeconds": 1791983720.6591759,
+            "monotonicSeconds": 366057.540125666
+          },
+          {
+            "wallSeconds": 1791983720.912113,
+            "monotonicSeconds": 366057.793060791
+          },
+          {
+            "wallSeconds": 1791983721.1640372,
+            "monotonicSeconds": 366058.044982708
+          },
+          {
+            "wallSeconds": 1791983721.414152,
+            "monotonicSeconds": 366058.295094666
+          },
+          {
+            "wallSeconds": 1791983721.66523,
+            "monotonicSeconds": 366058.546170583
+          },
+          {
+            "wallSeconds": 1791983721.92021,
+            "monotonicSeconds": 366058.801148916
+          },
+          {
+            "wallSeconds": 1791983722.1719701,
+            "monotonicSeconds": 366059.052906041
+          },
+          {
+            "wallSeconds": 1791983722.424227,
+            "monotonicSeconds": 366059.305160666
+          },
+          {
+            "wallSeconds": 1791983722.679172,
+            "monotonicSeconds": 366059.560103416
+          },
+          {
+            "wallSeconds": 1791983722.9308438,
+            "monotonicSeconds": 366059.811773791
+          },
+          {
+            "wallSeconds": 1791983723.181129,
+            "monotonicSeconds": 366060.062056583
+          },
+          {
+            "wallSeconds": 1791983723.434165,
+            "monotonicSeconds": 366060.315090375
+          },
+          {
+            "wallSeconds": 1791983723.685049,
+            "monotonicSeconds": 366060.5659725
+          },
+          {
+            "wallSeconds": 1791983723.9373581,
+            "monotonicSeconds": 366060.818277916
+          },
+          {
+            "wallSeconds": 1791983724.190177,
+            "monotonicSeconds": 366061.071095291
+          },
+          {
+            "wallSeconds": 1791983724.440434,
+            "monotonicSeconds": 366061.321350125
+          },
+          {
+            "wallSeconds": 1791983724.691154,
+            "monotonicSeconds": 366061.572067875
+          },
+          {
+            "wallSeconds": 1791983724.941673,
+            "monotonicSeconds": 366061.822584166
+          },
+          {
+            "wallSeconds": 1791983725.1932108,
+            "monotonicSeconds": 366062.074120208
+          },
+          {
+            "wallSeconds": 1791983725.446701,
+            "monotonicSeconds": 366062.327608041
+          },
+          {
+            "wallSeconds": 1791983725.7005289,
+            "monotonicSeconds": 366062.581433625
+          },
+          {
+            "wallSeconds": 1791983725.9536471,
+            "monotonicSeconds": 366062.834549708
+          },
+          {
+            "wallSeconds": 1791983726.203941,
+            "monotonicSeconds": 366063.084840791
+          },
+          {
+            "wallSeconds": 1791983726.454112,
+            "monotonicSeconds": 366063.335009791
+          },
+          {
+            "wallSeconds": 1791983726.705088,
+            "monotonicSeconds": 366063.5859835
+          },
+          {
+            "wallSeconds": 1791983726.9572659,
+            "monotonicSeconds": 366063.83815925
+          },
+          {
+            "wallSeconds": 1791983727.208025,
+            "monotonicSeconds": 366064.088915583
+          },
+          {
+            "wallSeconds": 1791983727.461789,
+            "monotonicSeconds": 366064.342677958
+          },
+          {
+            "wallSeconds": 1791983727.71238,
+            "monotonicSeconds": 366064.593266416
+          },
+          {
+            "wallSeconds": 1791983727.9631228,
+            "monotonicSeconds": 366064.844008041
+          },
+          {
+            "wallSeconds": 1791983728.213238,
+            "monotonicSeconds": 366065.094120458
+          },
+          {
+            "wallSeconds": 1791983728.464098,
+            "monotonicSeconds": 366065.344978
+          },
+          {
+            "wallSeconds": 1791983728.7142022,
+            "monotonicSeconds": 366065.595079958
+          },
+          {
+            "wallSeconds": 1791983728.966052,
+            "monotonicSeconds": 366065.846927208
+          },
+          {
+            "wallSeconds": 1791983729.217234,
+            "monotonicSeconds": 366066.098107541
+          },
+          {
+            "wallSeconds": 1791983729.470111,
+            "monotonicSeconds": 366066.350982041
+          },
+          {
+            "wallSeconds": 1791983729.7202618,
+            "monotonicSeconds": 366066.601131291
+          },
+          {
+            "wallSeconds": 1791983729.970873,
+            "monotonicSeconds": 366066.851739416
+          },
+          {
+            "wallSeconds": 1791983730.222071,
+            "monotonicSeconds": 366067.102934666
+          },
+          {
+            "wallSeconds": 1791983730.477119,
+            "monotonicSeconds": 366067.357980458
+          },
+          {
+            "wallSeconds": 1791983730.729208,
+            "monotonicSeconds": 366067.610122291
+          },
+          {
+            "wallSeconds": 1791983730.980715,
+            "monotonicSeconds": 366067.861572666
+          },
+          {
+            "wallSeconds": 1791983731.2356951,
+            "monotonicSeconds": 366068.116550208
+          },
+          {
+            "wallSeconds": 1791983731.344266,
+            "monotonicSeconds": 366068.225120291
+          }
+        ]
+      },
+      "httpErrors": {},
+      "warmupErrors": {},
+      "ledgerReconciliation": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      },
+      "committedKafkaOffsets": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-14T13:15:33.146614+00:00",
+            "partitions": [
+              {
+                "partition": 0,
+                "committed": 22638,
+                "logEnd": 22638,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committed": 22728,
+                "logEnd": 22728,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committed": 22603,
+                "logEnd": 22603,
+                "lag": 0
+              }
+            ]
+          }
+        ]
+      },
+      "complete": true
+    }
+  ],
+  "complete": true,
+  "finishedAt": "2026-10-14T13:15:33.148288+00:00",
+  "patchedImageRestored": true
+}

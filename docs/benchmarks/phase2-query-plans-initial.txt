@@ -1,0 +1,36 @@
+BEGIN
+  status   | count 
+-----------+-------
+ PUBLISHED |     3
+(1 row)
+
+                                                                                              QUERY PLAN                                                                                              
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Update on outbox_events o  (cost=11.42..19.79 rows=1 width=248) (actual time=0.047..0.048 rows=0 loops=1)
+   Buffers: shared hit=7
+   CTE ready
+     ->  Limit  (cost=11.26..11.28 rows=1 width=80) (actual time=0.046..0.047 rows=0 loops=1)
+           Buffers: shared hit=7
+           ->  LockRows  (cost=11.26..11.28 rows=1 width=80) (actual time=0.046..0.046 rows=0 loops=1)
+                 Buffers: shared hit=7
+                 ->  Sort  (cost=11.26..11.27 rows=1 width=80) (actual time=0.046..0.046 rows=0 loops=1)
+                       Sort Key: outbox_events.created_at, outbox_events.event_id
+                       Sort Method: quicksort  Memory: 25kB
+                       Buffers: shared hit=7
+                       ->  Seq Scan on outbox_events  (cost=0.00..11.25 rows=1 width=80) (actual time=0.003..0.003 rows=0 loops=1)
+                             Filter: ((((status)::text = 'PENDING'::text) AND (next_attempt_at <= clock_timestamp())) OR (((status)::text = 'CLAIMED'::text) AND (lease_until <= clock_timestamp())))
+                             Rows Removed by Filter: 3
+                             Buffers: shared hit=1
+   ->  Nested Loop  (cost=0.14..8.51 rows=1 width=248) (actual time=0.047..0.047 rows=0 loops=1)
+         Buffers: shared hit=7
+         ->  CTE Scan on ready  (cost=0.00..0.02 rows=1 width=156) (actual time=0.047..0.047 rows=0 loops=1)
+               Buffers: shared hit=7
+         ->  Index Scan using outbox_events_pkey on outbox_events o  (cost=0.14..8.16 rows=1 width=26) (never executed)
+               Index Cond: (event_id = ready.event_id)
+ Planning:
+   Buffers: shared hit=31
+ Planning Time: 0.213 ms
+ Execution Time: 0.248 ms
+(25 rows)
+
+ROLLBACK

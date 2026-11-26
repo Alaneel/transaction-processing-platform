@@ -1,0 +1,45 @@
+{
+  "observedAt": "2026-10-11T15:37:58.636082+00:00",
+  "harnessSourceCommit": "b11a593c7ec2f47252495a2af000de274d9872fd",
+  "kind": "read-only UUID comparison, no fixture insertion",
+  "construction": "all-destinations-before-source",
+  "postgresComparison": {
+    "pairs": 8,
+    "all_destinations_before_source": true,
+    "server_version": "17.11"
+  },
+  "samplePairs": [
+    [
+      "fa6095c2-8a42-5e27-a12f-d73c2d535272",
+      "0aee120c-f6ee-5ed8-aa2b-920ac0263663"
+    ],
+    [
+      "fa6095c2-8a42-5e27-a12f-d73c2d535272",
+      "09d88cd9-167a-57be-aacb-5098dd206dda"
+    ],
+    [
+      "fa6095c2-8a42-5e27-a12f-d73c2d535272",
+      "09f9c2a4-c00e-52df-8ddb-8d0bb1bdd6c4"
+    ],
+    [
+      "fa6095c2-8a42-5e27-a12f-d73c2d535272",
+      "040e63ac-2a03-5b45-8539-70d356982601"
+    ],
+    [
+      "fa6095c2-8a42-5e27-a12f-d73c2d535272",
+      "00101c8b-ea83-5585-a08d-3002a4f0c605"
+    ],
+    [
+      "fa6095c2-8a42-5e27-a12f-d73c2d535272",
+      "0f966125-38a0-510c-b1db-01c13b0d1d6d"
+    ],
+    [
+      "fa6095c2-8a42-5e27-a12f-d73c2d535272",
+      "031984d1-e311-5bd9-8356-fb6837f02eeb"
+    ],
+    [
+      "fa6095c2-8a42-5e27-a12f-d73c2d535272",
+      "0caeeaf1-8d9e-5de0-a0a0-7946c6c8b24a"
+    ]
+  ]
+}

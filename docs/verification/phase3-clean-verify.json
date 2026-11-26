@@ -1,0 +1,713 @@
+{
+  "implementationCommit": "2c859cb28d3b1898a2a7d25c5c87d7a0a0a3dbe4",
+  "checkout": "/private/tmp/tpp-phase3-clean-2c859cb",
+  "checkoutInitiallyClean": true,
+  "command": "JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home MAVEN_USER_HOME=/private/tmp/tpp-maven-wrapper ./mvnw -B -ntp -Dmaven.repo.local=/private/tmp/tpp-m2 clean verify",
+  "build": "SUCCESS",
+  "exitCode": 0,
+  "tests": 94,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "unitTests": 34,
+  "realDependencyIntegrationTests": 60,
+  "classes": [
+    {
+      "class": "dev.tpp.ApiErrorMappingTest",
+      "category": "unit",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.007,
+      "reportSha256": "9bdef4525394e8724429c209a536ea95149c0b09aab6d782367e79f299fdee4b"
+    },
+    {
+      "class": "dev.tpp.BackpressurePostgresTest",
+      "category": "real-dependency integration",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 5.763,
+      "reportSha256": "eaa60a630bdca12806e1f624007816ecbe2f2471c8d4c972b683bc4aff0f675e"
+    },
+    {
+      "class": "dev.tpp.DatabaseErrorsTest",
+      "category": "unit",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.001,
+      "reportSha256": "29094c1b73f859d37088c5998b031d16e84f4794bdb480024e64203283570f0d"
+    },
+    {
+      "class": "dev.tpp.DomainRulesTest",
+      "category": "unit",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.003,
+      "reportSha256": "9a6c27d6d65379c1b3b9119d9b9d61e93df865f176d4168ed9305ded0471f38c"
+    },
+    {
+      "class": "dev.tpp.EventContractTest",
+      "category": "unit",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.012,
+      "reportSha256": "b66739e49fbcd5a39d2f121308bec2ba61322dcd5ee669f725f2576aa7646204"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "category": "real-dependency integration",
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 186.538,
+      "reportSha256": "c9dc54c0d370013746b4d5a5c130ff2722d9d7393c382a9c6e77518c45960e6e"
+    },
+    {
+      "class": "dev.tpp.OutboxMigrationUpgradeTest",
+      "category": "real-dependency integration",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.805,
+      "reportSha256": "406f1b11a747486a5ea0a0a2d138945825837f3c2a9f1d1aa1a3bd83839fccdd"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "category": "real-dependency integration",
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 9.541,
+      "reportSha256": "eb5f744bc04cd1c249c18279891e7d07fa3f027b39017695d41feaebff0d97c3"
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "category": "unit",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.036,
+      "reportSha256": "9f0ca1b82c288bc6448f79e53c08e700a3938dd67e03352c8385d2db192f5479"
+    },
+    {
+      "class": "dev.tpp.events.relay.PublicationBatchTest",
+      "category": "unit",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.018,
+      "reportSha256": "d25583eed8e2e7ebad818862efeb010cb566292d31f8831b21ea5232dd530ba1"
+    }
+  ],
+  "executedCases": [
+    {
+      "class": "dev.tpp.ApiErrorMappingTest",
+      "method": "infrastructureFailuresReturnRetryableServiceResponseWithoutSensitiveDetails",
+      "seconds": 0.005,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.ApiErrorMappingTest",
+      "method": "unexpectedProgrammingFailureDoesNotClaimSuccessfulOrRejectedTransfer",
+      "seconds": 0.001,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.ApiErrorMappingTest",
+      "method": "explicitDomainErrorPreservesCodeStatusAndCorrelation",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.BackpressurePostgresTest",
+      "method": "publishedConsumerBacklogBlocksByCountAndAgeUntilProjectionCatchesUp",
+      "seconds": 1.896,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.BackpressurePostgresTest",
+      "method": "realSamplerStatementTimeoutLeavesStaleEvidenceAndRejectsBeforeFinancialMutations",
+      "seconds": 1.648,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.BackpressurePostgresTest",
+      "method": "disabledAdmissionKeepsRealHttpBehaviorAndHasNoSample",
+      "seconds": 0.346,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.BackpressurePostgresTest",
+      "method": "priorKeysBypassAdmissionWhileOverloadRollsBackConcurrentNewKeysAndRecoversAfterDrain",
+      "seconds": 0.714,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.DatabaseErrorsTest",
+      "method": "onlyKnownTransactionFailuresAreRetriedThroughNestedCauses",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.DatabaseErrorsTest",
+      "method": "metricsUseBoundedLabelsWithoutLeakingArbitrarySqlStates",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.DatabaseErrorsTest",
+      "method": "timeoutsAndConnectionExhaustionRemainInfrastructureFailures",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.DomainRulesTest",
+      "method": "unsupportedOrAmbiguousUnitsCannotEnterDomain",
+      "seconds": 0.001,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.DomainRulesTest",
+      "method": "exactMinorUnitBoundsAcceptOneAndMaximumButRejectZeroNegativeAndOverflow",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.DomainRulesTest",
+      "method": "onlyTransientProcessingCanMoveIntoTerminalStates",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.DomainRulesTest",
+      "method": "bothAccountIdentifiersAreRequiredAndSelfTransfersAreInvalid",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.DomainRulesTest",
+      "method": "idempotencyComparisonIncludesEveryFinancialPayloadField",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.DomainRulesTest",
+      "method": "keyValidationHasBoundedPrintableIdentityWithoutWhitespaceNormalization",
+      "seconds": 0.001,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventContractTest",
+      "method": "retryJitterAlwaysHasPositiveDelayAndRemainsBoundedAfterLongOutage",
+      "seconds": 0.002,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventContractTest",
+      "method": "canonicalRoundTripKeepsStableIdentityExactMinorUnitsAndMicrosecondTimestamp",
+      "seconds": 0.001,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventContractTest",
+      "method": "contractRejectsUnknownVersionsImpreciseNumbersAndImpossibleBusinessFields",
+      "seconds": 0.005,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventContractTest",
+      "method": "ambiguousJsonEnvelopesAreRejectedInsteadOfAcceptingHiddenDuplicateOrTrailingFields",
+      "seconds": 0.001,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "crashDuringRealInFlightBatchLeavesEveryClaimRecoverableAndIgnoresLateCallbacks",
+      "seconds": 21.484,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "concurrentIdempotentRequestsCreateOneOutboxAndOneKafkaDerivedEffect",
+      "seconds": 2.625,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "partialBrokerOutageAndDeadlineKeepActualProducerWorkBoundedAcrossTheNextBatch",
+      "seconds": 25.018,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "f1RollbackDoesNotCommitOutboxOrPublishAndDoesNotLeavePartialLedger",
+      "seconds": 1.568,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "controlledReplayRejectsOriginForgeryAndIdentityChangeAndEnforcesDurableAttemptBudget",
+      "seconds": 2.308,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "reverseRealAcknowledgementsSettleLiveRecordsWhileFencingOneReplacedGeneration",
+      "seconds": 8.938,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "stopRecapturesAnAdmittedStartWorkerAndSameInstanceRestartPublishesRealEvent",
+      "seconds": 2.881,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "acknowledgedBatchCommitFailureRollsBackEveryStatusAndRecoversStableIdentities",
+      "seconds": 9.775,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "permanentKafkaTopicFailurePreservesBlockedEvidenceAndAuditedRequeueRecovers",
+      "seconds": 2.356,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "databaseRejectsIncompleteInboxCommitAndImmutableOutboxPayloadMutation",
+      "seconds": 2.113,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "f10ShutdownDuringProcessingHandsUncommittedOffsetToPeerForSafeDeduplication",
+      "seconds": 5.268,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "permanentStartupConfigurationFailureStopsWithoutRetryAndLeavesRecordForExplicitRecovery",
+      "seconds": 2.147,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "f9CompetingRelayInstancesPublishEveryEventAndKeepFencedStateConsistent",
+      "seconds": 8.447,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "f4CrashAfterDurableClaimBeforeSendRecoversAfterLeaseExpiry",
+      "seconds": 7.066,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "acknowledgedBatchWhoseActualStatusTransactionFailsRecoversWithoutOptimisticSuccess",
+      "seconds": 10.664,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "f3KafkaOutagePreservesHttpAvailabilityAndDurableBacklogUntilRecovery",
+      "seconds": 18.854,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "replayCrashRollsBackEffectButKeepsReservedAuditAndAllowsSafeRetry",
+      "seconds": 1.684,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "transientDatabaseLockRollsBackEffectAndHeartbeatRebalanceDoesNotSkipLaterRecord",
+      "seconds": 3.191,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "f6ConsumerCrashBeforeDbCommitRollsBackInboxAndProjectionAndCanRedeliver",
+      "seconds": 2.094,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "f5CrashAfterKafkaAckCausesStableDuplicateTransportAndSingleBusinessEffect",
+      "seconds": 6.624,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "f8PoisonQuarantineIsDurableBeforeOffsetAdvanceAndCorrectedReplayIsAuditable",
+      "seconds": 1.623,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "f9ExpiredOwnerCannotCompleteOrFailNewOwnersClaim",
+      "seconds": 6.715,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "expiredBatchSettlementCannotOverwriteNewOwnerPublicationEvidence",
+      "seconds": 8.395,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "shutdownWithActualOutstandingProducerWorkIsBoundedAndPreservesRetryEligibility",
+      "seconds": 13.847,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "f7ConsumerCrashAfterDbCommitBeforeOffsetCommitRedeliversWithoutRepeatedEffects",
+      "seconds": 2.216,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "startupDnsFailureRetriesConstructionThenProcessesRealKafkaWithoutApplicationRestart",
+      "seconds": 2.426,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "method": "f2LostHttpResponseKeepsOneLogicalEventAndDurableIdempotentResult",
+      "seconds": 1.986,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.OutboxMigrationUpgradeTest",
+      "method": "phase1HistoryIsBackfilledOnceWithoutChangingLedgerBalancesOrDurableIdempotency",
+      "seconds": 1.805,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "ordinaryDatabaseWritesCannotMakeUserBalanceNegativeOrInventValue",
+      "seconds": 0.061,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "persistedIdempotencySurvivesApplicationShutdownAndFreshApplicationStart",
+      "seconds": 0.456,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "duplicateReplayFaultDoesNotChangeCommittedResult",
+      "seconds": 0.08,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "actualPostgresLockTimeoutRetriesFreshTransactionThenSucceedsAfterRelease",
+      "seconds": 0.326,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "reconciliationDetectsControlledPrivilegedCorruptionAndIsReadOnly",
+      "seconds": 0.098,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "frozenAccountsAndDestinationOverflowAreRejectedWithoutPostings",
+      "seconds": 0.12,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "databaseRejectsTerminalHistoryMutationAndLedgerRewrite",
+      "seconds": 0.096,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "validationAndUnknownResourcesHaveExplicitClientErrors",
+      "seconds": 0.076,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "concurrentIdenticalKeysAcrossInstancesHaveExactlyOneFinancialEffect",
+      "seconds": 0.158,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "deferredDatabaseGuardsRejectIncompleteTransferAndUnbalancedProjectionAtCommit",
+      "seconds": 0.093,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "deterministicGeneratedTransferSequenceMatchesIndependentBalanceModel",
+      "seconds": 1.089,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "lostHttpResponseAfterCommitIsRecoveredFromDurableIdempotency",
+      "seconds": 0.095,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "retryableDatabaseFailuresAreBoundedAndStatementTimeoutIsNotBlindlyRetried",
+      "seconds": 0.335,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "actualClientHttpTimeoutAfterCommitCanRetryOnAnotherApplicationInstance",
+      "seconds": 0.571,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "realHttpAccountAndTransferHaveBalancedImmutablePostings",
+      "seconds": 0.073,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "databaseRequiresBalanceForEveryAccountAndRejectsDirectTerminalInsert",
+      "seconds": 0.051,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "ledgerPaginationUsesExclusiveCursorWithoutDuplicatesAndRejectsInvalidBounds",
+      "seconds": 0.066,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "preCommitFaultsRollbackEveryPartialMutationAndAllowSafeRetry",
+      "seconds": 0.221,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "insufficientFundsIsDurableAndReplayedEvenAfterLaterFunding",
+      "seconds": 0.065,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "concurrentSameKeyDifferentPayloadHasOneWinnerAndExplicitConflict",
+      "seconds": 0.067,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "actualPostgresStatementTimeoutIsClassifiedWithoutTransactionRetry",
+      "seconds": 0.275,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "actualPostgresLockTimeoutExhaustionReturns503AndSameKeyCanRecover",
+      "seconds": 0.839,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "oppositeDirectionTransfersUseIndependentConnectionsAndPreserveTotals",
+      "seconds": 0.167,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "persistentRetryableFailureExhaustsThreeAttemptsWithoutPersistingFinancialState",
+      "seconds": 0.173,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "completedKeyReplaysAndEveryPayloadFieldParticipatesInConflictDetection",
+      "seconds": 0.089,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "actualSpringTransactionDeadlineRollsBackBothBalancesAndPartialJournal",
+      "seconds": 1.377,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "actualConnectionPoolExhaustionReturns503WithoutDurableRequestAndCanRecover",
+      "seconds": 0.516,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "method": "concurrentIndependentKeysCannotOverspendTheSameAccount",
+      "seconds": 0.135,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "method": "configurationValidationRejectsAnUnsafeThresholdAndFreshnessCombination",
+      "seconds": 0.008,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "method": "disabledPolicyDoesNotScheduleOrSampleAndAdmitsWithoutInventedPressure",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "method": "initialAndStaleSamplesFailClosedWhileFreshRecoveryAdmits",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "method": "eachCountAndAgeThresholdClosesAtItsBoundary(Pressure, String)[1]",
+      "seconds": 0.002,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "method": "eachCountAndAgeThresholdClosesAtItsBoundary(Pressure, String)[2]",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "method": "eachCountAndAgeThresholdClosesAtItsBoundary(Pressure, String)[3]",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "method": "eachCountAndAgeThresholdClosesAtItsBoundary(Pressure, String)[4]",
+      "seconds": 0.001,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "method": "reopeningRequiresEveryDimensionToReachItsLowWatermark",
+      "seconds": 0.001,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "method": "samplingFailureRetainsEvidenceThenFreshnessClosesAndRecoveryReopens",
+      "seconds": 0.001,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "method": "overloadResponsesHaveTheirOwnOutcomeAndPreserveCorrelationAndRetryHeader",
+      "seconds": 0.001,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.events.relay.PublicationBatchTest",
+      "method": "invalidAcknowledgementsCannotBecomePublishedAndKnownPermanentErrorsRemainDistinct",
+      "seconds": 0.001,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.events.relay.PublicationBatchTest",
+      "method": "callbackWakesAnInterruptibleMonotonicWaitWithoutRequiringAProducerThread",
+      "seconds": 0.004,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.events.relay.PublicationBatchTest",
+      "method": "boundedClaimsAndFrozenResultsCannotBeMutatedOrAliasCallerLists",
+      "seconds": 0.003,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.events.relay.PublicationBatchTest",
+      "method": "cancellationRacingCallbackFreezesExactlyOneOutcomeAndCannotBeReopened",
+      "seconds": 0.007,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.events.relay.PublicationBatchTest",
+      "method": "deadlineDistinguishesNeverSubmittedWorkFromUncertainInFlightWorkAndIgnoresLateAck",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.events.relay.PublicationBatchTest",
+      "method": "reverseAcknowledgementsRetainTheExactClaimAndIndividualKafkaPosition",
+      "seconds": 0.002,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.events.relay.PublicationBatchTest",
+      "method": "synchronousFailureWinsOverLaterCallbackAndEvidenceStaysBounded",
+      "seconds": 0.0,
+      "result": "PASS"
+    },
+    {
+      "class": "dev.tpp.events.relay.PublicationBatchTest",
+      "method": "unknownGenerationUnsubmittedAcknowledgementAndDuplicateCallbackCannotChangeOutcome",
+      "seconds": 0.0,
+      "result": "PASS"
+    }
+  ],
+  "spotbugs": {
+    "effort": "Max",
+    "threshold": "Medium",
+    "bugs": 0,
+    "errors": 0
+  },
+  "enforcerRules": [
+    "[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed",
+    "[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed",
+    "[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed",
+    "[INFO] Rule 3: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed"
+  ],
+  "dependencyCheckScope": "Dependency convergence, release-only dependencies, Java21 and Maven version. Not a vulnerability audit.",
+  "hostedCiExecuted": false,
+  "finishedAt": "2026-10-12T00:11:26+08:00",
+  "mavenTotalTime": "03:31 min",
+  "logSource": "/private/tmp/tpp-phase3-clean-final-2c859cb.log",
+  "logSha256": "017c66e2afc58dae1b0092a95d62b325fa9f13d3f92f05a972b9a47f0bfd8c57",
+  "actualProducerEvidence": [
+    "ActualBatchBound prePause acceptedAcks=2 inFlight=0",
+    "ActualBatchBound firstDeadline {enqueueCompletions=8.0, failedAcks=0.0, acceptedAcks=2.0, sendAttempts=8.0, inFlight=6.0}",
+    "ActualBatchBound nextClaim inFlight=6.0 outstanding=6.0 claimed=2",
+    "ActualShutdown beforeStop {enqueueCompletions=3.0, failedAcks=0.0, acceptedAcks=2.0, sendAttempts=3.0, inFlight=1.0}",
+    "ActualShutdown afterStop millis=7004 inFlight=0.0 terminated=true"
+  ],
+  "earlierFailedAttempts": [
+    "phase3-clean-first-failure.json",
+    "phase3-clean-second-failure.json"
+  ],
+  "finalSourceBenchmarkedAgain": false,
+  "productionDiffFromMeasured": "Seven lifecycle stop recapture lines; publication hot path, consumer and schema unchanged from measured66dc7c9. Test-fixture corrections are separate."
+}

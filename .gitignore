@@ -1,0 +1,26 @@
+/target/
+/.idea/
+/.vscode/
+*.iml
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+/.agents/
+/.codex/
+*.log
+# Reviewed public command logs for the two retained security comparisons.
+!docs/benchmarks/security-patch-20261013/trial-1-baseline.log
+!docs/benchmarks/security-patch-20261013/trial-2-patched.log
+!docs/benchmarks/security-patch-20261013/trial-3-patched.log
+!docs/benchmarks/security-patch-20261013/trial-4-baseline.log
+!docs/benchmarks/security-patch-final-20261014/trial-1-baseline.log
+!docs/benchmarks/security-patch-final-20261014/trial-2-patched.log
+!docs/benchmarks/security-patch-final-20261014/trial-3-patched.log
+!docs/benchmarks/security-patch-final-20261014/trial-4-baseline.log
+__pycache__/
+*.pyc
+/benchmark-results/
+/tools/

@@ -1,0 +1,1149 @@
+openapi: 3.1.0
+info:
+  title: Transaction Processing Platform
+  version: 0.2.0
+  description: Educational ledger and asynchronous transfer activity using fictional FIC integer minor units. No authentication; bind locally.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/accounts:
+    post:
+      summary: Create an empty USER account
+      operationId: createAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [unit]
+              properties:
+                unit: {type: string, const: FIC}
+            example: {unit: FIC}
+      responses:
+        '201':
+          description: Created with Location header
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Account'}
+        '400': {$ref: '#/components/responses/Invalid'}
+        '503': {$ref: '#/components/responses/Unavailable'}
+  /api/accounts/{id}:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: Get a USER account
+      operationId: getAccount
+      responses:
+        '200':
+          description: Account
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Account'}
+        '400': {$ref: '#/components/responses/Invalid'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '503': {$ref: '#/components/responses/Unavailable'}
+  /api/accounts/{id}/balance:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: Get materialized balance
+      operationId: getBalance
+      responses:
+        '200':
+          description: Transactional ledger projection
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [accountId, unit, amount]
+                properties:
+                  accountId: {type: string, format: uuid}
+                  unit: {type: string, const: FIC}
+                  amount: {type: integer, format: int64, minimum: 0, maximum: 9000000000000000}
+        '400': {$ref: '#/components/responses/Invalid'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '503': {$ref: '#/components/responses/Unavailable'}
+  /api/accounts/{id}/ledger:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: List immutable postings in ascending identifier order
+      operationId: listLedger
+      parameters:
+        - name: after
+          in: query
+          schema: {type: integer, format: int64, minimum: 0, default: 0}
+          description: Exclusive entry identifier cursor
+        - name: limit
+          in: query
+          schema: {type: integer, minimum: 1, maximum: 100, default: 50}
+      responses:
+        '200':
+          description: Page; null nextCursor means no further entries currently visible
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, nextCursor]
+                properties:
+                  items:
+                    type: array
+                    items: {$ref: '#/components/schemas/LedgerEntry'}
+                  nextCursor: {type: [integer, 'null'], format: int64}
+        '400': {$ref: '#/components/responses/Invalid'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '503': {$ref: '#/components/responses/Unavailable'}
+  /api/transfers:
+    post:
+      summary: Submit a synchronous transfer with a globally unique durable idempotency key
+      operationId: submitTransfer
+      description: Same key and payload replays the committed terminal result. Different payload conflicts. Business rejections are durable. Invalid syntax and confirmed rollback leave no durable key. Connection loss around commit can leave a durable result; recover it using the same key and payload. PROCESSING is never externally visible or committed.
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema: {type: string, pattern: '^[A-Za-z0-9._:-]{1,128}$'}
+        - name: X-Correlation-ID
+          in: header
+          schema: {type: string, pattern: '^[A-Za-z0-9._:-]{1,128}$'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/TransferRequest'}
+            example:
+              sourceAccountId: 00000000-0000-0000-0000-000000000002
+              destinationAccountId: 00000000-0000-0000-0000-000000000003
+              amount: 100
+              unit: FIC
+      responses:
+        '201':
+          description: New COMPLETED transfer; response is emitted after database commit
+          headers:
+            Location: {schema: {type: string}}
+            Idempotency-Replayed: {schema: {type: string, const: 'false'}}
+            X-Correlation-ID: {schema: {type: string}}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Transfer'}
+        '200':
+          description: Previously COMPLETED transfer replay; Idempotency-Replayed true
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Transfer'}
+        '422':
+          description: Durable REJECTED transfer, new or replayed. Inspect rejectionCode and Idempotency-Replayed.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Transfer'}
+        '400': {$ref: '#/components/responses/Invalid'}
+        '409':
+          description: IDEMPOTENCY_CONFLICT
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+        '500':
+          description: Internal failure; the operation may have committed. Retry with the identical key and payload.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+        '503':
+          description: Dependency/timeout failure, or enabled backlog admission refused the new reservation (EVENT_BACKLOG_OVERLOADED or BACKLOG_STATUS_UNAVAILABLE). Retry with the identical key and payload. Admission refusal rolls back the key and financial effects; dependency failures can be ambiguous.
+          headers:
+            Retry-After: {schema: {type: string, const: '1'}}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+  /api/transfers/{id}:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: Get a terminal transfer result
+      operationId: getTransfer
+      responses:
+        '200':
+          description: Durable result (COMPLETED or REJECTED)
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Transfer'}
+        '400': {$ref: '#/components/responses/Invalid'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '503': {$ref: '#/components/responses/Unavailable'}
+  /internal/reconciliation:
+    get:
+      summary: Reconcile all balances and journals in one read-only repeatable-read snapshot
+      operationId: reconcile
+      responses:
+        '200':
+          description: Report; consistent false signals corruption and does not repair it
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [consistent, balanceMismatches, invalidTransfers, totalLedgerDelta, totalMaterializedBalance]
+                properties:
+                  consistent: {type: boolean}
+                  balanceMismatches:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        accountId: {type: string, format: uuid}
+                        materialized: {type: [integer, 'null']}
+                        ledger: {type: integer}
+                  invalidTransfers: {type: array, items: {type: string, format: uuid}}
+                  totalLedgerDelta: {type: integer}
+                  totalMaterializedBalance: {type: integer}
+        '503': {$ref: '#/components/responses/Unavailable'}
+  /api/accounts/{id}/activity:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      summary: Read Kafka-derived eventual account activity
+      operationId: getActivity
+      responses:
+        '200':
+          description: Live page ordered by projection ID. Refresh from zero to discover late concurrent commits.
+            It is not the authoritative ledger.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivityPage'
+        '400':
+          $ref: '#/components/responses/Invalid'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+      parameters:
+      - name: after
+        in: query
+        schema:
+          type: integer
+          format: int64
+          minimum: 0
+          default: 0
+        description: Exclusive immutable identifier cursor; refresh from zero for late projection commits.
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+  /internal/backpressure:
+    get:
+      summary: Inspect optional sampled backlog admission and freshness
+      operationId: getBackpressureStatus
+      description: Trusted local operator endpoint. Thresholds are best-effort operating signals, allowing concurrent overshoot. Cached status does not query PostgreSQL. Disabled policy admits new requests. Enabled policy blocks new reservations when pressure is high or evidence is unavailable/stale; existing-key replay and conflict arbitration still proceed.
+      responses:
+        '200':
+          description: Current admission status, including disabled or blocked states
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/BackpressureStatus'}
+  /internal/events/status:
+    get:
+      summary: Inspect publication backlog and enabled workers
+      operationId: getEventStatus
+      responses:
+        '200':
+          description: Inspect publication backlog and enabled workers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventStatus'
+        '400':
+          $ref: '#/components/responses/Invalid'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+  /internal/outbox/{eventId}:
+    parameters:
+    - name: eventId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      summary: Inspect one immutable event and publication/processing evidence
+      operationId: inspectOutboxEvent
+      responses:
+        '200':
+          description: Inspect one immutable event and publication/processing evidence
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutboxInspection'
+        '400':
+          $ref: '#/components/responses/Invalid'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+  /internal/outbox/{eventId}/requeues:
+    parameters:
+    - name: eventId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    post:
+      summary: Audited requeue of a BLOCKED event after fixing its cause
+      operationId: requeueOutboxEvent
+      responses:
+        '200':
+          description: Audited requeue of a BLOCKED event after fixing its cause
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required:
+                - eventId
+                - status
+                properties:
+                  eventId:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    const: PENDING
+        '400':
+          $ref: '#/components/responses/Invalid'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+        '409':
+          description: Conflict with current durable state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequeueRequest'
+  /internal/events/reconciliation:
+    get:
+      summary: Reconcile durable inbox and activity against completed origins
+      operationId: reconcileEvents
+      responses:
+        '200':
+          description: Repeatable-read report. missingProjection represents eventual lag; discrepancies counts structural
+            violations and does not repair them.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectionReport'
+        '400':
+          $ref: '#/components/responses/Invalid'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+  /internal/events/reconciliation/status:
+    get:
+      summary: Alias for event reconciliation
+      operationId: reconcileEventsStatus
+      responses:
+        '200':
+          description: Alias for event reconciliation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectionReport'
+        '400':
+          $ref: '#/components/responses/Invalid'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+  /internal/quarantine:
+    get:
+      summary: List durable poison evidence
+      operationId: listQuarantine
+      responses:
+        '200':
+          description: List durable poison evidence
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 100
+                items:
+                  $ref: '#/components/schemas/QuarantineItem'
+        '400':
+          $ref: '#/components/responses/Invalid'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+      parameters:
+      - name: after
+        in: query
+        schema:
+          type: integer
+          format: int64
+          minimum: 0
+          default: 0
+        description: Exclusive immutable identifier cursor; refresh from zero for late projection commits.
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+  /internal/quarantine/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    get:
+      summary: Inspect original delivery and bounded evidence
+      operationId: inspectQuarantine
+      responses:
+        '200':
+          description: Inspect original delivery and bounded evidence
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuarantineItem'
+        '400':
+          $ref: '#/components/responses/Invalid'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+  /internal/quarantine/{id}/replays:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    get:
+      summary: Read durable replay attempts including ambiguous STARTED attempts
+      operationId: listQuarantineReplays
+      responses:
+        '200':
+          description: Read durable replay attempts including ambiguous STARTED attempts
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 10
+                items:
+                  $ref: '#/components/schemas/ReplayAudit'
+        '400':
+          $ref: '#/components/responses/Invalid'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+    post:
+      summary: Reserve and execute one bounded audited replay
+      operationId: replayQuarantine
+      responses:
+        '200':
+          description: Terminal replay audit; REJECTED is a permanently invalid correction, DUPLICATE has no new business
+            effect. A transient failure can leave a durable STARTED audit; inspect it before another bounded attempt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplayResult'
+        '400':
+          $ref: '#/components/responses/Invalid'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+        '409':
+          description: Conflict with current durable state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplayRequest'
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema: {type: string, format: uuid}
+  responses:
+    Invalid:
+      description: Invalid request; no durable transfer result reserved
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    Unavailable:
+      description: Dependency unavailable. Retry transfers with the same key and payload; do not infer financial failure from a lost response.
+      headers:
+        Retry-After: {schema: {type: string, const: '1'}}
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+  schemas:
+    Account:
+      type: object
+      required: [id, status, unit, createdAt]
+      properties:
+        id: {type: string, format: uuid}
+        status: {type: string, enum: [ACTIVE, FROZEN]}
+        unit: {type: string, const: FIC}
+        createdAt: {type: string, format: date-time}
+    TransferRequest:
+      type: object
+      additionalProperties: false
+      required: [sourceAccountId, destinationAccountId, amount, unit]
+      properties:
+        sourceAccountId: {type: string, format: uuid}
+        destinationAccountId: {type: string, format: uuid}
+        amount: {type: integer, format: int64, minimum: 1, maximum: 9000000000000000}
+        unit: {type: string, const: FIC}
+    Transfer:
+      type: object
+      required: [id, sourceAccountId, destinationAccountId, amount, unit, status, rejectionCode, createdAt, completedAt]
+      properties:
+        id: {type: string, format: uuid}
+        sourceAccountId: {type: string, format: uuid}
+        destinationAccountId: {type: string, format: uuid}
+        amount: {type: integer, format: int64}
+        unit: {type: string, const: FIC}
+        status: {type: string, enum: [COMPLETED, REJECTED]}
+        rejectionCode:
+          type: [string, 'null']
+          enum: [null, ACCOUNT_NOT_FOUND, ACCOUNT_NOT_TRANSFERABLE, ACCOUNT_INACTIVE, UNIT_MISMATCH, INSUFFICIENT_FUNDS, BALANCE_LIMIT_EXCEEDED]
+        createdAt: {type: string, format: date-time}
+        completedAt: {type: string, format: date-time}
+    LedgerEntry:
+      type: object
+      required: [id, transferId, accountId, delta, createdAt]
+      properties:
+        id: {type: integer, format: int64}
+        transferId: {type: string, format: uuid}
+        accountId: {type: string, format: uuid}
+        delta: {type: integer, format: int64}
+        createdAt: {type: string, format: date-time}
+    Error:
+      type: object
+      required: [code, message, correlationId]
+      properties:
+        code: {type: string}
+        message: {type: string}
+        correlationId: {type: string}
+    TransferCompletedEvent:
+      type: object
+      additionalProperties: false
+      required:
+      - eventId
+      - transferId
+      - sourceAccountId
+      - destinationAccountId
+      - eventType
+      - schemaVersion
+      - aggregateVersion
+      - amountMinor
+      - unit
+      - occurredAt
+      - correlationId
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        transferId:
+          type: string
+          format: uuid
+        sourceAccountId:
+          type: string
+          format: uuid
+        destinationAccountId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: TransferCompleted
+        schemaVersion:
+          type: integer
+          const: 1
+        aggregateVersion:
+          type: integer
+          format: int64
+          const: 1
+        amountMinor:
+          type: integer
+          format: int64
+          minimum: 1
+          maximum: 9000000000000000
+        unit:
+          type: string
+          const: FIC
+        occurredAt:
+          type: string
+          format: date-time
+        correlationId:
+          type: string
+          pattern: ^[A-Za-z0-9._:-]{1,128}$
+    OutboxStats:
+      type: object
+      additionalProperties: false
+      required:
+      - pending
+      - claimed
+      - published
+      - blocked
+      - expiredClaims
+      - oldestPendingAgeSeconds
+      properties:
+        pending:
+          type: integer
+          format: int64
+          minimum: 0
+        claimed:
+          type: integer
+          format: int64
+          minimum: 0
+        published:
+          type: integer
+          format: int64
+          minimum: 0
+        blocked:
+          type: integer
+          format: int64
+          minimum: 0
+        expiredClaims:
+          type: integer
+          format: int64
+          minimum: 0
+        oldestPendingAgeSeconds:
+          type: number
+          minimum: 0
+    EventStatus:
+      type: object
+      additionalProperties: false
+      required:
+      - relayEnabled
+      - consumerEnabled
+      - outbox
+      properties:
+        relayEnabled:
+          type: boolean
+        consumerEnabled:
+          type: boolean
+        outbox:
+          $ref: '#/components/schemas/OutboxStats'
+    OutboxInspection:
+      type: object
+      additionalProperties: false
+      required:
+      - eventId
+      - transferId
+      - status
+      - attemptCount
+      - createdAt
+      - nextAttemptAt
+      - claimedBy
+      - claimToken
+      - leaseUntil
+      - publishedAt
+      - lastErrorAt
+      - processedAt
+      - projectedAt
+      - kafkaTopic
+      - lastErrorCode
+      - lastErrorDetail
+      - lastErrorClassification
+      - kafkaPartition
+      - kafkaOffset
+      - latestQuarantineId
+      - payload
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        transferId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - PENDING
+          - CLAIMED
+          - PUBLISHED
+          - BLOCKED
+        attemptCount:
+          type: integer
+          format: int64
+          minimum: 0
+        createdAt:
+          type: string
+          format: date-time
+        nextAttemptAt:
+          type: string
+          format: date-time
+        claimedBy:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        claimToken:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        leaseUntil:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        publishedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastErrorAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        processedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        projectedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        kafkaTopic:
+          type:
+          - string
+          - 'null'
+        lastErrorCode:
+          type:
+          - string
+          - 'null'
+        lastErrorDetail:
+          type:
+          - string
+          - 'null'
+        lastErrorClassification:
+          type:
+          - string
+          - 'null'
+          enum:
+          - TRANSIENT
+          - AMBIGUOUS
+          - PERMANENT
+          - null
+        kafkaPartition:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        kafkaOffset:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        latestQuarantineId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        payload:
+          $ref: '#/components/schemas/TransferCompletedEvent'
+    Activity:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - eventId
+      - transferId
+      - accountId
+      - deltaMinor
+      - unit
+      - occurredAt
+      - projectedAt
+      properties:
+        id:
+          type: integer
+          format: int64
+        eventId:
+          type: string
+          format: uuid
+        transferId:
+          type: string
+          format: uuid
+        accountId:
+          type: string
+          format: uuid
+        deltaMinor:
+          type: integer
+          format: int64
+        unit:
+          type: string
+          const: FIC
+        occurredAt:
+          type: string
+          format: date-time
+        projectedAt:
+          type: string
+          format: date-time
+    ActivityPage:
+      type: object
+      additionalProperties: false
+      required:
+      - accountId
+      - entries
+      - nextAfter
+      - eventuallyConsistent
+      properties:
+        accountId:
+          type: string
+          format: uuid
+        entries:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/Activity'
+        nextAfter:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        eventuallyConsistent:
+          type: boolean
+          const: true
+    ProjectionReport:
+      type: object
+      additionalProperties: false
+      required:
+      - completedTransfers
+      - processedEvents
+      - projectedTransfers
+      - quarantinedRecords
+      - missingProjection
+      - publishedAwaitingProjection
+      - inboxWithoutProjection
+      - projectionWithoutInbox
+      - activityShapeDiscrepancies
+      - originDiscrepancies
+      - discrepancies
+      - oldestUnprocessedAgeSeconds
+      - lastProcessedAt
+      - lastProcessedEventOccurredAt
+      - checkedAt
+      properties:
+        completedTransfers:
+          type: integer
+          format: int64
+          minimum: 0
+        processedEvents:
+          type: integer
+          format: int64
+          minimum: 0
+        projectedTransfers:
+          type: integer
+          format: int64
+          minimum: 0
+        quarantinedRecords:
+          type: integer
+          format: int64
+          minimum: 0
+        missingProjection:
+          type: integer
+          format: int64
+          minimum: 0
+        publishedAwaitingProjection:
+          type: integer
+          format: int64
+          minimum: 0
+        inboxWithoutProjection:
+          type: integer
+          format: int64
+          minimum: 0
+        projectionWithoutInbox:
+          type: integer
+          format: int64
+          minimum: 0
+        activityShapeDiscrepancies:
+          type: integer
+          format: int64
+          minimum: 0
+        originDiscrepancies:
+          type: integer
+          format: int64
+          minimum: 0
+        discrepancies:
+          type: integer
+          format: int64
+          minimum: 0
+        oldestUnprocessedAgeSeconds:
+          type:
+          - number
+          - 'null'
+        lastProcessedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastProcessedEventOccurredAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        checkedAt:
+          type: string
+          format: date-time
+    QuarantineItem:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - partition
+      - offset
+      - originalPayloadBytes
+      - processingAttempts
+      - replayAttempts
+      - eventId
+      - consumerGroup
+      - topic
+      - originalPayloadBase64
+      - originalPayloadUtf8
+      - payloadSha256
+      - code
+      - message
+      - originalKey
+      - payloadTruncated
+      - classification
+      - quarantinedAt
+      - lastReplayAt
+      properties:
+        id:
+          type: integer
+          format: int64
+        partition:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        originalPayloadBytes:
+          type: integer
+          format: int64
+        processingAttempts:
+          type: integer
+          format: int64
+        replayAttempts:
+          type: integer
+          format: int64
+        eventId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        consumerGroup:
+          type: string
+        topic:
+          type: string
+        originalPayloadBase64:
+          type: string
+        originalPayloadUtf8:
+          type: string
+        payloadSha256:
+          type: string
+        code:
+          type: string
+        message:
+          type: string
+        originalKey:
+          type:
+          - string
+          - 'null'
+        payloadTruncated:
+          type: boolean
+        classification:
+          type: string
+          const: PERMANENT
+        quarantinedAt:
+          type: string
+          format: date-time
+        lastReplayAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+    ReplayAudit:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - quarantineId
+      - attempt
+      - reason
+      - correctedPayload
+      - adoptedEventId
+      - status
+      - resultCode
+      - startedAt
+      - finishedAt
+      properties:
+        id:
+          type: integer
+          format: int64
+        quarantineId:
+          type: integer
+          format: int64
+        attempt:
+          type: integer
+          format: int64
+        reason:
+          type: string
+        correctedPayload:
+          type:
+          - string
+          - 'null'
+        adoptedEventId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        status:
+          type: string
+          enum:
+          - STARTED
+          - SUCCEEDED
+          - DUPLICATE
+          - REJECTED
+        resultCode:
+          type:
+          - string
+          - 'null'
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+    ReplayResult:
+      type: object
+      additionalProperties: false
+      required:
+      - replayId
+      - quarantineId
+      - attempt
+      - eventId
+      - status
+      - code
+      properties:
+        replayId:
+          type: integer
+          format: int64
+        quarantineId:
+          type: integer
+          format: int64
+        attempt:
+          type: integer
+          format: int64
+        eventId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        status:
+          type: string
+          enum:
+          - SUCCEEDED
+          - DUPLICATE
+          - REJECTED
+        code:
+          type:
+          - string
+          - 'null'
+    RequeueRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - reason
+      properties:
+        reason:
+          type: string
+          minLength: 1
+          maxLength: 256
+    ReplayRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - reason
+      properties:
+        reason:
+          type: string
+          minLength: 1
+          maxLength: 500
+        correctedPayload:
+          type:
+          - string
+          - 'null'
+      description: Optional correctedPayload is a JSON event string, limited to 1 MiB UTF-8. A known event ID must be
+        preserved. Every reserved attempt is audited; at most five by default.
+
+    BackpressureStatus:
+      type: object
+      additionalProperties: false
+      required: [enabled, bestEffort, admitting, reason, pressure, observedAt, sampleAgeSeconds]
+      properties:
+        enabled: {type: boolean}
+        bestEffort: {type: boolean, const: true}
+        admitting: {type: boolean}
+        reason:
+          type: string
+          enum: [disabled, none, unavailable, stale, unpublished_count, unpublished_age, published_unprocessed_count, published_unprocessed_age, recovering]
+        pressure:
+          oneOf:
+            - {$ref: '#/components/schemas/BacklogPressure'}
+            - {type: 'null'}
+        observedAt: {type: [string, 'null'], format: date-time}
+        sampleAgeSeconds: {type: [number, 'null'], minimum: 0}
+    BacklogPressure:
+      type: object
+      additionalProperties: false
+      required: [unpublished, oldestUnpublishedAgeSeconds, publishedUnprocessed, oldestPublishedUnprocessedAgeSeconds]
+      properties:
+        unpublished: {type: integer, format: int64, minimum: 0}
+        oldestUnpublishedAgeSeconds: {type: number, minimum: 0}
+        publishedUnprocessed: {type: integer, format: int64, minimum: 0}
+        oldestPublishedUnprocessedAgeSeconds: {type: number, minimum: 0}

@@ -1,0 +1,67 @@
+{
+  "reviewedAt": "2026-10-11T15:00:29.684472+00:00",
+  "mode": "Read-only source correctness review; no builds, tests, Docker actions or source edits during review",
+  "scope": "Optimized asynchronous relay, bounded immutable batch state, fenced atomic result persistence and sampled admission protocol",
+  "actionableDefects": [],
+  "sourceSha256": {
+    "src/main/java/dev/tpp/events/relay/OutboxRelay.java": "58748004b93dcf4fc08e4c9d33b7680ccf055530d7ca6bf8912c43eb599eefdd",
+    "src/main/java/dev/tpp/events/relay/OutboxStore.java": "4c13a7d2e87d9098400011c89c366c27fae529aa207a39bebe3c6ce4cf191436",
+    "src/main/java/dev/tpp/events/relay/PublicationBatch.java": "372f45f61852a2c524cf1c7c087c3c595bdf0a8318129c17d07499eeb018e011",
+    "src/main/java/dev/tpp/application/BacklogAdmission.java": "618bc0d508447edb9d47e259d1648310545d90ce7374e69c06a5c15edee63354",
+    "src/main/java/dev/tpp/application/BacklogSampler.java": "d3a62cc76fd593aaec92acdb7977474146c88b9e00438d23dc6c4642fae90f45",
+    "src/main/java/dev/tpp/application/BackpressureSettings.java": "7eca2f12f5a220c94528edd7bfe9b4090a58b6f546bd2a6bef60831ae95403f4",
+    "src/main/java/dev/tpp/application/TransferService.java": "5432aa8bb65252bb6ae298c9d4d283399b9d17e4209f1654ce3c1da35cd1b531",
+    "src/main/java/dev/tpp/events/consumer/EventConsumerWorker.java": "62c89efe8a2be6588a2395200d35126e20ef9242e7a3b8cff340c126ffb4c4ef",
+    "src/main/resources/db/migration/V2__transactional_outbox.sql": "ea332c9b8b3f0b7227d3da4b7e1905333d9a86fff14ca71c6332f1739aa6efd5",
+    "src/main/resources/application.yaml": "308d3bd7dfea327288faa886c9461c7f72dcc6b2d38c81f74b8345241ac66de3"
+  },
+  "checks": [
+    "One relay coordinator per instance; claim size is capped by currently available actual-send permits.",
+    "Permit acquisition precedes send; callback or synchronous throw releases once. Timeout/freeze does not release actual-send permits, so later batches retain the shared outstanding bound.",
+    "Callback state is synchronized and keyed by logical event plus claim generation. First terminal outcome wins, invalid ACK cannot publish, and frozen or cancelled snapshots reject later callbacks.",
+    "Unknown submitted outcomes become AMBIGUOUS; never-started records become TRANSIENT BATCH_NOT_SENT. Neither classification discards durable eligibility.",
+    "Callbacks perform no SQL or fault hooks. ACK hooks and status persistence run on the coordinator after immutable result capture.",
+    "Claim renewal and settlement use event identity, claim token, CLAIMED status and live database lease predicates. Database guards independently prevent expired ownership overwrite and immutable delivery-history changes.",
+    "One bounded status UPDATE executes inside TransactionTemplate. Applied IDs and publication success counts are used only after transaction completion; statement and COMMIT failures preserve retry safety.",
+    "Shutdown fences further coordinator work, interrupts the active coordinator, closes producer work and leaves unresolved claims recoverable. A commit already in progress may safely finish for its acknowledged results.",
+    "Admission is checked after existing-key replay/conflict arbitration and before financial mutation. Denial rolls back a new reservation; overload and unavailable/stale status responses retain 503 plus Retry-After and same-key retry semantics.",
+    "Disabled admission performs no sample query. Enabled admission keeps previous evidence on query failure, uses monotonic freshness, rejects unknown/stale evidence and applies hysteresis to both publication and consumption backlog.",
+    "Consumer auto-commit remains disabled; only the individual delivery offset+1 follows durable DB outcome. Revocation commits nothing, paused heartbeat records are sought back, and redelivery remains protected by the durable inbox."
+  ],
+  "confidenceLimits": [
+    "Source review and finite executed schedules do not prove every JVM/OS/network interleaving. Existing full92 test-phase pass and focused10 pass are separate evidence; no new tests were executed by this review.",
+    "Producer construction holds a lifecycle monitor and can wait on OS/JVM bootstrap DNS. The tested shutdown bound does not establish a universal bound for arbitrary resolver stalls.",
+    "Expired owners may still send to Kafka; generation fencing protects PostgreSQL publication evidence, while durable inbox uniqueness protects the defined projection effect. Transport duplicates remain intentional.",
+    "Admission is local and sampled best effort. Concurrent requests may overshoot thresholds; it is not a hard global queue cap. Query cost includes historical outbox/inbox rows and larger-history scalability is not established by this review.",
+    "A network error during COMMIT can leave an unknown server outcome; no optimistic metric or result is assumed. A committed status is immutable, while a noncommitted claim remains eligible after lease expiry."
+  ],
+  "existingEvidence": [
+    "/private/tmp/tpp-phase3-full-verify.log (92-test phase pass; first static phase failed before separate fixes)",
+    "/private/tmp/tpp-phase3-commit-focused.log (10 focused tests passed)",
+    "/private/tmp/tpp-phase3-commit-focused.json (Surefire-derived focused counts and exact methods)"
+  ],
+  "postReviewCorrection": {
+    "foundBy": "parent/root",
+    "status": "Applied in1737a27 after all timed benchmarks. Deterministic regression failed against measured production and passed after correction; final clean suite gate and final runtime acceptance remain separate.",
+    "defect": "An admitted start may read stopInProgress=false before stop CAS, then overwrite eager stop flags/install a worker while stop waits for this monitor. Stop originally captured only the old worker outside the monitor and could return with the new worker alive.",
+    "correction": "Retain eager stop flags and initial interrupts. Inside synchronized(this), reassert stopped flags, recapture current coordinator/worker and detach producer; interrupt current captures and close/join outside the monitor using the existing combined deadline.",
+    "regression": "Test-only reflective writes under the lifecycle monitor explicitly model the admitted-start scheduling window; verify current worker interrupted/terminated and stopped state. Subsequent same-instance restart must publish a real new HTTP completion to Kafka with one final DB projection and reconciled ledger.",
+    "provenanceLimit": "Active benchmark image/source remains unchanged. This lifecycle-only correction and final correctness gate must be identified separately in final provenance.",
+    "patch": "/private/tmp/tpp-phase3-lifecycle.patch",
+    "implementationCommit": "1737a27ef2e7c2c81e45671866d70b7e05002667",
+    "productionSha256": "ec191c623cee90bbe88c2d5132a5511c870abb25080edb13a7d4f9c01b1df3ed",
+    "executedEvidence": [
+      "phase3-lifecycle-red-green.json",
+      "phase3-lifecycle-static.json"
+    ],
+    "laterTestFixtureCorrections": [
+      "phase3-clean-first-failure.json",
+      "phase3-partial-bound-correction.json",
+      "phase3-clean-second-failure.json",
+      "phase3-shutdown-correction.json"
+    ],
+    "finalAcceptanceSourceCommit": "2c859cb28d3b1898a2a7d25c5c87d7a0a0a3dbe4",
+    "finalCleanVerification": "phase3-clean-verify.json"
+  },
+  "benchmarked_source_commit": "66dc7c9cbcdd312f9df5ed427520bc398d7696a0"
+}

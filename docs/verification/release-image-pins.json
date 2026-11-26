@@ -1,0 +1,277 @@
+{
+  "resolvedAtUtc": "2026-10-13T14:23:54.387614+00:00",
+  "registry": "registry-1.docker.io",
+  "images": {
+    "dockerfile-frontend": {
+      "image": "docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e",
+      "digest": "sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e",
+      "tag": "1",
+      "repository": "docker/dockerfile",
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "platforms": [
+        {
+          "os": "linux",
+          "architecture": "mipsle",
+          "digest": "sha256:eefcda107a54b27e22a1f2ec98bc631069f2b79a99091060f731aa757eee79d3"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm64",
+          "digest": "sha256:e291cde6b1429712d3951bca77be92338719212df6654812f1a55874a481742d"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm",
+          "digest": "sha256:f583422f998421d9be5fce69057685ad29ba18788aa06611c2811a16a3c4d810"
+        },
+        {
+          "os": "linux",
+          "architecture": "mips",
+          "digest": "sha256:de5dfb3bea47b89ad04226169a5a120fafc5bf23fdf667135e8a880e2b67922f"
+        },
+        {
+          "os": "linux",
+          "architecture": "amd64",
+          "digest": "sha256:7b32114e84ca21aeb2d6f871a0b62b3a0762193f75d9afd048ee4cbe889f3148"
+        },
+        {
+          "os": "linux",
+          "architecture": "mips64",
+          "digest": "sha256:86d5fb9a482ad24fad3e6142380a1fb6e29790053a3c38bc3459bf44740298c0"
+        },
+        {
+          "os": "linux",
+          "architecture": "386",
+          "digest": "sha256:9d9cdcd13eb0de35b18d42454a26de152123bbf12ad0883a5a6633e8f371ae6d"
+        },
+        {
+          "os": "linux",
+          "architecture": "ppc64le",
+          "digest": "sha256:c8068415af2ed75ceea918e6e230e24f90c8fbebf30cd6cf4fe447bb56045c48"
+        },
+        {
+          "os": "linux",
+          "architecture": "mips64le",
+          "digest": "sha256:3f8e057174d1b100d3d1864a66a5f50973891abeae57f73ecffab88d3b330e40"
+        },
+        {
+          "os": "linux",
+          "architecture": "s390x",
+          "digest": "sha256:e4a1a8f99464abce6ade26ff1617a9a6a639814a0e943e916afa70556d91400a"
+        },
+        {
+          "os": "linux",
+          "architecture": "riscv64",
+          "digest": "sha256:e54452b74584a4238c1ee654aa54ca960cde36c8cce04ecd5bfb8de40b258ab7"
+        }
+      ]
+    },
+    "temurin-jdk": {
+      "image": "eclipse-temurin:21-jdk-alpine@sha256:0bfc69a4758a86710e5c474032d28400a8bd00874766f9e8b1642ac2fd293159",
+      "digest": "sha256:0bfc69a4758a86710e5c474032d28400a8bd00874766f9e8b1642ac2fd293159",
+      "tag": "21-jdk-alpine",
+      "repository": "library/eclipse-temurin",
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "platforms": [
+        {
+          "os": "linux",
+          "architecture": "amd64",
+          "digest": "sha256:9ececb44042a7cc91e4e6bca525c678e811c1602330a80b5f2d2fcfa0aa97c4e"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm64",
+          "digest": "sha256:9bc7354ecf82f90e2cdac8fb5210b3f27ecd975bd2c7f3f7dca152de42439253"
+        }
+      ]
+    },
+    "temurin-jre": {
+      "image": "eclipse-temurin:21-jre-alpine@sha256:51ab5e3302e7141ce665ca3ea85e8b5cd648eafbc3c0c90dd79d6537684e4555",
+      "digest": "sha256:51ab5e3302e7141ce665ca3ea85e8b5cd648eafbc3c0c90dd79d6537684e4555",
+      "tag": "21-jre-alpine",
+      "repository": "library/eclipse-temurin",
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "platforms": [
+        {
+          "os": "linux",
+          "architecture": "amd64",
+          "digest": "sha256:bec16bceecb1a89defa333c77ac76d29a6b0d59fcb4f50218b476efa68e30bb4"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm64",
+          "digest": "sha256:7d476ab4df209f15b0f7b2f26eb52bf81a90a8f88576892904df8fa4a97fc048"
+        }
+      ]
+    },
+    "postgres": {
+      "image": "postgres:17.11-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "digest": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "tag": "17.11-alpine",
+      "repository": "library/postgres",
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "platforms": [
+        {
+          "os": "linux",
+          "architecture": "amd64",
+          "digest": "sha256:aa90e97ee862e558111d34cfb8b2c4bec768c2b039fb791341686928560263b3"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm",
+          "digest": "sha256:612d0227f7b0bbd2261526483482a421f7045756d847650f8434e495bdfc3906"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm",
+          "digest": "sha256:8cda45f8b7378a25b0a30d477ae3e88bc8506fed6d6c143077837b8d152beca7"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm64",
+          "digest": "sha256:0b2882c46a2b8d8e148431b333394348cf4d7f15aec6df7f17d51dc641e56cfa"
+        },
+        {
+          "os": "linux",
+          "architecture": "386",
+          "digest": "sha256:c98d2b51ea0b783168631e256439271b6118e753e92b1c7b4c96ee1049a72fb3"
+        },
+        {
+          "os": "linux",
+          "architecture": "ppc64le",
+          "digest": "sha256:358ff414c1f27c87d4c28e85d6fb70fff92e73e30042e7a85725ef8a9afa61e0"
+        },
+        {
+          "os": "linux",
+          "architecture": "riscv64",
+          "digest": "sha256:8c0b0c721d8eeb21dc9f7aaed7a9c25a93faa867f2f4e8f4f773b97abc03d311"
+        },
+        {
+          "os": "linux",
+          "architecture": "s390x",
+          "digest": "sha256:fdc21110db1fc775b61e402ca57872d074fb42313257b0316e3fccca9ad75c42"
+        }
+      ]
+    },
+    "kafka": {
+      "image": "apache/kafka:4.3.1@sha256:77e3df9054047a88b520d0cc46e16696d3b22022e1d580aeccd2632df6532837",
+      "digest": "sha256:77e3df9054047a88b520d0cc46e16696d3b22022e1d580aeccd2632df6532837",
+      "tag": "4.3.1",
+      "repository": "apache/kafka",
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "platforms": [
+        {
+          "os": "linux",
+          "architecture": "amd64",
+          "digest": "sha256:ccd1314e47ec76909e01f86308b4dcf2064f19f7c89759234322314b0e319e26"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm64",
+          "digest": "sha256:c2b5172ab20d66381ec1729796a410fd611135821994526d4d42d2f256054af3"
+        }
+      ]
+    },
+    "ryuk": {
+      "image": "testcontainers/ryuk:0.14.0@sha256:7c1a8a9a47c780ed0f983770a662f80deb115d95cce3e2daa3d12115b8cd28f0",
+      "digest": "sha256:7c1a8a9a47c780ed0f983770a662f80deb115d95cce3e2daa3d12115b8cd28f0",
+      "tag": "0.14.0",
+      "repository": "testcontainers/ryuk",
+      "mediaType": "application/vnd.docker.distribution.manifest.list.v2+json",
+      "platforms": [
+        {
+          "os": "linux",
+          "architecture": "ppc64le",
+          "digest": "sha256:0ec94eed6fd7b3469106e9c56281f2625c709ca9158ccefbee3952f592a0652f"
+        },
+        {
+          "os": "linux",
+          "architecture": "386",
+          "digest": "sha256:2664ba2cbd1bb94b7d33f7beba9d4bd76c95e09477a8a46d8a53648aa09068de"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm",
+          "digest": "sha256:42360dbdebd395209e53e285e360dce3357475b22b0a546fcee04a1d5dc5a668"
+        },
+        {
+          "os": "linux",
+          "architecture": "s390x",
+          "digest": "sha256:560be79f81e06c951dc8b8b0d900de173274636c3675287a3805b560921f1100"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm64",
+          "digest": "sha256:79e2fbedad76001e8ac2f64556a729de503531be9dad9e2ff6fc469006b2e93c"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm",
+          "digest": "sha256:81f7d64d4a1e0d0c7eff90b2e11118d5d11e8509f0e001cb3f55440918cad53f"
+        },
+        {
+          "os": "linux",
+          "architecture": "amd64",
+          "digest": "sha256:f0456560ea5b4acdbed0da0efc33b5f9dd6bc1e59f2337106826dcb5b0b0e981"
+        }
+      ]
+    },
+    "tinyimage": {
+      "image": "alpine:3.24@sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6",
+      "digest": "sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6",
+      "tag": "3.24",
+      "repository": "library/alpine",
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "platforms": [
+        {
+          "os": "linux",
+          "architecture": "amd64",
+          "digest": "sha256:d56c381f961d307a21b3ca004cf1e3910f106644aefb1f43e654c8a56c4fd395"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm",
+          "digest": "sha256:d3c3fda3e4d3f0fcfc86cf469c6dfbe65017143dde23feb4b11df37c373cdc76"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm",
+          "digest": "sha256:0a13654ecd9b19a728f0bee49d7245ffcd9b9f31ed8d69fe8753e39a8432bda2"
+        },
+        {
+          "os": "linux",
+          "architecture": "arm64",
+          "digest": "sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d"
+        },
+        {
+          "os": "linux",
+          "architecture": "386",
+          "digest": "sha256:c54a80678a9e7a744b39d478329d5eb8e568c2e0321defd14cab57047557e202"
+        },
+        {
+          "os": "linux",
+          "architecture": "ppc64le",
+          "digest": "sha256:f34b729ba6dc5bcd147ff99af45f81c1bc68ab619067c39cafd19327dd04b7db"
+        },
+        {
+          "os": "linux",
+          "architecture": "riscv64",
+          "digest": "sha256:1320e86f94641acc6c531e0519ca4285f1882612d52c654dfa4f1bb65b48a04f"
+        },
+        {
+          "os": "linux",
+          "architecture": "s390x",
+          "digest": "sha256:ce2789264b55ef57693ad3aebc95d4ee9e46288f769f43ab5f37554853502289"
+        }
+      ]
+    }
+  },
+  "derivedServerSources": {
+    "postgres": "../../docker/postgres/provenance.json",
+    "kafkaJarLock": "../../docker/kafka-libraries.json",
+    "osPackageLock": "../../docker/alpine-packages.json",
+    "goCompilerBuilder": "golang:1.26.9-alpine@sha256:3082400e369fa24d5fc60bca20edab3f6d604e0c5a690ec66b295eff4dd87ade"
+  },
+  "actualFinalLocalImageAudit": "release-image-audit.json",
+  "executionScope": "Only Linuxarm64 exercised; immutable multiarch upstream inputs do not prove other architecture execution."
+}

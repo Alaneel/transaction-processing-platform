@@ -1,0 +1,99 @@
+{
+  "scope": "Initial optimized full clean verify before the additional deferred-commit scenario",
+  "build": "FAILURE",
+  "finished_at": "2026-10-11T22:54:54+08:00",
+  "tests": 92,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "classes": [
+    {
+      "test_class": "dev.tpp.EventPipelineTest",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 191.3
+    },
+    {
+      "test_class": "dev.tpp.EventContractTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 0.014
+    },
+    {
+      "test_class": "dev.tpp.OutboxMigrationUpgradeTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 1.872
+    },
+    {
+      "test_class": "dev.tpp.ApiErrorMappingTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 0.006
+    },
+    {
+      "test_class": "dev.tpp.DatabaseErrorsTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 0.001
+    },
+    {
+      "test_class": "dev.tpp.BackpressurePostgresTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 5.825
+    },
+    {
+      "test_class": "dev.tpp.application.BacklogAdmissionTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 0.035
+    },
+    {
+      "test_class": "dev.tpp.events.relay.PublicationBatchTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 0.012
+    },
+    {
+      "test_class": "dev.tpp.DomainRulesTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 0.003
+    },
+    {
+      "test_class": "dev.tpp.TransferPostgresTest",
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 9.174
+    }
+  ],
+  "static_findings": 5,
+  "findings": [
+    "Two shared Spring repository references: narrow EI_EXPOSE_REP2 exclusion with repository identity explanation",
+    "Two formatted multiline SQL templates: changed placeholder replacement to avoid printf newline conventions",
+    "Immutable cached batch result list: explicit List.copyOf for analyzer-visible immutability"
+  ],
+  "limitations": "All 92 tests passed, but this command did not pass verify. Subsequent focused tests and static checks are separate; final clean verification is required.",
+  "log_source": "/private/tmp/tpp-phase3-full-verify.log"
+}

@@ -1,0 +1,129 @@
+{
+  "observedAtUtc": "2026-10-13T13:44:04.453708+00:00",
+  "purpose": "Local showcase refresh verification; separate from historical full integration and performance results",
+  "source": {
+    "coreProductionConfigurationUnchanged": true,
+    "comparedFiles": 58,
+    "sha256": "c3b7882755e7aec001d1acd8481f14e3953fd4fd45a3779f538f97a468842a99",
+    "scope": "src/ including tests/resources, pom.xml, Dockerfile, compose.yaml"
+  },
+  "javaVerification": {
+    "commandWithLocalCachePathsNormalized": "JAVA_HOME=<Java 21 JDK> MAVEN_USER_HOME=<existing wrapper cache> ./mvnw -o -B -ntp -Dmaven.repo.local=<existing Maven cache> -Dtest=ApiErrorMappingTest,DatabaseErrorsTest,DomainRulesTest,EventContractTest,PublicationBatchTest,BacklogAdmissionTest clean verify",
+    "result": "SUCCESS",
+    "elapsedSeconds": 8.021,
+    "tests": 34,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "scope": "all 34 unit checks; real-dependency integration classes explicitly not selected",
+    "classes": [
+      {
+        "className": "dev.tpp.ApiErrorMappingTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.065,
+        "reportSha256": "d59cc40a67f267f272cadf1b418c2e34f3c5518d6a41cd265bda29a4dee5112b"
+      },
+      {
+        "className": "dev.tpp.DatabaseErrorsTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.003,
+        "reportSha256": "10947b76a12bdf838ff055bc49fdf1e4212e716b286cf6a8a2f15becc0ef3283"
+      },
+      {
+        "className": "dev.tpp.DomainRulesTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.005,
+        "reportSha256": "e8558528d680b747f58708a317c84c53c1d920216371494af40ddbedeb22e49a"
+      },
+      {
+        "className": "dev.tpp.EventContractTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.191,
+        "reportSha256": "abdcc18dadc7a1bb2375133135101fcb4811199d09b33b7d0de18d09cbe59749"
+      },
+      {
+        "className": "dev.tpp.application.BacklogAdmissionTest",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.136,
+        "reportSha256": "aaf9392795a9dd7c3072f4dca5755828e4e04bf1b7565f462940b3af9a9d6505"
+      },
+      {
+        "className": "dev.tpp.events.relay.PublicationBatchTest",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 0.016,
+        "reportSha256": "971271bba96a3463e2fa48883b1fab7517bd5f0400c11d210f2f8bf4d9aec1f1"
+      }
+    ],
+    "spotBugs": {
+      "bugInstances": 0,
+      "errors": 0,
+      "reportSha256": "852fe835af2086a9615841f96d611e664113a110695f9aa1cf517f469a7c61b9"
+    },
+    "enforcer": "Java 21, Maven version, dependency convergence and release-only rules passed",
+    "logSha256": "1ff44a7f963c8a48dd43ddc6f7677b9f091aef6ac6484c61192825aa3ca06196"
+  },
+  "pythonVerification": {
+    "existingBenchmarkHarness": {
+      "command": "python3 scripts/test_event_benchmark.py",
+      "tests": 7,
+      "result": "PASS"
+    },
+    "demoAuthorizationBoundaries": {
+      "command": "python3 scripts/test_demo.py",
+      "tests": 10,
+      "result": "PASS",
+      "scope": "mocked local endpoint pinning, remote refusal, explicit Compose file, checkout/volume ownership and uncertain broker-stop restoration; no delivery simulation"
+    },
+    "allScriptsParse": true,
+    "demoHelpAndNormalOutageStopCommandPlans": "PASS",
+    "invalidPortAndProjectInput": "refused with exit 2",
+    "chartProvenance": {
+      "command": "python3 scripts/render-showcase.py --check",
+      "result": "PASS",
+      "scope": "all four plotted raw reports match comparison summary; data/SVG hashes match"
+    },
+    "composeConfiguration": {
+      "command": "docker compose --project-name tpp-portfolio-demo config --quiet",
+      "result": "PASS"
+    }
+  },
+  "runtimeVerification": {
+    "command": "python3 scripts/demo.py",
+    "exitCode": 1,
+    "result": "BLOCKED",
+    "reason": "Docker client has no reachable local daemon. Both default and desktop-linux Unix sockets unavailable; installed Docker Desktop lacks a runnable executable.",
+    "containerMutationsAttempted": false,
+    "freshFullIntegrationRun": "not executed",
+    "freshOutageDemo": "not executed",
+    "historicalEvidence": "phase3-clean-verify.json and phase3-final-acceptance.json remain separate retained execution results"
+  },
+  "publication": {
+    "pushPerformed": false,
+    "remoteSettingsChanged": false,
+    "visibilityChanged": false
+  },
+  "remaining": [
+    "Execute clean verify with real PostgreSQL/Kafka in a working local Docker runtime",
+    "Execute new normal and broker-outage demo end to end",
+    "Review full history and local-path/binary evidence export before publication",
+    "Owner must approve push, public visibility and remote release settings"
+  ]
+}

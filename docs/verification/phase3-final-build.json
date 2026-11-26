@@ -1,0 +1,147 @@
+{
+  "startedAt": "2026-10-11T16:12:39.153813+00:00",
+  "sourceCommit": "2c859cb28d3b1898a2a7d25c5c87d7a0a0a3dbe4",
+  "buildContext": "/private/tmp/tpp-phase3-clean-2c859cb",
+  "contextHead": "2c859cb28d3b1898a2a7d25c5c87d7a0a0a3dbe4",
+  "contextWasClean": true,
+  "gitExecutable": "/Library/Developer/CommandLineTools/usr/bin/git",
+  "tag": "tpp-phase3-final:2c859cb",
+  "command": [
+    "docker",
+    "build",
+    "--tag",
+    "tpp-phase3-final:2c859cb",
+    "/private/tmp/tpp-phase3-clean-2c859cb"
+  ],
+  "complete": true,
+  "verifiedSourceEvidence": "docs/verification/phase3-clean-verify.json",
+  "DockerfileSha256": "d8c4c5128d8ad943bed4b96d9dbcbcfee96624bd95362b62353c50c95904badd",
+  "pomSha256": "06ac1584b3cef9117a0108ba4bae4892bee7fbf7ebb1273fcafb838393d5833a",
+  "containersBeforeBuild": {
+    "tpp-phase1-validation": {
+      "app": {
+        "id": "4ce9c10aae8e0f986493f1d2b08138fcc706de21491b767ac7e8e464459a56d5",
+        "image": "sha256:18f2aba048ad57d63f28ffaf630a68d6fc6e5d26b69200e54a1895c7f766b873",
+        "startedAt": "2026-10-11T12:55:28.137976835Z",
+        "mounts": []
+      },
+      "db": {
+        "id": "b909edf3497bce6cdca42c273f4fc45681d6d29aa0e9cfc6c7eae462aa9d8320",
+        "image": "sha256:25a89970a83255ae96484d709005bb35aa71f7455f941bc1634514f31c5d5c62",
+        "startedAt": "2026-10-11T12:48:25.103496375Z",
+        "mounts": [
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/docker-entrypoint-initdb.d/10-runtime-role.sh"
+          },
+          {
+            "type": "volume",
+            "name": "tpp-phase1-validation_pgdata",
+            "destination": "/var/lib/postgresql/data"
+          }
+        ]
+      }
+    },
+    "tpp-phase2-validation": {
+      "app": {
+        "id": "71ee656b83dc79cb7e483541b6b8f74ff0439529a7f56b9c3c1b81ad7b3f9e33",
+        "image": "sha256:aa585ad7255b0a55ded7729456af46d79a3fb5743e2412c97fcfb6a2bb634948",
+        "startedAt": "2026-10-11T14:04:21.869181887Z",
+        "mounts": []
+      },
+      "db": {
+        "id": "bfb837a1b5bf468cd2e6654253c70c223f4ac484b6428d75256f218c82f1b09b",
+        "image": "sha256:25a89970a83255ae96484d709005bb35aa71f7455f941bc1634514f31c5d5c62",
+        "startedAt": "2026-10-11T13:38:55.758680542Z",
+        "mounts": [
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/docker-entrypoint-initdb.d/10-runtime-role.sh"
+          },
+          {
+            "type": "volume",
+            "name": "tpp-phase2-validation_pgdata",
+            "destination": "/var/lib/postgresql/data"
+          }
+        ]
+      },
+      "kafka": {
+        "id": "3a146692654415f14049e7d62a8ae8bfe981769599d5d8f86d8f7fc7dd4348f1",
+        "image": "sha256:33241f6eae1f4e20cd5c01dd3e38656201f7eaca675664276a87e8f440fcbaa4",
+        "startedAt": "2026-10-11T14:04:33.407573795Z",
+        "mounts": [
+          {
+            "type": "volume",
+            "name": "492716b12412f05820813006b7d7da69db5c005a86444dd457eccdb487e342d1",
+            "destination": "/etc/kafka/secrets"
+          },
+          {
+            "type": "volume",
+            "name": "8837da49d4b4cfc02cebcaa3f771cea8df99da154ff647abd1f3f64042d2720a",
+            "destination": "/mnt/shared/config"
+          },
+          {
+            "type": "volume",
+            "name": "tpp-phase2-validation_kafkadata",
+            "destination": "/var/lib/kafka/data"
+          }
+        ]
+      }
+    },
+    "tpp-phase3-validation": {
+      "app": {
+        "id": "ed1eb9f30b5b940e33e5e6ac6ec6f929302a5353ca4cccf850b2b6504bba74ff",
+        "image": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+        "startedAt": "2026-10-11T15:39:56.285699583Z",
+        "mounts": []
+      },
+      "db": {
+        "id": "f4653c2d0250ffec70b0d253dcb5b570130a9d72d9bdecbdcdf9d542ecc962ca",
+        "image": "sha256:25a89970a83255ae96484d709005bb35aa71f7455f941bc1634514f31c5d5c62",
+        "startedAt": "2026-10-11T14:34:56.249198667Z",
+        "mounts": [
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/docker-entrypoint-initdb.d/10-runtime-role.sh"
+          },
+          {
+            "type": "volume",
+            "name": "tpp-phase3-validation_pgdata",
+            "destination": "/var/lib/postgresql/data"
+          }
+        ]
+      },
+      "kafka": {
+        "id": "91f81ccd069f2d4a9c13343d646868eb8066a99bac055166f3dfc8758bc7bc28",
+        "image": "sha256:33241f6eae1f4e20cd5c01dd3e38656201f7eaca675664276a87e8f440fcbaa4",
+        "startedAt": "2026-10-11T15:20:44.00236905Z",
+        "mounts": [
+          {
+            "type": "volume",
+            "name": "tpp-phase3-validation_kafkadata",
+            "destination": "/var/lib/kafka/data"
+          },
+          {
+            "type": "volume",
+            "name": "7f380012727fdd57d1fe59f07c1ca72ffc679a9c122aa833e474fbd84e454df4",
+            "destination": "/etc/kafka/secrets"
+          },
+          {
+            "type": "volume",
+            "name": "01b3f8627d6ef5889f5db88dab431b0a2e4d0f7b4b51b7cd3ebc164ef2b62358",
+            "destination": "/mnt/shared/config"
+          }
+        ]
+      }
+    }
+  },
+  "finishedAt": "2026-10-11T16:12:48.717923+00:00",
+  "exitCode": 0,
+  "buildLog": "docs/verification/phase3-final-build.log",
+  "buildLogSha256": "4fec5e77f76d97d2154a8e55840950a9de851d870cdfdd0996d99e2ccca58c1d",
+  "image": "sha256:3da213ca031c1f2aa0c229c35dcce2ee0bd5c719055e4c3186d335127bc5b0ee",
+  "imageCreatedAt": "2026-10-11T16:12:48.507092677Z"
+}

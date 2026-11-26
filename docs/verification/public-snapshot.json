@@ -1,0 +1,27 @@
+{
+  "sourceReference": "7a43792d2961e54cb86bb0ac82ac07071bd88276 plus the separately verified October release workspace",
+  "historicalCommitIdsAreLocalReferences": true,
+  "publishedSourceHistoryStartsAtSnapshot": true,
+  "unchangedApplicationAndBuildInputs": true,
+  "releaseTestFixtureChange": "Rejection-accounting test allocates a worker for each of its four scheduled requests so delayed scheduling cannot create unrelated local shedding. Benchmark workload implementation is unchanged.",
+  "omittedLocalEvidence": {
+    "docs/benchmarks/phase3-profile/baseline.jfr": {
+      "reason": "Retain raw diagnostic binary privately. The summary, analysis and provenance are published.",
+      "sha256": "9992b18b8ae4c40edcef79676aab2b707179e7b3b10de1e484f67adacd1b9258"
+    }
+  },
+  "publicationEdits": {
+    "docs/benchmarks/phase3-sustainable-250/gate-stop-inspection.json": {
+      "localSha256": "7360b5084a054bc84eb09ba7086dd8fd83d843452db2fc44a95bd4b8df755933",
+      "publicationSha256": "e7fbd484d7b718045c8c6f7462dd795ac104a21d93acbcea6cc5866ef545b060"
+    },
+    "docs/phase3-performance.md": {
+      "localSha256": "dd87ed30f1427b2169d6968912cc435d4432f60f1ccb94b301a7e17cb983c63f",
+      "publicationSha256": "9f00bd352011381f964388b9d4f8739e234ee39ccd917a96b6f7bf48c796ae99"
+    },
+    "scripts/test_event_benchmark.py": {
+      "localSha256": "ec0f52f1602415fce6605d50cd4317986f62f8fcc91edb183e4d9fc1282c56b0",
+      "publicationSha256": "69a21c02f60100fc6ccccf7508b138634496fe3c65468506fce64c0bab3dd5be"
+    }
+  }
+}

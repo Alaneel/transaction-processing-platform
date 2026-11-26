@@ -1,0 +1,104 @@
+                                                                      QUERY PLAN
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=42.77..42.79 rows=10 width=56) (actual time=0.039..0.040 rows=2 loops=1)
+   Buffers: shared hit=7
+   ->  Sort  (cost=42.77..42.79 rows=10 width=56) (actual time=0.038..0.038 rows=2 loops=1)
+         Sort Key: id
+         Sort Method: quicksort  Memory: 25kB
+         Buffers: shared hit=7
+         ->  Bitmap Heap Scan on ledger_entries  (cost=4.52..42.60 rows=10 width=56) (actual time=0.019..0.019 rows=2 loops=1)
+               Recheck Cond: ((account_id = '00000000-0000-0000-0000-000000000002'::uuid) AND (id > 0))
+               Heap Blocks: exact=1
+               Buffers: shared hit=4
+               ->  Bitmap Index Scan on ledger_entries_account_id_id_idx  (cost=0.00..4.52 rows=10 width=0) (actual time=0.016..0.016 rows=2 loops=1)
+                     Index Cond: ((account_id = '00000000-0000-0000-0000-000000000002'::uuid) AND (id > 0))
+                     Buffers: shared hit=3
+ Planning:
+   Buffers: shared hit=160
+ Planning Time: 0.718 ms
+ Execution Time: 0.076 ms
+(17 rows)
+
+                                                                QUERY PLAN
+-------------------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using transfers_idempotency_key_key on transfers  (cost=0.42..8.44 rows=1 width=285) (actual time=0.040..0.041 rows=1 loops=1)
+   Index Cond: ((idempotency_key)::text = 'demo-first-transfer'::text)
+   Buffers: shared hit=4
+ Planning:
+   Buffers: shared hit=84
+ Planning Time: 0.286 ms
+ Execution Time: 0.048 ms
+(7 rows)
+
+                                                              QUERY PLAN
+--------------------------------------------------------------------------------------------------------------------------------------
+ LockRows  (cost=15.71..15.73 rows=2 width=52) (actual time=0.091..0.093 rows=2 loops=1)
+   Buffers: shared hit=20
+   ->  Sort  (cost=15.71..15.71 rows=2 width=52) (actual time=0.083..0.083 rows=2 loops=1)
+         Sort Key: a.id
+         Sort Method: quicksort  Memory: 25kB
+         Buffers: shared hit=16
+         ->  Hash Join  (cost=2.35..15.70 rows=2 width=52) (actual time=0.024..0.064 rows=2 loops=1)
+               Hash Cond: (b.account_id = a.id)
+               Buffers: shared hit=13
+               ->  Seq Scan on balances b  (cost=0.00..13.06 rows=106 width=30) (actual time=0.004..0.038 rows=106 loops=1)
+                     Buffers: shared hit=12
+               ->  Hash  (cost=2.33..2.33 rows=2 width=38) (actual time=0.011..0.011 rows=2 loops=1)
+                     Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                     Buffers: shared hit=1
+                     ->  Seq Scan on accounts a  (cost=0.00..2.33 rows=2 width=38) (actual time=0.003..0.006 rows=2 loops=1)
+                           Filter: (id = ANY ('{00000000-0000-0000-0000-000000000002,00000000-0000-0000-0000-000000000003}'::uuid[]))
+                           Rows Removed by Filter: 104
+                           Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=88
+ Planning Time: 0.389 ms
+ Execution Time: 0.120 ms
+(22 rows)
+
+                                                                      QUERY PLAN
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=2513.62..2513.63 rows=1 width=32) (actual time=1.945..1.945 rows=1 loops=1)
+   Buffers: shared hit=234
+   ->  Bitmap Heap Scan on ledger_entries  (cost=292.97..2479.72 rows=6780 width=8) (actual time=0.572..1.442 rows=7176 loops=1)
+         Recheck Cond: (account_id = 'adbd268d-6abc-5af1-b6b1-cdef54cf92b7'::uuid)
+         Heap Blocks: exact=169
+         Buffers: shared hit=234
+         ->  Bitmap Index Scan on ledger_entries_account_id_id_idx  (cost=0.00..291.27 rows=6780 width=0) (actual time=0.549..0.550 rows=7176 loops=1)
+               Index Cond: (account_id = 'adbd268d-6abc-5af1-b6b1-cdef54cf92b7'::uuid)
+               Buffers: shared hit=65
+ Planning:
+   Buffers: shared hit=153
+ Planning Time: 0.658 ms
+ Execution Time: 1.989 ms
+(13 rows)
+
+                                                                     QUERY PLAN
+----------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..26.42 rows=21 width=56) (actual time=17.244..29.720 rows=21 loops=1)
+   Buffers: shared hit=141255
+   ->  Index Scan using ledger_entries_pkey on ledger_entries  (cost=0.42..8393.28 rows=6780 width=56) (actual time=17.240..29.715 rows=21 loops=1)
+         Index Cond: (id > 0)
+         Filter: (account_id = 'adbd268d-6abc-5af1-b6b1-cdef54cf92b7'::uuid)
+         Rows Removed by Filter: 188450
+         Buffers: shared hit=141255
+ Planning:
+   Buffers: shared hit=27
+ Planning Time: 0.185 ms
+ Execution Time: 29.739 ms
+(11 rows)
+
+ accounts
+----------
+      106
+(1 row)
+
+ transfers
+-----------
+    101391
+(1 row)
+
+ postings
+----------
+   202782
+(1 row)

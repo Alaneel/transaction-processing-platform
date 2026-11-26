@@ -1,0 +1,93 @@
+name: transaction-processing-platform
+services:
+  db:
+    image: tpp-postgres:17.11-security-20261013
+    pull_policy: never
+    build:
+      context: ./docker/postgres
+    environment:
+      POSTGRES_DB: tpp
+      POSTGRES_USER: tpp
+      POSTGRES_PASSWORD: ${MIGRATION_PASSWORD:-local-owner-password}
+      APP_DB_PASSWORD: ${DB_PASSWORD:-local-app-password}
+    ports:
+      - "127.0.0.1:${DB_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./scripts/init-db.sh:/docker-entrypoint-initdb.d/10-runtime-role.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tpp -d tpp"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    stop_grace_period: 30s
+  kafka:
+    image: tpp-kafka:4.3.1-security-20261014
+    pull_policy: never
+    build:
+      context: ./docker
+      dockerfile: kafka.Dockerfile
+    environment:
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093,EXTERNAL://0.0.0.0:19092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://127.0.0.1:${KAFKA_PORT:-9092}
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_MIN_INSYNC_REPLICAS: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_LOG_RETENTION_HOURS: 168
+      KAFKA_HEAP_OPTS: -Xms256m -Xmx512m
+    ports:
+      - "127.0.0.1:${KAFKA_PORT:-9092}:19092"
+    volumes:
+      - kafkadata:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --list >/dev/null 2>&1"]
+      interval: 5s
+      timeout: 5s
+      start_period: 15s
+      retries: 20
+    stop_grace_period: 30s
+  app:
+    build: .
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/tpp
+      DB_USERNAME: tpp_app
+      DB_PASSWORD: ${DB_PASSWORD:-local-app-password}
+      MIGRATION_USERNAME: tpp
+      MIGRATION_PASSWORD: ${MIGRATION_PASSWORD:-local-owner-password}
+      EVENTS_BOOTSTRAP_SERVERS: kafka:9092
+      EVENTS_RELAY_ENABLED: ${EVENTS_RELAY_ENABLED:-true}
+      EVENTS_CONSUMER_ENABLED: ${EVENTS_CONSUMER_ENABLED:-true}
+      EVENTS_RELAY_BATCH_SIZE: ${EVENTS_RELAY_BATCH_SIZE:-16}
+      EVENTS_POLL_INTERVAL_MS: ${EVENTS_POLL_INTERVAL_MS:-100}
+      EVENTS_CONSUMER_MIN_INTERVAL_MS: ${EVENTS_CONSUMER_MIN_INTERVAL_MS:-0}
+      BACKPRESSURE_ENABLED: ${BACKPRESSURE_ENABLED:-false}
+      BACKPRESSURE_MAX_UNPUBLISHED: ${BACKPRESSURE_MAX_UNPUBLISHED:-10000}
+      BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS: ${BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS:-60}
+      BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED: ${BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED:-10000}
+      BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS: ${BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS:-60}
+      BACKPRESSURE_REOPEN_PERCENT: ${BACKPRESSURE_REOPEN_PERCENT:-75}
+      BACKPRESSURE_SAMPLE_INTERVAL_MS: ${BACKPRESSURE_SAMPLE_INTERVAL_MS:-1000}
+      BACKPRESSURE_MAX_SAMPLE_AGE_MS: ${BACKPRESSURE_MAX_SAMPLE_AGE_MS:-5000}
+      BACKPRESSURE_QUERY_TIMEOUT_SECONDS: ${BACKPRESSURE_QUERY_TIMEOUT_SECONDS:-2}
+    ports:
+      - "127.0.0.1:${APP_PORT:-8080}:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    stop_grace_period: 30s
+volumes:
+  pgdata:
+  kafkadata:

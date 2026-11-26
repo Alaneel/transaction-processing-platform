@@ -1,0 +1,514 @@
+{
+  "suite": "sustained",
+  "plannedOrder": [
+    "baseline",
+    "optimized",
+    "optimized",
+    "baseline"
+  ],
+  "images": {
+    "baseline": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+    "optimized": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69"
+  },
+  "arguments": {
+    "baseline_image": "tpp-phase3-baseline:cba442",
+    "optimized_image": "tpp-phase3-optimized:66dc7c9",
+    "suite": "sustained",
+    "compose_project": "tpp-phase3-validation",
+    "order": "baseline,optimized,optimized,baseline",
+    "workers": 8,
+    "duration": 30.0,
+    "arrival_rate": 500.0,
+    "warmup": 3.0,
+    "warmup_arrival_rate": 50.0,
+    "drain_timeout": 180.0,
+    "consumer_interval_ms": 100,
+    "output_directory": "docs/benchmarks"
+  },
+  "startedAt": "2026-10-11T15:10:43.012641+00:00",
+  "trials": [
+    {
+      "position": 1,
+      "condition": "baseline",
+      "image": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+      "startedAt": "2026-10-11T15:10:54.582869+00:00",
+      "output": "docs/benchmarks/phase3-sustained-1-baseline.json",
+      "consumerIntervalMs": 0,
+      "applicationBeforeLoad": {
+        "id": "e5b4d9f2ea067c8e57945c1e23c81f7ff44769b816b81594aae7ecab173f7832",
+        "image": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+        "startedAt": "2026-10-11T15:10:44.0699203Z",
+        "effectiveEnvironment": [
+          "BACKPRESSURE_ENABLED=false",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED=10000",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS=60",
+          "BACKPRESSURE_MAX_SAMPLE_AGE_MS=5000",
+          "BACKPRESSURE_MAX_UNPUBLISHED=10000",
+          "BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS=60",
+          "BACKPRESSURE_QUERY_TIMEOUT_SECONDS=2",
+          "BACKPRESSURE_REOPEN_PERCENT=75",
+          "BACKPRESSURE_SAMPLE_INTERVAL_MS=1000",
+          "EVENTS_BOOTSTRAP_SERVERS=kafka:9092",
+          "EVENTS_CONSUMER_ENABLED=true",
+          "EVENTS_CONSUMER_MIN_INTERVAL_MS=0",
+          "EVENTS_POLL_INTERVAL_MS=100",
+          "EVENTS_RELAY_BATCH_SIZE=16",
+          "EVENTS_RELAY_ENABLED=true",
+          "JAVA_TOOL_OPTIONS="
+        ]
+      },
+      "loadExitCode": 0,
+      "httpErrors": {},
+      "warmupHttpErrors": {},
+      "applicationAfterLoad": {
+        "id": "e5b4d9f2ea067c8e57945c1e23c81f7ff44769b816b81594aae7ecab173f7832",
+        "image": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+        "startedAt": "2026-10-11T15:10:44.0699203Z",
+        "effectiveEnvironment": [
+          "BACKPRESSURE_ENABLED=false",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED=10000",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS=60",
+          "BACKPRESSURE_MAX_SAMPLE_AGE_MS=5000",
+          "BACKPRESSURE_MAX_UNPUBLISHED=10000",
+          "BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS=60",
+          "BACKPRESSURE_QUERY_TIMEOUT_SECONDS=2",
+          "BACKPRESSURE_REOPEN_PERCENT=75",
+          "BACKPRESSURE_SAMPLE_INTERVAL_MS=1000",
+          "EVENTS_BOOTSTRAP_SERVERS=kafka:9092",
+          "EVENTS_CONSUMER_ENABLED=true",
+          "EVENTS_CONSUMER_MIN_INTERVAL_MS=0",
+          "EVENTS_POLL_INTERVAL_MS=100",
+          "EVENTS_RELAY_BATCH_SIZE=16",
+          "EVENTS_RELAY_ENABLED=true",
+          "JAVA_TOOL_OPTIONS="
+        ]
+      },
+      "brokerAfterLoad": {
+        "observedAt": "2026-10-11T15:13:05.851476+00:00",
+        "exitCode": 0,
+        "output": "\nGROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID\ntpp-activity-v1 tpp.transfer-completed.v1 0          26456           26456           0               tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7-2ccbe7bd-609d-48eb-b88b-60384e897dc9 /172.25.0.4     tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7\ntpp-activity-v1 tpp.transfer-completed.v1 1          26819           26819           0               tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7-2ccbe7bd-609d-48eb-b88b-60384e897dc9 /172.25.0.4     tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7\ntpp-activity-v1 tpp.transfer-completed.v1 2          26955           26955           0               tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7-2ccbe7bd-609d-48eb-b88b-60384e897dc9 /172.25.0.4     tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7\n",
+        "diagnostic": "",
+        "partitions": [
+          {
+            "partition": 0,
+            "committedOffset": 26456,
+            "logEndOffset": 26456,
+            "lag": 0
+          },
+          {
+            "partition": 1,
+            "committedOffset": 26819,
+            "logEndOffset": 26819,
+            "lag": 0
+          },
+          {
+            "partition": 2,
+            "committedOffset": 26955,
+            "logEndOffset": 26955,
+            "lag": 0
+          }
+        ],
+        "totalCommittedLag": 0,
+        "note": "Independent broker offset/lag snapshot, sequential after SQL/HTTP observations"
+      },
+      "brokerAfterDrain": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-11T15:13:07.170107+00:00",
+            "exitCode": 0,
+            "output": "\nGROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID\ntpp-activity-v1 tpp.transfer-completed.v1 0          26456           26456           0               tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7-2ccbe7bd-609d-48eb-b88b-60384e897dc9 /172.25.0.4     tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7\ntpp-activity-v1 tpp.transfer-completed.v1 1          26819           26819           0               tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7-2ccbe7bd-609d-48eb-b88b-60384e897dc9 /172.25.0.4     tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7\ntpp-activity-v1 tpp.transfer-completed.v1 2          26955           26955           0               tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7-2ccbe7bd-609d-48eb-b88b-60384e897dc9 /172.25.0.4     tpp-projection-c62dd696-273e-4c68-8e31-e5660af467b7\n",
+            "diagnostic": "",
+            "partitions": [
+              {
+                "partition": 0,
+                "committedOffset": 26456,
+                "logEndOffset": 26456,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committedOffset": 26819,
+                "logEndOffset": 26819,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committedOffset": 26955,
+                "logEndOffset": 26955,
+                "lag": 0
+              }
+            ],
+            "totalCommittedLag": 0,
+            "note": "Independent broker offset/lag snapshot, sequential after SQL/HTTP observations"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-11T15:13:07.812416+00:00",
+      "committedEvents": 14959
+    },
+    {
+      "position": 2,
+      "condition": "optimized",
+      "image": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+      "startedAt": "2026-10-11T15:13:19.623924+00:00",
+      "output": "docs/benchmarks/phase3-sustained-2-optimized.json",
+      "consumerIntervalMs": 0,
+      "applicationBeforeLoad": {
+        "id": "64b77dd77e72985dfe15033d386c8017325992492eb56e56a2b3500910499265",
+        "image": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+        "startedAt": "2026-10-11T15:13:09.100013756Z",
+        "effectiveEnvironment": [
+          "BACKPRESSURE_ENABLED=false",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED=10000",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS=60",
+          "BACKPRESSURE_MAX_SAMPLE_AGE_MS=5000",
+          "BACKPRESSURE_MAX_UNPUBLISHED=10000",
+          "BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS=60",
+          "BACKPRESSURE_QUERY_TIMEOUT_SECONDS=2",
+          "BACKPRESSURE_REOPEN_PERCENT=75",
+          "BACKPRESSURE_SAMPLE_INTERVAL_MS=1000",
+          "EVENTS_BOOTSTRAP_SERVERS=kafka:9092",
+          "EVENTS_CONSUMER_ENABLED=true",
+          "EVENTS_CONSUMER_MIN_INTERVAL_MS=0",
+          "EVENTS_POLL_INTERVAL_MS=100",
+          "EVENTS_RELAY_BATCH_SIZE=16",
+          "EVENTS_RELAY_ENABLED=true",
+          "JAVA_TOOL_OPTIONS="
+        ]
+      },
+      "loadExitCode": 0,
+      "httpErrors": {},
+      "warmupHttpErrors": {},
+      "applicationAfterLoad": {
+        "id": "64b77dd77e72985dfe15033d386c8017325992492eb56e56a2b3500910499265",
+        "image": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+        "startedAt": "2026-10-11T15:13:09.100013756Z",
+        "effectiveEnvironment": [
+          "BACKPRESSURE_ENABLED=false",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED=10000",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS=60",
+          "BACKPRESSURE_MAX_SAMPLE_AGE_MS=5000",
+          "BACKPRESSURE_MAX_UNPUBLISHED=10000",
+          "BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS=60",
+          "BACKPRESSURE_QUERY_TIMEOUT_SECONDS=2",
+          "BACKPRESSURE_REOPEN_PERCENT=75",
+          "BACKPRESSURE_SAMPLE_INTERVAL_MS=1000",
+          "EVENTS_BOOTSTRAP_SERVERS=kafka:9092",
+          "EVENTS_CONSUMER_ENABLED=true",
+          "EVENTS_CONSUMER_MIN_INTERVAL_MS=0",
+          "EVENTS_POLL_INTERVAL_MS=100",
+          "EVENTS_RELAY_BATCH_SIZE=16",
+          "EVENTS_RELAY_ENABLED=true",
+          "JAVA_TOOL_OPTIONS="
+        ]
+      },
+      "brokerAfterLoad": {
+        "observedAt": "2026-10-11T15:14:00.691850+00:00",
+        "exitCode": 0,
+        "output": "\nGROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID\ntpp-activity-v1 tpp.transfer-completed.v1 0          31404           31404           0               tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8-7a98f76f-56b0-4e4b-a7a9-6d1a9fe7f60a /172.25.0.4     tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8\ntpp-activity-v1 tpp.transfer-completed.v1 1          31650           31650           0               tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8-7a98f76f-56b0-4e4b-a7a9-6d1a9fe7f60a /172.25.0.4     tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8\ntpp-activity-v1 tpp.transfer-completed.v1 2          31809           31809           0               tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8-7a98f76f-56b0-4e4b-a7a9-6d1a9fe7f60a /172.25.0.4     tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8\n",
+        "diagnostic": "",
+        "partitions": [
+          {
+            "partition": 0,
+            "committedOffset": 31404,
+            "logEndOffset": 31404,
+            "lag": 0
+          },
+          {
+            "partition": 1,
+            "committedOffset": 31650,
+            "logEndOffset": 31650,
+            "lag": 0
+          },
+          {
+            "partition": 2,
+            "committedOffset": 31809,
+            "logEndOffset": 31809,
+            "lag": 0
+          }
+        ],
+        "totalCommittedLag": 0,
+        "note": "Independent broker offset/lag snapshot, sequential after SQL/HTTP observations"
+      },
+      "brokerAfterDrain": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-11T15:14:01.997914+00:00",
+            "exitCode": 0,
+            "output": "\nGROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID\ntpp-activity-v1 tpp.transfer-completed.v1 0          31404           31404           0               tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8-7a98f76f-56b0-4e4b-a7a9-6d1a9fe7f60a /172.25.0.4     tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8\ntpp-activity-v1 tpp.transfer-completed.v1 1          31650           31650           0               tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8-7a98f76f-56b0-4e4b-a7a9-6d1a9fe7f60a /172.25.0.4     tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8\ntpp-activity-v1 tpp.transfer-completed.v1 2          31809           31809           0               tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8-7a98f76f-56b0-4e4b-a7a9-6d1a9fe7f60a /172.25.0.4     tpp-projection-05127457-2626-4cbc-bff1-3e19d86a99f8\n",
+            "diagnostic": "",
+            "partitions": [
+              {
+                "partition": 0,
+                "committedOffset": 31404,
+                "logEndOffset": 31404,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committedOffset": 31650,
+                "logEndOffset": 31650,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committedOffset": 31809,
+                "logEndOffset": 31809,
+                "lag": 0
+              }
+            ],
+            "totalCommittedLag": 0,
+            "note": "Independent broker offset/lag snapshot, sequential after SQL/HTTP observations"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-11T15:14:02.757131+00:00",
+      "committedEvents": 14616
+    },
+    {
+      "position": 3,
+      "condition": "optimized",
+      "image": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+      "startedAt": "2026-10-11T15:14:14.668849+00:00",
+      "output": "docs/benchmarks/phase3-sustained-3-optimized.json",
+      "consumerIntervalMs": 0,
+      "applicationBeforeLoad": {
+        "id": "a59deddc0969eae585f07f592e3824672b5ffe8527c58d9d933c1622aa8c4c90",
+        "image": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+        "startedAt": "2026-10-11T15:14:04.148101837Z",
+        "effectiveEnvironment": [
+          "BACKPRESSURE_ENABLED=false",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED=10000",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS=60",
+          "BACKPRESSURE_MAX_SAMPLE_AGE_MS=5000",
+          "BACKPRESSURE_MAX_UNPUBLISHED=10000",
+          "BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS=60",
+          "BACKPRESSURE_QUERY_TIMEOUT_SECONDS=2",
+          "BACKPRESSURE_REOPEN_PERCENT=75",
+          "BACKPRESSURE_SAMPLE_INTERVAL_MS=1000",
+          "EVENTS_BOOTSTRAP_SERVERS=kafka:9092",
+          "EVENTS_CONSUMER_ENABLED=true",
+          "EVENTS_CONSUMER_MIN_INTERVAL_MS=0",
+          "EVENTS_POLL_INTERVAL_MS=100",
+          "EVENTS_RELAY_BATCH_SIZE=16",
+          "EVENTS_RELAY_ENABLED=true",
+          "JAVA_TOOL_OPTIONS="
+        ]
+      },
+      "loadExitCode": 0,
+      "httpErrors": {},
+      "warmupHttpErrors": {},
+      "applicationAfterLoad": {
+        "id": "a59deddc0969eae585f07f592e3824672b5ffe8527c58d9d933c1622aa8c4c90",
+        "image": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+        "startedAt": "2026-10-11T15:14:04.148101837Z",
+        "effectiveEnvironment": [
+          "BACKPRESSURE_ENABLED=false",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED=10000",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS=60",
+          "BACKPRESSURE_MAX_SAMPLE_AGE_MS=5000",
+          "BACKPRESSURE_MAX_UNPUBLISHED=10000",
+          "BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS=60",
+          "BACKPRESSURE_QUERY_TIMEOUT_SECONDS=2",
+          "BACKPRESSURE_REOPEN_PERCENT=75",
+          "BACKPRESSURE_SAMPLE_INTERVAL_MS=1000",
+          "EVENTS_BOOTSTRAP_SERVERS=kafka:9092",
+          "EVENTS_CONSUMER_ENABLED=true",
+          "EVENTS_CONSUMER_MIN_INTERVAL_MS=0",
+          "EVENTS_POLL_INTERVAL_MS=100",
+          "EVENTS_RELAY_BATCH_SIZE=16",
+          "EVENTS_RELAY_ENABLED=true",
+          "JAVA_TOOL_OPTIONS="
+        ]
+      },
+      "brokerAfterLoad": {
+        "observedAt": "2026-10-11T15:14:55.878911+00:00",
+        "exitCode": 0,
+        "output": "\nGROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID\ntpp-activity-v1 tpp.transfer-completed.v1 0          36173           36173           0               tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0-dc5a9b14-3c24-48ae-a475-259bfb391ed1 /172.25.0.4     tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0\ntpp-activity-v1 tpp.transfer-completed.v1 1          36612           36612           0               tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0-dc5a9b14-3c24-48ae-a475-259bfb391ed1 /172.25.0.4     tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0\ntpp-activity-v1 tpp.transfer-completed.v1 2          36596           36596           0               tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0-dc5a9b14-3c24-48ae-a475-259bfb391ed1 /172.25.0.4     tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0\n",
+        "diagnostic": "",
+        "partitions": [
+          {
+            "partition": 0,
+            "committedOffset": 36173,
+            "logEndOffset": 36173,
+            "lag": 0
+          },
+          {
+            "partition": 1,
+            "committedOffset": 36612,
+            "logEndOffset": 36612,
+            "lag": 0
+          },
+          {
+            "partition": 2,
+            "committedOffset": 36596,
+            "logEndOffset": 36596,
+            "lag": 0
+          }
+        ],
+        "totalCommittedLag": 0,
+        "note": "Independent broker offset/lag snapshot, sequential after SQL/HTTP observations"
+      },
+      "brokerAfterDrain": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-11T15:14:57.398303+00:00",
+            "exitCode": 0,
+            "output": "\nGROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID\ntpp-activity-v1 tpp.transfer-completed.v1 0          36173           36173           0               tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0-dc5a9b14-3c24-48ae-a475-259bfb391ed1 /172.25.0.4     tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0\ntpp-activity-v1 tpp.transfer-completed.v1 1          36612           36612           0               tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0-dc5a9b14-3c24-48ae-a475-259bfb391ed1 /172.25.0.4     tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0\ntpp-activity-v1 tpp.transfer-completed.v1 2          36596           36596           0               tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0-dc5a9b14-3c24-48ae-a475-259bfb391ed1 /172.25.0.4     tpp-projection-3e58e0a1-e440-47bb-a84a-bf560f5f6fa0\n",
+            "diagnostic": "",
+            "partitions": [
+              {
+                "partition": 0,
+                "committedOffset": 36173,
+                "logEndOffset": 36173,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committedOffset": 36612,
+                "logEndOffset": 36612,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committedOffset": 36596,
+                "logEndOffset": 36596,
+                "lag": 0
+              }
+            ],
+            "totalCommittedLag": 0,
+            "note": "Independent broker offset/lag snapshot, sequential after SQL/HTTP observations"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-11T15:14:58.294103+00:00",
+      "committedEvents": 14501
+    },
+    {
+      "position": 4,
+      "condition": "baseline",
+      "image": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+      "startedAt": "2026-10-11T15:15:10.827778+00:00",
+      "output": "docs/benchmarks/phase3-sustained-4-baseline.json",
+      "consumerIntervalMs": 0,
+      "applicationBeforeLoad": {
+        "id": "5de4b406e65fe9647052e81e4dd03d720e61868c8f0bc3c3d20f40ee550abb83",
+        "image": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+        "startedAt": "2026-10-11T15:15:00.304739294Z",
+        "effectiveEnvironment": [
+          "BACKPRESSURE_ENABLED=false",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED=10000",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS=60",
+          "BACKPRESSURE_MAX_SAMPLE_AGE_MS=5000",
+          "BACKPRESSURE_MAX_UNPUBLISHED=10000",
+          "BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS=60",
+          "BACKPRESSURE_QUERY_TIMEOUT_SECONDS=2",
+          "BACKPRESSURE_REOPEN_PERCENT=75",
+          "BACKPRESSURE_SAMPLE_INTERVAL_MS=1000",
+          "EVENTS_BOOTSTRAP_SERVERS=kafka:9092",
+          "EVENTS_CONSUMER_ENABLED=true",
+          "EVENTS_CONSUMER_MIN_INTERVAL_MS=0",
+          "EVENTS_POLL_INTERVAL_MS=100",
+          "EVENTS_RELAY_BATCH_SIZE=16",
+          "EVENTS_RELAY_ENABLED=true",
+          "JAVA_TOOL_OPTIONS="
+        ]
+      },
+      "loadExitCode": 0,
+      "httpErrors": {},
+      "warmupHttpErrors": {},
+      "applicationAfterLoad": {
+        "id": "5de4b406e65fe9647052e81e4dd03d720e61868c8f0bc3c3d20f40ee550abb83",
+        "image": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+        "startedAt": "2026-10-11T15:15:00.304739294Z",
+        "effectiveEnvironment": [
+          "BACKPRESSURE_ENABLED=false",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED=10000",
+          "BACKPRESSURE_MAX_PUBLISHED_UNPROCESSED_AGE_SECONDS=60",
+          "BACKPRESSURE_MAX_SAMPLE_AGE_MS=5000",
+          "BACKPRESSURE_MAX_UNPUBLISHED=10000",
+          "BACKPRESSURE_MAX_UNPUBLISHED_AGE_SECONDS=60",
+          "BACKPRESSURE_QUERY_TIMEOUT_SECONDS=2",
+          "BACKPRESSURE_REOPEN_PERCENT=75",
+          "BACKPRESSURE_SAMPLE_INTERVAL_MS=1000",
+          "EVENTS_BOOTSTRAP_SERVERS=kafka:9092",
+          "EVENTS_CONSUMER_ENABLED=true",
+          "EVENTS_CONSUMER_MIN_INTERVAL_MS=0",
+          "EVENTS_POLL_INTERVAL_MS=100",
+          "EVENTS_RELAY_BATCH_SIZE=16",
+          "EVENTS_RELAY_ENABLED=true",
+          "JAVA_TOOL_OPTIONS="
+        ]
+      },
+      "brokerAfterLoad": {
+        "observedAt": "2026-10-11T15:17:26.613057+00:00",
+        "exitCode": 0,
+        "output": "\nGROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID\ntpp-activity-v1 tpp.transfer-completed.v1 0          41119           41119           0               tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3-a8052ed8-daca-4d3a-86c8-969b49dd8ac1 /172.25.0.4     tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3\ntpp-activity-v1 tpp.transfer-completed.v1 1          41548           41548           0               tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3-a8052ed8-daca-4d3a-86c8-969b49dd8ac1 /172.25.0.4     tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3\ntpp-activity-v1 tpp.transfer-completed.v1 2          41527           41527           0               tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3-a8052ed8-daca-4d3a-86c8-969b49dd8ac1 /172.25.0.4     tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3\n",
+        "diagnostic": "",
+        "partitions": [
+          {
+            "partition": 0,
+            "committedOffset": 41119,
+            "logEndOffset": 41119,
+            "lag": 0
+          },
+          {
+            "partition": 1,
+            "committedOffset": 41548,
+            "logEndOffset": 41548,
+            "lag": 0
+          },
+          {
+            "partition": 2,
+            "committedOffset": 41527,
+            "logEndOffset": 41527,
+            "lag": 0
+          }
+        ],
+        "totalCommittedLag": 0,
+        "note": "Independent broker offset/lag snapshot, sequential after SQL/HTTP observations"
+      },
+      "brokerAfterDrain": {
+        "complete": true,
+        "observations": [
+          {
+            "observedAt": "2026-10-11T15:17:27.892027+00:00",
+            "exitCode": 0,
+            "output": "\nGROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID\ntpp-activity-v1 tpp.transfer-completed.v1 0          41119           41119           0               tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3-a8052ed8-daca-4d3a-86c8-969b49dd8ac1 /172.25.0.4     tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3\ntpp-activity-v1 tpp.transfer-completed.v1 1          41548           41548           0               tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3-a8052ed8-daca-4d3a-86c8-969b49dd8ac1 /172.25.0.4     tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3\ntpp-activity-v1 tpp.transfer-completed.v1 2          41527           41527           0               tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3-a8052ed8-daca-4d3a-86c8-969b49dd8ac1 /172.25.0.4     tpp-projection-524f71e3-211a-488c-b9b0-15d97048b2e3\n",
+            "diagnostic": "",
+            "partitions": [
+              {
+                "partition": 0,
+                "committedOffset": 41119,
+                "logEndOffset": 41119,
+                "lag": 0
+              },
+              {
+                "partition": 1,
+                "committedOffset": 41548,
+                "logEndOffset": 41548,
+                "lag": 0
+              },
+              {
+                "partition": 2,
+                "committedOffset": 41527,
+                "logEndOffset": 41527,
+                "lag": 0
+              }
+            ],
+            "totalCommittedLag": 0,
+            "note": "Independent broker offset/lag snapshot, sequential after SQL/HTTP observations"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-11T15:17:28.795018+00:00",
+      "committedEvents": 14796
+    }
+  ],
+  "loadPolicy": "Backpressure disabled in both conditions to expose durable capacity; finite HTTP client shedding stays visible",
+  "complete": true,
+  "finishedAt": "2026-10-11T15:17:28.796007+00:00"
+}

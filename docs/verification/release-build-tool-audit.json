@@ -1,0 +1,964 @@
+{
+  "verifiedAtUtc": "2026-10-14T13:09:49.656338+00:00",
+  "exitCode": 0,
+  "scope": "134 exact actually loaded plugin-realm jars, including XML resolver data classifier; each byte bound in actual-verify-plugin-inventory.json",
+  "output": "final-trivy-actual-plugin-realms.json",
+  "inventorySha256": "b9abdb46a19bc227e7fbdb083837ea09ae3df2b7f491200178068a0ff01c3850",
+  "severityCounts": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 0,
+    "LOW": 0,
+    "UNKNOWN": 0
+  },
+  "resultTypes": [
+    {
+      "type": "jar",
+      "packages": 141
+    }
+  ],
+  "sha256": "e7e32aa8ab6892fbca212a723ed0a288c111d64069bbbd3c55e2457e601920cb",
+  "artifacts": [
+    {
+      "name": "org.apache.maven.plugins:maven-enforcer-plugin",
+      "version": "3.6.2",
+      "classifier": null,
+      "cachePath": "org/apache/maven/plugins/maven-enforcer-plugin/3.6.2/maven-enforcer-plugin-3.6.2.jar",
+      "sha256": "88189ac3d0d2049ce9efabaf9895aee074f4eddb0f224defeb48c34ffe9d6fd8"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-utils",
+      "version": "4.0.3",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-utils/4.0.3/plexus-utils-4.0.3.jar",
+      "sha256": "421ff6ed146c53a9d4eaade8f629b52b12af7187101f1bd06c2c64e904019f3c"
+    },
+    {
+      "name": "commons-io:commons-io",
+      "version": "2.22.0",
+      "classifier": null,
+      "cachePath": "commons-io/commons-io/2.22.0/commons-io-2.22.0.jar",
+      "sha256": "2b9a7b1f726fb86216dbd2c8321eabe0221dbd5b1be81c18e1cb53811b104758"
+    },
+    {
+      "name": "org.apache.commons:commons-lang3",
+      "version": "3.20.0",
+      "classifier": null,
+      "cachePath": "org/apache/commons/commons-lang3/3.20.0/commons-lang3-3.20.0.jar",
+      "sha256": "69e5c9fa35da7a51a5fd2099dfe56a2d8d32cf233e2f6d770e796146440263f4"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-xml",
+      "version": "3.0.1",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-xml/3.0.1/plexus-xml-3.0.1.jar",
+      "sha256": "c1a510a87a62bd2d74ac1472dd31c3f9e9b0b8b8568f37d77c0f135415bebd05"
+    },
+    {
+      "name": "org.apache.maven.enforcer:enforcer-api",
+      "version": "3.6.2",
+      "classifier": null,
+      "cachePath": "org/apache/maven/enforcer/enforcer-api/3.6.2/enforcer-api-3.6.2.jar",
+      "sha256": "96205145b1eb4957903590ddd0d87f084ec95c1a56a5326cb7c6dec4678ea27a"
+    },
+    {
+      "name": "org.apache.maven.enforcer:enforcer-rules",
+      "version": "3.6.2",
+      "classifier": null,
+      "cachePath": "org/apache/maven/enforcer/enforcer-rules/3.6.2/enforcer-rules-3.6.2.jar",
+      "sha256": "32df6061b38212d347d1306fa254f0bd216025259763dd4affb22965521bc750"
+    },
+    {
+      "name": "commons-codec:commons-codec",
+      "version": "1.19.0",
+      "classifier": null,
+      "cachePath": "commons-codec/commons-codec/1.19.0/commons-codec-1.19.0.jar",
+      "sha256": "5c3881e4f556855e9c532927ee0c9dfde94cc66760d5805c031a59887070af5f"
+    },
+    {
+      "name": "org.apache-extras.beanshell:bsh",
+      "version": "2.0b6",
+      "classifier": null,
+      "cachePath": "org/apache-extras/beanshell/bsh/2.0b6/bsh-2.0b6.jar",
+      "sha256": "a17955976070c0573235ee662f2794a78082758b61accffce8d3f8aedcd91047"
+    },
+    {
+      "name": "org.apache.maven.plugins:maven-resources-plugin",
+      "version": "3.5.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/plugins/maven-resources-plugin/3.5.0/maven-resources-plugin-3.5.0.jar",
+      "sha256": "2c923c63a197565a3e78f2b16d762d0f49bb83250dd2b1e6286704ea0f447060"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-utils",
+      "version": "3.6.2",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-utils/3.6.2/plexus-utils-3.6.2.jar",
+      "sha256": "7c2cdf8b4a02a2ee3f0514b8d74ad5eb6e2365eeb073a5cabd6f2d61d8f871df"
+    },
+    {
+      "name": "org.apache.maven.shared:maven-filtering",
+      "version": "3.5.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/shared/maven-filtering/3.5.0/maven-filtering-3.5.0.jar",
+      "sha256": "7adb0e46b5fff4fc03aab4baafbdee0b29e444cffe4478858c63082d497220bf"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-build-api",
+      "version": "1.2.0",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-build-api/1.2.0/plexus-build-api-1.2.0.jar",
+      "sha256": "570ae55a95e1887c3004882d30dc4e9035d2a46ba8d58b991de04175f141d88f"
+    },
+    {
+      "name": "org.sonatype.plexus:plexus-build-api",
+      "version": "0.0.7",
+      "classifier": null,
+      "cachePath": "org/sonatype/plexus/plexus-build-api/0.0.7/plexus-build-api-0.0.7.jar",
+      "sha256": "934171640fbd3d2495c50b79b0d9adb11e2c83e65bad157df8fe34bcac0ff798"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-interpolation",
+      "version": "1.29",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-interpolation/1.29/plexus-interpolation-1.29.jar",
+      "sha256": "088d444dbcedfb384630d8686697ece3c401d6f33c8f8b3aa7259ea1c6996878"
+    },
+    {
+      "name": "org.apache.maven.plugins:maven-compiler-plugin",
+      "version": "3.15.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/plugins/maven-compiler-plugin/3.15.0/maven-compiler-plugin-3.15.0.jar",
+      "sha256": "6ea0ca0558ccf248c514aa94908d1f895a92e9b4e4604c1bb29f7a4ab1b833f0"
+    },
+    {
+      "name": "org.ow2.asm:asm",
+      "version": "9.9.1",
+      "classifier": null,
+      "cachePath": "org/ow2/asm/asm/9.9.1/asm-9.9.1.jar",
+      "sha256": "6f3828a215c920059a5efa2fb55c233d6c54ec5cadca99ce1b1bdd10077c7ddd"
+    },
+    {
+      "name": "org.apache.maven.shared:maven-shared-utils",
+      "version": "3.4.2",
+      "classifier": null,
+      "cachePath": "org/apache/maven/shared/maven-shared-utils/3.4.2/maven-shared-utils-3.4.2.jar",
+      "sha256": "b613357e1bad4dfc1dead801691c9460f9585fe7c6b466bc25186212d7d18487"
+    },
+    {
+      "name": "org.apache.maven.shared:maven-shared-incremental",
+      "version": "1.1",
+      "classifier": null,
+      "cachePath": "org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.jar",
+      "sha256": "61988e54486a5dc38f06c70fdae5b108556c63bd433697b9f4305fcdb30fa40e"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-java",
+      "version": "1.5.2",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-java/1.5.2/plexus-java-1.5.2.jar",
+      "sha256": "1e6a4298e145c1e23af430b04ac53d76dc11077e0f3d36ef9c027ce790d96505"
+    },
+    {
+      "name": "com.thoughtworks.qdox:qdox",
+      "version": "2.2.0",
+      "classifier": null,
+      "cachePath": "com/thoughtworks/qdox/qdox/2.2.0/qdox-2.2.0.jar",
+      "sha256": "c260c3230b2340af97d54bf01f7f67ebc57c901922736c881bb11cb981302be2"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-compiler-api",
+      "version": "2.16.2",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-compiler-api/2.16.2/plexus-compiler-api-2.16.2.jar",
+      "sha256": "db34d13c8d688063a946922f4de448c909ba43fec355ea15514495f33072b031"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-compiler-manager",
+      "version": "2.16.2",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-compiler-manager/2.16.2/plexus-compiler-manager-2.16.2.jar",
+      "sha256": "99630ac196571a2754baa143a12723795b13020631902a6dff18dfb997e59b0e"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-compiler-javac",
+      "version": "2.16.2",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-compiler-javac/2.16.2/plexus-compiler-javac-2.16.2.jar",
+      "sha256": "e48141c146d6cb96619aafb07b2e10e1ac08f339e96ae4067ddd9c2d0f626672"
+    },
+    {
+      "name": "org.apache.maven.plugins:maven-surefire-plugin",
+      "version": "3.5.6",
+      "classifier": null,
+      "cachePath": "org/apache/maven/plugins/maven-surefire-plugin/3.5.6/maven-surefire-plugin-3.5.6.jar",
+      "sha256": "5fea3d2f0ad1d790717d66aa31d995c22ca528612316f8380d67c40367af3464"
+    },
+    {
+      "name": "org.apache.maven.surefire:surefire-api",
+      "version": "3.5.6",
+      "classifier": null,
+      "cachePath": "org/apache/maven/surefire/surefire-api/3.5.6/surefire-api-3.5.6.jar",
+      "sha256": "331defab7586a785e541a476f08112881b07068981ece3239676e1b3aa58ca14"
+    },
+    {
+      "name": "org.apache.maven.surefire:surefire-logger-api",
+      "version": "3.5.6",
+      "classifier": null,
+      "cachePath": "org/apache/maven/surefire/surefire-logger-api/3.5.6/surefire-logger-api-3.5.6.jar",
+      "sha256": "ac67f08b58d5e490272f3f41ed511ea0ee8ef177d515b93d392e144251ad856c"
+    },
+    {
+      "name": "org.apache.maven.surefire:surefire-shared-utils",
+      "version": "3.5.6",
+      "classifier": null,
+      "cachePath": "org/apache/maven/surefire/surefire-shared-utils/3.5.6/surefire-shared-utils-3.5.6.jar",
+      "sha256": "b21563bce49411d872bd48a402af06dfc07670464bfdaa2ef7918f216c42758a"
+    },
+    {
+      "name": "org.apache.maven.surefire:surefire-extensions-api",
+      "version": "3.5.6",
+      "classifier": null,
+      "cachePath": "org/apache/maven/surefire/surefire-extensions-api/3.5.6/surefire-extensions-api-3.5.6.jar",
+      "sha256": "57ce1a7a9eb87f8ba2eda7f7449877d8c03da8e541e9036cd9c5cdfb1b7a1c08"
+    },
+    {
+      "name": "org.apache.maven.surefire:maven-surefire-common",
+      "version": "3.5.6",
+      "classifier": null,
+      "cachePath": "org/apache/maven/surefire/maven-surefire-common/3.5.6/maven-surefire-common-3.5.6.jar",
+      "sha256": "30c9e2bb7f1bb800482e42c208c144124132ec3c3b4b87ab5abda8b60c9f29b9"
+    },
+    {
+      "name": "org.apache.maven.surefire:surefire-booter",
+      "version": "3.5.6",
+      "classifier": null,
+      "cachePath": "org/apache/maven/surefire/surefire-booter/3.5.6/surefire-booter-3.5.6.jar",
+      "sha256": "5b1c75591b42467926b22ba0e80e2e68cb4779024097694f34a53321ba5acf9d"
+    },
+    {
+      "name": "org.apache.maven.surefire:surefire-extensions-spi",
+      "version": "3.5.6",
+      "classifier": null,
+      "cachePath": "org/apache/maven/surefire/surefire-extensions-spi/3.5.6/surefire-extensions-spi-3.5.6.jar",
+      "sha256": "ae22348985e0acdf223f11615846290704899f12aeec8ad82b4d1db38a0767db"
+    },
+    {
+      "name": "org.apache.maven.shared:maven-common-artifact-filters",
+      "version": "3.4.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/shared/maven-common-artifact-filters/3.4.0/maven-common-artifact-filters-3.4.0.jar",
+      "sha256": "931a77aa9dad6c91f10fcfafa70adc7608c004576b4924c74ecbffb27568a880"
+    },
+    {
+      "name": "org.apache.maven.plugins:maven-jar-plugin",
+      "version": "3.5.1",
+      "classifier": null,
+      "cachePath": "org/apache/maven/plugins/maven-jar-plugin/3.5.1/maven-jar-plugin-3.5.1.jar",
+      "sha256": "c83db6059be3fec9a4a68a0e226caefaa944663008617c697e087444415181d5"
+    },
+    {
+      "name": "org.apache.maven.shared:file-management",
+      "version": "3.2.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/shared/file-management/3.2.0/file-management-3.2.0.jar",
+      "sha256": "32ac469785dd1547ac71437e4c3916c4a56a3d69303cb08d789ecdd0bfd1d6de"
+    },
+    {
+      "name": "org.apache.maven:maven-archiver",
+      "version": "3.6.6",
+      "classifier": null,
+      "cachePath": "org/apache/maven/maven-archiver/3.6.6/maven-archiver-3.6.6.jar",
+      "sha256": "9037dee318a68d7ee5dd2e20f2e657a39597ed2622b52e325ab9becddfbc4d38"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-archiver",
+      "version": "4.12.0",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-archiver/4.12.0/plexus-archiver-4.12.0.jar",
+      "sha256": "b1e9798a6d711d1e7760d50c78be8be746bb546b87df0a2d7ef67db5eda5431e"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-io",
+      "version": "3.6.0",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-io/3.6.0/plexus-io-3.6.0.jar",
+      "sha256": "fc0f3effea7514e4f214df1afb672f54c982e78e5ca3b32b34196c7d056a1aa4"
+    },
+    {
+      "name": "org.apache.commons:commons-compress",
+      "version": "1.28.0",
+      "classifier": null,
+      "cachePath": "org/apache/commons/commons-compress/1.28.0/commons-compress-1.28.0.jar",
+      "sha256": "e1522945218456f3649a39bc4afd70ce4bd466221519dba7d378f2141a4642ca"
+    },
+    {
+      "name": "org.tukaani:xz",
+      "version": "1.12",
+      "classifier": null,
+      "cachePath": "org/tukaani/xz/1.12/xz-1.12.jar",
+      "sha256": "3e158a87bd73d8afb4b6e8239c013b7d049c48563f45860ce99cd2e448cf4a6b"
+    },
+    {
+      "name": "com.github.luben:zstd-jni",
+      "version": "1.5.7-9",
+      "classifier": null,
+      "cachePath": "com/github/luben/zstd-jni/1.5.7-9/zstd-jni-1.5.7-9.jar",
+      "sha256": "087d02f39a46ab79b18f883ac7c3a3d6c2df1fd3bf7eaafeade699e0743d0dbe"
+    },
+    {
+      "name": "org.springframework.boot:spring-boot-maven-plugin",
+      "version": "4.1.1",
+      "classifier": null,
+      "cachePath": "org/springframework/boot/spring-boot-maven-plugin/4.1.1/spring-boot-maven-plugin-4.1.1.jar",
+      "sha256": "c8e1a3f44dab037f9ff23d31a1db00e937da5a56c96404d91e83fdc22c13bd56"
+    },
+    {
+      "name": "tools.jackson.core:jackson-databind",
+      "version": "3.1.7",
+      "classifier": null,
+      "cachePath": "tools/jackson/core/jackson-databind/3.1.7/jackson-databind-3.1.7.jar",
+      "sha256": "48c781de87e2016e1f0d973748a27130f11643e7ac080173f40e2d9669d84be3"
+    },
+    {
+      "name": "com.fasterxml.jackson.core:jackson-annotations",
+      "version": "2.21",
+      "classifier": null,
+      "cachePath": "com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar",
+      "sha256": "53ca085f4a150f703f49e1aabd935bd03b43e1ea3d55d135438292af22cef56b"
+    },
+    {
+      "name": "tools.jackson.core:jackson-core",
+      "version": "3.1.7",
+      "classifier": null,
+      "cachePath": "tools/jackson/core/jackson-core/3.1.7/jackson-core-3.1.7.jar",
+      "sha256": "7608c367fd8a92666d28711519599543c180298259963184ce04d2947a8f71e7"
+    },
+    {
+      "name": "org.springframework.boot:spring-boot-buildpack-platform",
+      "version": "4.1.1",
+      "classifier": null,
+      "cachePath": "org/springframework/boot/spring-boot-buildpack-platform/4.1.1/spring-boot-buildpack-platform-4.1.1.jar",
+      "sha256": "732e099296492e24b60894553dab8349da84dc2f02c84322ac3e6eadb7968539"
+    },
+    {
+      "name": "net.java.dev.jna:jna-platform",
+      "version": "5.17.0",
+      "classifier": null,
+      "cachePath": "net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.jar",
+      "sha256": "b7e3d46c87bad2eb409b0e704916bcd81206168e357312dfddd0e253679cd9e0"
+    },
+    {
+      "name": "net.java.dev.jna:jna",
+      "version": "5.17.0",
+      "classifier": null,
+      "cachePath": "net/java/dev/jna/jna/5.17.0/jna-5.17.0.jar",
+      "sha256": "b3a9408e7c51e08ef0e3bfcc08f443f6ec0f6191ba8cd7c18d53d2b22e5bdbc0"
+    },
+    {
+      "name": "org.apache.commons:commons-compress",
+      "version": "1.27.1",
+      "classifier": null,
+      "cachePath": "org/apache/commons/commons-compress/1.27.1/commons-compress-1.27.1.jar",
+      "sha256": "293d80f54b536b74095dcd7ea3cf0a29bbfc3402519281332495f4420d370d16"
+    },
+    {
+      "name": "commons-codec:commons-codec",
+      "version": "1.17.1",
+      "classifier": null,
+      "cachePath": "commons-codec/commons-codec/1.17.1/commons-codec-1.17.1.jar",
+      "sha256": "f9f6cb103f2ddc3c99a9d80ada2ae7bf0685111fd6bffccb72033d1da4e6ff23"
+    },
+    {
+      "name": "org.apache.httpcomponents.client5:httpclient5",
+      "version": "5.6.4",
+      "classifier": null,
+      "cachePath": "org/apache/httpcomponents/client5/httpclient5/5.6.4/httpclient5-5.6.4.jar",
+      "sha256": "bdef5f8841145cd76c4c605ff301bc840eea0d5292332b7b892a93316c0d8ee1"
+    },
+    {
+      "name": "org.apache.httpcomponents.core5:httpcore5",
+      "version": "5.4.3",
+      "classifier": null,
+      "cachePath": "org/apache/httpcomponents/core5/httpcore5/5.4.3/httpcore5-5.4.3.jar",
+      "sha256": "18bfbbabb478dfb67f31aeaf428c387f3c3df654582e1309f708ee1f3086830a"
+    },
+    {
+      "name": "org.apache.httpcomponents.core5:httpcore5-h2",
+      "version": "5.4.3",
+      "classifier": null,
+      "cachePath": "org/apache/httpcomponents/core5/httpcore5-h2/5.4.3/httpcore5-h2-5.4.3.jar",
+      "sha256": "c7db7026b8e2dea39132b04a6069f6671e2858309b20a146ec5c7dd6ed73a0b6"
+    },
+    {
+      "name": "org.tomlj:tomlj",
+      "version": "1.0.0",
+      "classifier": null,
+      "cachePath": "org/tomlj/tomlj/1.0.0/tomlj-1.0.0.jar",
+      "sha256": "32697c7567b2921c473678a820b13fc64700aa87bb14576eeb48d0ed5847cfd4"
+    },
+    {
+      "name": "org.antlr:antlr4-runtime",
+      "version": "4.7.2",
+      "classifier": null,
+      "cachePath": "org/antlr/antlr4-runtime/4.7.2/antlr4-runtime-4.7.2.jar",
+      "sha256": "4c518b87d4bdff8b44cd8cbc1af816e944b62a3fe5b80b781501cf1f4759bbc4"
+    },
+    {
+      "name": "com.google.code.findbugs:jsr305",
+      "version": "3.0.2",
+      "classifier": null,
+      "cachePath": "com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar",
+      "sha256": "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7"
+    },
+    {
+      "name": "org.springframework.boot:spring-boot-loader-tools",
+      "version": "4.1.1",
+      "classifier": null,
+      "cachePath": "org/springframework/boot/spring-boot-loader-tools/4.1.1/spring-boot-loader-tools-4.1.1.jar",
+      "sha256": "b26911978c785fcb894b398c5a781e409682309bf083b9587083fdd02be06a96"
+    },
+    {
+      "name": "org.springframework:spring-core",
+      "version": "7.0.9",
+      "classifier": null,
+      "cachePath": "org/springframework/spring-core/7.0.9/spring-core-7.0.9.jar",
+      "sha256": "5195f4722699b39878d99a832549fe65df2890b159d063b88fff31b1ca65ae36"
+    },
+    {
+      "name": "commons-logging:commons-logging",
+      "version": "1.3.5",
+      "classifier": null,
+      "cachePath": "commons-logging/commons-logging/1.3.5/commons-logging-1.3.5.jar",
+      "sha256": "6d7a744e4027649fbb50895df9497d109f98c766a637062fe8d2eabbb3140ba4"
+    },
+    {
+      "name": "org.jspecify:jspecify",
+      "version": "1.0.0",
+      "classifier": null,
+      "cachePath": "org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar",
+      "sha256": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab"
+    },
+    {
+      "name": "org.springframework:spring-context",
+      "version": "7.0.9",
+      "classifier": null,
+      "cachePath": "org/springframework/spring-context/7.0.9/spring-context-7.0.9.jar",
+      "sha256": "7552a2fcfa30cea53eb14d7a65a7a8e1b1dd82e832a7164fb7e6fb105f438858"
+    },
+    {
+      "name": "org.springframework:spring-aop",
+      "version": "7.0.9",
+      "classifier": null,
+      "cachePath": "org/springframework/spring-aop/7.0.9/spring-aop-7.0.9.jar",
+      "sha256": "b8c5d6bfcb1f4993f2cc124f7ab7fac40edf5256b9e43c2f7250a733cb5510e9"
+    },
+    {
+      "name": "org.springframework:spring-beans",
+      "version": "7.0.9",
+      "classifier": null,
+      "cachePath": "org/springframework/spring-beans/7.0.9/spring-beans-7.0.9.jar",
+      "sha256": "ff218b827a25c9e8929b0cd56dfb56916cea9d5b669ed97dc7cb262508ff548b"
+    },
+    {
+      "name": "org.springframework:spring-expression",
+      "version": "7.0.9",
+      "classifier": null,
+      "cachePath": "org/springframework/spring-expression/7.0.9/spring-expression-7.0.9.jar",
+      "sha256": "046434c40f43819729b9b1db0e6c659dfa68184c1c2c2efa5f7b3a5b27c4e2e2"
+    },
+    {
+      "name": "io.micrometer:micrometer-observation",
+      "version": "1.16.7",
+      "classifier": null,
+      "cachePath": "io/micrometer/micrometer-observation/1.16.7/micrometer-observation-1.16.7.jar",
+      "sha256": "74f9e4d51ef30c141de8a2409879282e572eef98665e033e8922c2fbee16862d"
+    },
+    {
+      "name": "io.micrometer:micrometer-commons",
+      "version": "1.16.7",
+      "classifier": null,
+      "cachePath": "io/micrometer/micrometer-commons/1.16.7/micrometer-commons-1.16.7.jar",
+      "sha256": "cd1ad64a94650a2ed3988a4ab48c9a7fad40c4986a81e328194dd757b5170273"
+    },
+    {
+      "name": "org.apache.maven.plugins:maven-shade-plugin",
+      "version": "3.6.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/plugins/maven-shade-plugin/3.6.0/maven-shade-plugin-3.6.0.jar",
+      "sha256": "f66fa16d7db430097c222ed82e84d9a1304cab973caf818168f1251695b7e007"
+    },
+    {
+      "name": "org.ow2.asm:asm",
+      "version": "9.7",
+      "classifier": null,
+      "cachePath": "org/ow2/asm/asm/9.7/asm-9.7.jar",
+      "sha256": "adf46d5e34940bdf148ecdd26a9ee8eea94496a72034ff7141066b3eea5c4e9d"
+    },
+    {
+      "name": "org.ow2.asm:asm-commons",
+      "version": "9.7",
+      "classifier": null,
+      "cachePath": "org/ow2/asm/asm-commons/9.7/asm-commons-9.7.jar",
+      "sha256": "389bc247958e049fc9a0408d398c92c6d370c18035120395d4cba1d9d9304b7a"
+    },
+    {
+      "name": "org.ow2.asm:asm-tree",
+      "version": "9.7",
+      "classifier": null,
+      "cachePath": "org/ow2/asm/asm-tree/9.7/asm-tree-9.7.jar",
+      "sha256": "62f4b3bc436045c1acb5c3ba2d8ec556ec3369093d7f5d06c747eb04b56d52b1"
+    },
+    {
+      "name": "org.jdom:jdom2",
+      "version": "2.0.6.1",
+      "classifier": null,
+      "cachePath": "org/jdom/jdom2/2.0.6.1/jdom2-2.0.6.1.jar",
+      "sha256": "0b20f45e3a0fd8f0d12cdc5316b06776e902b1365db00118876f9175c60f302c"
+    },
+    {
+      "name": "org.vafer:jdependency",
+      "version": "2.10",
+      "classifier": null,
+      "cachePath": "org/vafer/jdependency/2.10/jdependency-2.10.jar",
+      "sha256": "1dcd8355ab9ebced687715bf1252eb2aee5d0e74497a2014fd3387cfce8df85f"
+    },
+    {
+      "name": "com.github.spotbugs:spotbugs-maven-plugin",
+      "version": "4.10.4.1",
+      "classifier": null,
+      "cachePath": "com/github/spotbugs/spotbugs-maven-plugin/4.10.4.1/spotbugs-maven-plugin-4.10.4.1.jar",
+      "sha256": "405114389d4c93ab6ce0ddb09bad5b0f1da95ffac0bb36c04094066c5b01e338"
+    },
+    {
+      "name": "org.iq80.snappy:snappy",
+      "version": "0.5",
+      "classifier": null,
+      "cachePath": "org/iq80/snappy/snappy/0.5/snappy-0.5.jar",
+      "sha256": "55355f6cf2c7de9fc574ebaf0791a130c0199cc124e3f00ab45da05648f15873"
+    },
+    {
+      "name": "com.github.spotbugs:spotbugs",
+      "version": "4.10.4",
+      "classifier": null,
+      "cachePath": "com/github/spotbugs/spotbugs/4.10.4/spotbugs-4.10.4.jar",
+      "sha256": "a88cad2e0ea9bb74b908ce82ae89416c61fa8f8ea5cfcc9368b1baac2da878d2"
+    },
+    {
+      "name": "org.ow2.asm:asm",
+      "version": "9.10.1",
+      "classifier": null,
+      "cachePath": "org/ow2/asm/asm/9.10.1/asm-9.10.1.jar",
+      "sha256": "ed825d10ab1399c8c0cb669e688cf0c8c82629b4c8399b58352b68e92ca10fcb"
+    },
+    {
+      "name": "org.ow2.asm:asm-analysis",
+      "version": "9.10.1",
+      "classifier": null,
+      "cachePath": "org/ow2/asm/asm-analysis/9.10.1/asm-analysis-9.10.1.jar",
+      "sha256": "dede75a21306b65974ecd8f87114ff6970f09fb794157a4ca09ab25c888c2bfc"
+    },
+    {
+      "name": "org.ow2.asm:asm-commons",
+      "version": "9.10.1",
+      "classifier": null,
+      "cachePath": "org/ow2/asm/asm-commons/9.10.1/asm-commons-9.10.1.jar",
+      "sha256": "6d0abefb7cbf972ea16edb37ec14835372505063a45f976ab7ea889ed9497895"
+    },
+    {
+      "name": "org.ow2.asm:asm-tree",
+      "version": "9.10.1",
+      "classifier": null,
+      "cachePath": "org/ow2/asm/asm-tree/9.10.1/asm-tree-9.10.1.jar",
+      "sha256": "3dfb0d5b6a106cd40b5b250e39935fbf2f927f4477546a5369a3ac609cf0506b"
+    },
+    {
+      "name": "org.ow2.asm:asm-util",
+      "version": "9.10.1",
+      "classifier": null,
+      "cachePath": "org/ow2/asm/asm-util/9.10.1/asm-util-9.10.1.jar",
+      "sha256": "1bb99d091fba2597dc6d51193e9bbcf0d8447e7ed96bd8f0198b18152f09655c"
+    },
+    {
+      "name": "org.apache.bcel:bcel",
+      "version": "6.12.0",
+      "classifier": null,
+      "cachePath": "org/apache/bcel/bcel/6.12.0/bcel-6.12.0.jar",
+      "sha256": "012639e3d2a3079f4c9c1350f18202cea83a7112ef210e50c93b0b771ad5d3af"
+    },
+    {
+      "name": "com.github.stephenc.jcip:jcip-annotations",
+      "version": "1.0-1",
+      "classifier": null,
+      "cachePath": "com/github/stephenc/jcip/jcip-annotations/1.0-1/jcip-annotations-1.0-1.jar",
+      "sha256": "4fccff8382aafc589962c4edb262f6aa595e34f1e11e61057d1c6a96e8fc7323"
+    },
+    {
+      "name": "org.dom4j:dom4j",
+      "version": "2.2.0",
+      "classifier": null,
+      "cachePath": "org/dom4j/dom4j/2.2.0/dom4j-2.2.0.jar",
+      "sha256": "3fae79e081096e1410645eb3557c63b79ca266d510ab479889511109becd1690"
+    },
+    {
+      "name": "org.apache.commons:commons-text",
+      "version": "1.15.0",
+      "classifier": null,
+      "cachePath": "org/apache/commons/commons-text/1.15.0/commons-text-1.15.0.jar",
+      "sha256": "58d2da30f058512a1e7f914e39241deca4dff5c27a085b4ed2faa9e7208067f6"
+    },
+    {
+      "name": "com.github.spotbugs:spotbugs-annotations",
+      "version": "4.10.4",
+      "classifier": null,
+      "cachePath": "com/github/spotbugs/spotbugs-annotations/4.10.4/spotbugs-annotations-4.10.4.jar",
+      "sha256": "28fa4befaddce5d7b79b07c68e7c12fa27c5d9282c4229528717971606661ea3"
+    },
+    {
+      "name": "com.google.code.gson:gson",
+      "version": "2.14.0",
+      "classifier": null,
+      "cachePath": "com/google/code/gson/gson/2.14.0/gson-2.14.0.jar",
+      "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+    },
+    {
+      "name": "com.google.errorprone:error_prone_annotations",
+      "version": "2.48.0",
+      "classifier": null,
+      "cachePath": "com/google/errorprone/error_prone_annotations/2.48.0/error_prone_annotations-2.48.0.jar",
+      "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+    },
+    {
+      "name": "jaxen:jaxen",
+      "version": "2.0.6",
+      "classifier": null,
+      "cachePath": "jaxen/jaxen/2.0.6/jaxen-2.0.6.jar",
+      "sha256": "3e2a755b283fd492fa4be204294c7abb7cd63ac94fb366baab9c7bb9afb00b6d"
+    },
+    {
+      "name": "net.sf.saxon:Saxon-HE",
+      "version": "12.10",
+      "classifier": null,
+      "cachePath": "net/sf/saxon/Saxon-HE/12.10/Saxon-HE-12.10.jar",
+      "sha256": "b571af282f25d7301059f788b9a149aab8b5cdc14ef3d212dc5425d3dcbb9a97"
+    },
+    {
+      "name": "org.xmlresolver:xmlresolver",
+      "version": "5.3.3",
+      "classifier": null,
+      "cachePath": "org/xmlresolver/xmlresolver/5.3.3/xmlresolver-5.3.3.jar",
+      "sha256": "1fe4d5b92f708dcdb82dbce12919e0171e6b5ca62c6dca6220483625098feb5f"
+    },
+    {
+      "name": "org.xmlresolver:xmlresolver",
+      "version": "5.3.3",
+      "classifier": "data",
+      "cachePath": "org/xmlresolver/xmlresolver/5.3.3/xmlresolver-5.3.3-data.jar",
+      "sha256": "b0c487ad2f3e558be8d829c916d2458d10aca6a5bafa7a4d0524b70845e48a5c"
+    },
+    {
+      "name": "org.apache.logging.log4j:log4j-to-slf4j",
+      "version": "2.26.1",
+      "classifier": null,
+      "cachePath": "org/apache/logging/log4j/log4j-to-slf4j/2.26.1/log4j-to-slf4j-2.26.1.jar",
+      "sha256": "6b10bc838a3c773b3fd02979c7ef4e7a443371fa89bda4415d89099bbee224df"
+    },
+    {
+      "name": "org.apache.logging.log4j:log4j-api",
+      "version": "2.26.1",
+      "classifier": null,
+      "cachePath": "org/apache/logging/log4j/log4j-api/2.26.1/log4j-api-2.26.1.jar",
+      "sha256": "f1810a4704ccce019d02bba029dc02a4f2ac0c997f647b465e7d409c1927f822"
+    },
+    {
+      "name": "org.slf4j:slf4j-simple",
+      "version": "2.0.19",
+      "classifier": null,
+      "cachePath": "org/slf4j/slf4j-simple/2.0.19/slf4j-simple-2.0.19.jar",
+      "sha256": "1d20cbfc8f97a719112a72c6d4c2323259d179a7478d1f694b54409d412bb731"
+    },
+    {
+      "name": "org.apache.groovy:groovy",
+      "version": "5.1.1",
+      "classifier": null,
+      "cachePath": "org/apache/groovy/groovy/5.1.1/groovy-5.1.1.jar",
+      "sha256": "550a072831e036aa3f6508520df1c1cb91633efa0d7d9e800a07a74227059a47"
+    },
+    {
+      "name": "org.apache.groovy:groovy-docgenerator",
+      "version": "5.1.1",
+      "classifier": null,
+      "cachePath": "org/apache/groovy/groovy-docgenerator/5.1.1/groovy-docgenerator-5.1.1.jar",
+      "sha256": "4fa6e525dc89d582bcc8cea3918d42c18a50b3810906235edc7e67ec98d0d88a"
+    },
+    {
+      "name": "org.apache.groovy:groovy-groovydoc",
+      "version": "5.1.1",
+      "classifier": null,
+      "cachePath": "org/apache/groovy/groovy-groovydoc/5.1.1/groovy-groovydoc-5.1.1.jar",
+      "sha256": "9afd5119db44bcbf464404f936e449746cb0048a37da879b3be6b999d95f4d54"
+    },
+    {
+      "name": "org.apache.groovy:groovy-json",
+      "version": "5.1.1",
+      "classifier": null,
+      "cachePath": "org/apache/groovy/groovy-json/5.1.1/groovy-json-5.1.1.jar",
+      "sha256": "6589c2851642dc5141e2e5926a4ddab994449d96e958758aa7bb32df42660457"
+    },
+    {
+      "name": "org.apache.groovy:groovy-templates",
+      "version": "5.1.1",
+      "classifier": null,
+      "cachePath": "org/apache/groovy/groovy-templates/5.1.1/groovy-templates-5.1.1.jar",
+      "sha256": "006604ddacc9e5ba06c5902f6ed59415b328aaedeff5b81f2f0d128320851aa8"
+    },
+    {
+      "name": "org.apache.groovy:groovy-xml",
+      "version": "5.1.1",
+      "classifier": null,
+      "cachePath": "org/apache/groovy/groovy-xml/5.1.1/groovy-xml-5.1.1.jar",
+      "sha256": "d82e42424624192c38cd005e242d54e9ed16ef2e96d372931ad776a26c5c1e92"
+    },
+    {
+      "name": "com.github.javaparser:javaparser-core",
+      "version": "3.28.2",
+      "classifier": null,
+      "cachePath": "com/github/javaparser/javaparser-core/3.28.2/javaparser-core-3.28.2.jar",
+      "sha256": "b5499a3b1c40b16c0671fabe478c9aafeab38160c6fde74a6c13f42d86716ecd"
+    },
+    {
+      "name": "org.apache.maven.reporting:maven-reporting-impl",
+      "version": "4.0.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/reporting/maven-reporting-impl/4.0.0/maven-reporting-impl-4.0.0.jar",
+      "sha256": "e9e70fdb26ff8b1f15435e3a68866a25c85b1694007e0fbdfe84e48e946fe463"
+    },
+    {
+      "name": "org.apache.maven.reporting:maven-reporting-api",
+      "version": "4.0.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/reporting/maven-reporting-api/4.0.0/maven-reporting-api-4.0.0.jar",
+      "sha256": "cb2cbde3c9c7288f7398a250dcf3c90cf92714cff301f22b298e1091b5def33c"
+    },
+    {
+      "name": "org.apache.maven.doxia:doxia-site-model",
+      "version": "2.1.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/doxia/doxia-site-model/2.1.0/doxia-site-model-2.1.0.jar",
+      "sha256": "11eeeb79433fec1a36f5ad33305b010f4b0933afb70ba6f1285dbfecedb90d89"
+    },
+    {
+      "name": "org.apache.maven.doxia:doxia-integration-tools",
+      "version": "2.1.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/doxia/doxia-integration-tools/2.1.0/doxia-integration-tools-2.1.0.jar",
+      "sha256": "05c5d3b498e94a4107f5851c87aebde155e7dea24c1dd4edf983bae3d11727b2"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-i18n",
+      "version": "1.1.0",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-i18n/1.1.0/plexus-i18n-1.1.0.jar",
+      "sha256": "995c0792669a031c94d91960a5beb60e1516abcec17a104f9f47470b36e56e27"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-interpolation",
+      "version": "1.30.0",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-interpolation/1.30.0/plexus-interpolation-1.30.0.jar",
+      "sha256": "457307267f6d2ea2582f5449df9350b86728f46c23ccd486341087ace473e9a1"
+    },
+    {
+      "name": "org.apache.maven.doxia:doxia-site-renderer",
+      "version": "2.1.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/doxia/doxia-site-renderer/2.1.0/doxia-site-renderer-2.1.0.jar",
+      "sha256": "dcff71b635559695643d8a7ecec3c22d8437ab5a46db54dbcd28b9585b8668b0"
+    },
+    {
+      "name": "org.apache.maven.doxia:doxia-skin-model",
+      "version": "2.1.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/doxia/doxia-skin-model/2.1.0/doxia-skin-model-2.1.0.jar",
+      "sha256": "6ec34a33e393592f6d22cc39b7eab38fac4b5d8941c60187a299696a5b7c8e00"
+    },
+    {
+      "name": "org.apache.maven.doxia:doxia-module-xhtml5",
+      "version": "2.1.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/doxia/doxia-module-xhtml5/2.1.0/doxia-module-xhtml5-2.1.0.jar",
+      "sha256": "7046028cc59f088f61daeea3edc71f198f19ccf937768599f92e5b39da58552c"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-velocity",
+      "version": "2.4.0",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-velocity/2.4.0/plexus-velocity-2.4.0.jar",
+      "sha256": "820eccf6d66d0acfdfc4ffcfc452a43a23c1d5f375da8d58ae5f17986ce8a817"
+    },
+    {
+      "name": "org.apache.velocity:velocity-engine-core",
+      "version": "2.4.1",
+      "classifier": null,
+      "cachePath": "org/apache/velocity/velocity-engine-core/2.4.1/velocity-engine-core-2.4.1.jar",
+      "sha256": "1c19157d1171d560088e485be97c93a7a2f7e9f56e517f0a30273c5c39df6231"
+    },
+    {
+      "name": "org.apache.velocity.tools:velocity-tools-generic",
+      "version": "3.1",
+      "classifier": null,
+      "cachePath": "org/apache/velocity/tools/velocity-tools-generic/3.1/velocity-tools-generic-3.1.jar",
+      "sha256": "8258cfdcaa16127f35ffe610a3fa4f76b7ebe51b88922c73c4ee39ce8f378ce5"
+    },
+    {
+      "name": "commons-beanutils:commons-beanutils",
+      "version": "1.11.0",
+      "classifier": null,
+      "cachePath": "commons-beanutils/commons-beanutils/1.11.0/commons-beanutils-1.11.0.jar",
+      "sha256": "9e44ba68ec9a3f21286fa2a8bbb003b735c0f69101bb43144b79f4f8aaa74709"
+    },
+    {
+      "name": "commons-logging:commons-logging",
+      "version": "1.4.0",
+      "classifier": null,
+      "cachePath": "commons-logging/commons-logging/1.4.0/commons-logging-1.4.0.jar",
+      "sha256": "d175dbd751dd782a63bde28c7a039520e971f25e84b79c19b8435edc3603e0dc"
+    },
+    {
+      "name": "commons-collections:commons-collections",
+      "version": "3.2.2",
+      "classifier": null,
+      "cachePath": "commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar",
+      "sha256": "eeeae917917144a68a741d4c0dff66aa5c5c5fd85593ff217bced3fc8ca783b8"
+    },
+    {
+      "name": "org.apache.commons:commons-digester3",
+      "version": "3.2",
+      "classifier": null,
+      "cachePath": "org/apache/commons/commons-digester3/3.2/commons-digester3-3.2.jar",
+      "sha256": "1c150e3d2df4b4237b47e28fea2079fb0da324578d5cca6a5fed2e37a62082ec"
+    },
+    {
+      "name": "com.github.cliftonlabs:json-simple",
+      "version": "3.0.2",
+      "classifier": null,
+      "cachePath": "com/github/cliftonlabs/json-simple/3.0.2/json-simple-3.0.2.jar",
+      "sha256": "fda65a9ad0e1ac0c88987106e89aa4d8b2a2495e7e042371efa83813f65b7295"
+    },
+    {
+      "name": "org.apache.maven.doxia:doxia-module-apt",
+      "version": "2.0.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/doxia/doxia-module-apt/2.0.0/doxia-module-apt-2.0.0.jar",
+      "sha256": "f4a846c448ca85358279184a310f6ee3f46fa39688f74a72961c1bfe222f28a6"
+    },
+    {
+      "name": "org.apache.maven.doxia:doxia-module-xdoc",
+      "version": "2.0.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/doxia/doxia-module-xdoc/2.0.0/doxia-module-xdoc-2.0.0.jar",
+      "sha256": "7956aca14f8adbc48bac86b218701dd44cc990063a69edbfca363b105994a474"
+    },
+    {
+      "name": "org.apache.maven:maven-archiver",
+      "version": "3.6.2",
+      "classifier": null,
+      "cachePath": "org/apache/maven/maven-archiver/3.6.2/maven-archiver-3.6.2.jar",
+      "sha256": "1f895a587df4844d9b7565e8e9a6352afe1d55532458a0dbeb746bc1d02e9216"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-archiver",
+      "version": "4.9.2",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-archiver/4.9.2/plexus-archiver-4.9.2.jar",
+      "sha256": "a837bd7d73291564dc8e8c826de0fede75896527a35bdcddb77b0545ee656a4c"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-io",
+      "version": "3.4.2",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-io/3.4.2/plexus-io-3.4.2.jar",
+      "sha256": "6ba7fb0db6bfa348c248df3f983ae31318e9c14f35a86a932af5ffd7450aa62a"
+    },
+    {
+      "name": "org.apache.commons:commons-compress",
+      "version": "1.26.1",
+      "classifier": null,
+      "cachePath": "org/apache/commons/commons-compress/1.26.1/commons-compress-1.26.1.jar",
+      "sha256": "27bb5d40f37c3bb7205b4a0540247df057715e9f6cbbd97d626ab8b50318bb04"
+    },
+    {
+      "name": "commons-codec:commons-codec",
+      "version": "1.22.1",
+      "classifier": null,
+      "cachePath": "commons-codec/commons-codec/1.22.1/commons-codec-1.22.1.jar",
+      "sha256": "78a5d732fbd715e2d10bd7150d2f8030bae57267f8aacc5c88f642cb6c2e5d3f"
+    },
+    {
+      "name": "org.tukaani:xz",
+      "version": "1.9",
+      "classifier": null,
+      "cachePath": "org/tukaani/xz/1.9/xz-1.9.jar",
+      "sha256": "211b306cfc44f8f96df3a0a3ddaf75ba8c5289eed77d60d72f889bb855f535e5"
+    },
+    {
+      "name": "com.github.luben:zstd-jni",
+      "version": "1.5.5-11",
+      "classifier": null,
+      "cachePath": "com/github/luben/zstd-jni/1.5.5-11/zstd-jni-1.5.5-11.jar",
+      "sha256": "d75b2ced6059f81ad23e021c554259b906b6c4f2991cb772409827569ead4c1a"
+    },
+    {
+      "name": "org.eclipse.sisu:org.eclipse.sisu.inject",
+      "version": "1.1.0",
+      "classifier": null,
+      "cachePath": "org/eclipse/sisu/org.eclipse.sisu.inject/1.1.0/org.eclipse.sisu.inject-1.1.0.jar",
+      "sha256": "f3edea5119c91be496e3ff55948fa16c89cdbacf9c2e74bdc9fafda1a3faba20"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-component-annotations",
+      "version": "2.2.0",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-component-annotations/2.2.0/plexus-component-annotations-2.2.0.jar",
+      "sha256": "50edb93c73786e62822b4fe1336e22880fdf147191373cf5c911370e16748fcf"
+    },
+    {
+      "name": "org.apache.maven.doxia:doxia-core",
+      "version": "2.1.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/doxia/doxia-core/2.1.0/doxia-core-2.1.0.jar",
+      "sha256": "2a439e0f4672b69ae623ea992149e0da52eb0fa3bebfbdc4c829585d7d3358c7"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-xml",
+      "version": "3.1.0",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-xml/3.1.0/plexus-xml-3.1.0.jar",
+      "sha256": "c2bf931dd1512d228dd4cdbe755100df0430c3284e712b4d1d38795dd27629bd"
+    },
+    {
+      "name": "org.apache.maven.doxia:doxia-sink-api",
+      "version": "2.1.0",
+      "classifier": null,
+      "cachePath": "org/apache/maven/doxia/doxia-sink-api/2.1.0/doxia-sink-api-2.1.0.jar",
+      "sha256": "b465db838dd482a994d32a088bea4bcbaa62cfb8b2853511a9f8c3e769402c74"
+    },
+    {
+      "name": "org.codehaus.plexus:plexus-resources",
+      "version": "1.4.0",
+      "classifier": null,
+      "cachePath": "org/codehaus/plexus/plexus-resources/1.4.0/plexus-resources-1.4.0.jar",
+      "sha256": "32e7870a04ec6493c348435350cda357ca2de346e130e4960bc1f69b74a02751"
+    },
+    {
+      "name": "org.checkerframework:checker-qual",
+      "version": "4.2.2",
+      "classifier": null,
+      "cachePath": "org/checkerframework/checker-qual/4.2.2/checker-qual-4.2.2.jar",
+      "sha256": "4efb9d11ecde9b8b79eca8a132f65162866f28733ee681748f0e7d1cebfa01d7"
+    }
+  ],
+  "actualLoadedArtifacts": 134,
+  "databaseFileSha256": "88daf0f4f0789698811bec5ebf95ef9610cd0f4d0571394f754a5cdb8cf081c9",
+  "supersededCacheAssessment": "Original full-cache scan retained one obsolete iq80 Snappy0.4 MEDIUM. Active SpotBugs realm uses0.5 as proven by debug inventory; old cached bytes are retained, not silently removed or reported clean."
+}

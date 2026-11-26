@@ -1,0 +1,168 @@
+{
+  "retrievedAtUtc": "2026-10-13T16:23:29.189416+00:00",
+  "source": "Official Alpine 3.24 main APK indexes and HTTPS artifacts; apk installation retains signature checking against upstream trust keys",
+  "packages": [
+    {
+      "arch": "aarch64",
+      "package": "libcrypto3",
+      "version": "3.5.9-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libcrypto3-3.5.9-r0.apk",
+      "sha256": "2676a2b0b6e23ea2edccf3ee982b9842a665d52603d047de3d0a185dc316d983",
+      "license": "Apache-2.0",
+      "indexChecksum": "Q1nd3DZ6uRv/vKf+I4jGECIMBUisw="
+    },
+    {
+      "arch": "aarch64",
+      "package": "libexpat",
+      "version": "2.8.5-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libexpat-2.8.5-r0.apk",
+      "sha256": "568a12a4889a00711d1c80c197a5540ee1cdec26c1c59da38f8342ad69e7eff9",
+      "license": "MIT",
+      "indexChecksum": "Q1gu/0K4CAhLRRQcP0EyW2FGL1Nz4="
+    },
+    {
+      "arch": "aarch64",
+      "package": "libpng",
+      "version": "1.6.59-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libpng-1.6.59-r0.apk",
+      "sha256": "bccd127f8c42bc5c21c018b6b1dc977128f3bad64c3412e541c09e96e8b227a4",
+      "license": "Libpng",
+      "indexChecksum": "Q1tghdLeQRR5bv9IoSfKJRO91rI4c="
+    },
+    {
+      "arch": "aarch64",
+      "package": "libssl3",
+      "version": "3.5.9-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/libssl3-3.5.9-r0.apk",
+      "sha256": "20ac252b276d73f2c69c1d25f84537c7fba81caefc026c6be1094b394af2082e",
+      "license": "Apache-2.0",
+      "indexChecksum": "Q1fPvgmLY6scIS37WtG8V+V3AmPLY="
+    },
+    {
+      "arch": "aarch64",
+      "package": "openssl",
+      "version": "3.5.9-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/openssl-3.5.9-r0.apk",
+      "sha256": "aa27b9edfeffbf7ebafbcf29df3f02eef4bf50f793a4874ae2f52aba6b53e653",
+      "license": "Apache-2.0",
+      "indexChecksum": "Q16QwfKekwxt9pU5AWIsTgaPeDpqE="
+    },
+    {
+      "arch": "aarch64",
+      "package": "p11-kit",
+      "version": "0.26.2-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-0.26.2-r0.apk",
+      "sha256": "0ad7cbbc011491b604b4d8fb8aafb6ce2a271c19eb8b785dd51f1704c61c58a5",
+      "license": "BSD-3-Clause",
+      "indexChecksum": "Q1btUg+DbR+2wN/3QOm3t9POW0uio="
+    },
+    {
+      "arch": "aarch64",
+      "package": "p11-kit-trust",
+      "version": "0.26.2-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/p11-kit-trust-0.26.2-r0.apk",
+      "sha256": "6a39cb8ba9a68a178f404300409398b7f806bdfe3060621b5428f42abcf7173c",
+      "license": "BSD-3-Clause",
+      "indexChecksum": "Q12muBWMhXo90ISFDqyW9ThdZU2+I="
+    },
+    {
+      "arch": "aarch64",
+      "package": "sqlite-libs",
+      "version": "3.53.4-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/sqlite-libs-3.53.4-r0.apk",
+      "sha256": "b39d8d73c1208838a436f2d481ba605b52a095f8d6ff781556eafc81cd1a13e9",
+      "license": "blessing",
+      "indexChecksum": "Q1OWsp/zpMxhhT4AEyP8P+zIs8g+U="
+    },
+    {
+      "arch": "aarch64",
+      "package": "zlib",
+      "version": "1.3.2-r1",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/aarch64/zlib-1.3.2-r1.apk",
+      "sha256": "1f77a542ac6634761b9fe38d8bdca19b154071dcfa25432e73f2bc8a0740a33f",
+      "license": "Zlib",
+      "indexChecksum": "Q1jP3JcWVZiDTJ6FovhLCh8M8Qt1I="
+    },
+    {
+      "arch": "x86_64",
+      "package": "libcrypto3",
+      "version": "3.5.9-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libcrypto3-3.5.9-r0.apk",
+      "sha256": "6632d758d8f5e9ea3b650fe966f23bbf9a202f8b8dceecac93da135dec5e3689",
+      "license": "Apache-2.0",
+      "indexChecksum": "Q1HA3ulzTPIvyXzdGBkTu9cQ5t+wg="
+    },
+    {
+      "arch": "x86_64",
+      "package": "libexpat",
+      "version": "2.8.5-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libexpat-2.8.5-r0.apk",
+      "sha256": "2e56946bc495cbed9eb1ad70859a79cba9db6420016453e065a0628848b32c7e",
+      "license": "MIT",
+      "indexChecksum": "Q1H6vHuQDzoSWyIP9VB9qmd331BI0="
+    },
+    {
+      "arch": "x86_64",
+      "package": "libpng",
+      "version": "1.6.59-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libpng-1.6.59-r0.apk",
+      "sha256": "d16aeb0597f2bc43e0583ac9ff779388ec160c3e22568b640122e94ba55be6d7",
+      "license": "Libpng",
+      "indexChecksum": "Q1qtsPrh9nP39XxYLvdXFAUOykO5I="
+    },
+    {
+      "arch": "x86_64",
+      "package": "libssl3",
+      "version": "3.5.9-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libssl3-3.5.9-r0.apk",
+      "sha256": "05e3393fb95aa5751ca2f9d242f659f6cff82c1cc7767cc2df4a086f7ad01877",
+      "license": "Apache-2.0",
+      "indexChecksum": "Q1IMTJDqnSCp3ToE3q3yxsT2QjNkM="
+    },
+    {
+      "arch": "x86_64",
+      "package": "openssl",
+      "version": "3.5.9-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/openssl-3.5.9-r0.apk",
+      "sha256": "9358e8f38eb19a1e035355626570c76bda1e5a49084c768fb0edc1e607251e99",
+      "license": "Apache-2.0",
+      "indexChecksum": "Q16pTwH+6xSahfRAL19xOiXpD3cBE="
+    },
+    {
+      "arch": "x86_64",
+      "package": "p11-kit",
+      "version": "0.26.2-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-0.26.2-r0.apk",
+      "sha256": "134d653aeeb4ada32746fbc3e2a7ae4201f584725de9263e4f32503658f3ddd8",
+      "license": "BSD-3-Clause",
+      "indexChecksum": "Q1LnVzyqXTfa2bTyKUwAVGF6UIN8Q="
+    },
+    {
+      "arch": "x86_64",
+      "package": "p11-kit-trust",
+      "version": "0.26.2-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/p11-kit-trust-0.26.2-r0.apk",
+      "sha256": "f79c696b960d974832723215431b93e21ecb29b2449892b3fd6587713f1f2f50",
+      "license": "BSD-3-Clause",
+      "indexChecksum": "Q1JonTuA880GnqDZNb3DIgj4CA9OA="
+    },
+    {
+      "arch": "x86_64",
+      "package": "sqlite-libs",
+      "version": "3.53.4-r0",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/sqlite-libs-3.53.4-r0.apk",
+      "sha256": "a8a216e53d22faa3f04d2e3650c1991af66f8d0b42fadff5afcdb9afb60b19e5",
+      "license": "blessing",
+      "indexChecksum": "Q192MM6zfCMrZgmGGuq2zbnNEg5vo="
+    },
+    {
+      "arch": "x86_64",
+      "package": "zlib",
+      "version": "1.3.2-r1",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/zlib-1.3.2-r1.apk",
+      "sha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
+      "license": "Zlib",
+      "indexChecksum": "Q1T1JcjMIE+EuLTKQNs744mVjwVsY="
+    }
+  ]
+}

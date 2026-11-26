@@ -1,0 +1,47 @@
+{
+  "startedAt": "2026-10-11T15:37:03.778353+00:00",
+  "original24CompletedBeforePatch": true,
+  "originalHarnessCommit": "66dc7c9cbcdd312f9df5ed427520bc398d7696a0",
+  "controlledHarnessCommit": "b11a593c7ec2f47252495a2af000de274d9872fd",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "scripts/test_event_benchmark.py"
+      ],
+      "exitCode": 0,
+      "output": "CLI help parsed successfully",
+      "diagnostic": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.364s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/event-benchmark.py",
+        "--help"
+      ],
+      "exitCode": 0,
+      "output": "CLI help parsed successfully",
+      "diagnostic": ""
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/phase3-experiments.py",
+        "--help"
+      ],
+      "exitCode": 0,
+      "output": "CLI help parsed successfully",
+      "diagnostic": ""
+    }
+  ],
+  "scriptSha256": {
+    "benchmark.py": "1d9d4e799ebfa7dfb81148d6d85685a3d8dcee1ab88e6fcac431cdcc96451087",
+    "event-benchmark.py": "35577d38d0190b091acf2208c5d45801ca72b6d1629a80ba58f0a1a8c29221d1",
+    "phase3-experiments.py": "4a023ba62f39e59444abd28fb02278587fc047b4993eded19bfd02b1fcc8f9ce",
+    "test_event_benchmark.py": "ec0f52f1602415fce6605d50cd4317986f62f8fcc91edb183e4d9fc1282c56b0"
+  },
+  "offlineTests": 7,
+  "failures": 0,
+  "errors": 0,
+  "finishedAt": "2026-10-11T15:37:04.403956+00:00"
+}

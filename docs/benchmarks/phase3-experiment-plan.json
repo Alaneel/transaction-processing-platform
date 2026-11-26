@@ -1,0 +1,128 @@
+{
+  "declaredAt": "2026-10-11T14:49:07.975477+00:00",
+  "baselineSourceCommit": "cba44277524cb6b10c688a225afee9d396dfd135",
+  "baselineImage": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+  "optimizedSourceCommit": "66dc7c9cbcdd312f9df5ed427520bc398d7696a0",
+  "optimizedImage": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+  "harnessSourceCommit": "66dc7c9cbcdd312f9df5ed427520bc398d7696a0",
+  "project": "tpp-phase3-validation",
+  "ports": {
+    "app": 28080,
+    "postgres": 55434,
+    "kafka": 29092
+  },
+  "order": [
+    "baseline",
+    "optimized",
+    "optimized",
+    "baseline"
+  ],
+  "workers": 8,
+  "profiled": false,
+  "producerSettings": {
+    "lingerMs": 0,
+    "bufferBytes": 4194304,
+    "maxInFlightRequestsPerConnection": 5
+  },
+  "relaySettings": {
+    "batchSize": 16,
+    "pollIntervalMs": 100
+  },
+  "backpressureEnabled": false,
+  "ordinaryWarmup": {
+    "seconds": 3,
+    "scheduledArrivalsPerSecond": 50,
+    "mustDrainBeforeMeasurement": true
+  },
+  "catchupDeadlineSeconds": 180,
+  "workloads": [
+    {
+      "suite": "low",
+      "loadModel": "closed-loop",
+      "seconds": 10
+    },
+    {
+      "suite": "high",
+      "loadModel": "closed-loop",
+      "seconds": 10
+    },
+    {
+      "suite": "sustained",
+      "loadModel": "fixed-arrival",
+      "seconds": 30,
+      "scheduledArrivalsPerSecond": 500
+    },
+    {
+      "suite": "outage",
+      "loadModel": "fixed-arrival",
+      "seconds": 8,
+      "scheduledArrivalsPerSecond": 500,
+      "warmupSeconds": 0,
+      "appRestartDuringBrokerRecovery": false
+    },
+    {
+      "suite": "consumer",
+      "loadModel": "fixed-arrival",
+      "seconds": 8,
+      "scheduledArrivalsPerSecond": 500,
+      "warmupSeconds": 0,
+      "consumerMinimumIntervalMs": 100,
+      "normalRecoveryIntervalMs": 0
+    }
+  ],
+  "predeclaredRationale": "The fixed 500/s arrival rate repeats the original diagnostic question; rate will not be tuned to manufacture a speedup.",
+  "limits": "Two trials per image per workload, local shared-host environment, finite outstanding HTTP capacity, accumulating persisted history, sequential inspection snapshots.",
+  "imageResolvedAt": "2026-10-11T15:00:14.033940+00:00",
+  "secondaryOperatingPoint": {
+    "declaredAt": "2026-10-11T15:02:21.973572+00:00",
+    "rationale": "Chosen once after optimized 500/s diagnostic showed consumer backlog under concurrent HTTP; no consumer code/concurrency changes. Both fixed images must be compared, no further rate tuning if unstable.",
+    "scheduledArrivalsPerSecond": 250,
+    "seconds": 30,
+    "workers": 8,
+    "order": [
+      "baseline",
+      "optimized",
+      "optimized",
+      "baseline"
+    ],
+    "warmupSeconds": 3,
+    "warmupScheduledArrivalsPerSecond": 50,
+    "warmupMustDrain": true,
+    "drainDeadlineSeconds": 180,
+    "outputDirectory": "docs/benchmarks/phase3-sustainable-250",
+    "separateFromPrimary500Comparison": true,
+    "stoppedAttemptTimeline": "docs/benchmarks/phase3-sustainable-250/phase3-sustained-trial-order.json",
+    "postStopReconfirmation": "docs/benchmarks/phase3-sustainable-250/o3-post-stop-reconfirmation.json",
+    "continuationTimeline": "docs/benchmarks/phase3-sustainable-250-continuation/phase3-sustained-trial-order.json",
+    "interruption": "Post-O3 global reconciliation endpoint failed on parallel-query shared-memory allocation. Completed measured/scoped/offset evidence retained; O3 independently reconfirmed; original planned B4 continued separately without image, workload, memory or resource configuration changes."
+  },
+  "controlledHighExtension": {
+    "declaredAt": "2026-10-11T15:23:29.813382+00:00",
+    "rationale": "Original exploratory high series had 0,1,4,7 destinations below the shared source in ABBA order, a material account-order input confound. Control the worst-case order once; foreign-key lock interaction remains an unverified hypothesis.",
+    "runAfterOriginal24Trials": true,
+    "baselineImage": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+    "optimizedImage": "sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69",
+    "harnessPatchPreparedOutsideRepository": "/private/tmp/tpp-phase3-controlled.patch",
+    "harnessSourceCommit": "b11a593c7ec2f47252495a2af000de274d9872fd",
+    "highUuidOrder": "all-destinations-before-source",
+    "uuidConstruction": "Normalize only leading nibble to f for shared source and 0 for each destination, preserving namespace-derived remaining 124 bits, version and variant; low pairs and issuance unchanged.",
+    "destinationsSortingBelowSharedSource": 8,
+    "workers": 8,
+    "loadModel": "closed-loop",
+    "seconds": 10,
+    "warmupSeconds": 3,
+    "warmupScheduledArrivalsPerSecond": 50,
+    "warmupMustDrain": true,
+    "drainDeadlineSeconds": 180,
+    "order": [
+      "baseline",
+      "optimized",
+      "optimized",
+      "baseline"
+    ],
+    "outputDirectory": "docs/benchmarks/phase3-high-controlled",
+    "parameterTuning": false,
+    "harnessCommittedBeforeTrialsAt": "2026-10-11T15:37:58.400779+00:00",
+    "guardChange": "Fresh endpoint comment and explicit non-200 inspection classification with retained last responses; previous original attempt remains unchanged."
+  }
+}

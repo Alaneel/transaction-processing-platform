@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "namespace": "3b5e7c88-ba83-4f5d-9fe5-b4886c806168",
+  "created_at": "2026-10-11T15:38:25.517689+00:00",
+  "workers": 8,
+  "funding_per_source": 1000000000,
+  "issuance_account": "a6d5f2b3-4657-5f07-988d-6c4a8521bc03",
+  "low": [
+    [
+      "9b5d828a-5ef3-5303-afb9-01eb34670382",
+      "02852544-d57d-5669-9b27-f075a30511f7"
+    ],
+    [
+      "9429082e-afab-5c9c-91ec-699f0895daeb",
+      "64757863-a615-55a1-9179-19d3031bb166"
+    ],
+    [
+      "a70b44f8-af53-5e40-be47-eb291b673d8f",
+      "1939e950-5ae1-5456-b2eb-62e9250f39c4"
+    ],
+    [
+      "bb7da290-438b-5a0a-b31c-3b88ee5d795e",
+      "8e39e793-f2c1-540a-9e64-c23a976b6e44"
+    ],
+    [
+      "3245d7df-a4af-52ee-9053-9fbb4d4140c1",
+      "d89b8ec8-e8fe-5c44-b5cb-7e3591713f6b"
+    ],
+    [
+      "089f64d8-a1d5-5c20-bf54-b8064775d187",
+      "684a6280-2931-5e68-89af-cfc85c8d3723"
+    ],
+    [
+      "3fe86036-a362-5b03-bac7-9f53a1bc0c05",
+      "5513b023-2d63-5dbd-a219-eeaf7703270d"
+    ],
+    [
+      "6b1473c4-aba0-5138-bfda-5744e1917705",
+      "aa3c6ede-2f30-51f7-93b1-4842bcccfc3c"
+    ]
+  ],
+  "high": [
+    [
+      "f165f28f-5572-58f7-91d8-8e7f1f10ee9a",
+      "0fdf594a-70fc-5507-b51a-a326175098aa"
+    ],
+    [
+      "f165f28f-5572-58f7-91d8-8e7f1f10ee9a",
+      "0b3ea53f-d40a-566f-8a65-c88504bfb065"
+    ],
+    [
+      "f165f28f-5572-58f7-91d8-8e7f1f10ee9a",
+      "0707126e-736d-5780-8a94-45d66fc0f1b4"
+    ],
+    [
+      "f165f28f-5572-58f7-91d8-8e7f1f10ee9a",
+      "052d6a4d-0a1f-53c1-b8db-f889fc031ad1"
+    ],
+    [
+      "f165f28f-5572-58f7-91d8-8e7f1f10ee9a",
+      "089e4b17-4374-515b-963e-e529d962e606"
+    ],
+    [
+      "f165f28f-5572-58f7-91d8-8e7f1f10ee9a",
+      "059cc10a-477f-57b7-aaf8-bdbab04065d8"
+    ],
+    [
+      "f165f28f-5572-58f7-91d8-8e7f1f10ee9a",
+      "028867ea-9895-5d2f-a458-0bf14f317288"
+    ],
+    [
+      "f165f28f-5572-58f7-91d8-8e7f1f10ee9a",
+      "0bda6ed5-02c6-5ec5-b6dc-563a3f0736dc"
+    ]
+  ],
+  "account_count": 26,
+  "high_uuid_order": "all-destinations-before-source",
+  "high_destinations_sorting_before_source": 8,
+  "funded_low_destinations": true,
+  "funding_transfer_count": 17
+}

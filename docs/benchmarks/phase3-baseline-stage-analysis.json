@@ -1,0 +1,30 @@
+{
+  "sourceCommit": "cba44277524cb6b10c688a225afee9d396dfd135",
+  "image": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+  "rawReport": "phase3-baseline-diagnostic.json",
+  "drainSQLPublicationRate": 116.3042779121628,
+  "drainWallSeconds": 25.67403412499698,
+  "timerBatchCount": 191.0,
+  "batchWorkSeconds": 6.315648593,
+  "explicitPollingPauseSeconds": 19.329804668999998,
+  "pollPauseFractionOfBatchPlusPause": 0.7537322297064574,
+  "claimRenewPublishSQLSeconds": 4.785561363,
+  "SQLFractionOfBatchWork": 0.7577307844999667,
+  "futureWaitSeconds": 1.210802534,
+  "futureWaitFractionOfBatchWork": 0.19171467762503486,
+  "meanACKMilliseconds": 0.4229332380471381,
+  "consumerMeanProjectionTransactionMilliseconds": 1.429864460942761,
+  "consumerMeanOffsetAcknowledgementMilliseconds": 0.39618621279461275,
+  "interpretation": "The explicit pause dominates serial loop wall time. Within active batch work, separate claim/renew/publish transactions dominate over future waiting. Consumer mostly waits in poll while keeping up. ACK callback duration overlaps future wait and is not added again. Metrics are sequential process-wide observations, so their record counts need not exactly equal scoped SQL drain deltas.",
+  "diagnosticErrors": {
+    "locallyShed": 204,
+    "http422InsufficientFunds": 10,
+    "ambiguousTransport": 0
+  },
+  "correctness": {
+    "complete": true,
+    "samplingErrors": {},
+    "sampledInvariantFailures": [],
+    "ledgerConsistent": true
+  }
+}

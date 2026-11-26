@@ -1,0 +1,56 @@
+{
+  "project": "tpp-release-readiness",
+  "baseUrl": "http://127.0.0.1:38080",
+  "observedAt": "2026-10-14T13:11:10Z",
+  "smoke": {
+    "transferId": "f3df40d8-debf-42e0-b1e7-3e757b1b733f",
+    "eventId": "0a531297-2caa-471a-9eba-2f345971c28d",
+    "idempotentRetry": "prior result",
+    "pairedActivity": {
+      "00000000-0000-0000-0000-000000000002": {
+        "id": 79667,
+        "eventId": "0a531297-2caa-471a-9eba-2f345971c28d",
+        "transferId": "f3df40d8-debf-42e0-b1e7-3e757b1b733f",
+        "accountId": "00000000-0000-0000-0000-000000000002",
+        "deltaMinor": -7,
+        "unit": "FIC",
+        "occurredAt": "2026-10-14T13:11:10.724385Z",
+        "projectedAt": "2026-10-14T13:11:10.927115Z"
+      },
+      "00000000-0000-0000-0000-000000000003": {
+        "id": 79668,
+        "eventId": "0a531297-2caa-471a-9eba-2f345971c28d",
+        "transferId": "f3df40d8-debf-42e0-b1e7-3e757b1b733f",
+        "accountId": "00000000-0000-0000-0000-000000000003",
+        "deltaMinor": 7,
+        "unit": "FIC",
+        "occurredAt": "2026-10-14T13:11:10.724385Z",
+        "projectedAt": "2026-10-14T13:11:10.927929Z"
+      }
+    },
+    "authoritativeReconciliation": {
+      "consistent": true,
+      "balanceMismatches": [],
+      "invalidTransfers": [],
+      "totalLedgerDelta": 0,
+      "totalMaterializedBalance": 0
+    },
+    "projectionReconciliation": {
+      "completedTransfers": 39834,
+      "processedEvents": 39834,
+      "projectedTransfers": 39834,
+      "quarantinedRecords": 0,
+      "missingProjection": 0,
+      "publishedAwaitingProjection": 0,
+      "inboxWithoutProjection": 0,
+      "projectionWithoutInbox": 0,
+      "activityShapeDiscrepancies": 0,
+      "originDiscrepancies": 0,
+      "discrepancies": 0,
+      "oldestUnprocessedAgeSeconds": null,
+      "lastProcessedAt": "2026-10-14T13:11:10.920224Z",
+      "lastProcessedEventOccurredAt": "2026-10-14T13:11:10.724385Z",
+      "checkedAt": "2026-10-14T13:11:11.428340633Z"
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "definition": "Read-only audit of retained UUID fixtures. PostgreSQL UUID byte ordering is compared with canonical UUID bytes. This identifies differing inputs; it does not establish a lock-causality result.",
+  "trials": [
+    {
+      "position": 1,
+      "condition": "baseline",
+      "fixture": "docs/benchmarks/phase3-high-1-baseline.dataset.json",
+      "sharedSource": "0e32a81c-64ff-5406-8ae9-07f616f3a86e",
+      "destinations": [
+        {
+          "account": "152695b7-aa5b-5e51-b12c-ebe1b803506e",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "4b2aec73-5173-5acc-9f62-63b4097a8ed9",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "efb84ff8-c880-5b50-a93c-71f49be760c7",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "feda56d4-4540-5cfb-a872-af63379db7d9",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "aa6b7ab8-554c-5da5-b9e5-93640c9df4e1",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "e41fa48c-5f56-5464-9b33-1ed5e60921e1",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "f56a7d29-42ed-5a30-9a3d-48d993f20721",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "f40cff9e-53ca-5a0c-9694-a71d58c01de7",
+          "sortsBelowSharedSource": false
+        }
+      ],
+      "destinationsBelowSharedSource": 0
+    },
+    {
+      "position": 2,
+      "condition": "optimized",
+      "fixture": "docs/benchmarks/phase3-high-2-optimized.dataset.json",
+      "sharedSource": "0e096a8d-2193-5abe-addb-4e1e51f30790",
+      "destinations": [
+        {
+          "account": "f1179411-3e30-5ddf-a17d-c5561c6c7bd8",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "7a31da4d-ecaf-5ae4-a32a-1f8c28cda93e",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "034b26ca-cafb-584b-9035-cfd0ec26a7ac",
+          "sortsBelowSharedSource": true
+        },
+        {
+          "account": "ae2db29c-957e-5791-b1fe-384bdbee1ba6",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "89507405-83a1-5640-a6cd-fced1f2cfd20",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "dfe60281-2127-5433-bbf5-250bc693813b",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "6d2f84e3-b629-57a0-9027-8d7e7063d473",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "bb82680d-0239-5d3f-8956-bbfe23853aab",
+          "sortsBelowSharedSource": false
+        }
+      ],
+      "destinationsBelowSharedSource": 1
+    },
+    {
+      "position": 3,
+      "condition": "optimized",
+      "fixture": "docs/benchmarks/phase3-high-3-optimized.dataset.json",
+      "sharedSource": "43f84b12-fd78-5eb5-97c8-c3d55607594b",
+      "destinations": [
+        {
+          "account": "3f553089-7f42-593d-a87a-bf75a062d368",
+          "sortsBelowSharedSource": true
+        },
+        {
+          "account": "16eb8083-afb7-5ad1-9c63-682012574f0a",
+          "sortsBelowSharedSource": true
+        },
+        {
+          "account": "2a3a9a1b-c3fe-5a2c-9ca3-4b51b8b5f084",
+          "sortsBelowSharedSource": true
+        },
+        {
+          "account": "8345acb3-f469-5c02-b087-b27eabc8510f",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "97994d20-3fa9-52d3-8eeb-d4f630c3a907",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "a6a92ff8-51be-56f4-9e59-0466ab1f6bca",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "3a01c7ca-2c77-54b5-ad65-96a52691f7d3",
+          "sortsBelowSharedSource": true
+        },
+        {
+          "account": "f6c37b7d-bb48-55e7-a443-6e26cb29ca92",
+          "sortsBelowSharedSource": false
+        }
+      ],
+      "destinationsBelowSharedSource": 4
+    },
+    {
+      "position": 4,
+      "condition": "baseline",
+      "fixture": "docs/benchmarks/phase3-high-4-baseline.dataset.json",
+      "sharedSource": "e8842f3c-7e26-52bc-8d01-2166c5ff388e",
+      "destinations": [
+        {
+          "account": "2b636843-058a-5778-a75e-e1911c5a0d9c",
+          "sortsBelowSharedSource": true
+        },
+        {
+          "account": "54b050c8-9011-547e-9273-6fb7ec206304",
+          "sortsBelowSharedSource": true
+        },
+        {
+          "account": "f274c279-1050-5cf5-9227-44c97466e664",
+          "sortsBelowSharedSource": false
+        },
+        {
+          "account": "46b19eba-9057-5579-bd61-fcf3a1b52d7e",
+          "sortsBelowSharedSource": true
+        },
+        {
+          "account": "84ebdfff-4c26-5176-8580-e01324121786",
+          "sortsBelowSharedSource": true
+        },
+        {
+          "account": "98e2d790-cba3-543a-80dc-54097c5c667e",
+          "sortsBelowSharedSource": true
+        },
+        {
+          "account": "e1f020d4-3a48-51ac-a4a9-ee3677b8c909",
+          "sortsBelowSharedSource": true
+        },
+        {
+          "account": "6036a18e-a644-561b-97b8-5c121754b89e",
+          "sortsBelowSharedSource": true
+        }
+      ],
+      "destinationsBelowSharedSource": 7
+    }
+  ]
+}

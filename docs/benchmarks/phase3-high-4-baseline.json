@@ -1,0 +1,2298 @@
+{
+  "environment": {
+    "started_at": "2026-10-11T15:10:05.622913+00:00",
+    "label": "high-4-baseline",
+    "environment_notes": "immutable image sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2; trial 4/4; no JFR, builds or tests",
+    "python": "3.13.0",
+    "os": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+    "architecture": "arm64",
+    "logical_cpu_count": 12,
+    "postgres": {
+      "version": "PostgreSQL 17.11 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+      "server_version": "17.11",
+      "max_connections": "100",
+      "shared_buffers": "128MB",
+      "transaction_isolation": "read committed"
+    },
+    "dataset": {
+      "version": 1,
+      "namespace": "788ba1de-a327-45f9-b437-b09ff2f1d2b8",
+      "created_at": "2026-10-11T15:10:05.468055+00:00",
+      "workers": 8,
+      "funding_per_source": 1000000000,
+      "issuance_account": "e3c7145b-ff0e-5c77-94b5-3efbc8fcf5a5",
+      "low": [
+        [
+          "c22121a8-f634-5dba-be90-a7d0fc7ec1b6",
+          "de2b4699-dfd5-5d17-ab8b-7dc7887130f3"
+        ],
+        [
+          "f05c4317-6619-5d5b-9de2-00530155dc3a",
+          "65966c8c-a738-5591-a372-ca0a1701ced2"
+        ],
+        [
+          "1e3fff09-4feb-5478-ab5b-5ff6c991d323",
+          "b3b3a695-bd1a-59e0-9f93-17e28928b3bb"
+        ],
+        [
+          "fbe00f39-28bc-5d6b-9d11-da8fa0631f5e",
+          "bb034412-d1e5-5423-b992-5197708cfac5"
+        ],
+        [
+          "9dbe942a-4d51-5672-93f4-a700c1476c4a",
+          "a6094172-8bf4-5944-8b0d-0562aea5d7d6"
+        ],
+        [
+          "e43b4d35-ab85-58cf-884e-40d8ba5d4e9e",
+          "6bc7ddf9-4b29-5ab6-8dfc-58a6dde94fc0"
+        ],
+        [
+          "a85f2553-f3d0-5bf4-a355-dd2a29058ceb",
+          "5c8e5798-a217-58c7-bc6c-210dd81259fd"
+        ],
+        [
+          "ae801d07-6fcd-562e-8488-fdaff0cdde04",
+          "746bda9d-0153-57ba-8e5a-a39fd11952e5"
+        ]
+      ],
+      "high": [
+        [
+          "e8842f3c-7e26-52bc-8d01-2166c5ff388e",
+          "2b636843-058a-5778-a75e-e1911c5a0d9c"
+        ],
+        [
+          "e8842f3c-7e26-52bc-8d01-2166c5ff388e",
+          "54b050c8-9011-547e-9273-6fb7ec206304"
+        ],
+        [
+          "e8842f3c-7e26-52bc-8d01-2166c5ff388e",
+          "f274c279-1050-5cf5-9227-44c97466e664"
+        ],
+        [
+          "e8842f3c-7e26-52bc-8d01-2166c5ff388e",
+          "46b19eba-9057-5579-bd61-fcf3a1b52d7e"
+        ],
+        [
+          "e8842f3c-7e26-52bc-8d01-2166c5ff388e",
+          "84ebdfff-4c26-5176-8580-e01324121786"
+        ],
+        [
+          "e8842f3c-7e26-52bc-8d01-2166c5ff388e",
+          "98e2d790-cba3-543a-80dc-54097c5c667e"
+        ],
+        [
+          "e8842f3c-7e26-52bc-8d01-2166c5ff388e",
+          "e1f020d4-3a48-51ac-a4a9-ee3677b8c909"
+        ],
+        [
+          "e8842f3c-7e26-52bc-8d01-2166c5ff388e",
+          "6036a18e-a644-561b-97b8-5c121754b89e"
+        ]
+      ],
+      "account_count": 26,
+      "funded_low_destinations": true,
+      "funding_transfer_count": 17
+    },
+    "dataset_path": "docs/benchmarks/phase3-high-4-baseline.dataset.json",
+    "load_model": "closed-loop persistent HTTP, no POST retry, bounded per-worker histograms",
+    "configured_arrivals_per_second": null,
+    "event_latency_definition": "database inbox.processed_at minus outbox.created_at, exact database percentiles; includes backlog wait",
+    "publication_latency_definition": "database outbox.published_at minus created_at; may lag Kafka acceptance",
+    "scope": "user-to-user transfers between fresh fixture accounts; issuance funding excluded"
+  },
+  "reconciliation_before": {
+    "consistent": true,
+    "balanceMismatches": [],
+    "invalidTransfers": [],
+    "totalLedgerDelta": 0,
+    "totalMaterializedBalance": 0
+  },
+  "events_before_warmup": {
+    "database_time": "2026-10-11T15:10:06.040025+00:00",
+    "completed_transfers": 0,
+    "outbox_total": 0,
+    "published": 0,
+    "unpublished": 0,
+    "claimed": 0,
+    "publication_attempts": 0,
+    "retried_events": 0,
+    "maximum_attempt_count": 0,
+    "last_error_counts": {
+      "transient": 0,
+      "ambiguous": 0,
+      "permanent": 0
+    },
+    "recorded_kafka_positions": 0,
+    "oldest_unpublished_age_seconds": 0,
+    "processed": 0,
+    "projection_rows": 0,
+    "account_activity_rows": 0,
+    "published_unprocessed": 0,
+    "missing_outbox": 0,
+    "publication_latency_ms": {
+      "count": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null,
+      "mean": null,
+      "max": null
+    },
+    "propagation_latency_ms": {
+      "count": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null,
+      "mean": null,
+      "max": null
+    }
+  },
+  "event_status_before": {
+    "http_status": 200,
+    "body": {
+      "relayEnabled": true,
+      "consumerEnabled": true,
+      "outbox": {
+        "pending": 0,
+        "claimed": 0,
+        "published": 64641,
+        "blocked": 0,
+        "expiredClaims": 0,
+        "oldestPendingAgeSeconds": 0.0
+      }
+    }
+  },
+  "warmup": {
+    "phase": "warmup",
+    "scenario": "high",
+    "workers": 8,
+    "load_model": "fixed-arrival",
+    "configured_arrivals_per_second": 50.0,
+    "requested_duration_seconds": 3.0,
+    "arrival_interval_elapsed_seconds": 3.004407333995914,
+    "elapsed_including_drain_seconds": 3.0045352499873843,
+    "offered_operations": 150,
+    "started_operations": 150,
+    "locally_shed_operations": 0,
+    "peak_outstanding_requests": 3,
+    "completed_operations": 150,
+    "failed_or_ambiguous_operations": 0,
+    "received_responses": 150,
+    "ambiguous_client_errors": 0,
+    "offered_arrivals_per_second": 49.92665218950101,
+    "completed_transfers_per_second": 49.924526597126736,
+    "completed_per_requested_interval_second": 50.0,
+    "http_status_distribution": {
+      "201": 150
+    },
+    "error_distribution": {},
+    "http_latency_ms": {
+      "count": 150,
+      "mean": 6.5330994327086955,
+      "max": 39.54708299716003,
+      "p50_upper_bound": 6.104888846448947,
+      "p95_upper_bound": 8.965235087884713,
+      "p99_upper_bound": 24.49217321205146,
+      "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+    },
+    "completed_http_latency_ms": {
+      "count": 150,
+      "mean": 6.5330994327086955,
+      "max": 39.54708299716003,
+      "p50_upper_bound": 6.104888846448947,
+      "p95_upper_bound": 8.965235087884713,
+      "p99_upper_bound": 24.49217321205146,
+      "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+    },
+    "schedule_lag_ms": {
+      "count": 150,
+      "mean": 2.374541422080559,
+      "max": 4.9425419711042196,
+      "p50_upper_bound": 2.5151333730533016,
+      "p95_upper_bound": 4.963833298742357,
+      "p99_upper_bound": 4.963833298742357,
+      "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+    },
+    "local_shedding_note": "scheduled arrivals with no worker permit never reach the server; no unbounded client queue"
+  },
+  "warmup_drain": {
+    "complete": true,
+    "elapsed_seconds": 0.1451945420121774,
+    "final_events": {
+      "database_time": "2026-10-11T15:10:09.207587+00:00",
+      "completed_transfers": 150,
+      "outbox_total": 150,
+      "published": 150,
+      "unpublished": 0,
+      "claimed": 0,
+      "publication_attempts": 150,
+      "retried_events": 0,
+      "maximum_attempt_count": 1,
+      "last_error_counts": {
+        "transient": 0,
+        "ambiguous": 0,
+        "permanent": 0
+      },
+      "recorded_kafka_positions": 150,
+      "oldest_unpublished_age_seconds": 0,
+      "processed": 150,
+      "projection_rows": 150,
+      "account_activity_rows": 300,
+      "published_unprocessed": 0,
+      "missing_outbox": 0,
+      "publication_latency_ms": {
+        "count": 150,
+        "p50": 70.87950000000001,
+        "p95": 115.51944999999999,
+        "p99": 123.47138,
+        "mean": 69.66295333333333,
+        "max": 130.787
+      },
+      "propagation_latency_ms": {
+        "count": 150,
+        "p50": 73.6685,
+        "p95": 116.29785,
+        "p99": 124.50235,
+        "mean": 72.51116,
+        "max": 131.426
+      }
+    }
+  },
+  "events_before": {
+    "database_time": "2026-10-11T15:10:09.355305+00:00",
+    "completed_transfers": 150,
+    "outbox_total": 150,
+    "published": 150,
+    "unpublished": 0,
+    "claimed": 0,
+    "publication_attempts": 150,
+    "retried_events": 0,
+    "maximum_attempt_count": 1,
+    "last_error_counts": {
+      "transient": 0,
+      "ambiguous": 0,
+      "permanent": 0
+    },
+    "recorded_kafka_positions": 150,
+    "oldest_unpublished_age_seconds": 0,
+    "processed": 150,
+    "projection_rows": 150,
+    "account_activity_rows": 300,
+    "published_unprocessed": 0,
+    "missing_outbox": 0,
+    "publication_latency_ms": {
+      "count": 150,
+      "p50": 70.87950000000001,
+      "p95": 115.51944999999999,
+      "p99": 123.47138,
+      "mean": 69.66295333333333,
+      "max": 130.787
+    },
+    "propagation_latency_ms": {
+      "count": 150,
+      "p50": 73.6685,
+      "p95": 116.29785,
+      "p99": 124.50235,
+      "mean": 72.51116,
+      "max": 131.426
+    }
+  },
+  "metrics_before": {
+    "values": {
+      "transfer.requests": {
+        "COUNT": 150.0,
+        "TOTAL_TIME": 0.605704041,
+        "MAX": 0.019679625
+      },
+      "transfer.transaction": {
+        "COUNT": 150.0,
+        "TOTAL_TIME": 0.585675495,
+        "MAX": 0.019527625
+      },
+      "transfer.outcomes": {
+        "COUNT": 150.0
+      },
+      "hikaricp.connections.active": {
+        "VALUE": 0.0
+      },
+      "hikaricp.connections.idle": {
+        "VALUE": 4.0
+      },
+      "hikaricp.connections.pending": {
+        "VALUE": 0.0
+      },
+      "hikaricp.connections.max": {
+        "VALUE": 16.0
+      },
+      "http.server.requests": {
+        "COUNT": 162.0,
+        "TOTAL_TIME": 1.0489756679999998,
+        "MAX": 0.157699917
+      },
+      "events.outbox.publications": {
+        "COUNT": 167.0
+      },
+      "events.outbox.retries": {
+        "COUNT": 0.0
+      },
+      "events.outbox.claim.recoveries": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publication.latency": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 12.343470652,
+        "MAX": 0.23073838
+      },
+      "events.consumer.processing.duration": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 0.436067868,
+        "MAX": 0.011356583
+      },
+      "events.consumer.outcomes": {
+        "COUNT": 167.0
+      },
+      "events.consumer.lag.max": {
+        "VALUE": 2.0
+      },
+      "events.projection.propagation.duration": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 13.552635781,
+        "MAX": 0.269956421
+      },
+      "events.outbox.claim.records": {
+        "COUNT": 167.0
+      },
+      "events.outbox.claim.batch.size": {
+        "COUNT": 118.0,
+        "TOTAL": 167.0,
+        "MAX": 16.0
+      },
+      "events.outbox.kafka.enqueue.duration": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 0.032208132,
+        "MAX": 0.011157584
+      },
+      "events.outbox.kafka.ack.duration": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 0.133463117,
+        "MAX": 0.019730416
+      },
+      "events.outbox.kafka.wait.duration": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 0.10594025,
+        "MAX": 0.007830458
+      },
+      "events.outbox.batch.duration": {
+        "COUNT": 118.0,
+        "TOTAL_TIME": 0.760095042,
+        "MAX": 0.112545209
+      },
+      "events.outbox.producer.create.duration": {
+        "COUNT": 1.0,
+        "TOTAL_TIME": 0.016124375,
+        "MAX": 0.016124375
+      },
+      "events.outbox.poll.pause.duration": {
+        "COUNT": 117.0,
+        "TOTAL_TIME": 11.826077419,
+        "MAX": 0.10511725
+      },
+      "events.outbox.publications@outcome=success": {
+        "COUNT": 167.0
+      },
+      "events.outbox.publications@outcome=transient": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publications@outcome=ambiguous": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publications@outcome=permanent": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publications@outcome=stale": {
+        "COUNT": 0.0
+      },
+      "events.outbox.database.duration@operation=claim": {
+        "COUNT": 118.0,
+        "TOTAL_TIME": 0.230784171,
+        "MAX": 0.025900917
+      },
+      "events.outbox.database.duration@operation=renew": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 0.146857706,
+        "MAX": 0.002843375
+      },
+      "events.outbox.database.duration@operation=publish": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 0.164924382,
+        "MAX": 0.0086415
+      },
+      "events.outbox.kafka.acknowledgements@outcome=accepted": {
+        "COUNT": 167.0
+      },
+      "events.outbox.send.attempts@kind=first": {
+        "COUNT": 167.0
+      },
+      "events.consumer.ingestion.records": {
+        "COUNT": 167.0
+      },
+      "events.consumer.paused": {
+        "VALUE": 0.0
+      },
+      "events.consumer.quarantine.records": {
+        "VALUE": 0.0
+      },
+      "events.consumer.poll.duration@outcome=empty": {
+        "COUNT": 36.0,
+        "TOTAL_TIME": 9.067665004,
+        "MAX": 0.255211791
+      },
+      "events.consumer.poll.duration@outcome=received": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 2.851231337,
+        "MAX": 0.180834459
+      },
+      "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 0.3976465,
+        "MAX": 0.01101225
+      },
+      "events.consumer.database.work.duration@operation=projection,result=completed": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 0.314393712,
+        "MAX": 0.009664667
+      },
+      "events.consumer.database.completion.duration@operation=projection,result=committed": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 0.079036792,
+        "MAX": 0.004619167
+      },
+      "events.projection.commits@source=kafka,outcome=processed": {
+        "COUNT": 167.0
+      },
+      "events.consumer.offset.acknowledgement.duration@outcome=success": {
+        "COUNT": 167.0,
+        "TOTAL_TIME": 0.078402416,
+        "MAX": 0.001956875
+      }
+    },
+    "unavailable": [
+      "transfer.retries",
+      "database.errors",
+      "events.consumer.retries",
+      "events.consumer.offset.commit.failures",
+      "events.outbox.settlement.failures",
+      "events.outbox.inflight.records",
+      "events.outbox.database.duration@operation=fail",
+      "events.outbox.database.duration@operation=renew_batch",
+      "events.outbox.database.duration@operation=settle",
+      "events.outbox.kafka.acknowledgements@outcome=failed",
+      "events.outbox.send.attempts@kind=retry",
+      "events.consumer.poll.duration@outcome=failure",
+      "events.consumer.database.transaction.duration@operation=projection,result=failed",
+      "events.consumer.database.work.duration@operation=projection,result=failed",
+      "events.consumer.database.completion.duration@operation=projection,result=failed",
+      "events.projection.commits@source=kafka,outcome=duplicate",
+      "events.consumer.offset.acknowledgement.duration@outcome=failure",
+      "events.consumer.pause.duration@reason=startup_retry",
+      "events.consumer.pause.duration@reason=retry",
+      "events.consumer.pause.duration@reason=optional_delay"
+    ],
+    "max_note": "MAX is a rolling actuator snapshot, not an additive counter or an exact interval percentile"
+  },
+  "workload": {
+    "phase": "measurement",
+    "scenario": "high",
+    "workers": 8,
+    "load_model": "closed-loop",
+    "locally_shed_operations": 0,
+    "requested_duration_seconds": 10.0,
+    "elapsed_including_drain_seconds": 10.109743207984138,
+    "offered_operations": 466,
+    "started_operations": 466,
+    "completed_operations": 463,
+    "failed_or_ambiguous_operations": 3,
+    "received_responses": 466,
+    "ambiguous_client_errors": 0,
+    "completed_transfers_per_second": 45.79740459029139,
+    "http_status_distribution": {
+      "201": 463,
+      "503": 3
+    },
+    "error_distribution": {
+      "HTTP_503:DEPENDENCY_UNAVAILABLE": 3
+    },
+    "http_latency_ms": {
+      "count": 466,
+      "mean": 173.1479489017186,
+      "max": 701.7790000245441,
+      "p50_upper_bound": 33.90289572777158,
+      "p95_upper_bound": 671.1142943597088,
+      "p99_upper_bound": 711.9851548862151,
+      "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+    },
+    "completed_http_latency_ms": {
+      "count": 463,
+      "mean": 169.76133644099087,
+      "max": 701.7790000245441,
+      "p50_upper_bound": 32.9154327454093,
+      "p95_upper_bound": 514.3532245122668,
+      "p99_upper_bound": 691.2477231905001,
+      "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+    }
+  },
+  "events_after_workload": {
+    "database_time": "2026-10-11T15:10:19.705236+00:00",
+    "completed_transfers": 613,
+    "outbox_total": 613,
+    "published": 613,
+    "unpublished": 0,
+    "claimed": 0,
+    "publication_attempts": 613,
+    "retried_events": 0,
+    "maximum_attempt_count": 1,
+    "last_error_counts": {
+      "transient": 0,
+      "ambiguous": 0,
+      "permanent": 0
+    },
+    "recorded_kafka_positions": 613,
+    "oldest_unpublished_age_seconds": 0,
+    "processed": 333,
+    "projection_rows": 333,
+    "account_activity_rows": 666,
+    "published_unprocessed": 280,
+    "missing_outbox": 0,
+    "publication_latency_ms": {
+      "count": 613,
+      "p50": 92.896,
+      "p95": 146.05939999999993,
+      "p99": 257.96852,
+      "mean": 82.63123327895596,
+      "max": 342.951
+    },
+    "propagation_latency_ms": {
+      "count": 333,
+      "p50": 944.621,
+      "p95": 8803.5812,
+      "p99": 9374.01884,
+      "mean": 3049.8542972972973,
+      "max": 9393.359
+    }
+  },
+  "metrics_after": {
+    "values": {
+      "transfer.requests": {
+        "COUNT": 616.0,
+        "TOTAL_TIME": 80.504300078,
+        "MAX": 0.700360251
+      },
+      "transfer.transaction": {
+        "COUNT": 790.0,
+        "TOTAL_TIME": 74.625324265,
+        "MAX": 0.249597584
+      },
+      "transfer.outcomes": {
+        "COUNT": 616.0
+      },
+      "transfer.retries": {
+        "COUNT": 174.0
+      },
+      "database.errors": {
+        "COUNT": 177.0
+      },
+      "hikaricp.connections.active": {
+        "VALUE": 10.0
+      },
+      "hikaricp.connections.idle": {
+        "VALUE": 1.0
+      },
+      "hikaricp.connections.pending": {
+        "VALUE": 0.0
+      },
+      "hikaricp.connections.max": {
+        "VALUE": 16.0
+      },
+      "http.server.requests": {
+        "COUNT": 765.0,
+        "TOTAL_TIME": 81.351836202,
+        "MAX": 0.7010075
+      },
+      "events.outbox.publications": {
+        "COUNT": 630.0
+      },
+      "events.outbox.retries": {
+        "COUNT": 0.0
+      },
+      "events.outbox.claim.recoveries": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publication.latency": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 52.766746417,
+        "MAX": 0.343419507
+      },
+      "events.consumer.processing.duration": {
+        "COUNT": 379.0,
+        "TOTAL_TIME": 10.530017455,
+        "MAX": 0.250133125
+      },
+      "events.consumer.outcomes": {
+        "COUNT": 380.0
+      },
+      "events.consumer.lag.max": {
+        "VALUE": 99.0
+      },
+      "events.projection.propagation.duration": {
+        "COUNT": 381.0,
+        "TOTAL_TIME": 1210.095805062,
+        "MAX": 9.394641553
+      },
+      "events.outbox.claim.records": {
+        "COUNT": 630.0
+      },
+      "events.outbox.claim.batch.size": {
+        "COUNT": 207.0,
+        "TOTAL": 630.0,
+        "MAX": 16.0
+      },
+      "events.outbox.kafka.enqueue.duration": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.07408415,
+        "MAX": 0.011157584
+      },
+      "events.outbox.kafka.ack.duration": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.383901567,
+        "MAX": 0.019730416
+      },
+      "events.outbox.kafka.wait.duration": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.324698966,
+        "MAX": 0.008932209
+      },
+      "events.outbox.batch.duration": {
+        "COUNT": 207.0,
+        "TOTAL_TIME": 2.067591416,
+        "MAX": 0.172508917
+      },
+      "events.outbox.producer.create.duration": {
+        "COUNT": 1.0,
+        "TOTAL_TIME": 0.016124375,
+        "MAX": 0.016124375
+      },
+      "events.outbox.poll.pause.duration": {
+        "COUNT": 206.0,
+        "TOTAL_TIME": 20.799812339,
+        "MAX": 0.105174292
+      },
+      "events.outbox.publications@outcome=success": {
+        "COUNT": 630.0
+      },
+      "events.outbox.publications@outcome=transient": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publications@outcome=ambiguous": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publications@outcome=permanent": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publications@outcome=stale": {
+        "COUNT": 0.0
+      },
+      "events.outbox.database.duration@operation=claim": {
+        "COUNT": 207.0,
+        "TOTAL_TIME": 0.405607586,
+        "MAX": 0.025900917
+      },
+      "events.outbox.database.duration@operation=renew": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.514823369,
+        "MAX": 0.023458416
+      },
+      "events.outbox.database.duration@operation=publish": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.597485341,
+        "MAX": 0.067785083
+      },
+      "events.outbox.kafka.acknowledgements@outcome=accepted": {
+        "COUNT": 630.0
+      },
+      "events.outbox.send.attempts@kind=first": {
+        "COUNT": 630.0
+      },
+      "events.consumer.ingestion.records": {
+        "COUNT": 392.0
+      },
+      "events.consumer.paused": {
+        "VALUE": 0.0
+      },
+      "events.consumer.quarantine.records": {
+        "VALUE": 0.0
+      },
+      "events.consumer.poll.duration@outcome=empty": {
+        "COUNT": 36.0,
+        "TOTAL_TIME": 9.067665004,
+        "MAX": 0.255211791
+      },
+      "events.consumer.poll.duration@outcome=received": {
+        "COUNT": 394.0,
+        "TOTAL_TIME": 3.046090885,
+        "MAX": 0.180834459
+      },
+      "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+        "COUNT": 394.0,
+        "TOTAL_TIME": 10.483315713,
+        "MAX": 0.249818292
+      },
+      "events.consumer.database.work.duration@operation=projection,result=completed": {
+        "COUNT": 394.0,
+        "TOTAL_TIME": 10.246253548,
+        "MAX": 0.248903625
+      },
+      "events.consumer.database.completion.duration@operation=projection,result=committed": {
+        "COUNT": 395.0,
+        "TOTAL_TIME": 0.217153832,
+        "MAX": 0.004818541
+      },
+      "events.projection.commits@source=kafka,outcome=processed": {
+        "COUNT": 396.0
+      },
+      "events.consumer.offset.acknowledgement.duration@outcome=success": {
+        "COUNT": 397.0,
+        "TOTAL_TIME": 0.196956504,
+        "MAX": 0.003812625
+      }
+    },
+    "unavailable": [
+      "events.consumer.retries",
+      "events.consumer.offset.commit.failures",
+      "events.outbox.settlement.failures",
+      "events.outbox.inflight.records",
+      "events.outbox.database.duration@operation=fail",
+      "events.outbox.database.duration@operation=renew_batch",
+      "events.outbox.database.duration@operation=settle",
+      "events.outbox.kafka.acknowledgements@outcome=failed",
+      "events.outbox.send.attempts@kind=retry",
+      "events.consumer.poll.duration@outcome=failure",
+      "events.consumer.database.transaction.duration@operation=projection,result=failed",
+      "events.consumer.database.work.duration@operation=projection,result=failed",
+      "events.consumer.database.completion.duration@operation=projection,result=failed",
+      "events.projection.commits@source=kafka,outcome=duplicate",
+      "events.consumer.offset.acknowledgement.duration@outcome=failure",
+      "events.consumer.pause.duration@reason=startup_retry",
+      "events.consumer.pause.duration@reason=retry",
+      "events.consumer.pause.duration@reason=optional_delay"
+    ],
+    "max_note": "MAX is a rolling actuator snapshot, not an additive counter or an exact interval percentile"
+  },
+  "metric_deltas": {
+    "transfer.requests": {
+      "COUNT": 466.0,
+      "TOTAL_TIME": 79.898596037,
+      "MEAN_MS": 171.45621467167385
+    },
+    "transfer.transaction": {
+      "COUNT": 640.0,
+      "TOTAL_TIME": 74.03964877,
+      "MEAN_MS": 115.686951203125
+    },
+    "transfer.outcomes": {
+      "COUNT": 466.0
+    },
+    "transfer.retries": {
+      "COUNT": 174.0
+    },
+    "database.errors": {
+      "COUNT": 177.0
+    },
+    "http.server.requests": {
+      "COUNT": 603.0,
+      "TOTAL_TIME": 80.302860534,
+      "MEAN_MS": 133.1722396915423
+    },
+    "events.outbox.publications": {
+      "COUNT": 463.0
+    },
+    "events.outbox.retries": {
+      "COUNT": 0.0
+    },
+    "events.outbox.claim.recoveries": {
+      "COUNT": 0.0
+    },
+    "events.outbox.publication.latency": {
+      "COUNT": 463.0,
+      "TOTAL_TIME": 40.423275765,
+      "MEAN_MS": 87.30729106911447
+    },
+    "events.consumer.processing.duration": {
+      "COUNT": 212.0,
+      "TOTAL_TIME": 10.093949587,
+      "MEAN_MS": 47.61296975
+    },
+    "events.consumer.outcomes": {
+      "COUNT": 213.0
+    },
+    "events.projection.propagation.duration": {
+      "COUNT": 214.0,
+      "TOTAL_TIME": 1196.543169281,
+      "MEAN_MS": 5591.323220939253
+    },
+    "events.outbox.claim.records": {
+      "COUNT": 463.0
+    },
+    "events.outbox.claim.batch.size": {
+      "COUNT": 89.0,
+      "TOTAL": 463.0
+    },
+    "events.outbox.kafka.enqueue.duration": {
+      "COUNT": 463.0,
+      "TOTAL_TIME": 0.041876018,
+      "MEAN_MS": 0.09044496328293737
+    },
+    "events.outbox.kafka.ack.duration": {
+      "COUNT": 463.0,
+      "TOTAL_TIME": 0.25043845,
+      "MEAN_MS": 0.5409037796976242
+    },
+    "events.outbox.kafka.wait.duration": {
+      "COUNT": 463.0,
+      "TOTAL_TIME": 0.21875871599999996,
+      "MEAN_MS": 0.4724810280777537
+    },
+    "events.outbox.batch.duration": {
+      "COUNT": 89.0,
+      "TOTAL_TIME": 1.3074963739999999,
+      "MEAN_MS": 14.69097049438202
+    },
+    "events.outbox.producer.create.duration": {
+      "COUNT": 0.0,
+      "TOTAL_TIME": 0.0,
+      "MEAN_MS": null
+    },
+    "events.outbox.poll.pause.duration": {
+      "COUNT": 89.0,
+      "TOTAL_TIME": 8.973734919999998,
+      "MEAN_MS": 100.828482247191
+    },
+    "events.outbox.publications@outcome=success": {
+      "COUNT": 463.0
+    },
+    "events.outbox.publications@outcome=transient": {
+      "COUNT": 0.0
+    },
+    "events.outbox.publications@outcome=ambiguous": {
+      "COUNT": 0.0
+    },
+    "events.outbox.publications@outcome=permanent": {
+      "COUNT": 0.0
+    },
+    "events.outbox.publications@outcome=stale": {
+      "COUNT": 0.0
+    },
+    "events.outbox.database.duration@operation=claim": {
+      "COUNT": 89.0,
+      "TOTAL_TIME": 0.174823415,
+      "MEAN_MS": 1.9643080337078653
+    },
+    "events.outbox.database.duration@operation=renew": {
+      "COUNT": 463.0,
+      "TOTAL_TIME": 0.367965663,
+      "MEAN_MS": 0.794742252699784
+    },
+    "events.outbox.database.duration@operation=publish": {
+      "COUNT": 463.0,
+      "TOTAL_TIME": 0.4325609589999999,
+      "MEAN_MS": 0.934256930885529
+    },
+    "events.outbox.kafka.acknowledgements@outcome=accepted": {
+      "COUNT": 463.0
+    },
+    "events.outbox.send.attempts@kind=first": {
+      "COUNT": 463.0
+    },
+    "events.consumer.ingestion.records": {
+      "COUNT": 225.0
+    },
+    "events.consumer.poll.duration@outcome=empty": {
+      "COUNT": 0.0,
+      "TOTAL_TIME": 0.0,
+      "MEAN_MS": null
+    },
+    "events.consumer.poll.duration@outcome=received": {
+      "COUNT": 227.0,
+      "TOTAL_TIME": 0.19485954799999972,
+      "MEAN_MS": 0.858412105726871
+    },
+    "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+      "COUNT": 227.0,
+      "TOTAL_TIME": 10.085669213,
+      "MEAN_MS": 44.43026085022026
+    },
+    "events.consumer.database.work.duration@operation=projection,result=completed": {
+      "COUNT": 227.0,
+      "TOTAL_TIME": 9.931859836000001,
+      "MEAN_MS": 43.75268650220265
+    },
+    "events.consumer.database.completion.duration@operation=projection,result=committed": {
+      "COUNT": 228.0,
+      "TOTAL_TIME": 0.13811704,
+      "MEAN_MS": 0.6057764912280702
+    },
+    "events.projection.commits@source=kafka,outcome=processed": {
+      "COUNT": 229.0
+    },
+    "events.consumer.offset.acknowledgement.duration@outcome=success": {
+      "COUNT": 230.0,
+      "TOTAL_TIME": 0.118554088,
+      "MEAN_MS": 0.5154525565217392
+    }
+  },
+  "drain": {
+    "requested_timeout_seconds": 180.0,
+    "elapsed_seconds": 1.3457359159947373,
+    "starting_events": {
+      "database_time": "2026-10-11T15:10:19.920881+00:00",
+      "completed_transfers": 613,
+      "outbox_total": 613,
+      "published": 613,
+      "unpublished": 0,
+      "claimed": 0,
+      "publication_attempts": 613,
+      "retried_events": 0,
+      "maximum_attempt_count": 1,
+      "last_error_counts": {
+        "transient": 0,
+        "ambiguous": 0,
+        "permanent": 0
+      },
+      "recorded_kafka_positions": 613,
+      "oldest_unpublished_age_seconds": 0,
+      "processed": 439,
+      "projection_rows": 439,
+      "account_activity_rows": 878,
+      "published_unprocessed": 174,
+      "missing_outbox": 0,
+      "publication_latency_ms": {
+        "count": 613,
+        "p50": 92.896,
+        "p95": 146.05939999999993,
+        "p99": 257.96852,
+        "mean": 82.63123327895596,
+        "max": 342.951
+      },
+      "propagation_latency_ms": {
+        "count": 439,
+        "p50": 2646.617,
+        "p95": 8599.9517,
+        "p99": 9370.568159999999,
+        "mean": 3210.4233371298405,
+        "max": 9393.359
+      }
+    },
+    "complete": true,
+    "published_during_drain": 0,
+    "processed_during_drain": 174,
+    "final_events": {
+      "database_time": "2026-10-11T15:10:21.107155+00:00",
+      "completed_transfers": 613,
+      "outbox_total": 613,
+      "published": 613,
+      "unpublished": 0,
+      "claimed": 0,
+      "publication_attempts": 613,
+      "retried_events": 0,
+      "maximum_attempt_count": 1,
+      "last_error_counts": {
+        "transient": 0,
+        "ambiguous": 0,
+        "permanent": 0
+      },
+      "recorded_kafka_positions": 613,
+      "oldest_unpublished_age_seconds": 0,
+      "processed": 613,
+      "projection_rows": 613,
+      "account_activity_rows": 1226,
+      "published_unprocessed": 0,
+      "missing_outbox": 0,
+      "publication_latency_ms": {
+        "count": 613,
+        "p50": 92.896,
+        "p95": 146.05939999999993,
+        "p99": 257.96852,
+        "mean": 82.63123327895596,
+        "max": 342.951
+      },
+      "propagation_latency_ms": {
+        "count": 613,
+        "p50": 3031.714,
+        "p95": 8396.4794,
+        "p99": 9357.7714,
+        "mean": 3349.1067210440456,
+        "max": 9393.359
+      }
+    }
+  },
+  "metrics_after_drain": {
+    "values": {
+      "transfer.requests": {
+        "COUNT": 616.0,
+        "TOTAL_TIME": 80.504300078,
+        "MAX": 0.700360251
+      },
+      "transfer.transaction": {
+        "COUNT": 790.0,
+        "TOTAL_TIME": 74.625324265,
+        "MAX": 0.249597584
+      },
+      "transfer.outcomes": {
+        "COUNT": 616.0
+      },
+      "transfer.retries": {
+        "COUNT": 174.0
+      },
+      "database.errors": {
+        "COUNT": 177.0
+      },
+      "hikaricp.connections.active": {
+        "VALUE": 1.0
+      },
+      "hikaricp.connections.idle": {
+        "VALUE": 10.0
+      },
+      "hikaricp.connections.pending": {
+        "VALUE": 0.0
+      },
+      "hikaricp.connections.max": {
+        "VALUE": 16.0
+      },
+      "http.server.requests": {
+        "COUNT": 838.0,
+        "TOTAL_TIME": 81.37408761999998,
+        "MAX": 0.7010075
+      },
+      "events.outbox.publications": {
+        "COUNT": 630.0
+      },
+      "events.outbox.retries": {
+        "COUNT": 0.0
+      },
+      "events.outbox.claim.recoveries": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publication.latency": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 52.766746417,
+        "MAX": 0.343419507
+      },
+      "events.consumer.processing.duration": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 10.904547238,
+        "MAX": 0.250133125
+      },
+      "events.consumer.outcomes": {
+        "COUNT": 630.0
+      },
+      "events.consumer.lag.max": {
+        "VALUE": 99.0
+      },
+      "events.projection.propagation.duration": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 2065.973337556,
+        "MAX": 9.394641553
+      },
+      "events.outbox.claim.records": {
+        "COUNT": 630.0
+      },
+      "events.outbox.claim.batch.size": {
+        "COUNT": 221.0,
+        "TOTAL": 630.0,
+        "MAX": 16.0
+      },
+      "events.outbox.kafka.enqueue.duration": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.07408415,
+        "MAX": 0.011157584
+      },
+      "events.outbox.kafka.ack.duration": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.383901567,
+        "MAX": 0.019730416
+      },
+      "events.outbox.kafka.wait.duration": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.324698966,
+        "MAX": 0.008932209
+      },
+      "events.outbox.batch.duration": {
+        "COUNT": 221.0,
+        "TOTAL_TIME": 2.084266583,
+        "MAX": 0.172508917
+      },
+      "events.outbox.producer.create.duration": {
+        "COUNT": 1.0,
+        "TOTAL_TIME": 0.016124375,
+        "MAX": 0.016124375
+      },
+      "events.outbox.poll.pause.duration": {
+        "COUNT": 220.0,
+        "TOTAL_TIME": 22.214971047,
+        "MAX": 0.105174292
+      },
+      "events.outbox.publications@outcome=success": {
+        "COUNT": 630.0
+      },
+      "events.outbox.publications@outcome=transient": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publications@outcome=ambiguous": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publications@outcome=permanent": {
+        "COUNT": 0.0
+      },
+      "events.outbox.publications@outcome=stale": {
+        "COUNT": 0.0
+      },
+      "events.outbox.database.duration@operation=claim": {
+        "COUNT": 221.0,
+        "TOTAL_TIME": 0.421437544,
+        "MAX": 0.025900917
+      },
+      "events.outbox.database.duration@operation=renew": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.514823369,
+        "MAX": 0.023458416
+      },
+      "events.outbox.database.duration@operation=publish": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.597485341,
+        "MAX": 0.067785083
+      },
+      "events.outbox.kafka.acknowledgements@outcome=accepted": {
+        "COUNT": 630.0
+      },
+      "events.outbox.send.attempts@kind=first": {
+        "COUNT": 630.0
+      },
+      "events.consumer.ingestion.records": {
+        "COUNT": 630.0
+      },
+      "events.consumer.paused": {
+        "VALUE": 0.0
+      },
+      "events.consumer.quarantine.records": {
+        "VALUE": 0.0
+      },
+      "events.consumer.poll.duration@outcome=empty": {
+        "COUNT": 39.0,
+        "TOTAL_TIME": 9.822804797,
+        "MAX": 0.255211791
+      },
+      "events.consumer.poll.duration@outcome=received": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 3.05690505,
+        "MAX": 0.180834459
+      },
+      "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 10.810208301,
+        "MAX": 0.249818292
+      },
+      "events.consumer.database.work.duration@operation=projection,result=completed": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 10.480373914,
+        "MAX": 0.248903625
+      },
+      "events.consumer.database.completion.duration@operation=projection,result=committed": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.307507548,
+        "MAX": 0.004818541
+      },
+      "events.projection.commits@source=kafka,outcome=processed": {
+        "COUNT": 630.0
+      },
+      "events.consumer.offset.acknowledgement.duration@outcome=success": {
+        "COUNT": 630.0,
+        "TOTAL_TIME": 0.267980961,
+        "MAX": 0.003812625
+      }
+    },
+    "unavailable": [
+      "events.consumer.retries",
+      "events.consumer.offset.commit.failures",
+      "events.outbox.settlement.failures",
+      "events.outbox.inflight.records",
+      "events.outbox.database.duration@operation=fail",
+      "events.outbox.database.duration@operation=renew_batch",
+      "events.outbox.database.duration@operation=settle",
+      "events.outbox.kafka.acknowledgements@outcome=failed",
+      "events.outbox.send.attempts@kind=retry",
+      "events.consumer.poll.duration@outcome=failure",
+      "events.consumer.database.transaction.duration@operation=projection,result=failed",
+      "events.consumer.database.work.duration@operation=projection,result=failed",
+      "events.consumer.database.completion.duration@operation=projection,result=failed",
+      "events.projection.commits@source=kafka,outcome=duplicate",
+      "events.consumer.offset.acknowledgement.duration@outcome=failure",
+      "events.consumer.pause.duration@reason=startup_retry",
+      "events.consumer.pause.duration@reason=retry",
+      "events.consumer.pause.duration@reason=optional_delay"
+    ],
+    "max_note": "MAX is a rolling actuator snapshot, not an additive counter or an exact interval percentile"
+  },
+  "drain_metric_deltas": {
+    "transfer.requests": {
+      "COUNT": 0.0,
+      "TOTAL_TIME": 0.0,
+      "MEAN_MS": null
+    },
+    "transfer.transaction": {
+      "COUNT": 0.0,
+      "TOTAL_TIME": 0.0,
+      "MEAN_MS": null
+    },
+    "transfer.outcomes": {
+      "COUNT": 0.0
+    },
+    "transfer.retries": {
+      "COUNT": 0.0
+    },
+    "database.errors": {
+      "COUNT": 0.0
+    },
+    "http.server.requests": {
+      "COUNT": 73.0,
+      "TOTAL_TIME": 0.02225141799998198,
+      "MEAN_MS": 0.30481394520523264
+    },
+    "events.outbox.publications": {
+      "COUNT": 0.0
+    },
+    "events.outbox.retries": {
+      "COUNT": 0.0
+    },
+    "events.outbox.claim.recoveries": {
+      "COUNT": 0.0
+    },
+    "events.outbox.publication.latency": {
+      "COUNT": 0.0,
+      "TOTAL_TIME": 0.0,
+      "MEAN_MS": null
+    },
+    "events.consumer.processing.duration": {
+      "COUNT": 251.0,
+      "TOTAL_TIME": 0.37452978299999984,
+      "MEAN_MS": 1.4921505298804774
+    },
+    "events.consumer.outcomes": {
+      "COUNT": 250.0
+    },
+    "events.projection.propagation.duration": {
+      "COUNT": 249.0,
+      "TOTAL_TIME": 855.877532494,
+      "MEAN_MS": 3437.25916664257
+    },
+    "events.outbox.claim.records": {
+      "COUNT": 0.0
+    },
+    "events.outbox.claim.batch.size": {
+      "COUNT": 14.0,
+      "TOTAL": 0.0
+    },
+    "events.outbox.kafka.enqueue.duration": {
+      "COUNT": 0.0,
+      "TOTAL_TIME": 0.0,
+      "MEAN_MS": null
+    },
+    "events.outbox.kafka.ack.duration": {
+      "COUNT": 0.0,
+      "TOTAL_TIME": 0.0,
+      "MEAN_MS": null
+    },
+    "events.outbox.kafka.wait.duration": {
+      "COUNT": 0.0,
+      "TOTAL_TIME": 0.0,
+      "MEAN_MS": null
+    },
+    "events.outbox.batch.duration": {
+      "COUNT": 14.0,
+      "TOTAL_TIME": 0.016675166999999824,
+      "MEAN_MS": 1.1910833571428445
+    },
+    "events.outbox.producer.create.duration": {
+      "COUNT": 0.0,
+      "TOTAL_TIME": 0.0,
+      "MEAN_MS": null
+    },
+    "events.outbox.poll.pause.duration": {
+      "COUNT": 14.0,
+      "TOTAL_TIME": 1.4151587079999999,
+      "MEAN_MS": 101.08276485714285
+    },
+    "events.outbox.publications@outcome=success": {
+      "COUNT": 0.0
+    },
+    "events.outbox.publications@outcome=transient": {
+      "COUNT": 0.0
+    },
+    "events.outbox.publications@outcome=ambiguous": {
+      "COUNT": 0.0
+    },
+    "events.outbox.publications@outcome=permanent": {
+      "COUNT": 0.0
+    },
+    "events.outbox.publications@outcome=stale": {
+      "COUNT": 0.0
+    },
+    "events.outbox.database.duration@operation=claim": {
+      "COUNT": 14.0,
+      "TOTAL_TIME": 0.015829957999999977,
+      "MEAN_MS": 1.130711285714284
+    },
+    "events.outbox.database.duration@operation=renew": {
+      "COUNT": 0.0,
+      "TOTAL_TIME": 0.0,
+      "MEAN_MS": null
+    },
+    "events.outbox.database.duration@operation=publish": {
+      "COUNT": 0.0,
+      "TOTAL_TIME": 0.0,
+      "MEAN_MS": null
+    },
+    "events.outbox.kafka.acknowledgements@outcome=accepted": {
+      "COUNT": 0.0
+    },
+    "events.outbox.send.attempts@kind=first": {
+      "COUNT": 0.0
+    },
+    "events.consumer.ingestion.records": {
+      "COUNT": 238.0
+    },
+    "events.consumer.poll.duration@outcome=empty": {
+      "COUNT": 3.0,
+      "TOTAL_TIME": 0.7551397929999997,
+      "MEAN_MS": 251.71326433333323
+    },
+    "events.consumer.poll.duration@outcome=received": {
+      "COUNT": 236.0,
+      "TOTAL_TIME": 0.010814165000000209,
+      "MEAN_MS": 0.045822733050848344
+    },
+    "events.consumer.database.transaction.duration@operation=projection,result=committed": {
+      "COUNT": 236.0,
+      "TOTAL_TIME": 0.32689258799999976,
+      "MEAN_MS": 1.3851380847457617
+    },
+    "events.consumer.database.work.duration@operation=projection,result=completed": {
+      "COUNT": 236.0,
+      "TOTAL_TIME": 0.23412036599999908,
+      "MEAN_MS": 0.9920354491525385
+    },
+    "events.consumer.database.completion.duration@operation=projection,result=committed": {
+      "COUNT": 235.0,
+      "TOTAL_TIME": 0.09035371600000003,
+      "MEAN_MS": 0.38448389787234055
+    },
+    "events.projection.commits@source=kafka,outcome=processed": {
+      "COUNT": 234.0
+    },
+    "events.consumer.offset.acknowledgement.duration@outcome=success": {
+      "COUNT": 233.0,
+      "TOTAL_TIME": 0.07102445700000001,
+      "MEAN_MS": 0.30482599570815455
+    }
+  },
+  "observations": {
+    "sample_interval_seconds": 1,
+    "sample_limit": 2000,
+    "samples": [
+      {
+        "elapsed_seconds": 0.0001868339895736426,
+        "events": {
+          "database_time": "2026-10-11T15:10:09.600189+00:00",
+          "completed_transfers": 174,
+          "outbox_total": 174,
+          "published": 153,
+          "unpublished": 21,
+          "claimed": 4,
+          "publication_attempts": 157,
+          "retried_events": 0,
+          "maximum_attempt_count": 1,
+          "last_error_counts": {
+            "transient": 0,
+            "ambiguous": 0,
+            "permanent": 0
+          },
+          "recorded_kafka_positions": 153,
+          "oldest_unpublished_age_seconds": 0.115885,
+          "processed": 151,
+          "projection_rows": 151,
+          "account_activity_rows": 302,
+          "published_unprocessed": 2,
+          "missing_outbox": 0,
+          "publication_latency_ms": {
+            "count": 153,
+            "p50": 70.874,
+            "p95": 115.4536,
+            "p99": 123.45224,
+            "mean": 69.49654248366014,
+            "max": 130.787
+          },
+          "propagation_latency_ms": {
+            "count": 151,
+            "p50": 73.557,
+            "p95": 116.28049999999999,
+            "p99": 124.5005,
+            "mean": 72.32793377483443,
+            "max": 131.426
+          }
+        },
+        "postgres_locks": {
+          "active_sessions": 9,
+          "lock_waiting_sessions": 9,
+          "blocked_sessions": 9,
+          "longest_lock_wait_seconds": 0.187672,
+          "ungranted_locks": 9
+        },
+        "consumer_lag": {
+          "values": {
+            "events.consumer.lag.max": {
+              "VALUE": 2.0
+            }
+          },
+          "unavailable": []
+        },
+        "resources": {
+          "values": {
+            "hikaricp.connections.active": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.idle": {
+              "VALUE": 4.0
+            },
+            "hikaricp.connections.pending": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.max": {
+              "VALUE": 16.0
+            },
+            "process.cpu.usage": {
+              "VALUE": 0.0
+            },
+            "jvm.memory.used": {
+              "VALUE": 157480368.0
+            },
+            "jvm.threads.live": {
+              "VALUE": 32.0
+            }
+          },
+          "unavailable": [
+            "events.outbox.inflight.records"
+          ]
+        }
+      },
+      {
+        "elapsed_seconds": 1.299265584006207,
+        "events": {
+          "database_time": "2026-10-11T15:10:10.884102+00:00",
+          "completed_transfers": 231,
+          "outbox_total": 231,
+          "published": 231,
+          "unpublished": 0,
+          "claimed": 0,
+          "publication_attempts": 231,
+          "retried_events": 0,
+          "maximum_attempt_count": 1,
+          "last_error_counts": {
+            "transient": 0,
+            "ambiguous": 0,
+            "permanent": 0
+          },
+          "recorded_kafka_positions": 231,
+          "oldest_unpublished_age_seconds": 0,
+          "processed": 167,
+          "projection_rows": 167,
+          "account_activity_rows": 334,
+          "published_unprocessed": 64,
+          "missing_outbox": 0,
+          "publication_latency_ms": {
+            "count": 231,
+            "p50": 85.672,
+            "p95": 245.45199999999997,
+            "p99": 263.5539,
+            "mean": 89.7500432900433,
+            "max": 342.951
+          },
+          "propagation_latency_ms": {
+            "count": 167,
+            "p50": 76.647,
+            "p95": 723.8556,
+            "p99": 940.07624,
+            "mean": 133.17991017964073,
+            "max": 1148.736
+          }
+        },
+        "postgres_locks": {
+          "active_sessions": 9,
+          "lock_waiting_sessions": 9,
+          "blocked_sessions": 9,
+          "longest_lock_wait_seconds": 0.05982,
+          "ungranted_locks": 9
+        },
+        "consumer_lag": {
+          "values": {
+            "events.consumer.lag.max": {
+              "VALUE": 13.0
+            }
+          },
+          "unavailable": []
+        },
+        "resources": {
+          "values": {
+            "hikaricp.connections.active": {
+              "VALUE": 9.0
+            },
+            "hikaricp.connections.idle": {
+              "VALUE": 2.0
+            },
+            "hikaricp.connections.pending": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.max": {
+              "VALUE": 16.0
+            },
+            "process.cpu.usage": {
+              "VALUE": 0.03896882494004796
+            },
+            "jvm.memory.used": {
+              "VALUE": 177242048.0
+            },
+            "jvm.threads.live": {
+              "VALUE": 32.0
+            }
+          },
+          "unavailable": [
+            "events.outbox.inflight.records"
+          ]
+        }
+      },
+      {
+        "elapsed_seconds": 2.5943815840000752,
+        "events": {
+          "database_time": "2026-10-11T15:10:12.20436+00:00",
+          "completed_transfers": 305,
+          "outbox_total": 305,
+          "published": 289,
+          "unpublished": 16,
+          "claimed": 0,
+          "publication_attempts": 289,
+          "retried_events": 0,
+          "maximum_attempt_count": 1,
+          "last_error_counts": {
+            "transient": 0,
+            "ambiguous": 0,
+            "permanent": 0
+          },
+          "recorded_kafka_positions": 289,
+          "oldest_unpublished_age_seconds": 0.101166,
+          "processed": 181,
+          "projection_rows": 181,
+          "account_activity_rows": 362,
+          "published_unprocessed": 108,
+          "missing_outbox": 0,
+          "publication_latency_ms": {
+            "count": 289,
+            "p50": 95.807,
+            "p95": 239.78359999999998,
+            "p99": 262.61604,
+            "mean": 90.35713494809688,
+            "max": 342.951
+          },
+          "propagation_latency_ms": {
+            "count": 181,
+            "p50": 82.808,
+            "p95": 1692.424,
+            "p99": 2124.3886,
+            "mean": 257.450044198895,
+            "max": 2328.474
+          }
+        },
+        "postgres_locks": {
+          "active_sessions": 6,
+          "lock_waiting_sessions": 5,
+          "blocked_sessions": 5,
+          "longest_lock_wait_seconds": 0.1982,
+          "ungranted_locks": 5
+        },
+        "consumer_lag": {
+          "values": {
+            "events.consumer.lag.max": {
+              "VALUE": 13.0
+            }
+          },
+          "unavailable": []
+        },
+        "resources": {
+          "values": {
+            "hikaricp.connections.active": {
+              "VALUE": 6.0
+            },
+            "hikaricp.connections.idle": {
+              "VALUE": 5.0
+            },
+            "hikaricp.connections.pending": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.max": {
+              "VALUE": 16.0
+            },
+            "process.cpu.usage": {
+              "VALUE": 0.044300059066745424
+            },
+            "jvm.memory.used": {
+              "VALUE": 154950144.0
+            },
+            "jvm.threads.live": {
+              "VALUE": 32.0
+            }
+          },
+          "unavailable": [
+            "events.outbox.inflight.records"
+          ]
+        }
+      },
+      {
+        "elapsed_seconds": 3.9095230420061853,
+        "events": {
+          "database_time": "2026-10-11T15:10:13.498133+00:00",
+          "completed_transfers": 361,
+          "outbox_total": 361,
+          "published": 355,
+          "unpublished": 6,
+          "claimed": 6,
+          "publication_attempts": 361,
+          "retried_events": 0,
+          "maximum_attempt_count": 1,
+          "last_error_counts": {
+            "transient": 0,
+            "ambiguous": 0,
+            "permanent": 0
+          },
+          "recorded_kafka_positions": 355,
+          "oldest_unpublished_age_seconds": 0.213949,
+          "processed": 193,
+          "projection_rows": 193,
+          "account_activity_rows": 386,
+          "published_unprocessed": 162,
+          "missing_outbox": 0,
+          "publication_latency_ms": {
+            "count": 355,
+            "p50": 99.401,
+            "p95": 202.38569999999999,
+            "p99": 261.531,
+            "mean": 91.25532957746479,
+            "max": 342.951
+          },
+          "propagation_latency_ms": {
+            "count": 193,
+            "p50": 86.34,
+            "p95": 2899.5813999999987,
+            "p99": 3060.8641999999995,
+            "mean": 428.5345699481865,
+            "max": 3244.418
+          }
+        },
+        "postgres_locks": {
+          "active_sessions": 10,
+          "lock_waiting_sessions": 9,
+          "blocked_sessions": 9,
+          "longest_lock_wait_seconds": 0.125026,
+          "ungranted_locks": 9
+        },
+        "consumer_lag": {
+          "values": {
+            "events.consumer.lag.max": {
+              "VALUE": 57.0
+            }
+          },
+          "unavailable": []
+        },
+        "resources": {
+          "values": {
+            "hikaricp.connections.active": {
+              "VALUE": 10.0
+            },
+            "hikaricp.connections.idle": {
+              "VALUE": 1.0
+            },
+            "hikaricp.connections.pending": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.max": {
+              "VALUE": 16.0
+            },
+            "process.cpu.usage": {
+              "VALUE": 0.03083434099153567
+            },
+            "jvm.memory.used": {
+              "VALUE": 169533432.0
+            },
+            "jvm.threads.live": {
+              "VALUE": 32.0
+            }
+          },
+          "unavailable": [
+            "events.outbox.inflight.records"
+          ]
+        }
+      },
+      {
+        "elapsed_seconds": 5.1864964999840595,
+        "events": {
+          "database_time": "2026-10-11T15:10:14.778143+00:00",
+          "completed_transfers": 406,
+          "outbox_total": 406,
+          "published": 406,
+          "unpublished": 0,
+          "claimed": 0,
+          "publication_attempts": 406,
+          "retried_events": 0,
+          "maximum_attempt_count": 1,
+          "last_error_counts": {
+            "transient": 0,
+            "ambiguous": 0,
+            "permanent": 0
+          },
+          "recorded_kafka_positions": 406,
+          "oldest_unpublished_age_seconds": 0,
+          "processed": 204,
+          "projection_rows": 204,
+          "account_activity_rows": 408,
+          "published_unprocessed": 202,
+          "missing_outbox": 0,
+          "publication_latency_ms": {
+            "count": 406,
+            "p50": 101.344,
+            "p95": 201.28225,
+            "p99": 260.7016,
+            "mean": 93.74773399014778,
+            "max": 342.951
+          },
+          "propagation_latency_ms": {
+            "count": 204,
+            "p50": 90.1395,
+            "p95": 3043.19665,
+            "p99": 3645.47251,
+            "mean": 586.3695735294118,
+            "max": 3860.612
+          }
+        },
+        "postgres_locks": {
+          "active_sessions": 9,
+          "lock_waiting_sessions": 9,
+          "blocked_sessions": 9,
+          "longest_lock_wait_seconds": 0.070845,
+          "ungranted_locks": 9
+        },
+        "consumer_lag": {
+          "values": {
+            "events.consumer.lag.max": {
+              "VALUE": 57.0
+            }
+          },
+          "unavailable": []
+        },
+        "resources": {
+          "values": {
+            "hikaricp.connections.active": {
+              "VALUE": 10.0
+            },
+            "hikaricp.connections.idle": {
+              "VALUE": 1.0
+            },
+            "hikaricp.connections.pending": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.max": {
+              "VALUE": 16.0
+            },
+            "process.cpu.usage": {
+              "VALUE": 0.01687763713080169
+            },
+            "jvm.memory.used": {
+              "VALUE": 181407768.0
+            },
+            "jvm.threads.live": {
+              "VALUE": 31.0
+            }
+          },
+          "unavailable": [
+            "events.outbox.inflight.records"
+          ]
+        }
+      },
+      {
+        "elapsed_seconds": 6.4748264999943785,
+        "events": {
+          "database_time": "2026-10-11T15:10:16.099113+00:00",
+          "completed_transfers": 462,
+          "outbox_total": 462,
+          "published": 462,
+          "unpublished": 0,
+          "claimed": 0,
+          "publication_attempts": 462,
+          "retried_events": 0,
+          "maximum_attempt_count": 1,
+          "last_error_counts": {
+            "transient": 0,
+            "ambiguous": 0,
+            "permanent": 0
+          },
+          "recorded_kafka_positions": 462,
+          "oldest_unpublished_age_seconds": 0,
+          "processed": 221,
+          "projection_rows": 221,
+          "account_activity_rows": 442,
+          "published_unprocessed": 241,
+          "missing_outbox": 0,
+          "publication_latency_ms": {
+            "count": 462,
+            "p50": 98.28550000000001,
+            "p95": 199.58414999999997,
+            "p99": 259.91312,
+            "mean": 90.43602597402598,
+            "max": 342.951
+          },
+          "propagation_latency_ms": {
+            "count": 221,
+            "p50": 95.241,
+            "p95": 4091.973,
+            "p99": 4339.4744,
+            "mean": 857.6731900452488,
+            "max": 4353.028
+          }
+        },
+        "postgres_locks": {
+          "active_sessions": 5,
+          "lock_waiting_sessions": 4,
+          "blocked_sessions": 4,
+          "longest_lock_wait_seconds": 0.185468,
+          "ungranted_locks": 4
+        },
+        "consumer_lag": {
+          "values": {
+            "events.consumer.lag.max": {
+              "VALUE": 57.0
+            }
+          },
+          "unavailable": []
+        },
+        "resources": {
+          "values": {
+            "hikaricp.connections.active": {
+              "VALUE": 6.0
+            },
+            "hikaricp.connections.idle": {
+              "VALUE": 5.0
+            },
+            "hikaricp.connections.pending": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.max": {
+              "VALUE": 16.0
+            },
+            "process.cpu.usage": {
+              "VALUE": 0.02336448598130841
+            },
+            "jvm.memory.used": {
+              "VALUE": 156719480.0
+            },
+            "jvm.threads.live": {
+              "VALUE": 31.0
+            }
+          },
+          "unavailable": [
+            "events.outbox.inflight.records"
+          ]
+        }
+      },
+      {
+        "elapsed_seconds": 7.800424166984158,
+        "events": {
+          "database_time": "2026-10-11T15:10:17.395771+00:00",
+          "completed_transfers": 513,
+          "outbox_total": 513,
+          "published": 513,
+          "unpublished": 0,
+          "claimed": 0,
+          "publication_attempts": 513,
+          "retried_events": 0,
+          "maximum_attempt_count": 1,
+          "last_error_counts": {
+            "transient": 0,
+            "ambiguous": 0,
+            "permanent": 0
+          },
+          "recorded_kafka_positions": 513,
+          "oldest_unpublished_age_seconds": 0,
+          "processed": 233,
+          "projection_rows": 233,
+          "account_activity_rows": 466,
+          "published_unprocessed": 280,
+          "missing_outbox": 0,
+          "publication_latency_ms": {
+            "count": 513,
+            "p50": 97.308,
+            "p95": 176.17739999999938,
+            "p99": 259.21531999999996,
+            "mean": 87.3023820662768,
+            "max": 342.951
+          },
+          "propagation_latency_ms": {
+            "count": 233,
+            "p50": 99.355,
+            "p95": 4354.7028,
+            "p99": 4822.04496,
+            "mean": 1055.6244077253218,
+            "max": 5031.927
+          }
+        },
+        "postgres_locks": {
+          "active_sessions": 9,
+          "lock_waiting_sessions": 9,
+          "blocked_sessions": 9,
+          "longest_lock_wait_seconds": 0.123158,
+          "ungranted_locks": 9
+        },
+        "consumer_lag": {
+          "values": {
+            "events.consumer.lag.max": {
+              "VALUE": 57.0
+            }
+          },
+          "unavailable": []
+        },
+        "resources": {
+          "values": {
+            "hikaricp.connections.active": {
+              "VALUE": 9.0
+            },
+            "hikaricp.connections.idle": {
+              "VALUE": 2.0
+            },
+            "hikaricp.connections.pending": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.max": {
+              "VALUE": 16.0
+            },
+            "process.cpu.usage": {
+              "VALUE": 0.019242333132892364
+            },
+            "jvm.memory.used": {
+              "VALUE": 170282824.0
+            },
+            "jvm.threads.live": {
+              "VALUE": 31.0
+            }
+          },
+          "unavailable": [
+            "events.outbox.inflight.records"
+          ]
+        }
+      },
+      {
+        "elapsed_seconds": 9.094347334001213,
+        "events": {
+          "database_time": "2026-10-11T15:10:18.700435+00:00",
+          "completed_transfers": 583,
+          "outbox_total": 583,
+          "published": 580,
+          "unpublished": 3,
+          "claimed": 0,
+          "publication_attempts": 580,
+          "retried_events": 0,
+          "maximum_attempt_count": 1,
+          "last_error_counts": {
+            "transient": 0,
+            "ambiguous": 0,
+            "permanent": 0
+          },
+          "recorded_kafka_positions": 580,
+          "oldest_unpublished_age_seconds": 0.043632,
+          "processed": 250,
+          "projection_rows": 250,
+          "account_activity_rows": 500,
+          "published_unprocessed": 330,
+          "missing_outbox": 0,
+          "publication_latency_ms": {
+            "count": 580,
+            "p50": 95.90899999999999,
+            "p95": 160.88199999999998,
+            "p99": 258.38518999999997,
+            "mean": 85.44976206896551,
+            "max": 342.951
+          },
+          "propagation_latency_ms": {
+            "count": 250,
+            "p50": 104.3135,
+            "p95": 5040.1828,
+            "p99": 8179.57843,
+            "mean": 1380.405548,
+            "max": 8399.609
+          }
+        },
+        "postgres_locks": {
+          "active_sessions": 10,
+          "lock_waiting_sessions": 9,
+          "blocked_sessions": 9,
+          "longest_lock_wait_seconds": 0.175743,
+          "ungranted_locks": 9
+        },
+        "consumer_lag": {
+          "values": {
+            "events.consumer.lag.max": {
+              "VALUE": 57.0
+            }
+          },
+          "unavailable": []
+        },
+        "resources": {
+          "values": {
+            "hikaricp.connections.active": {
+              "VALUE": 10.0
+            },
+            "hikaricp.connections.idle": {
+              "VALUE": 1.0
+            },
+            "hikaricp.connections.pending": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.max": {
+              "VALUE": 16.0
+            },
+            "process.cpu.usage": {
+              "VALUE": 0.023724792408066426
+            },
+            "jvm.memory.used": {
+              "VALUE": 184341576.0
+            },
+            "jvm.threads.live": {
+              "VALUE": 31.0
+            }
+          },
+          "unavailable": [
+            "events.outbox.inflight.records"
+          ]
+        }
+      },
+      {
+        "elapsed_seconds": 10.407397208997281,
+        "events": {
+          "database_time": "2026-10-11T15:10:20.015584+00:00",
+          "completed_transfers": 613,
+          "outbox_total": 613,
+          "published": 613,
+          "unpublished": 0,
+          "claimed": 0,
+          "publication_attempts": 613,
+          "retried_events": 0,
+          "maximum_attempt_count": 1,
+          "last_error_counts": {
+            "transient": 0,
+            "ambiguous": 0,
+            "permanent": 0
+          },
+          "recorded_kafka_positions": 613,
+          "oldest_unpublished_age_seconds": 0,
+          "processed": 480,
+          "projection_rows": 480,
+          "account_activity_rows": 960,
+          "published_unprocessed": 133,
+          "missing_outbox": 0,
+          "publication_latency_ms": {
+            "count": 613,
+            "p50": 92.896,
+            "p95": 146.05939999999993,
+            "p99": 257.96852,
+            "mean": 82.63123327895596,
+            "max": 342.951
+          },
+          "propagation_latency_ms": {
+            "count": 480,
+            "p50": 3060.4195,
+            "p95": 8581.89865,
+            "p99": 9367.93678,
+            "mean": 3320.9893104166667,
+            "max": 9393.359
+          }
+        },
+        "postgres_locks": {
+          "active_sessions": 0,
+          "lock_waiting_sessions": 0,
+          "blocked_sessions": 0,
+          "longest_lock_wait_seconds": 0,
+          "ungranted_locks": 0
+        },
+        "consumer_lag": {
+          "values": {
+            "events.consumer.lag.max": {
+              "VALUE": 99.0
+            }
+          },
+          "unavailable": []
+        },
+        "resources": {
+          "values": {
+            "hikaricp.connections.active": {
+              "VALUE": 1.0
+            },
+            "hikaricp.connections.idle": {
+              "VALUE": 10.0
+            },
+            "hikaricp.connections.pending": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.max": {
+              "VALUE": 16.0
+            },
+            "process.cpu.usage": {
+              "VALUE": 0.04793289394847214
+            },
+            "jvm.memory.used": {
+              "VALUE": 150538816.0
+            },
+            "jvm.threads.live": {
+              "VALUE": 31.0
+            }
+          },
+          "unavailable": [
+            "events.outbox.inflight.records"
+          ]
+        }
+      },
+      {
+        "elapsed_seconds": 11.706071541993879,
+        "events": {
+          "database_time": "2026-10-11T15:10:21.298208+00:00",
+          "completed_transfers": 613,
+          "outbox_total": 613,
+          "published": 613,
+          "unpublished": 0,
+          "claimed": 0,
+          "publication_attempts": 613,
+          "retried_events": 0,
+          "maximum_attempt_count": 1,
+          "last_error_counts": {
+            "transient": 0,
+            "ambiguous": 0,
+            "permanent": 0
+          },
+          "recorded_kafka_positions": 613,
+          "oldest_unpublished_age_seconds": 0,
+          "processed": 613,
+          "projection_rows": 613,
+          "account_activity_rows": 1226,
+          "published_unprocessed": 0,
+          "missing_outbox": 0,
+          "publication_latency_ms": {
+            "count": 613,
+            "p50": 92.896,
+            "p95": 146.05939999999993,
+            "p99": 257.96852,
+            "mean": 82.63123327895596,
+            "max": 342.951
+          },
+          "propagation_latency_ms": {
+            "count": 613,
+            "p50": 3031.714,
+            "p95": 8396.4794,
+            "p99": 9357.7714,
+            "mean": 3349.1067210440456,
+            "max": 9393.359
+          }
+        },
+        "postgres_locks": {
+          "active_sessions": 0,
+          "lock_waiting_sessions": 0,
+          "blocked_sessions": 0,
+          "longest_lock_wait_seconds": 0,
+          "ungranted_locks": 0
+        },
+        "consumer_lag": {
+          "values": {
+            "events.consumer.lag.max": {
+              "VALUE": 99.0
+            }
+          },
+          "unavailable": []
+        },
+        "resources": {
+          "values": {
+            "hikaricp.connections.active": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.idle": {
+              "VALUE": 11.0
+            },
+            "hikaricp.connections.pending": {
+              "VALUE": 0.0
+            },
+            "hikaricp.connections.max": {
+              "VALUE": 16.0
+            },
+            "process.cpu.usage": {
+              "VALUE": 0.01141141141141141
+            },
+            "jvm.memory.used": {
+              "VALUE": 157146728.0
+            },
+            "jvm.threads.live": {
+              "VALUE": 31.0
+            }
+          },
+          "unavailable": [
+            "events.outbox.inflight.records"
+          ]
+        }
+      }
+    ],
+    "sampling_errors": {},
+    "invariant_failures": []
+  },
+  "reconciliation_after": {
+    "consistent": true,
+    "balanceMismatches": [],
+    "invalidTransfers": [],
+    "totalLedgerDelta": 0,
+    "totalMaterializedBalance": 0
+  },
+  "event_status_after": {
+    "http_status": 200,
+    "body": {
+      "relayEnabled": true,
+      "consumerEnabled": true,
+      "outbox": {
+        "pending": 0,
+        "claimed": 0,
+        "published": 65254,
+        "blocked": 0,
+        "expiredClaims": 0,
+        "oldestPendingAgeSeconds": 0.0
+      }
+    }
+  },
+  "finished_at": "2026-10-11T15:10:21.635570+00:00",
+  "event_rate_observation_interval_seconds": 10.349931,
+  "event_rate_note": "scoped durable count deltas over database observation times; interval includes measurement setup/inspection",
+  "event_rates_per_second": {
+    "creation": 44.73459774755987,
+    "publication": 44.73459774755987,
+    "processing": 17.681277295471826
+  },
+  "drain_rates_per_second": {
+    "publication": 0.0,
+    "processing": 129.29728480300176
+  },
+  "drain_rate_note": "only progress after the recorded drain start; excludes recovery before observation"
+}

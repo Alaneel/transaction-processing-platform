@@ -1,0 +1,46 @@
+{
+  "checkedAtUtc": "2026-10-13T23:03:59.141604+00:00",
+  "scope": "Retrospective only; unchanged first4 reports and historicalnums; DB-wall/host-monotonic paired observer samples are indirect, not proof of complete hostclock continuity",
+  "trials": [
+    {
+      "report": "trial-1-baseline.json",
+      "pairedDatabaseWallHostMonotonicSamples": 16,
+      "maxObservedAbsDriftSeconds": 0.31757540069520473,
+      "observedDiscontinuityAboveOneSecond": false,
+      "hostStartWall": "2026-10-13T15:23:14.192307+00:00",
+      "hostFinishWall": "2026-10-13T15:23:39.697678+00:00",
+      "fullHostClockContinuity": "UNVERIFIED: rawreports lack direct hostwall/monotonic start/end samples for fullworkload",
+      "financialReconciliation": "PASS retained independently"
+    },
+    {
+      "report": "trial-2-patched.json",
+      "pairedDatabaseWallHostMonotonicSamples": 18,
+      "maxObservedAbsDriftSeconds": 0.06432017049519345,
+      "observedDiscontinuityAboveOneSecond": false,
+      "hostStartWall": "2026-10-13T15:23:52.619786+00:00",
+      "hostFinishWall": "2026-10-13T15:24:20.787624+00:00",
+      "fullHostClockContinuity": "UNVERIFIED: rawreports lack direct hostwall/monotonic start/end samples for fullworkload",
+      "financialReconciliation": "PASS retained independently"
+    },
+    {
+      "report": "trial-3-patched.json",
+      "pairedDatabaseWallHostMonotonicSamples": 19,
+      "maxObservedAbsDriftSeconds": 0.03932791983243078,
+      "observedDiscontinuityAboveOneSecond": false,
+      "hostStartWall": "2026-10-13T15:24:34.150032+00:00",
+      "hostFinishWall": "2026-10-13T15:25:04.131083+00:00",
+      "fullHostClockContinuity": "UNVERIFIED: rawreports lack direct hostwall/monotonic start/end samples for fullworkload",
+      "financialReconciliation": "PASS retained independently"
+    },
+    {
+      "report": "trial-4-baseline.json",
+      "pairedDatabaseWallHostMonotonicSamples": 18,
+      "maxObservedAbsDriftSeconds": 0.08829884801525623,
+      "observedDiscontinuityAboveOneSecond": false,
+      "hostStartWall": "2026-10-13T15:25:17.740538+00:00",
+      "hostFinishWall": "2026-10-13T15:25:46.657048+00:00",
+      "fullHostClockContinuity": "UNVERIFIED: rawreports lack direct hostwall/monotonic start/end samples for fullworkload",
+      "financialReconciliation": "PASS retained independently"
+    }
+  ]
+}

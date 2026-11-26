@@ -1,0 +1,88 @@
+{
+  "captured_at": "2026-10-11T22:03:57+08:00",
+  "scope": "Phase 1 + Phase 2 verification from a clean local clone",
+  "source_commit": "503ed39f86cd403275be6fa2014c32c2e5591122",
+  "clean_checkout": true,
+  "command": "./mvnw -B -ntp -Dmaven.repo.local=/private/tmp/tpp-m2 clean verify",
+  "java": "21",
+  "postgres": "17.11",
+  "kafka": "4.3.1",
+  "total_seconds": 114,
+  "classes": [
+    {
+      "class": "dev.tpp.ApiErrorMappingTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.007
+    },
+    {
+      "class": "dev.tpp.DatabaseErrorsTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.002
+    },
+    {
+      "class": "dev.tpp.DomainRulesTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.004
+    },
+    {
+      "class": "dev.tpp.EventContractTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.02
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "tests": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 93.86
+    },
+    {
+      "class": "dev.tpp.OutboxMigrationUpgradeTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.95
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 9.997
+    }
+  ],
+  "tests": 64,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "unit": 16,
+  "real_dependency_integration": 48,
+  "static_analysis": {
+    "tool": "SpotBugs Maven 4.10.4.1",
+    "effort": "Max",
+    "threshold": "Medium",
+    "bugs": 0,
+    "errors": 0,
+    "documented_exclusions": "config/spotbugs-exclude.xml"
+  },
+  "dependency_checks": [
+    "dependencyConvergence",
+    "requireReleaseDeps"
+  ],
+  "github_actions_executed": false
+}

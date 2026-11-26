@@ -1,0 +1,1847 @@
+{
+  "environment": {
+    "started_at": "2026-10-11T12:53:39.056926+00:00",
+    "python": "3.13.0",
+    "os": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+    "architecture": "arm64",
+    "logical_cpu_count": 12,
+    "hostname": "192.168.1.10",
+    "base_url": "http://127.0.0.1:8080",
+    "environment_notes": "Apple M2 Max; 12 logical cores; 32 GiB RAM; macOS 26.7.1 arm64; Docker Desktop client 24.0.6; Docker VM 13 CPUs and 7.667 GiB; Eclipse Temurin Java 21.0.12.1 container; application 0.1.0 Spring Boot 4.1.1; PostgreSQL 17.11 container; Hikari pool max16/minidle2, acquisition timeout2000ms; lock timeout200ms, statement timeout3000ms, maxattempts3, backoff20ms; default Compose app on localhost8080; PostgreSQL Docker bridge; Python3.13 host client; no concurrent load or application/database mutations; executed sequentially after8worker run; previous fixture history remains but measured accounts are fresh",
+    "dataset": {
+      "version": 1,
+      "namespace": "ab606de1-3a18-4f76-b2bc-3c05c0e33bbf",
+      "created_at": "2026-10-11T12:53:38.804241+00:00",
+      "workers": 16,
+      "funding_per_source": 1000000000,
+      "issuance_account": "0c23aa01-d4d8-5433-b541-ccad26536aaa",
+      "low": [
+        [
+          "5ae0cb68-e132-5a1e-a4d0-e4cffe7696bc",
+          "1504118b-a57b-591d-874a-6507625e958a"
+        ],
+        [
+          "4dfdbbe9-1357-5777-944c-7d2ae2e2e662",
+          "2c378e4e-bfb2-590c-b39a-b28f2dc63f13"
+        ],
+        [
+          "03647be3-0f8c-55a4-a5ad-e17a237e0513",
+          "3505eb8b-e90e-5106-8dcc-2a3b46d7430a"
+        ],
+        [
+          "aeb64fc4-4b84-5bb1-861f-c6ed78d7fb31",
+          "d31e5bf9-3a2b-5392-8aa6-5d90b6f72328"
+        ],
+        [
+          "616d91f2-8b9d-5315-8888-2c723226beff",
+          "56960191-06e7-53d1-b546-791ece2ab6c4"
+        ],
+        [
+          "106a3596-f3da-56d3-90c8-b02b52d6b7b1",
+          "f26e7c5d-213e-5359-86f3-c3d8dfedc8a1"
+        ],
+        [
+          "516c290f-df8e-5e49-bbb0-4a825bbe9a2e",
+          "16c3849e-549e-5fda-93ce-d9bc3aec0545"
+        ],
+        [
+          "0accc2cf-476c-5b33-8d01-36542b48a02a",
+          "08fe0053-1197-5675-80d3-f73717e88a25"
+        ],
+        [
+          "e8f4fdaf-fae2-5cd7-9067-c03c7ddbb123",
+          "7bab3fb0-f05c-51fc-972f-77bca015f00e"
+        ],
+        [
+          "d735e8ec-eb57-5210-9f81-0a403daa59cd",
+          "d42700e6-5f6c-5b8c-9de5-538fe10f84ea"
+        ],
+        [
+          "c25b5034-c648-5a8d-ab54-37328372a28a",
+          "eb1272e6-3fbf-527d-8c6f-587e5394cbae"
+        ],
+        [
+          "56cff8ae-884a-5521-b0c7-98c2ddc7b06f",
+          "97033b94-1602-5e0c-a4ba-7f24a64c2c4a"
+        ],
+        [
+          "19eaae0c-12d7-533d-adea-77a3a30cf9e0",
+          "625d38aa-9ff5-53fe-bfb7-df55c698abac"
+        ],
+        [
+          "443f60bf-147c-5059-9ba0-117bda0f764d",
+          "870f3535-cfee-5a5d-b49d-03439c57d048"
+        ],
+        [
+          "bbace786-dce9-5b01-a991-44d5cac4ca3a",
+          "3bfec6d2-f548-503d-bda2-859c01b52fa4"
+        ],
+        [
+          "3f54303c-fdef-5ad6-aece-7ae0ba20a0d9",
+          "b79ce17c-256f-5982-bec9-aebc84c068b6"
+        ]
+      ],
+      "high": [
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "428d2643-9cd1-5cb4-a88d-c97a4bb5133e"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "cf90ce99-040c-5dc4-aff9-490eebdfebb7"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "d5d9e09e-1d3c-5d01-8884-73efbcc45edf"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "34ed74dd-fab2-5122-ad37-79d7a24797db"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "546829e7-8be6-50b2-b875-aaae42904cb6"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "8aa1d593-dff3-5789-8668-d24d7686816f"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "e77d4b9f-63d4-5291-95f1-0e2202832c8b"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "6a44f0f5-c616-505c-a23c-c7739d70a809"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "2628bd77-2030-5ae7-8a9e-8aff574ed4cd"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "91fb27cf-a752-59c1-9d55-c617c59d01e0"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "5e7fa689-7961-5268-9b80-bd21db5565ed"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "18bce2c1-7ccb-54e6-af4a-3d8ad684b809"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "20be7c42-fb14-57ef-aba7-11f45cd25d95"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "6414afd3-1fea-5232-8718-f160f8a16eb8"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "f04f10b2-d926-568f-b310-1329158155dd"
+        ],
+        [
+          "adbd268d-6abc-5af1-b6b1-cdef54cf92b7",
+          "af27ae3f-44f2-5f91-acb6-42f8e8587976"
+        ]
+      ],
+      "account_count": 50
+    },
+    "dataset_path": "docs/benchmarks/local-16-workers.dataset.json",
+    "run_id": "e11130b5-d960-48b7-bc9f-2794add9e0f2",
+    "load_model": "closed-loop persistent HTTP: each worker waits for the previous response; no retries",
+    "latency_definition": "wall time from HTTP request start to full response/error, nearest-rank percentiles",
+    "throughput_definition": "requests or successful transfer responses divided by wall time including final request drain",
+    "lock_sampling_note": "periodic snapshots can miss short waits; wait age includes statement execution before blocking",
+    "metrics_note": "actuator counters are process-wide; run without unrelated traffic; sampler contributes HTTP metrics",
+    "postgres": {
+      "version": "PostgreSQL 17.11 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+      "server_version": "17.11",
+      "max_connections": "100",
+      "shared_buffers": "128MB",
+      "transaction_isolation": "read committed"
+    },
+    "container_provenance": {
+      "captured_after_run_at": "2026-10-11T12:55:49.896937+00:00",
+      "docker_engine_version": "24.0.6",
+      "docker_compose_version": "2.22.0-desktop.2",
+      "app_local_image_id": "sha256:120a408cbc538893a6701abc3efccbcf5237ed1d019abbc3f9d4ded11d7420ef",
+      "postgres_local_image_id": "sha256:25a89970a83255ae96484d709005bb35aa71f7455f941bc1634514f31c5d5c62",
+      "postgres_registry_digest": "postgres@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "java_runtime": "Temurin-21.0.12.1+1-LTS",
+      "compose_project": "tpp-phase1-validation",
+      "runtime_database_role": "tpp_app"
+    }
+  },
+  "results": [
+    {
+      "scenario": "low",
+      "phase": "measurement",
+      "workers": 16,
+      "requested_duration_seconds": 15.0,
+      "elapsed_including_drain_seconds": 15.009288125002058,
+      "offered_requests": 26844,
+      "received_http_responses": 26844,
+      "completed_transfers": 26844,
+      "ambiguous_client_errors": 0,
+      "offered_requests_per_second": 1788.4925505083752,
+      "completed_transfers_per_second": 1788.4925505083752,
+      "http_status_distribution": {
+        "201": 26844
+      },
+      "error_distribution": {},
+      "request_latency_ms": {
+        "count": 26844,
+        "p50": 8.028250013012439,
+        "p95": 14.896208012942225,
+        "p99": 25.5113749881275,
+        "mean": 8.9360322842064,
+        "max": 131.89354102360085
+      },
+      "completed_transfer_latency_ms": {
+        "count": 26844,
+        "p50": 8.028250013012439,
+        "p95": 14.896208012942225,
+        "p99": 25.5113749881275,
+        "mean": 8.9360322842064,
+        "max": 131.89354102360085
+      },
+      "warmup": {
+        "scenario": "low",
+        "phase": "warmup",
+        "workers": 16,
+        "requested_duration_seconds": 3.0,
+        "elapsed_including_drain_seconds": 3.0051341250073165,
+        "offered_requests": 8536,
+        "received_http_responses": 8536,
+        "completed_transfers": 8536,
+        "ambiguous_client_errors": 0,
+        "offered_requests_per_second": 2840.4722201805944,
+        "completed_transfers_per_second": 2840.4722201805944,
+        "http_status_distribution": {
+          "201": 8536
+        },
+        "error_distribution": {},
+        "request_latency_ms": {
+          "count": 8536,
+          "p50": 5.285209015710279,
+          "p95": 8.239832997787744,
+          "p99": 12.117457983549684,
+          "mean": 5.622101285518976,
+          "max": 36.78404199308716
+        },
+        "completed_transfer_latency_ms": {
+          "count": 8536,
+          "p50": 5.285209015710279,
+          "p95": 8.239832997787744,
+          "p99": 12.117457983549684,
+          "mean": 5.622101285518976,
+          "max": 36.78404199308716
+        }
+      },
+      "metrics_before": {
+        "values": {
+          "transfer.requests": {
+            "COUNT": 67336.0,
+            "TOTAL_TIME": 401.973606923,
+            "MAX": 0.087265
+          },
+          "transfer.transaction": {
+            "COUNT": 67336.0,
+            "TOTAL_TIME": 398.840772991,
+            "MAX": 0.087222875
+          },
+          "transfer.outcomes": {
+            "COUNT": 67336.0
+          },
+          "hikaricp.connections.active": {
+            "VALUE": 0.0
+          },
+          "hikaricp.connections.idle": {
+            "VALUE": 16.0
+          },
+          "hikaricp.connections.pending": {
+            "VALUE": 0.0
+          },
+          "hikaricp.connections.max": {
+            "VALUE": 16.0
+          },
+          "http.server.requests": {
+            "COUNT": 67706.0,
+            "TOTAL_TIME": 413.71938564,
+            "MAX": 0.131748251
+          }
+        },
+        "unavailable": [
+          "transfer.retries",
+          "database.errors"
+        ]
+      },
+      "metrics_after": {
+        "values": {
+          "transfer.requests": {
+            "COUNT": 94180.0,
+            "TOTAL_TIME": 585.91943563,
+            "MAX": 0.127066792
+          },
+          "transfer.transaction": {
+            "COUNT": 94180.0,
+            "TOTAL_TIME": 580.539508557,
+            "MAX": 0.127036042
+          },
+          "transfer.outcomes": {
+            "COUNT": 94180.0
+          },
+          "hikaricp.connections.active": {
+            "VALUE": 0.0
+          },
+          "hikaricp.connections.idle": {
+            "VALUE": 16.0
+          },
+          "hikaricp.connections.pending": {
+            "VALUE": 0.0
+          },
+          "hikaricp.connections.max": {
+            "VALUE": 16.0
+          },
+          "http.server.requests": {
+            "COUNT": 94650.0,
+            "TOTAL_TIME": 603.6204102810001,
+            "MAX": 0.131748251
+          }
+        },
+        "unavailable": [
+          "transfer.retries",
+          "database.errors"
+        ]
+      },
+      "metric_deltas": {
+        "transfer.requests": {
+          "COUNT": 26844.0,
+          "TOTAL_TIME": 183.94582870699998,
+          "MEAN_MS": 6.852400115742809
+        },
+        "transfer.transaction": {
+          "COUNT": 26844.0,
+          "TOTAL_TIME": 181.69873556599998,
+          "MEAN_MS": 6.7686907899716875
+        },
+        "transfer.outcomes": {
+          "COUNT": 26844.0
+        },
+        "http.server.requests": {
+          "COUNT": 26944.0,
+          "TOTAL_TIME": 189.9010246410001,
+          "MEAN_MS": 7.047989334953983
+        }
+      },
+      "observations": {
+        "sample_count": 22,
+        "requested_interval_seconds": 0.5,
+        "pool": {
+          "hikaricp.connections.active": {
+            "max": 14.0,
+            "mean": 9.909090909090908
+          },
+          "hikaricp.connections.idle": {
+            "max": 16.0,
+            "mean": 6.181818181818182
+          },
+          "hikaricp.connections.pending": {
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "hikaricp.connections.max": {
+            "max": 16.0,
+            "mean": 16.0
+          },
+          "active_fraction_of_max": {
+            "max": 0.875,
+            "mean": 0.6193181818181818
+          }
+        },
+        "postgres_lock_observations": {
+          "sample_count": 22,
+          "samples_with_lock_waits": 0,
+          "max_lock_waiting_sessions": 0,
+          "max_blocked_sessions": 0,
+          "max_observed_lock_wait_seconds": 0
+        },
+        "sampling_errors": {},
+        "samples": [
+          {
+            "elapsed_seconds": 7.500057108700275e-07,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 11,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 0.6795535830024164,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 5,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 1.3360474170185626,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 14.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 2.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 9,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 2.005617125018034,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 14.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 2.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 7,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 2.6783972500124946,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 10.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 6.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 6,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 3.341099583019968,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 10.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 6.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 10,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 4.0120571670122445,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 12.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 5.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 9,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 4.678050542017445,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 12.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 5.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 9,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 5.352054832997965,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 10.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 6.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 12,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 6.020520374993794,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 10.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 6.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 8,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 6.71205375000136,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 8.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 8.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 3,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 7.402421542006778,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 8.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 8.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 10,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 8.088859292009147,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 13.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 3.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 15,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 8.778503250010544,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 13.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 3.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 10,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 9.602710125007434,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 12.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 4.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 15,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 10.289321417018073,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 12.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 4.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 8,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 10.952105792006478,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 10.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 6.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 9,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 11.631390458001988,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 10.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 6.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 10,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 12.33569379200344,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 12.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 4.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 8,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 13.020197083009407,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 12.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 4.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 5,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 13.68248400001903,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 8.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 8.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 10,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          },
+          {
+            "elapsed_seconds": 14.384416125016287,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 8.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 8.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 10,
+              "lock_waiting_sessions": 0,
+              "blocked_sessions": 0,
+              "longest_lock_wait_seconds": 0,
+              "ungranted_locks": 0
+            }
+          }
+        ]
+      },
+      "reconciliation_before": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      },
+      "reconciliation_after": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      }
+    },
+    {
+      "scenario": "high",
+      "phase": "measurement",
+      "workers": 16,
+      "requested_duration_seconds": 15.0,
+      "elapsed_including_drain_seconds": 15.05038908298593,
+      "offered_requests": 5300,
+      "received_http_responses": 5300,
+      "completed_transfers": 5300,
+      "ambiguous_client_errors": 0,
+      "offered_requests_per_second": 352.15036440430043,
+      "completed_transfers_per_second": 352.15036440430043,
+      "http_status_distribution": {
+        "201": 5300
+      },
+      "error_distribution": {},
+      "request_latency_ms": {
+        "count": 5300,
+        "p50": 43.65166698698886,
+        "p95": 62.710124999284744,
+        "p99": 77.11154202115722,
+        "mean": 45.35202959764371,
+        "max": 117.68616602057591
+      },
+      "completed_transfer_latency_ms": {
+        "count": 5300,
+        "p50": 43.65166698698886,
+        "p95": 62.710124999284744,
+        "p99": 77.11154202115722,
+        "mean": 45.35202959764371,
+        "max": 117.68616602057591
+      },
+      "warmup": {
+        "scenario": "high",
+        "phase": "warmup",
+        "workers": 16,
+        "requested_duration_seconds": 3.0,
+        "elapsed_including_drain_seconds": 3.029676334001124,
+        "offered_requests": 1875,
+        "received_http_responses": 1875,
+        "completed_transfers": 1875,
+        "ambiguous_client_errors": 0,
+        "offered_requests_per_second": 618.8779900207335,
+        "completed_transfers_per_second": 618.8779900207335,
+        "http_status_distribution": {
+          "201": 1875
+        },
+        "error_distribution": {},
+        "request_latency_ms": {
+          "count": 1875,
+          "p50": 25.156125018838793,
+          "p95": 31.642124988138676,
+          "p99": 33.92841698951088,
+          "mean": 25.720217677376542,
+          "max": 38.17425001761876
+        },
+        "completed_transfer_latency_ms": {
+          "count": 1875,
+          "p50": 25.156125018838793,
+          "p95": 31.642124988138676,
+          "p99": 33.92841698951088,
+          "mean": 25.720217677376542,
+          "max": 38.17425001761876
+        }
+      },
+      "metrics_before": {
+        "values": {
+          "transfer.requests": {
+            "COUNT": 96055.0,
+            "TOTAL_TIME": 633.025550853,
+            "MAX": 0.127066792
+          },
+          "transfer.transaction": {
+            "COUNT": 96055.0,
+            "TOTAL_TIME": 627.600044898,
+            "MAX": 0.127036042
+          },
+          "transfer.outcomes": {
+            "COUNT": 96055.0
+          },
+          "hikaricp.connections.active": {
+            "VALUE": 0.0
+          },
+          "hikaricp.connections.idle": {
+            "VALUE": 16.0
+          },
+          "hikaricp.connections.pending": {
+            "VALUE": 0.0
+          },
+          "hikaricp.connections.max": {
+            "VALUE": 16.0
+          },
+          "http.server.requests": {
+            "COUNT": 96537.0,
+            "TOTAL_TIME": 651.2861126230001,
+            "MAX": 0.1937565
+          }
+        },
+        "unavailable": [
+          "transfer.retries",
+          "database.errors"
+        ]
+      },
+      "metrics_after": {
+        "values": {
+          "transfer.requests": {
+            "COUNT": 101355.0,
+            "TOTAL_TIME": 869.009430119,
+            "MAX": 0.127066792
+          },
+          "transfer.transaction": {
+            "COUNT": 101355.0,
+            "TOTAL_TIME": 863.388605599,
+            "MAX": 0.127036042
+          },
+          "transfer.outcomes": {
+            "COUNT": 101355.0
+          },
+          "hikaricp.connections.active": {
+            "VALUE": 15.0
+          },
+          "hikaricp.connections.idle": {
+            "VALUE": 1.0
+          },
+          "hikaricp.connections.pending": {
+            "VALUE": 0.0
+          },
+          "hikaricp.connections.max": {
+            "VALUE": 16.0
+          },
+          "http.server.requests": {
+            "COUNT": 101945.0,
+            "TOTAL_TIME": 888.0886456370001,
+            "MAX": 0.1937565
+          }
+        },
+        "unavailable": [
+          "transfer.retries",
+          "database.errors"
+        ]
+      },
+      "metric_deltas": {
+        "transfer.requests": {
+          "COUNT": 5300.0,
+          "TOTAL_TIME": 235.98387926599992,
+          "MEAN_MS": 44.52526023886791
+        },
+        "transfer.transaction": {
+          "COUNT": 5300.0,
+          "TOTAL_TIME": 235.78856070100005,
+          "MEAN_MS": 44.48840767943397
+        },
+        "transfer.outcomes": {
+          "COUNT": 5300.0
+        },
+        "http.server.requests": {
+          "COUNT": 5408.0,
+          "TOTAL_TIME": 236.802533014,
+          "MEAN_MS": 43.78745063128699
+        }
+      },
+      "observations": {
+        "sample_count": 24,
+        "requested_interval_seconds": 0.5,
+        "pool": {
+          "hikaricp.connections.active": {
+            "max": 16.0,
+            "mean": 14.416666666666666
+          },
+          "hikaricp.connections.idle": {
+            "max": 16.0,
+            "mean": 1.5833333333333333
+          },
+          "hikaricp.connections.pending": {
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "hikaricp.connections.max": {
+            "max": 16.0,
+            "mean": 16.0
+          },
+          "active_fraction_of_max": {
+            "max": 1.0,
+            "mean": 0.9010416666666666
+          }
+        },
+        "postgres_lock_observations": {
+          "sample_count": 24,
+          "samples_with_lock_waits": 24,
+          "max_lock_waiting_sessions": 15,
+          "max_blocked_sessions": 15,
+          "max_observed_lock_wait_seconds": 0.062761
+        },
+        "sampling_errors": {},
+        "samples": [
+          {
+            "elapsed_seconds": 6.67001586407423e-07,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.027715,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 0.631761041993741,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 15,
+              "lock_waiting_sessions": 14,
+              "blocked_sessions": 14,
+              "longest_lock_wait_seconds": 0.030507,
+              "ungranted_locks": 14
+            }
+          },
+          {
+            "elapsed_seconds": 1.2636128749873023,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 15.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 1.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 14,
+              "lock_waiting_sessions": 14,
+              "blocked_sessions": 14,
+              "longest_lock_wait_seconds": 0.033733,
+              "ungranted_locks": 14
+            }
+          },
+          {
+            "elapsed_seconds": 1.907075666997116,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 15.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 1.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 15,
+              "lock_waiting_sessions": 14,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.035753,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 2.553120124997804,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 15,
+              "lock_waiting_sessions": 14,
+              "blocked_sessions": 14,
+              "longest_lock_wait_seconds": 0.038619,
+              "ungranted_locks": 14
+            }
+          },
+          {
+            "elapsed_seconds": 3.196810708992416,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.037267,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 3.8375042919942643,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.041498,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 4.475765208975645,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.041078,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 5.1255713339778595,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 15,
+              "lock_waiting_sessions": 14,
+              "blocked_sessions": 14,
+              "longest_lock_wait_seconds": 0.036686,
+              "ungranted_locks": 14
+            }
+          },
+          {
+            "elapsed_seconds": 5.748511833982775,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 14,
+              "longest_lock_wait_seconds": 0.062761,
+              "ungranted_locks": 14
+            }
+          },
+          {
+            "elapsed_seconds": 6.398513249994721,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 15,
+              "lock_waiting_sessions": 14,
+              "blocked_sessions": 14,
+              "longest_lock_wait_seconds": 0.036782,
+              "ungranted_locks": 14
+            }
+          },
+          {
+            "elapsed_seconds": 7.045545916975243,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.042818,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 7.69276758399792,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 15.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 1.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.04334,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 8.337232416990446,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 15.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 1.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.044476,
+              "ungranted_locks": 13
+            }
+          },
+          {
+            "elapsed_seconds": 8.984558625001227,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 14,
+              "lock_waiting_sessions": 14,
+              "blocked_sessions": 14,
+              "longest_lock_wait_seconds": 0.049937,
+              "ungranted_locks": 14
+            }
+          },
+          {
+            "elapsed_seconds": 9.628165374975652,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.049813,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 10.281750291993376,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 14,
+              "lock_waiting_sessions": 14,
+              "blocked_sessions": 14,
+              "longest_lock_wait_seconds": 0.04427,
+              "ungranted_locks": 14
+            }
+          },
+          {
+            "elapsed_seconds": 10.916588499996578,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.055982,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 11.5665675419732,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.061689,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 12.222412333998363,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.048447,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 12.857745624991367,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.049112,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 13.48760249998304,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 16.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 14,
+              "lock_waiting_sessions": 14,
+              "blocked_sessions": 14,
+              "longest_lock_wait_seconds": 0.049865,
+              "ungranted_locks": 14
+            }
+          },
+          {
+            "elapsed_seconds": 14.12559616699582,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 15.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 1.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.049478,
+              "ungranted_locks": 15
+            }
+          },
+          {
+            "elapsed_seconds": 14.764382499997737,
+            "pool": {
+              "values": {
+                "hikaricp.connections.active": {
+                  "VALUE": 15.0
+                },
+                "hikaricp.connections.idle": {
+                  "VALUE": 1.0
+                },
+                "hikaricp.connections.pending": {
+                  "VALUE": 0.0
+                },
+                "hikaricp.connections.max": {
+                  "VALUE": 16.0
+                }
+              },
+              "unavailable": []
+            },
+            "postgres": {
+              "active_sessions": 16,
+              "lock_waiting_sessions": 15,
+              "blocked_sessions": 15,
+              "longest_lock_wait_seconds": 0.056629,
+              "ungranted_locks": 15
+            }
+          }
+        ]
+      },
+      "reconciliation_before": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      },
+      "reconciliation_after": {
+        "consistent": true,
+        "balanceMismatches": [],
+        "invalidTransfers": [],
+        "totalLedgerDelta": 0,
+        "totalMaterializedBalance": 0
+      }
+    }
+  ],
+  "finished_at": "2026-10-11T12:54:16.075960+00:00"
+}

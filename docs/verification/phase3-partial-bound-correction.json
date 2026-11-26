@@ -1,0 +1,108 @@
+{
+  "recordedAt": "2026-10-11T15:58:40.303740+00:00",
+  "method": "partialBrokerOutageAndDeadlineKeepActualProducerWorkBoundedAcrossTheNextBatch",
+  "failedFullGate": {
+    "sourceCommitPrefix": "1737a27",
+    "log": "/private/tmp/tpp-phase3-clean-verify.log",
+    "tests": 94,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "failure": "Expected6actualoutstanding, observed0. The failed case persisted2AMBIGUOUS outcomes and4TRANSIENT BATCH_NOT_SENT outcomes; it did not submit all six later records. No claim is made that six actual callbacks drained.",
+    "cause": "A long stopped-broker preparation window let metadata availability change. Synchronous metadata send failure could consume the narrow remaining coordinator budget, making the cached-metadata/enqueue assumption invalid.",
+    "staticGate": "Not reached because test gate failed; full run remains a failed result."
+  },
+  "correction": "Pause/unpause only the suite-owned real Kafka container, retaining established transport/metadata while suppressing broker processing/ACKs. Explicitly await2accepted ACKs and0in-flight before pausing; use test-only wider request/delivery/lease windows with setup/submission budget assertions. Keep strict8send+enqueue attempts,2ACKs,0failures,6actualoutstanding, nextclaims<=2, polled outstanding upper bound8, real callback failure drain and same-ID projection/reconciliation recovery.",
+  "testOnlySettings": {
+    "batchSize": 8,
+    "deliveryTimeoutMs": 10000,
+    "requestTimeoutMs": 10000,
+    "leaseMs": 30000,
+    "maxBlockMs": 500,
+    "setupDeadlineMs": 5000,
+    "resumeAfterMs": 8500,
+    "latestResumeMs": 9500,
+    "coordinatorBudgetMs": 11500
+  },
+  "resourceCleanup": "Per-case finally unpauses the exact owned broker; AfterEach also tracks/resolves paused state before further cases. Existing stopped-broker scenarios are unchanged.",
+  "productionChanged": false,
+  "benchmarkHarnessOrImageChanged": false,
+  "productionSha256": "ec191c623cee90bbe88c2d5132a5511c870abb25080edb13a7d4f9c01b1df3ed",
+  "helperSha256": "42eaa86f1fec13ba312b384df0dae352b5247bde1a8da3c9418301543e3903bf",
+  "finalTestSha256": "27c8e85f83c2fe35960fd11ae6a040e72ef0f795370eafda9fd5b0bd66ef7eb4",
+  "diff": "/private/tmp/tpp-phase3-partial-bound-final.patch",
+  "runs": [
+    {
+      "label": "first corrected run",
+      "sourceVersion": "initial",
+      "testSourceSha256": "a71fb432270a61d50b5996f8f30d203bdfdf5993ad3d908ac67bc093583b00d4",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "suiteSeconds": 31.902,
+      "log": "/private/tmp/tpp-phase3-partial-bound-focused.log",
+      "logSha256": "911e8d8a63ed7d1e73aa601277f76c788ae5ec54f8f8d4f725c127d3fa4647a3",
+      "surefire": "/private/tmp/tpp-phase3-partial-bound-first-surefire.xml",
+      "actualTransportEvidence": [
+        "ActualBatchBound firstDeadline {inFlight=6.0, sendAttempts=8.0, acceptedAcks=2.0, failedAcks=0.0, enqueueCompletions=8.0}",
+        "ActualBatchBound nextClaim inFlight=6.0 outstanding=6.0 claimed=2"
+      ]
+    },
+    {
+      "label": "accidental duplicate before staging wait",
+      "sourceVersion": "initial",
+      "testSourceSha256": "a71fb432270a61d50b5996f8f30d203bdfdf5993ad3d908ac67bc093583b00d4",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "suiteSeconds": 33.041,
+      "log": "/private/tmp/tpp-phase3-partial-bound-duplicate.log",
+      "logSha256": "355fa491dc26bc3202aa4f323f9c987ecc7980458fa3ae52b777f285e4d0afc5",
+      "surefire": "/private/tmp/tpp-phase3-partial-bound-duplicate-surefire.xml",
+      "actualTransportEvidence": [
+        "ActualBatchBound firstDeadline {failedAcks=0.0, enqueueCompletions=8.0, inFlight=6.0, sendAttempts=8.0, acceptedAcks=2.0}",
+        "ActualBatchBound nextClaim inFlight=6.0 outstanding=6.0 claimed=2"
+      ]
+    },
+    {
+      "label": "final staged run",
+      "sourceVersion": "final",
+      "testSourceSha256": "27c8e85f83c2fe35960fd11ae6a040e72ef0f795370eafda9fd5b0bd66ef7eb4",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "suiteSeconds": 32.137,
+      "log": "/private/tmp/tpp-phase3-partial-bound-final-focused.log",
+      "logSha256": "3fad6b50e079dc0ff127d36a6397845cd921628f270e594ab72b89f29221a87a",
+      "surefire": "/private/tmp/tpp-phase3-partial-bound-final-surefire.xml",
+      "actualTransportEvidence": [
+        "ActualBatchBound prePause acceptedAcks=2 inFlight=0",
+        "ActualBatchBound firstDeadline {enqueueCompletions=8.0, failedAcks=0.0, acceptedAcks=2.0, sendAttempts=8.0, inFlight=6.0}",
+        "ActualBatchBound nextClaim inFlight=6.0 outstanding=6.0 claimed=2"
+      ]
+    }
+  ],
+  "orchestrationContext": "A preparation assertion on formatted text failed before any source write; the follow-on command mistakenly repeated the already-passing initial correction. The final staged run was launched immediately before the parent stop instruction arrived, then explicitly allowed to finish for owned paused-broker cleanup. These are three executions of one case across two source versions, not three distinct coverage cases.",
+  "finalSuiteExpected": {
+    "tests": 94,
+    "unit": 34,
+    "realDependencyIntegration": 60,
+    "status": "Confirmed by separate fresh-checkout final clean verification"
+  },
+  "finalTestCommit": "7668f94024ab5b6295f3662b3e89cd5ea480ea45",
+  "finalFullVerification": {
+    "status": "PASS",
+    "evidence": "phase3-clean-verify.json",
+    "tests": 94,
+    "unitTests": 34,
+    "realDependencyIntegrationTests": 60,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "subsequentFullGateEvidence": "phase3-clean-second-failure.json",
+  "finalAcceptanceSourceCommit": "2c859cb28d3b1898a2a7d25c5c87d7a0a0a3dbe4"
+}

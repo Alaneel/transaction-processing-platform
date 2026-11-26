@@ -1,0 +1,20 @@
+{
+  "sourceCommit": "cba44277524cb6b10c688a225afee9d396dfd135",
+  "image": "sha256:8755901073b5f306e0ccaa5e7271fff931c57b494dbb3a5b342ce99bf78b99e2",
+  "containerId": "e8c2f3a80d1fe4e092d54d5c651e27e6b0ac90e26e0ee7fa1292882d96949433",
+  "containerStartedAt": "2026-10-11T14:39:41.671597466Z",
+  "javaOptions": "-XX:StartFlightRecording=name=phase3-baseline,settings=profile,duration=60s,filename=/tmp/phase3-baseline.jfr,maxsize=16m",
+  "recordingDurationSeconds": 60,
+  "recordingMaxSize": "16MiB",
+  "createdFor": "diagnostic only; excluded from matched unprofiled comparison",
+  "observedAt": "2026-10-11T14:39:52.406333+00:00",
+  "complete": true,
+  "recordingRetained": true,
+  "recordingFailure": "Initial destination dump returned an I/O error at60s and left a zero-byte destination. The valid completed repository chunk was recovered, verified and scrubbed; original failure log retained.",
+  "recoveryMethod": "Recovered the completed60-second disk repository chunk after destination dump I/O failure; hostJDK summary verified its metadata; excluded environment-variable/system-property events before retaining.",
+  "retainedRecordingBytes": 2585710,
+  "excludedEvents": [
+    "jdk.InitialEnvironmentVariable",
+    "jdk.InitialSystemProperty"
+  ]
+}

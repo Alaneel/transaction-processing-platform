@@ -1,0 +1,49 @@
+{
+  "preparedAtUtc": "2026-10-14T13:01:19.790919+00:00",
+  "purpose": "Finite final-server security dependency control, local only; not a distribution artifact",
+  "sourceHead": "7a43792d2961e54cb86bb0ac82ac07071bd88276",
+  "builderCacheImageId": "sha256:6b688950c3d5793a3792ddc029bee482479b4804862cb6f1fb4f11e32f2710a0",
+  "patchedRuntimeImageId": "sha256:c2b35c339d32b795ba82ad27df7d24aa5d629dd98c5958233f779ea705c37751",
+  "productionSourceIdentical": true,
+  "patchedPomSha256": "0262f5b0d1b86ccebcd6c8de211a03da6f3aa297774600984d08135fdfb4f9a5",
+  "controlPomSha256": "e50c6f508709ba293af86bdbd5140b28d16eab37d8c7b1377d489d3e9c513f1d",
+  "commonDockerfileSha256": "e0891a516c8175239d5eccd7f80e65559e9ab731d5f690f9d1b25b473f1b6ac6",
+  "controlDockerfileSha256": "56f3dd69d821a0f334396fe7610dda488f07c7c68021c7ed05e076008815a41e",
+  "differences": "Remove only three managed app security overrides and their LZ4 management entry. Current build-only plugin patches, main source, final JDK/JRE and signed OS package patches remain common; clean package recompiles the control. Attribution versions match each actual app graph.",
+  "controlRuntimeImageId": "sha256:4a76ec9fec2af937095a5cc0cdb17fb10724596d24f28f09c2305f435ebdf2b1",
+  "controlBuildEvidence": "final-control-build-execution.json",
+  "sameCompiledApplicationAndConfiguration": true,
+  "actualRuntimeJarDifferences": [
+    {
+      "name": "tools.jackson.core:jackson-core",
+      "baselineVersion": "3.1.5",
+      "patchedVersion": "3.1.7"
+    },
+    {
+      "name": "tools.jackson.core:jackson-databind",
+      "baselineVersion": "3.1.5",
+      "patchedVersion": "3.1.7"
+    },
+    {
+      "name": "at.yawk.lz4:lz4-java",
+      "baselineVersion": "1.10.2",
+      "patchedVersion": "1.11.4"
+    },
+    {
+      "name": "org.apache.tomcat.embed:tomcat-embed-core",
+      "baselineVersion": "11.0.24",
+      "patchedVersion": "11.0.27"
+    },
+    {
+      "name": "org.apache.tomcat.embed:tomcat-embed-el",
+      "baselineVersion": "11.0.24",
+      "patchedVersion": "11.0.27"
+    },
+    {
+      "name": "org.apache.tomcat.embed:tomcat-embed-websocket",
+      "baselineVersion": "11.0.24",
+      "patchedVersion": "11.0.27"
+    }
+  ],
+  "containerRuntimeInventoriesFile": "final-container-runtime-inventories.json"
+}

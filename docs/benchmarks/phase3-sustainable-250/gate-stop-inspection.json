@@ -1,0 +1,105 @@
+{
+  "/actuator/health/readiness": {
+    "http": 200,
+    "body": {
+      "status": "UP"
+    }
+  },
+  "/internal/events/status": {
+    "http": 200,
+    "body": {
+      "relayEnabled": true,
+      "consumerEnabled": true,
+      "outbox": {
+        "pending": 0,
+        "claimed": 0,
+        "published": 178795,
+        "blocked": 0,
+        "expiredClaims": 0,
+        "oldestPendingAgeSeconds": 0.0
+      }
+    }
+  },
+  "/internal/events/reconciliation": {
+    "http": 200,
+    "body": {
+      "completedTransfers": 178795,
+      "processedEvents": 178795,
+      "projectedTransfers": 178795,
+      "quarantinedRecords": 0,
+      "missingProjection": 0,
+      "publishedAwaitingProjection": 0,
+      "inboxWithoutProjection": 0,
+      "projectionWithoutInbox": 0,
+      "activityShapeDiscrepancies": 0,
+      "originDiscrepancies": 0,
+      "discrepancies": 0,
+      "oldestUnprocessedAgeSeconds": null,
+      "lastProcessedAt": "2026-10-11T15:29:47.891800Z",
+      "lastProcessedEventOccurredAt": "2026-10-11T15:29:47.791744Z",
+      "checkedAt": "2026-10-11T15:32:11.852964174Z"
+    }
+  },
+  "/actuator/metrics/hikaricp.connections.active": {
+    "http": 200,
+    "body": {
+      "availableTags": [
+        {
+          "tag": "pool",
+          "values": [
+            "HikariPool-1"
+          ]
+        }
+      ],
+      "description": "Active connections",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "name": "hikaricp.connections.active"
+    }
+  },
+  "/actuator/metrics/hikaricp.connections.pending": {
+    "http": 200,
+    "body": {
+      "availableTags": [
+        {
+          "tag": "pool",
+          "values": [
+            "HikariPool-1"
+          ]
+        }
+      ],
+      "description": "Pending threads",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "name": "hikaricp.connections.pending"
+    }
+  },
+  "containers": {
+    "exit": 0,
+    "output": "{\"Command\":\"\\\"java -jar /app/application.jar\\\"\",\"CreatedAt\":\"2026-10-11 23:29:01 +0800 +08\",\"ExitCode\":0,\"Health\":\"healthy\",\"ID\":\"9df449cfd25fdac81a808652c92bb45c78ba6995b4e2b82c70dfdb60f2cf49e6\",\"Image\":\"sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69\",\"Labels\":\"com.docker.compose.depends_on=,com.docker.compose.image=sha256:fbcc4197cc10a882984330d1416926aecdb87a50816b5404cf0826a14e2ded69,com.docker.compose.project=tpp-phase3-validation,com.docker.compose.project.working_dir=/local/workspace/transaction-processing-platform,com.docker.compose.version=2.22.0,com.docker.compose.config-hash=b2b4f1d4ecc49442fec7625faea2d7764e7ff026e4f51d6c666faf332b90ce73,com.docker.compose.container-number=1,com.docker.compose.replace=11d458ba1cf3ae1b0cb22201a8b6e397e4a4b354aa0df42e6cb854e5d1f12792,com.docker.compose.service=app,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=/local/workspace/transaction-processing-platform/compose.yaml,/local/temp/tpp-phase3-suite-6slmfkoo/image.json\",\"LocalVolumes\":\"0\",\"Mounts\":\"\",\"Name\":\"tpp-phase3-validation-app-1\",\"Names\":\"tpp-phase3-validation-app-1\",\"Networks\":\"tpp-phase3-validation_default\",\"Ports\":\"127.0.0.1:28080-\\u003e8080/tcp\",\"Publishers\":[{\"URL\":\"127.0.0.1\",\"TargetPort\":8080,\"PublishedPort\":28080,\"Protocol\":\"tcp\"}],\"RunningFor\":\"3 minutes ago\",\"Service\":\"app\",\"Size\":\"0B\",\"State\":\"running\",\"Status\":\"Up 3 minutes (healthy)\"}\n{\"Command\":\"\\\"docker-entrypoint.sh postgres\\\"\",\"CreatedAt\":\"2026-10-11 22:34:55 +0800 +08\",\"ExitCode\":0,\"Health\":\"healthy\",\"ID\":\"f4653c2d0250ffec70b0d253dcb5b570130a9d72d9bdecbdcdf9d542ecc962ca\",\"Image\":\"postgres:17.11-alpine\",\"Labels\":\"com.docker.compose.service=db,desktop.docker.io/binds/0/SourceKind=hostFile,desktop.docker.io/binds/0/Target=/docker-entrypoint-initdb.d/10-runtime-role.sh,com.docker.compose.image=sha256:25a89970a83255ae96484d709005bb35aa71f7455f941bc1634514f31c5d5c62,com.docker.compose.oneoff=False,com.docker.compose.project=tpp-phase3-validation,com.docker.compose.config-hash=b7956d5a43c30f52783303014056978ab1a5f4a5a55c8b992158a75253264e75,com.docker.compose.project.config_files=/local/workspace/transaction-processing-platform/compose.yaml,/private/tmp/tpp-phase3-image.yaml,desktop.docker.io/binds/0/Source=/local/workspace/transaction-processing-platform/scripts/init-db.sh,com.docker.compose.container-number=1,com.docker.compose.depends_on=,com.docker.compose.version=2.22.0,com.docker.compose.project.working_dir=/local/workspace/transaction-processing-platform\",\"LocalVolumes\":\"1\",\"Mounts\":\"/host_mnt/local/workspace/transaction-processing-platform/scripts/init-db.sh,tpp-phase3-validation_pgdata\",\"Name\":\"tpp-phase3-validation-db-1\",\"Names\":\"tpp-phase3-validation-db-1\",\"Networks\":\"tpp-phase3-validation_default\",\"Ports\":\"127.0.0.1:55434-\\u003e5432/tcp\",\"Publishers\":[{\"URL\":\"127.0.0.1\",\"TargetPort\":5432,\"PublishedPort\":55434,\"Protocol\":\"tcp\"}],\"RunningFor\":\"57 minutes ago\",\"Service\":\"db\",\"Size\":\"0B\",\"State\":\"running\",\"Status\":\"Up 57 minutes (healthy)\"}\n{\"Command\":\"\\\"/__cacert_entrypoint.sh /etc/kafka/docker/run\\\"\",\"CreatedAt\":\"2026-10-11 22:34:55 +0800 +08\",\"ExitCode\":0,\"Health\":\"healthy\",\"ID\":\"91f81ccd069f2d4a9c13343d646868eb8066a99bac055166f3dfc8758bc7bc28\",\"Image\":\"apache/kafka:4.3.1\",\"Labels\":\"com.docker.compose.version=2.22.0,org.label-schema.description=Apache Kafka,org.opencontainers.image.authors=Apache Kafka,com.docker.compose.config-hash=3ba820d0a4b108ecccd74dcdd9dcf379d6a97038654fa472c60296ddafb899be,com.docker.compose.image=sha256:33241f6eae1f4e20cd5c01dd3e38656201f7eaca675664276a87e8f440fcbaa4,com.docker.compose.project.config_files=/local/workspace/transaction-processing-platform/compose.yaml,/private/tmp/tpp-phase3-image.yaml,com.docker.compose.project.working_dir=/local/workspace/transaction-processing-platform,com.docker.compose.service=kafka,com.docker.compose.container-number=1,org.label-schema.vcs-url=https://github.com/apache/kafka,org.label-schema.build-date=2026-06-17,org.label-schema.name=kafka,com.docker.compose.depends_on=,com.docker.compose.oneoff=False,com.docker.compose.project=tpp-phase3-validation\",\"LocalVolumes\":\"3\",\"Mounts\":\"7f380012727fdd57d1fe59f07c1ca72ffc679a9c122aa833e474fbd84e454df4,01b3f8627d6ef5889f5db88dab431b0a2e4d0f7b4b51b7cd3ebc164ef2b62358,tpp-phase3-validation_kafkadata\",\"Name\":\"tpp-phase3-validation-kafka-1\",\"Names\":\"tpp-phase3-validation-kafka-1\",\"Networks\":\"tpp-phase3-validation_default\",\"Ports\":\"9092/tcp, 127.0.0.1:29092-\\u003e19092/tcp\",\"Publishers\":[{\"URL\":\"\",\"TargetPort\":9092,\"PublishedPort\":0,\"Protocol\":\"tcp\"},{\"URL\":\"127.0.0.1\",\"TargetPort\":19092,\"PublishedPort\":29092,\"Protocol\":\"tcp\"}],\"RunningFor\":\"57 minutes ago\",\"Service\":\"kafka\",\"Size\":\"0B\",\"State\":\"running\",\"Status\":\"Up 11 minutes (healthy)\"}\n",
+    "diagnostic": ""
+  },
+  "dbLog": {
+    "exit": 0,
+    "output": "tpp-phase3-validation-db-1  | \tWHERE t.status<>'COMPLETED' OR o.event_id IS DISTINCT FROM p.event_id OR\ntpp-phase3-validation-db-1  | \tROW(p.source_account_id,p.destination_account_id,p.amount_minor,p.unit,p.occurred_at)\ntpp-phase3-validation-db-1  | \t  IS DISTINCT FROM ROW(t.source_account_id,t.destination_account_id,t.amount,t.unit,t.completed_at)\ntpp-phase3-validation-db-1  | \t\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:25.157 UTC [30274] ERROR:  could not resize shared memory segment \"/PostgreSQL.976042420\" to 16777216 bytes: No space left on device\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:25.157 UTC [30274] STATEMENT:  SELECT count(*) FROM transfer_activity_projection p\ntpp-phase3-validation-db-1  | \tJOIN transfers t ON t.id=p.transfer_id LEFT JOIN outbox_events o ON o.transfer_id=t.id\ntpp-phase3-validation-db-1  | \tWHERE t.status<>'COMPLETED' OR o.event_id IS DISTINCT FROM p.event_id OR\ntpp-phase3-validation-db-1  | \tROW(p.source_account_id,p.destination_account_id,p.amount_minor,p.unit,p.occurred_at)\ntpp-phase3-validation-db-1  | \t  IS DISTINCT FROM ROW(t.source_account_id,t.destination_account_id,t.amount,t.unit,t.completed_at)\ntpp-phase3-validation-db-1  | \t\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:25.162 UTC [1] LOG:  background worker \"parallel worker\" (PID 31381) exited with exit code 1\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:25.162 UTC [1] LOG:  background worker \"parallel worker\" (PID 31382) exited with exit code 1\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:31.171 UTC [31421] ERROR:  could not resize shared memory segment \"/PostgreSQL.3744105744\" to 16777216 bytes: No space left on device\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:31.171 UTC [31421] STATEMENT:  SELECT count(*) FROM transfer_activity_projection p\ntpp-phase3-validation-db-1  | \tJOIN transfers t ON t.id=p.transfer_id LEFT JOIN outbox_events o ON o.transfer_id=t.id\ntpp-phase3-validation-db-1  | \tWHERE t.status<>'COMPLETED' OR o.event_id IS DISTINCT FROM p.event_id OR\ntpp-phase3-validation-db-1  | \tROW(p.source_account_id,p.destination_account_id,p.amount_minor,p.unit,p.occurred_at)\ntpp-phase3-validation-db-1  | \t  IS DISTINCT FROM ROW(t.source_account_id,t.destination_account_id,t.amount,t.unit,t.completed_at)\ntpp-phase3-validation-db-1  | \t\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:31.172 UTC [31420] ERROR:  could not resize shared memory segment \"/PostgreSQL.2926941484\" to 16777216 bytes: No space left on device\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:31.172 UTC [31420] STATEMENT:  SELECT count(*) FROM transfer_activity_projection p\ntpp-phase3-validation-db-1  | \tJOIN transfers t ON t.id=p.transfer_id LEFT JOIN outbox_events o ON o.transfer_id=t.id\ntpp-phase3-validation-db-1  | \tWHERE t.status<>'COMPLETED' OR o.event_id IS DISTINCT FROM p.event_id OR\ntpp-phase3-validation-db-1  | \tROW(p.source_account_id,p.destination_account_id,p.amount_minor,p.unit,p.occurred_at)\ntpp-phase3-validation-db-1  | \t  IS DISTINCT FROM ROW(t.source_account_id,t.destination_account_id,t.amount,t.unit,t.completed_at)\ntpp-phase3-validation-db-1  | \t\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:31.174 UTC [30274] ERROR:  could not resize shared memory segment \"/PostgreSQL.3843648366\" to 16777216 bytes: No space left on device\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:31.174 UTC [30274] STATEMENT:  SELECT count(*) FROM transfer_activity_projection p\ntpp-phase3-validation-db-1  | \tJOIN transfers t ON t.id=p.transfer_id LEFT JOIN outbox_events o ON o.transfer_id=t.id\ntpp-phase3-validation-db-1  | \tWHERE t.status<>'COMPLETED' OR o.event_id IS DISTINCT FROM p.event_id OR\ntpp-phase3-validation-db-1  | \tROW(p.source_account_id,p.destination_account_id,p.amount_minor,p.unit,p.occurred_at)\ntpp-phase3-validation-db-1  | \t  IS DISTINCT FROM ROW(t.source_account_id,t.destination_account_id,t.amount,t.unit,t.completed_at)\ntpp-phase3-validation-db-1  | \t\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:31.176 UTC [1] LOG:  background worker \"parallel worker\" (PID 31421) exited with exit code 1\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:31.178 UTC [1] LOG:  background worker \"parallel worker\" (PID 31420) exited with exit code 1\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:37.180 UTC [31460] ERROR:  could not resize shared memory segment \"/PostgreSQL.3894451098\" to 16777216 bytes: No space left on device\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:37.180 UTC [31460] STATEMENT:  SELECT count(*) FROM transfer_activity_projection p\ntpp-phase3-validation-db-1  | \tJOIN transfers t ON t.id=p.transfer_id LEFT JOIN outbox_events o ON o.transfer_id=t.id\ntpp-phase3-validation-db-1  | \tWHERE t.status<>'COMPLETED' OR o.event_id IS DISTINCT FROM p.event_id OR\ntpp-phase3-validation-db-1  | \tROW(p.source_account_id,p.destination_account_id,p.amount_minor,p.unit,p.occurred_at)\ntpp-phase3-validation-db-1  | \t  IS DISTINCT FROM ROW(t.source_account_id,t.destination_account_id,t.amount,t.unit,t.completed_at)\ntpp-phase3-validation-db-1  | \t\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:37.182 UTC [31459] ERROR:  could not resize shared memory segment \"/PostgreSQL.280314556\" to 16777216 bytes: No space left on device\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:37.182 UTC [31459] STATEMENT:  SELECT count(*) FROM transfer_activity_projection p\ntpp-phase3-validation-db-1  | \tJOIN transfers t ON t.id=p.transfer_id LEFT JOIN outbox_events o ON o.transfer_id=t.id\ntpp-phase3-validation-db-1  | \tWHERE t.status<>'COMPLETED' OR o.event_id IS DISTINCT FROM p.event_id OR\ntpp-phase3-validation-db-1  | \tROW(p.source_account_id,p.destination_account_id,p.amount_minor,p.unit,p.occurred_at)\ntpp-phase3-validation-db-1  | \t  IS DISTINCT FROM ROW(t.source_account_id,t.destination_account_id,t.amount,t.unit,t.completed_at)\ntpp-phase3-validation-db-1  | \t\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:37.184 UTC [30274] ERROR:  could not resize shared memory segment \"/PostgreSQL.3106530850\" to 16777216 bytes: No space left on device\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:37.184 UTC [30274] STATEMENT:  SELECT count(*) FROM transfer_activity_projection p\ntpp-phase3-validation-db-1  | \tJOIN transfers t ON t.id=p.transfer_id LEFT JOIN outbox_events o ON o.transfer_id=t.id\ntpp-phase3-validation-db-1  | \tWHERE t.status<>'COMPLETED' OR o.event_id IS DISTINCT FROM p.event_id OR\ntpp-phase3-validation-db-1  | \tROW(p.source_account_id,p.destination_account_id,p.amount_minor,p.unit,p.occurred_at)\ntpp-phase3-validation-db-1  | \t  IS DISTINCT FROM ROW(t.source_account_id,t.destination_account_id,t.amount,t.unit,t.completed_at)\ntpp-phase3-validation-db-1  | \t\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:37.187 UTC [1] LOG:  background worker \"parallel worker\" (PID 31460) exited with exit code 1\ntpp-phase3-validation-db-1  | 2026-10-11 15:30:37.188 UTC [1] LOG:  background worker \"parallel worker\" (PID 31459) exited with exit code 1\ntpp-phase3-validation-db-1  | 2026-10-11 15:32:05.148 UTC [57] LOG:  checkpoint complete: wrote 1322 buffers (8.1%); 0 WAL file(s) added, 0 removed, 20 recycled; write=127.515 s, sync=0.004 s, total=127.537 s; sync files=59, longest=0.001 s, average=0.001 s; distance=330026 kB, estimate=367342 kB; lsn=0/72E52218, redo lsn=0/6EC05000\n",
+    "diagnostic": ""
+  },
+  "brokerOffsets": {
+    "exit": 0,
+    "output": "\nGROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID\ntpp-activity-v1 tpp.transfer-completed.v1 0          59242           59242           0               tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a-a293fd29-6bf6-4bfc-a585-461700d8dd02 /172.25.0.4     tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a\ntpp-activity-v1 tpp.transfer-completed.v1 1          59852           59852           0               tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a-a293fd29-6bf6-4bfc-a585-461700d8dd02 /172.25.0.4     tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a\ntpp-activity-v1 tpp.transfer-completed.v1 2          59701           59701           0               tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a-a293fd29-6bf6-4bfc-a585-461700d8dd02 /172.25.0.4     tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a\n",
+    "diagnostic": ""
+  },
+  "sql": {
+    "exit": 0,
+    "output": "{\"now\" : \"2026-10-11T15:32:13.629324+00:00\", \"outboxCounts\" : { \"PUBLISHED\" : 178795 }, \"missingInbox\" : 0, \"activity\" : [{\"user\" : \"tpp_app\", \"state\" : \"idle\", \"waitType\" : \"Client\", \"wait\" : \"ClientRead\", \"query\" : \"\", \"queryStart\" : \"2026-10-11T15:31:30.335128+00:00\"}, {\"user\" : \"tpp_app\", \"state\" : \"idle\", \"waitType\" : \"Client\", \"wait\" : \"ClientRead\", \"query\" : \"COMMIT\", \"queryStart\" : \"2026-10-11T15:32:13.541757+00:00\"}, {\"user\" : \"tpp_app\", \"state\" : \"idle\", \"waitType\" : \"Client\", \"wait\" : \"ClientRead\", \"query\" : \"\", \"queryStart\" : \"2026-10-11T15:31:43.421644+00:00\"}, {\"user\" : \"tpp_app\", \"state\" : \"idle\", \"waitType\" : \"Client\", \"wait\" : \"ClientRead\", \"query\" : \"\", \"queryStart\" : \"2026-10-11T15:32:03.510446+00:00\"}, {\"user\" : \"tpp_app\", \"state\" : \"idle\", \"waitType\" : \"Client\", \"wait\" : \"ClientRead\", \"query\" : \"SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL READ COMMITTED\", \"queryStart\" : \"2026-10-11T15:32:11.853149+00:00\"}, {\"user\" : \"tpp_app\", \"state\" : \"idle\", \"waitType\" : \"Client\", \"wait\" : \"ClientRead\", \"query\" : \"\", \"queryStart\" : \"2026-10-11T15:32:13.543917+00:00\"}, {\"user\" : \"tpp_app\", \"state\" : \"idle\", \"waitType\" : \"Client\", \"wait\" : \"ClientRead\", \"query\" : \"COMMIT\", \"queryStart\" : \"2026-10-11T15:32:13.619382+00:00\"}, {\"user\" : \"tpp_app\", \"state\" : \"idle\", \"waitType\" : \"Client\", \"wait\" : \"ClientRead\", \"query\" : \"\", \"queryStart\" : \"2026-10-11T15:31:03.244139+00:00\"}, {\"user\" : \"tpp_app\", \"state\" : \"idle\", \"waitType\" : \"Client\", \"wait\" : \"ClientRead\", \"query\" : \"\", \"queryStart\" : \"2026-10-11T15:31:13.2818+00:00\"}, {\"user\" : \"tpp_app\", \"state\" : \"idle\", \"waitType\" : \"Client\", \"wait\" : \"ClientRead\", \"query\" : \"\", \"queryStart\" : \"2026-10-11T15:30:58.89699+00:00\"}, {\"user\" : \"tpp_app\", \"state\" : \"idle\", \"waitType\" : \"Client\", \"wait\" : \"ClientRead\", \"query\" : \"\", \"queryStart\" : \"2026-10-11T15:31:53.460545+00:00\"}, {\"user\" : \"tpp\", \"state\" : \"active\", \"waitType\" : null, \"wait\" : null, \"query\" : \"SELECT json_build_object('now',clock_timestamp(),'outboxCounts',(SELECT json_object_agg(status,n) FROM (SELECT status,count(*) n FROM outbox_events GROUP BY status) x),'missingInbox',(SELECT count(*) FROM outbox_events o LEFT JOIN event_inbox i USING(event_id) WHERE i.event_id IS NULL),'activity',(SELECT json_agg(json_build_object('user',usename,'s\", \"queryStart\" : \"2026-10-11T15:32:13.62283+00:00\"}]}\n",
+    "diagnostic": ""
+  }
+}

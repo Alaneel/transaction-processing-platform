@@ -1,0 +1,102 @@
+{
+  "population": "Final patched common PostgreSQL/Kafka/native packages; new independent four-trial ABBA, distinct from 13 October pre-server population",
+  "verifiedAtUtc": "2026-10-14T13:15:33.148288+00:00",
+  "complete": true,
+  "trials": [
+    {
+      "position": 1,
+      "condition": "baseline",
+      "measuredCompletions": 6881,
+      "completedTransfersPerSecond": 687.2362042254858,
+      "propagationP99Seconds": 22.334249110000002,
+      "scopedEventsIncludingWarmup": 7018,
+      "clockGuardValid": true,
+      "clockPeakDiscontinuitySeconds": 0.0003153759171254933,
+      "clockSampleCount": 142,
+      "httpErrors": {},
+      "warmupErrors": {},
+      "committedOffsetsComplete": true,
+      "warmupSchedule": {
+        "offered_operations": 150,
+        "started_operations": 137,
+        "locally_shed_operations": 13,
+        "completed_operations": 137,
+        "error_distribution": {}
+      }
+    },
+    {
+      "position": 2,
+      "condition": "patched",
+      "measuredCompletions": 7213,
+      "completedTransfersPerSecond": 720.7942697632777,
+      "propagationP99Seconds": 18.81739212,
+      "scopedEventsIncludingWarmup": 7363,
+      "clockGuardValid": true,
+      "clockPeakDiscontinuitySeconds": 0.00029665406327694654,
+      "clockSampleCount": 134,
+      "httpErrors": {},
+      "warmupErrors": {},
+      "committedOffsetsComplete": true,
+      "warmupSchedule": {
+        "offered_operations": 150,
+        "started_operations": 150,
+        "locally_shed_operations": 0,
+        "completed_operations": 150,
+        "error_distribution": {}
+      }
+    },
+    {
+      "position": 3,
+      "condition": "patched",
+      "measuredCompletions": 7078,
+      "completedTransfersPerSecond": 707.1963843379,
+      "propagationP99Seconds": 18.04340383,
+      "scopedEventsIncludingWarmup": 7228,
+      "clockGuardValid": true,
+      "clockPeakDiscontinuitySeconds": 0.0003015866968780756,
+      "clockSampleCount": 135,
+      "httpErrors": {},
+      "warmupErrors": {},
+      "committedOffsetsComplete": true,
+      "warmupSchedule": {
+        "offered_operations": 150,
+        "started_operations": 150,
+        "locally_shed_operations": 0,
+        "completed_operations": 150,
+        "error_distribution": {}
+      }
+    },
+    {
+      "position": 4,
+      "condition": "baseline",
+      "measuredCompletions": 6306,
+      "completedTransfersPerSecond": 629.9603540045517,
+      "propagationP99Seconds": 17.7044686,
+      "scopedEventsIncludingWarmup": 6456,
+      "clockGuardValid": true,
+      "clockPeakDiscontinuitySeconds": 0.0002855810453183949,
+      "clockSampleCount": 129,
+      "httpErrors": {},
+      "warmupErrors": {},
+      "committedOffsetsComplete": true,
+      "warmupSchedule": {
+        "offered_operations": 150,
+        "started_operations": 150,
+        "locally_shed_operations": 0,
+        "completed_operations": 150,
+        "error_distribution": {}
+      }
+    }
+  ],
+  "measuredCompletions": 27478,
+  "scopedEventsIncludingWarmup": 28065,
+  "warmupEvents": 587,
+  "clockContinuity": "250 ms host wall/monotonic observations over each complete benchmark subprocess; 1 s discontinuity rejection threshold; all passed. Does not establish dedicated hardware or universal clock accuracy.",
+  "images": {
+    "baseline": "sha256:4a76ec9fec2af937095a5cc0cdb17fb10724596d24f28f09c2305f435ebdf2b1",
+    "patched": "sha256:c2b35c339d32b795ba82ad27df7d24aa5d629dd98c5958233f779ea705c37751"
+  },
+  "patchedImageRestored": true,
+  "offeredWarmupArrivals": 600,
+  "locallyShedWarmupArrivals": 13
+}

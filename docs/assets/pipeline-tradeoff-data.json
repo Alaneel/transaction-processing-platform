@@ -1,0 +1,41 @@
+{
+  "definition": "Four retained independent-pair ten-second closed-loop trials, in measured ABBA order",
+  "measuredBaselineCommit": "cba44277524cb6b10c688a225afee9d396dfd135",
+  "measuredOptimizedCommit": "66dc7c9cbcdd312f9df5ed427520bc398d7696a0",
+  "limits": "Single local shared host; two repeats per condition; propagation includes warmup; final lifecycle correction was not rebenchmarked",
+  "summarySha256": "ba919b5f222146555f86bacd28df2898884635ce9d96a714d4bc5a8aaf7ac2e8",
+  "trials": [
+    {
+      "position": 1,
+      "condition": "baseline",
+      "httpCompletionsPerSecond": 1242.290564960569,
+      "propagationP99Seconds": 109.37244899999999,
+      "rawReport": "docs/benchmarks/phase3-low-1-baseline.json",
+      "rawSha256": "76f190e9233e3da6cf6a8f968334871a3319c0bd5be7c53ce5e76bb821d905cd"
+    },
+    {
+      "position": 2,
+      "condition": "optimized",
+      "httpCompletionsPerSecond": 1079.1030105598022,
+      "propagationP99Seconds": 13.98798616,
+      "rawReport": "docs/benchmarks/phase3-low-2-optimized.json",
+      "rawSha256": "ab8d563465bdde92d0e3a19c34be9d9664c3a31caaa80d853d094fd168e2824a"
+    },
+    {
+      "position": 3,
+      "condition": "optimized",
+      "httpCompletionsPerSecond": 1083.8482811022002,
+      "propagationP99Seconds": 14.45349094,
+      "rawReport": "docs/benchmarks/phase3-low-3-optimized.json",
+      "rawSha256": "176b766e61254884581b93a979b16e55ea52a7a7c6e012010468b907a6d3e334"
+    },
+    {
+      "position": 4,
+      "condition": "baseline",
+      "httpCompletionsPerSecond": 1220.2912056392036,
+      "propagationP99Seconds": 94.08244230000001,
+      "rawReport": "docs/benchmarks/phase3-low-4-baseline.json",
+      "rawSha256": "ddca73be6238a21f107b58c82349b1f4d59127eca3770d38d4babf4e4022c555"
+    }
+  ]
+}

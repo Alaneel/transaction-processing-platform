@@ -1,0 +1,6 @@
+**
+!kafka.Dockerfile
+!alpine-packages.lock
+!install-alpine-patches.sh
+!kafka-libraries.lock
+!update-kafka-libraries.sh

@@ -1,0 +1,5 @@
+
+GROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID
+tpp-activity-v1 tpp.transfer-completed.v1 0          23389           23523           134             tpp-projection-87b54dd4-5654-47a1-a136-333178c09916-a62c597c-ff72-4e62-95c9-9797032c64db /172.24.0.4     tpp-projection-87b54dd4-5654-47a1-a136-333178c09916
+tpp-activity-v1 tpp.transfer-completed.v1 1          23688           23801           113             tpp-projection-87b54dd4-5654-47a1-a136-333178c09916-a62c597c-ff72-4e62-95c9-9797032c64db /172.24.0.4     tpp-projection-87b54dd4-5654-47a1-a136-333178c09916
+tpp-activity-v1 tpp.transfer-completed.v1 2          23477           23606           129             tpp-projection-87b54dd4-5654-47a1-a136-333178c09916-a62c597c-ff72-4e62-95c9-9797032c64db /172.24.0.4     tpp-projection-87b54dd4-5654-47a1-a136-333178c09916

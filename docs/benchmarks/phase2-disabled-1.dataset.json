@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "namespace": "427ec503-84f3-4496-b6ae-127e1ee41441",
+  "created_at": "2026-10-11T13:41:33.031265+00:00",
+  "workers": 8,
+  "funding_per_source": 1000000000,
+  "issuance_account": "01da87b9-7ac1-521d-9c3b-35574ece4921",
+  "low": [
+    [
+      "ba6d2f6a-79dc-5b52-91e0-58408cc162ea",
+      "4fdd5517-1d6d-5b79-9942-8145fed43714"
+    ],
+    [
+      "9fb9f1e6-497f-5a0c-9fd5-f76316cc92b3",
+      "31772cbf-43fc-54e9-87d1-490aa55bbfd2"
+    ],
+    [
+      "d8cd123c-51bf-5ccb-bc2b-7d3273efccbd",
+      "68223078-08c9-5ee7-9673-fcab4c2f15ce"
+    ],
+    [
+      "4b8233f2-3178-5a3c-b440-efece349720d",
+      "2f274c82-274f-588a-b0da-b3ef246e3e07"
+    ],
+    [
+      "e283a634-9568-59d5-b53e-1c8e2a7d82f2",
+      "d5c99b90-a444-5a2b-b0a6-254295d3e2ca"
+    ],
+    [
+      "b3299d9f-9ddf-5fc0-b7e6-aa5f143612b9",
+      "079e6668-65cd-5fac-9ead-20db5bd6a7bc"
+    ],
+    [
+      "ad2291cc-01c4-52f2-a824-4bbfbac38a25",
+      "5d4e5e81-ac1e-5847-a005-17ec30366284"
+    ],
+    [
+      "fe07c0a8-34ee-5d7d-941c-6ea1eed9c565",
+      "6911e03a-e496-548c-886d-e622fff6e9c4"
+    ]
+  ],
+  "high": [
+    [
+      "47a0ecde-c6c9-50e7-b7ac-f539179cb210",
+      "c6657310-bebd-514c-a5d9-e393047bea67"
+    ],
+    [
+      "47a0ecde-c6c9-50e7-b7ac-f539179cb210",
+      "c3e46fcb-0d07-58ed-9308-8e4a32144a78"
+    ],
+    [
+      "47a0ecde-c6c9-50e7-b7ac-f539179cb210",
+      "41cd4a18-4290-5649-81c8-175285f16ab0"
+    ],
+    [
+      "47a0ecde-c6c9-50e7-b7ac-f539179cb210",
+      "e85f70a4-d09d-5ee3-b237-4b3dc31b48dc"
+    ],
+    [
+      "47a0ecde-c6c9-50e7-b7ac-f539179cb210",
+      "6faabb0c-3396-5459-9094-aa731b6a7d53"
+    ],
+    [
+      "47a0ecde-c6c9-50e7-b7ac-f539179cb210",
+      "23585ef8-62c8-5e49-8983-4165c825b950"
+    ],
+    [
+      "47a0ecde-c6c9-50e7-b7ac-f539179cb210",
+      "da49b19b-5c90-5fad-8248-6195d76c422a"
+    ],
+    [
+      "47a0ecde-c6c9-50e7-b7ac-f539179cb210",
+      "d197fab2-2aa8-5112-ba3e-b110db53808c"
+    ]
+  ],
+  "account_count": 26
+}

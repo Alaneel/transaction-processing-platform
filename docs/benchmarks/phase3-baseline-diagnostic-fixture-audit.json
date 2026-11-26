@@ -1,0 +1,7 @@
+{
+  "dataset": "c200345a-22f3-43d7-826a-c86fc688dde2",
+  "rejectionCounts": {
+    "INSUFFICIENT_FUNDS": 10
+  },
+  "reason": "The original fixed-arrival diagnostic used source-only funding. Missing or reordered forward requests can leave a reverse source unfunded. Subsequent matched fixtures fund both pair sides."
+}

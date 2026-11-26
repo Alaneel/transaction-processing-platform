@@ -1,0 +1,265 @@
+{
+  "startedAt": "2026-10-11T14:04:19.764807+00:00",
+  "project": "tpp-phase2-validation",
+  "measuredImage": "sha256:dc8eaa74cdddb7371ae10c94a3e79584c53acb3bbd225ffbb505a103478f4769",
+  "steps": [
+    {
+      "at": "2026-10-11T14:04:21.405706+00:00",
+      "operation": "stop and remove only owned Kafka service container, retaining named volume",
+      "kafkaContainerAbsent": true
+    }
+  ],
+  "phase1Before": {
+    "app": {
+      "id": "4ce9c10aae8e0f986493f1d2b08138fcc706de21491b767ac7e8e464459a56d5",
+      "image": "sha256:18f2aba048ad57d63f28ffaf630a68d6fc6e5d26b69200e54a1895c7f766b873",
+      "created": "2026-10-11T12:55:27.194331459Z",
+      "startedAt": "2026-10-11T12:55:28.137976835Z",
+      "health": "healthy",
+      "mounts": []
+    },
+    "db": {
+      "id": "b909edf3497bce6cdca42c273f4fc45681d6d29aa0e9cfc6c7eae462aa9d8320",
+      "image": "sha256:25a89970a83255ae96484d709005bb35aa71f7455f941bc1634514f31c5d5c62",
+      "created": "2026-10-11T12:48:24.904918333Z",
+      "startedAt": "2026-10-11T12:48:25.103496375Z",
+      "health": "healthy",
+      "mounts": [
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/docker-entrypoint-initdb.d/10-runtime-role.sh"
+        },
+        {
+          "type": "volume",
+          "name": "tpp-phase1-validation_pgdata",
+          "destination": "/var/lib/postgresql/data"
+        }
+      ]
+    }
+  },
+  "kafkaBefore": {
+    "id": "9e480d5dcb81f57c34c4140327c42d70dd770bd2764e1577a3d7150692bf5fc9",
+    "image": "sha256:33241f6eae1f4e20cd5c01dd3e38656201f7eaca675664276a87e8f440fcbaa4",
+    "created": "2026-10-11T13:38:55.484494958Z",
+    "startedAt": "2026-10-11T13:56:20.775365679Z",
+    "health": "healthy",
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "tpp-phase2-validation_kafkadata",
+        "destination": "/var/lib/kafka/data"
+      },
+      {
+        "type": "volume",
+        "name": "d5ef33537cdf31bc3095ea0fa534113ec4580b1f30b729ff1cc67d226f691a6b",
+        "destination": "/etc/kafka/secrets"
+      },
+      {
+        "type": "volume",
+        "name": "4d67e01fe5e44a774f19214b4ee832429a8a27489b796495d7e9db410c76c0a8",
+        "destination": "/mnt/shared/config"
+      }
+    ]
+  },
+  "finalAppBeforeRecovery": {
+    "id": "71ee656b83dc79cb7e483541b6b8f74ff0439529a7f56b9c3c1b81ad7b3f9e33",
+    "image": "sha256:aa585ad7255b0a55ded7729456af46d79a3fb5743e2412c97fcfb6a2bb634948",
+    "created": "2026-10-11T14:04:21.513526887Z",
+    "startedAt": "2026-10-11T14:04:21.869181887Z",
+    "health": "healthy",
+    "mounts": []
+  },
+  "brokerAbsentObservation": {
+    "at": "2026-10-11T14:04:32.676082+00:00",
+    "readiness": {
+      "status": "UP"
+    },
+    "eventStatus": {
+      "relayEnabled": true,
+      "consumerEnabled": true,
+      "outbox": {
+        "pending": 0,
+        "claimed": 0,
+        "published": 76484,
+        "blocked": 0,
+        "expiredClaims": 0,
+        "oldestPendingAgeSeconds": 0.0
+      }
+    },
+    "consumerRunning": 1.0,
+    "consumerStartupRetries": 6.0,
+    "bootstrapLookupExit": 2,
+    "bootstrapLookupOutput": ""
+  },
+  "transferWhileBrokerAbsent": {
+    "at": "2026-10-11T14:04:32.948573+00:00",
+    "httpStatus": 201,
+    "transfer": {
+      "id": "f069d06a-6bff-46e9-8058-65100c04ed14",
+      "sourceAccountId": "00000000-0000-0000-0000-000000000002",
+      "destinationAccountId": "00000000-0000-0000-0000-000000000003",
+      "amount": 11,
+      "unit": "FIC",
+      "status": "COMPLETED",
+      "rejectionCode": null,
+      "createdAt": "2026-10-11T14:04:32.725878Z",
+      "completedAt": "2026-10-11T14:04:32.735525Z"
+    },
+    "outbox": {
+      "eventId": "7a45867a-eeb8-4c5c-aec8-a897b9166f17",
+      "status": "PENDING",
+      "attemptCount": 1
+    },
+    "ledgerReconciliation": {
+      "consistent": true,
+      "balanceMismatches": [],
+      "invalidTransfers": [],
+      "totalLedgerDelta": 0,
+      "totalMaterializedBalance": 0
+    }
+  },
+  "kafkaAfter": {
+    "id": "3a146692654415f14049e7d62a8ae8bfe981769599d5d8f86d8f7fc7dd4348f1",
+    "image": "sha256:33241f6eae1f4e20cd5c01dd3e38656201f7eaca675664276a87e8f440fcbaa4",
+    "created": "2026-10-11T14:04:33.24447517Z",
+    "startedAt": "2026-10-11T14:04:33.407573795Z",
+    "health": "healthy",
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "8837da49d4b4cfc02cebcaa3f771cea8df99da154ff647abd1f3f64042d2720a",
+        "destination": "/mnt/shared/config"
+      },
+      {
+        "type": "volume",
+        "name": "tpp-phase2-validation_kafkadata",
+        "destination": "/var/lib/kafka/data"
+      },
+      {
+        "type": "volume",
+        "name": "492716b12412f05820813006b7d7da69db5c005a86444dd457eccdb487e342d1",
+        "destination": "/etc/kafka/secrets"
+      }
+    ]
+  },
+  "finalAppAfterRecovery": {
+    "id": "71ee656b83dc79cb7e483541b6b8f74ff0439529a7f56b9c3c1b81ad7b3f9e33",
+    "image": "sha256:aa585ad7255b0a55ded7729456af46d79a3fb5743e2412c97fcfb6a2bb634948",
+    "created": "2026-10-11T14:04:21.513526887Z",
+    "startedAt": "2026-10-11T14:04:21.869181887Z",
+    "health": "healthy",
+    "mounts": []
+  },
+  "recoveredObservation": {
+    "at": "2026-10-11T14:04:47.132953+00:00",
+    "readiness": {
+      "status": "UP"
+    },
+    "eventStatus": {
+      "relayEnabled": true,
+      "consumerEnabled": true,
+      "outbox": {
+        "pending": 0,
+        "claimed": 0,
+        "published": 76485,
+        "blocked": 0,
+        "expiredClaims": 0,
+        "oldestPendingAgeSeconds": 0.0
+      }
+    },
+    "consumerRunning": 1.0,
+    "consumerStartupRetries": 6.0,
+    "activity": {
+      "00000000-0000-0000-0000-000000000002": {
+        "id": 152969,
+        "eventId": "7a45867a-eeb8-4c5c-aec8-a897b9166f17",
+        "transferId": "f069d06a-6bff-46e9-8058-65100c04ed14",
+        "accountId": "00000000-0000-0000-0000-000000000002",
+        "deltaMinor": -11,
+        "unit": "FIC",
+        "occurredAt": "2026-10-11T14:04:32.735525Z",
+        "projectedAt": "2026-10-11T14:04:45.699832Z"
+      },
+      "00000000-0000-0000-0000-000000000003": {
+        "id": 152970,
+        "eventId": "7a45867a-eeb8-4c5c-aec8-a897b9166f17",
+        "transferId": "f069d06a-6bff-46e9-8058-65100c04ed14",
+        "accountId": "00000000-0000-0000-0000-000000000003",
+        "deltaMinor": 11,
+        "unit": "FIC",
+        "occurredAt": "2026-10-11T14:04:32.735525Z",
+        "projectedAt": "2026-10-11T14:04:45.700230Z"
+      }
+    },
+    "eventReconciliation": {
+      "completedTransfers": 76485,
+      "processedEvents": 76485,
+      "projectedTransfers": 76485,
+      "quarantinedRecords": 0,
+      "missingProjection": 0,
+      "publishedAwaitingProjection": 0,
+      "inboxWithoutProjection": 0,
+      "projectionWithoutInbox": 0,
+      "activityShapeDiscrepancies": 0,
+      "originDiscrepancies": 0,
+      "discrepancies": 0,
+      "oldestUnprocessedAgeSeconds": null,
+      "lastProcessedAt": "2026-10-11T14:04:45.696300Z",
+      "lastProcessedEventOccurredAt": "2026-10-11T14:04:32.735525Z",
+      "checkedAt": "2026-10-11T14:04:47.001465718Z"
+    },
+    "ledgerReconciliation": {
+      "consistent": true,
+      "balanceMismatches": [],
+      "invalidTransfers": [],
+      "totalLedgerDelta": 0,
+      "totalMaterializedBalance": 0
+    },
+    "outbox": {
+      "eventId": "7a45867a-eeb8-4c5c-aec8-a897b9166f17",
+      "status": "PUBLISHED",
+      "attemptCount": 5,
+      "publishedAt": "2026-10-11T14:04:35.836833+00:00"
+    }
+  },
+  "phase1After": {
+    "app": {
+      "id": "4ce9c10aae8e0f986493f1d2b08138fcc706de21491b767ac7e8e464459a56d5",
+      "image": "sha256:18f2aba048ad57d63f28ffaf630a68d6fc6e5d26b69200e54a1895c7f766b873",
+      "created": "2026-10-11T12:55:27.194331459Z",
+      "startedAt": "2026-10-11T12:55:28.137976835Z",
+      "health": "healthy",
+      "mounts": []
+    },
+    "db": {
+      "id": "b909edf3497bce6cdca42c273f4fc45681d6d29aa0e9cfc6c7eae462aa9d8320",
+      "image": "sha256:25a89970a83255ae96484d709005bb35aa71f7455f941bc1634514f31c5d5c62",
+      "created": "2026-10-11T12:48:24.904918333Z",
+      "startedAt": "2026-10-11T12:48:25.103496375Z",
+      "health": "healthy",
+      "mounts": [
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/docker-entrypoint-initdb.d/10-runtime-role.sh"
+        },
+        {
+          "type": "volume",
+          "name": "tpp-phase1-validation_pgdata",
+          "destination": "/var/lib/postgresql/data"
+        }
+      ]
+    }
+  },
+  "phase1Preserved": true,
+  "startupRetryLogCount": 6,
+  "complete": true,
+  "finishedAt": "2026-10-11T14:04:47.772816+00:00",
+  "finalChecks": {
+    "runtimeRoleEvidence": "phase2-final-runtime-role.txt",
+    "httpEventSmokeEvidence": "phase2-final-http-event-smoke.json",
+    "runtimeRolePassed": true,
+    "httpEventSmokePassed": true
+  }
+}

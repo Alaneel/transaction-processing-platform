@@ -1,0 +1,33 @@
+{
+  "auditedAt": "2026-10-11T16:18:31.915064+00:00",
+  "verifiedImplementationCommit": "2c859cb28d3b1898a2a7d25c5c87d7a0a0a3dbe4",
+  "runtimeImage": "sha256:3da213ca031c1f2aa0c229c35dcce2ee0bd5c719055e4c3186d335127bc5b0ee",
+  "automatedTestGate": "phase3-clean-verify.json",
+  "runtimeAcceptanceGate": "phase3-final-acceptance.json",
+  "checkedJsonArtifactsBeforeThisAuditFile": 146,
+  "checkedMarkdownFiles": 30,
+  "checkedLocalMarkdownLinks": 333,
+  "missingLocalTargets": [],
+  "sourceScriptsBuildAndCiFilesUnchangedFromVerifiedCommit": true,
+  "whitespaceCheck": "PASS for authored files and other artifacts; four byte-for-byte raw console captures retain original trailing spaces and are explicitly excluded from formatting checks.",
+  "finalReportRequiredSectionsPresent": true,
+  "finalReportHasNoPendingAcceptanceStatus": true,
+  "independentReview": "Reporting agent compared all84 percentile cells with raw series and audited final source/image/count/identity/offset/preservation evidence; no concrete inconsistency found. Parent independently compared build-start versus final container snapshots and checked actual acceptance assertions.",
+  "performanceTrials": 28,
+  "limitationsPreserved": [
+    "First optimized test phase passed92 but later static stage failed",
+    "Both earlier fresh94-test attempts failed setup assertions; focused correction failures retained separately",
+    "Original shared-account ordering confound and dependency HTTP503s",
+    "250/s operational shared-memory guard failure and explicit continuation",
+    "500/s consumer backlog and HTTP cost",
+    "Final lifecycle-corrected production source not rebenchmarked"
+  ],
+  "localOnly": true,
+  "rawConsoleFormattingExclusions": [
+    "docs/benchmarks/phase3-profile/baseline-jfr-failure.txt",
+    "docs/benchmarks/phase3-profile/baseline-jfr-summary.txt",
+    "docs/benchmarks/phase3-profile/seed-demo.sql.result.txt",
+    "docs/verification/phase3-final-build.log"
+  ],
+  "finalBuildLogRetainedDespiteDefaultLogIgnore": true
+}

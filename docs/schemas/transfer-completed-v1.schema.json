@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tpp:events:TransferCompleted:1",
+  "title": "TransferCompleted v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "transferId",
+    "sourceAccountId",
+    "destinationAccountId",
+    "eventType",
+    "schemaVersion",
+    "aggregateVersion",
+    "amountMinor",
+    "unit",
+    "occurredAt",
+    "correlationId"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "transferId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "sourceAccountId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "destinationAccountId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "eventType": {
+      "type": "string",
+      "const": "TransferCompleted"
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "aggregateVersion": {
+      "type": "integer",
+      "format": "int64",
+      "const": 1
+    },
+    "amountMinor": {
+      "type": "integer",
+      "format": "int64",
+      "minimum": 1,
+      "maximum": 9000000000000000
+    },
+    "unit": {
+      "type": "string",
+      "const": "FIC"
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlationId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+    }
+  }
+}

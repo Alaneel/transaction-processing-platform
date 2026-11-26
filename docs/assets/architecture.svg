@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="466" viewBox="0 0 1120 466" role="img" aria-labelledby="title desc">
+  <title id="title">Transaction Processing Platform: three durable boundaries</title>
+  <desc id="desc">A financial transaction commits the idempotent result, balances, paired ledger entries and outbox. A bounded relay sends to Kafka outside that transaction. The consumer atomically commits inbox and activity, or quarantine, before acknowledging offsets. Both transaction boundaries use one PostgreSQL database.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+  <rect width="1120" height="466" rx="18" fill="#f8fafc"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="35" y="45" font-size="23" font-weight="700" fill="#0f172a">Commit first. Deliver later. Deduplicate the effect.</text>
+    <text x="35" y="73" font-size="14" fill="#475569">One modular Java application · one PostgreSQL database · Kafka outside the financial transaction</text>
+    <rect x="34" y="108" width="339" height="283" rx="12" fill="#fff" stroke="#94a3b8"/>
+    <rect x="34" y="108" width="339" height="52" rx="12" fill="#0f172a"/>
+    <text x="53" y="140" font-size="17" font-weight="700" fill="#fff">1  Financial commit</text>
+    <text x="53" y="189" font-size="15" font-weight="700" fill="#0f172a">HTTP + durable idempotency key</text>
+    <text x="53" y="218" font-size="14" fill="#334155">Ordered account / balance locks</text>
+    <text x="53" y="246" font-size="14" fill="#334155">Immutable debit + credit postings</text>
+    <text x="53" y="274" font-size="14" fill="#334155">Terminal result + one outbox event</text>
+    <path d="M 54 294 H 351" stroke="#e2e8f0"/>
+    <text x="53" y="322" font-size="14" font-weight="700" fill="#0f766e">One PostgreSQL transaction</text>
+    <text x="53" y="349" font-size="13" fill="#475569">Deferred checks must pass at COMMIT.</text>
+    <text x="53" y="373" font-size="13" fill="#475569">The HTTP result follows that commit.</text>
+    <rect x="407" y="108" width="299" height="283" rx="12" fill="#fff" stroke="#94a3b8"/>
+    <rect x="407" y="108" width="299" height="52" rx="12" fill="#334155"/>
+    <text x="426" y="140" font-size="17" font-weight="700" fill="#fff">2  Recoverable delivery</text>
+    <text x="426" y="189" font-size="15" font-weight="700" fill="#0f172a">Bounded asynchronous relay</text>
+    <text x="426" y="218" font-size="14" fill="#334155">Claim lease + generation fence</text>
+    <text x="426" y="246" font-size="14" fill="#334155">Kafka send outside SQL</text>
+    <text x="426" y="274" font-size="14" fill="#334155">Committed publication evidence</text>
+    <path d="M 427 294 H 684" stroke="#e2e8f0"/>
+    <text x="426" y="322" font-size="14" font-weight="700" fill="#0f766e">At-least-once transport</text>
+    <text x="426" y="349" font-size="13" fill="#475569">Duplicates can follow an uncertain ACK</text>
+    <text x="426" y="373" font-size="13" fill="#475569">or a crash before status commit.</text>
+    <rect x="740" y="108" width="345" height="283" rx="12" fill="#fff" stroke="#94a3b8"/>
+    <rect x="740" y="108" width="345" height="52" rx="12" fill="#0f766e"/>
+    <text x="759" y="140" font-size="17" font-weight="700" fill="#fff">3  Durable consumer effect</text>
+    <text x="759" y="189" font-size="15" font-weight="700" fill="#0f172a">Inbox + paired account activity</text>
+    <text x="759" y="218" font-size="14" fill="#334155">Validate origin + canonical identity</text>
+    <text x="759" y="246" font-size="14" fill="#334155">Deduplicate redelivered events</text>
+    <text x="759" y="274" font-size="14" fill="#334155">Poison data → durable quarantine</text>
+    <path d="M 760 294 H 1063" stroke="#e2e8f0"/>
+    <text x="759" y="322" font-size="14" font-weight="700" fill="#0f766e">One PostgreSQL effect transaction</text>
+    <text x="759" y="349" font-size="13" fill="#475569">Advance offsets only after durable commit.</text>
+    <text x="759" y="373" font-size="13" fill="#475569">Controlled replay uses the same boundary.</text>
+    <path d="M 376 246 H 401" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 709 246 H 734" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="35" y="432" font-size="14" font-weight="700" fill="#0f172a">Financial ledger = authority</text>
+    <text x="332" y="432" font-size="14" fill="#475569">Activity = eventually consistent view · local single-broker setup · fictional FIC units</text>
+  </g>
+</svg>

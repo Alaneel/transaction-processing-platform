@@ -1,0 +1,39 @@
+BEGIN
+  status   | count 
+-----------+-------
+ PENDING   | 13790
+ PUBLISHED |     4
+(2 rows)
+
+                                                                                              QUERY PLAN                                                                                              
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Update on outbox_events o  (cost=7.59..136.78 rows=16 width=248) (actual time=1.432..1.950 rows=16 loops=1)
+   Buffers: shared hit=496 dirtied=1 written=1
+   CTE ready
+     ->  Limit  (cost=0.66..7.30 rows=16 width=38) (actual time=0.080..0.092 rows=16 loops=1)
+           Buffers: shared hit=44
+           ->  LockRows  (cost=0.66..1884.31 rows=4535 width=38) (actual time=0.080..0.090 rows=16 loops=1)
+                 Buffers: shared hit=44
+                 ->  Incremental Sort  (cost=0.66..1838.96 rows=4535 width=38) (actual time=0.065..0.067 rows=16 loops=1)
+                       Sort Key: outbox_events.created_at, outbox_events.event_id
+                       Presorted Key: outbox_events.created_at
+                       Full-sort Groups: 1  Sort Method: quicksort  Average Memory: 26kB  Peak Memory: 26kB
+                       Buffers: shared hit=27
+                       ->  Index Scan using outbox_backlog_age_idx on outbox_events  (cost=0.29..1634.99 rows=4535 width=38) (actual time=0.020..0.028 rows=33 loops=1)
+                             Filter: ((((status)::text = 'PENDING'::text) AND (next_attempt_at <= clock_timestamp())) OR (((status)::text = 'CLAIMED'::text) AND (lease_until <= clock_timestamp())))
+                             Buffers: shared hit=18
+   ->  Nested Loop  (cost=0.29..129.48 rows=16 width=248) (actual time=0.105..0.212 rows=16 loops=1)
+         Buffers: shared hit=92
+         ->  CTE Scan on ready  (cost=0.00..0.32 rows=16 width=156) (actual time=0.088..0.104 rows=16 loops=1)
+               Buffers: shared hit=44
+         ->  Index Scan using outbox_events_pkey on outbox_events o  (cost=0.29..8.05 rows=1 width=26) (actual time=0.004..0.004 rows=1 loops=16)
+               Index Cond: (event_id = ready.event_id)
+               Buffers: shared hit=48
+ Planning:
+   Buffers: shared hit=62
+ Planning Time: 0.385 ms
+ Trigger outbox_guard: time=1.130 calls=16
+ Execution Time: 2.179 ms
+(27 rows)
+
+ROLLBACK

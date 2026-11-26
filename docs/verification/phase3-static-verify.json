@@ -1,0 +1,16 @@
+{
+  "source_commit": "66dc7c9cbcdd312f9df5ed427520bc398d7696a0",
+  "command": "./mvnw -B -ntp -Dmaven.repo.local=/private/tmp/tpp-m2 -DskipTests verify",
+  "build": "SUCCESS",
+  "finished_at": "2026-10-11T22:58:20+08:00",
+  "elapsed_seconds": 6.999,
+  "tests": "Skipped by explicit command; evidence in separate full/focused reports",
+  "spotbugs": {
+    "effort": "Max",
+    "threshold": "Medium",
+    "bugs": 0,
+    "errors": 0
+  },
+  "dependency_checks": "Enforcer dependency convergence and release-only dependencies passed; no vulnerability audit implied",
+  "log_source": "/private/tmp/tpp-phase3-static-verify.log"
+}

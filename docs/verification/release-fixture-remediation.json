@@ -1,0 +1,58 @@
+{
+  "initialFull94": {
+    "tests": 94,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "log": "full-clean-verify-attempt3-inflight-precondition.log",
+    "failingScenario": "crashDuringRealInFlightBatchLeavesEveryClaimRecoverableAndIgnoresLateCallbacks",
+    "expectedOutstandingRange": [
+      1,
+      4
+    ],
+    "actualOutstanding": 0,
+    "status": "FAIL retained"
+  },
+  "fixtureDiagnosis": {
+    "observation": "Scenario used graceful broker stop before the third send and did not establish outstanding producer work at crash assertion. Production code and financial invariants were not shown to fail.",
+    "causalHypothesis": "Graceful broker shutdown can revoke metadata or resolve send errors synchronously, allowing no real pending callback at crash. No low-level packet capture was performed.",
+    "correction": "Wait for exactly2 real accepted ACK callbacks and zero prior in-flight work; pause only suite-owned broker; resume pause boundary, submit third actual send, crash before fourth; require original gauge1..4 plus exactly3 send attempts; finally unpause broker; retain four CLAIMED, late callbacks cannot publish, lease recovery, one projection and financial/outbox invariant checks.",
+    "coreBehaviorChanged": false,
+    "assertionsWeakened": false
+  },
+  "focusedRuns": [
+    {
+      "log": "focused-inflight-1.log",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "mavenSeconds": 22.784
+    },
+    {
+      "log": "focused-inflight-2.log",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "mavenSeconds": 22.695,
+      "acceptedAcks": 2,
+      "sendAttempts": 3,
+      "postCrashInFlight": 1.0,
+      "frozenMillis": 3
+    }
+  ],
+  "earlierSetupFailures": [
+    {
+      "log": "full-clean-verify-attempt1-image-compatibility.log",
+      "reason": "Testcontainers image parser requires explicit official-image compatibility when using tag@digest fixture refs",
+      "correction": "DockerImageName.asCompatibleSubstituteFor only for identical official PostgreSQL/Kafka repositories"
+    },
+    {
+      "log": "full-clean-verify-attempt2-desktop-socket.log",
+      "reason": "Ryuk tried to bind macOS user-side socket into DockerVM; mount unavailable",
+      "correction": "TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock; normal cleanup enabled"
+    }
+  ],
+  "rawLogLocation": "Retained local release evidence bundle; log filenames below do not refer to checked-in repository files."
+}

@@ -1,0 +1,101 @@
+{
+  "implementationCommit": "1737a27ef2e7c2c81e45671866d70b7e05002667",
+  "checkout": "/private/tmp/tpp-phase3-clean-1737a27",
+  "command": "JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home MAVEN_USER_HOME=/private/tmp/tpp-maven-wrapper ./mvnw -B -ntp -Dmaven.repo.local=/private/tmp/tpp-m2 clean verify",
+  "build": "FAILURE",
+  "exitCode": 1,
+  "tests": 94,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "classes": [
+    {
+      "class": "dev.tpp.ApiErrorMappingTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.011
+    },
+    {
+      "class": "dev.tpp.BackpressurePostgresTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 6.189
+    },
+    {
+      "class": "dev.tpp.DatabaseErrorsTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.001
+    },
+    {
+      "class": "dev.tpp.DomainRulesTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.004
+    },
+    {
+      "class": "dev.tpp.EventContractTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.013
+    },
+    {
+      "class": "dev.tpp.EventPipelineTest",
+      "tests": 27,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 197.614
+    },
+    {
+      "class": "dev.tpp.OutboxMigrationUpgradeTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 2.256
+    },
+    {
+      "class": "dev.tpp.TransferPostgresTest",
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 9.665
+    },
+    {
+      "class": "dev.tpp.application.BacklogAdmissionTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.056
+    },
+    {
+      "class": "dev.tpp.events.relay.PublicationBatchTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.033
+    }
+  ],
+  "failingCase": "EventPipelineTest.partialBrokerOutageAndDeadlineKeepActualProducerWorkBoundedAcrossTheNextBatch",
+  "assertion": "Expected outstanding sends 6.0, observed 0.0 at line 1116",
+  "classification": "Test incorrectly assumed Kafka leader metadata would remain usable after broker stop. Inspection found two synchronous metadata failures and four BATCH_NOT_SENT outcomes; this did not violate the production outstanding-send bound. Deterministic real paused-broker regression is being corrected separately.",
+  "staticChecks": "Not reached after failed test phase",
+  "finishedAt": "2026-10-11T23:48:50+08:00",
+  "mavenTotalTime": "03:39 min",
+  "logSource": "/private/tmp/tpp-phase3-clean-first-1737a27.log",
+  "logSha256": "bdc035270a7ccdec32be75028327cb5151866c44a6c8b3eafd711f8dd2de76c1"
+}

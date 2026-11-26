@@ -1,0 +1,5 @@
+BEGIN
+SET
+NOTICE:  Runtime restrictions passed: issuance creation/completion, ledger/outbox/inbox rewrite, outbox deletion, trigger disable
+DO
+ROLLBACK

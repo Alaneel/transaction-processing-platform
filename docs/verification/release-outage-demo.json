@@ -1,0 +1,95 @@
+{
+  "project": "tpp-release-readiness",
+  "baseUrl": "http://127.0.0.1:38080",
+  "observedAt": "2026-10-14T13:11:13Z",
+  "smoke": {
+    "transferId": "548ec8bf-7898-46fb-a4b2-308d7d70f05f",
+    "eventId": "838ced8f-12e7-47d4-a16e-74687c0a7502",
+    "idempotentRetry": "prior result",
+    "pairedActivity": {
+      "00000000-0000-0000-0000-000000000002": {
+        "id": 79669,
+        "eventId": "838ced8f-12e7-47d4-a16e-74687c0a7502",
+        "transferId": "548ec8bf-7898-46fb-a4b2-308d7d70f05f",
+        "accountId": "00000000-0000-0000-0000-000000000002",
+        "deltaMinor": -7,
+        "unit": "FIC",
+        "occurredAt": "2026-10-14T13:11:13.893396Z",
+        "projectedAt": "2026-10-14T13:11:13.915136Z"
+      },
+      "00000000-0000-0000-0000-000000000003": {
+        "id": 79670,
+        "eventId": "838ced8f-12e7-47d4-a16e-74687c0a7502",
+        "transferId": "548ec8bf-7898-46fb-a4b2-308d7d70f05f",
+        "accountId": "00000000-0000-0000-0000-000000000003",
+        "deltaMinor": 7,
+        "unit": "FIC",
+        "occurredAt": "2026-10-14T13:11:13.893396Z",
+        "projectedAt": "2026-10-14T13:11:13.915268Z"
+      }
+    },
+    "authoritativeReconciliation": {
+      "consistent": true,
+      "balanceMismatches": [],
+      "invalidTransfers": [],
+      "totalLedgerDelta": 0,
+      "totalMaterializedBalance": 0
+    },
+    "projectionReconciliation": {
+      "completedTransfers": 39835,
+      "processedEvents": 39835,
+      "projectedTransfers": 39835,
+      "quarantinedRecords": 0,
+      "missingProjection": 0,
+      "publishedAwaitingProjection": 0,
+      "inboxWithoutProjection": 0,
+      "projectionWithoutInbox": 0,
+      "activityShapeDiscrepancies": 0,
+      "originDiscrepancies": 0,
+      "discrepancies": 0,
+      "oldestUnprocessedAgeSeconds": null,
+      "lastProcessedAt": "2026-10-14T13:11:13.912148Z",
+      "lastProcessedEventOccurredAt": "2026-10-14T13:11:13.893396Z",
+      "checkedAt": "2026-10-14T13:11:14.556781635Z"
+    }
+  },
+  "brokerOutage": {
+    "transferId": "30b2dd3b-3af2-4e28-9daf-425394e6080d",
+    "eventId": "389d9443-a284-41b2-9720-216e41b8d99d",
+    "newHttpStatus": 201,
+    "replayHttpStatus": 200,
+    "changedPayloadHttpStatus": 409,
+    "duringOutage": "CLAIMED",
+    "afterRecovery": "PUBLISHED",
+    "applicationContainerAndStartTimeUnchanged": true,
+    "effect": {
+      "inbox": 1,
+      "activityRows": 2,
+      "activityDeltaSum": 0
+    },
+    "ledgerReconciliation": {
+      "consistent": true,
+      "balanceMismatches": [],
+      "invalidTransfers": [],
+      "totalLedgerDelta": 0,
+      "totalMaterializedBalance": 0
+    },
+    "projectionReconciliation": {
+      "completedTransfers": 39836,
+      "processedEvents": 39836,
+      "projectedTransfers": 39836,
+      "quarantinedRecords": 0,
+      "missingProjection": 0,
+      "publishedAwaitingProjection": 0,
+      "inboxWithoutProjection": 0,
+      "projectionWithoutInbox": 0,
+      "activityShapeDiscrepancies": 0,
+      "originDiscrepancies": 0,
+      "discrepancies": 0,
+      "oldestUnprocessedAgeSeconds": null,
+      "lastProcessedAt": "2026-10-14T13:11:20.877048Z",
+      "lastProcessedEventOccurredAt": "2026-10-14T13:11:15.773935Z",
+      "checkedAt": "2026-10-14T13:11:24.395911125Z"
+    }
+  }
+}

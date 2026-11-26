@@ -1,0 +1,133 @@
+{
+  "output": "docs/benchmarks/security-patch-final-20261014/trial-2-patched.json",
+  "label": "security-2-patched",
+  "workload": {
+    "phase": "measurement",
+    "scenario": "low",
+    "workers": 8,
+    "load_model": "closed-loop",
+    "locally_shed_operations": 0,
+    "requested_duration_seconds": 10.0,
+    "elapsed_including_drain_seconds": 10.007016291026957,
+    "offered_operations": 7213,
+    "started_operations": 7213,
+    "completed_operations": 7213,
+    "failed_or_ambiguous_operations": 0,
+    "received_responses": 7213,
+    "ambiguous_client_errors": 0,
+    "completed_transfers_per_second": 720.7942697632777,
+    "http_status_distribution": {
+      "201": 7213
+    },
+    "error_distribution": {},
+    "http_latency_ms": {
+      "count": 7213,
+      "mean": 11.082081079875097,
+      "max": 68.20545805385336,
+      "p50_upper_bound": 10.09045107513537,
+      "p95_upper_bound": 19.91437813307012,
+      "p99_upper_bound": 30.12228374096119,
+      "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+    },
+    "completed_http_latency_ms": {
+      "count": 7213,
+      "mean": 11.082081079875097,
+      "max": 68.20545805385336,
+      "p50_upper_bound": 10.09045107513537,
+      "p95_upper_bound": 19.91437813307012,
+      "p99_upper_bound": 30.12228374096119,
+      "quantile_note": "fixed logarithmic histogram, <=3% bin-width error above 0.01ms"
+    }
+  },
+  "rates": {
+    "creation": 697.5513751471525,
+    "publication": 697.5513751471525,
+    "processing": 106.95852223939424
+  },
+  "drain": {
+    "requested_timeout_seconds": 180.0,
+    "elapsed_seconds": 18.44724974996643,
+    "starting_events": {
+      "database_time": "2026-10-14T13:13:39.725247+00:00",
+      "completed_transfers": 7363,
+      "outbox_total": 7363,
+      "published": 7363,
+      "unpublished": 0,
+      "claimed": 0,
+      "publication_attempts": 7363,
+      "retried_events": 0,
+      "maximum_attempt_count": 1,
+      "last_error_counts": {
+        "transient": 0,
+        "ambiguous": 0,
+        "permanent": 0
+      },
+      "recorded_kafka_positions": 7363,
+      "oldest_unpublished_age_seconds": 0,
+      "processed": 1359,
+      "projection_rows": 1359,
+      "account_activity_rows": 2718,
+      "published_unprocessed": 6004,
+      "missing_outbox": 0,
+      "publication_latency_ms": {
+        "count": 7363,
+        "p50": 77.474,
+        "p95": 128.68189999999998,
+        "p99": 147.67342,
+        "mean": 77.24730694010593,
+        "max": 164.744
+      },
+      "propagation_latency_ms": {
+        "count": 1359,
+        "p50": 4077.41,
+        "p95": 7590.877100000001,
+        "p99": 7649.16914,
+        "mean": 4075.208629874908,
+        "max": 7668.931
+      }
+    },
+    "complete": true,
+    "published_during_drain": 0,
+    "processed_during_drain": 6004,
+    "final_events": {
+      "database_time": "2026-10-14T13:13:57.909298+00:00",
+      "completed_transfers": 7363,
+      "outbox_total": 7363,
+      "published": 7363,
+      "unpublished": 0,
+      "claimed": 0,
+      "publication_attempts": 7363,
+      "retried_events": 0,
+      "maximum_attempt_count": 1,
+      "last_error_counts": {
+        "transient": 0,
+        "ambiguous": 0,
+        "permanent": 0
+      },
+      "recorded_kafka_positions": 7363,
+      "oldest_unpublished_age_seconds": 0,
+      "processed": 7363,
+      "projection_rows": 7363,
+      "account_activity_rows": 14726,
+      "published_unprocessed": 0,
+      "missing_outbox": 0,
+      "publication_latency_ms": {
+        "count": 7363,
+        "p50": 77.474,
+        "p95": 128.68189999999998,
+        "p99": 147.67342,
+        "mean": 77.24730694010593,
+        "max": 164.744
+      },
+      "propagation_latency_ms": {
+        "count": 7363,
+        "p50": 12598.425,
+        "p95": 18614.5399,
+        "p99": 18817.39212,
+        "mean": 11889.97422151297,
+        "max": 18879.059
+      }
+    }
+  }
+}
+

@@ -1,0 +1,124 @@
+{
+  "startedAt": "2026-10-11T15:33:43.547494+00:00",
+  "originalTrialPosition": 3,
+  "condition": "optimized",
+  "originalStoppedTimeline": "docs/benchmarks/phase3-sustainable-250/phase3-sustained-trial-order.json",
+  "unchangedResourceConfiguration": true,
+  "observations": [
+    {
+      "observedAt": "2026-10-11T15:33:43.547686+00:00",
+      "/internal/events/status": {
+        "http": 200,
+        "body": {
+          "relayEnabled": true,
+          "consumerEnabled": true,
+          "outbox": {
+            "pending": 0,
+            "claimed": 0,
+            "published": 178795,
+            "blocked": 0,
+            "expiredClaims": 0,
+            "oldestPendingAgeSeconds": 0.0
+          }
+        }
+      },
+      "/internal/events/reconciliation": {
+        "http": 200,
+        "body": {
+          "completedTransfers": 178795,
+          "processedEvents": 178795,
+          "projectedTransfers": 178795,
+          "quarantinedRecords": 0,
+          "missingProjection": 0,
+          "publishedAwaitingProjection": 0,
+          "inboxWithoutProjection": 0,
+          "projectionWithoutInbox": 0,
+          "activityShapeDiscrepancies": 0,
+          "originDiscrepancies": 0,
+          "discrepancies": 0,
+          "oldestUnprocessedAgeSeconds": null,
+          "lastProcessedAt": "2026-10-11T15:29:47.891800Z",
+          "lastProcessedEventOccurredAt": "2026-10-11T15:29:47.791744Z",
+          "checkedAt": "2026-10-11T15:33:44.695968842Z"
+        }
+      },
+      "/internal/reconciliation": {
+        "http": 200,
+        "body": {
+          "consistent": true,
+          "balanceMismatches": [],
+          "invalidTransfers": [],
+          "totalLedgerDelta": 0,
+          "totalMaterializedBalance": 0
+        }
+      }
+    }
+  ],
+  "scopedEvents": {
+    "database_time": "2026-10-11T15:33:45.373357+00:00",
+    "completed_transfers": 7583,
+    "outbox_total": 7583,
+    "published": 7583,
+    "unpublished": 0,
+    "claimed": 0,
+    "publication_attempts": 7583,
+    "retried_events": 0,
+    "maximum_attempt_count": 1,
+    "last_error_counts": {
+      "transient": 0,
+      "ambiguous": 0,
+      "permanent": 0
+    },
+    "recorded_kafka_positions": 7583,
+    "oldest_unpublished_age_seconds": 0,
+    "processed": 7583,
+    "projection_rows": 7583,
+    "account_activity_rows": 15166,
+    "published_unprocessed": 0,
+    "missing_outbox": 0,
+    "publication_latency_ms": {
+      "count": 7583,
+      "p50": 58.082,
+      "p95": 106.96509999999999,
+      "p99": 116.44308,
+      "mean": 59.64734893841487,
+      "max": 280.206
+    },
+    "propagation_latency_ms": {
+      "count": 7583,
+      "p50": 91.429,
+      "p95": 199.10229999999981,
+      "p99": 303.96987999999993,
+      "mean": 96.774998153765,
+      "max": 385.682
+    }
+  },
+  "brokerOffsets": "\nGROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                                                              HOST            CLIENT-ID\ntpp-activity-v1 tpp.transfer-completed.v1 0          59242           59242           0               tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a-a293fd29-6bf6-4bfc-a585-461700d8dd02 /172.25.0.4     tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a\ntpp-activity-v1 tpp.transfer-completed.v1 1          59852           59852           0               tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a-a293fd29-6bf6-4bfc-a585-461700d8dd02 /172.25.0.4     tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a\ntpp-activity-v1 tpp.transfer-completed.v1 2          59701           59701           0               tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a-a293fd29-6bf6-4bfc-a585-461700d8dd02 /172.25.0.4     tpp-projection-b01d0186-80ba-47e9-99d4-ebe0a347936a\n",
+  "sharedMemoryUsage": "Filesystem                Size      Used Available Use% Mounted on\nshm                      64.0M     10.8M     53.3M  17% /dev/shm\n",
+  "postgresSharedMemoryLimitBytes": 67108864,
+  "dbContainerId": "f4653c2d0250ffec70b0d253dcb5b570130a9d72d9bdecbdcdf9d542ecc962ca",
+  "appContainerId": "9df449cfd25fdac81a808652c92bb45c78ba6995b4e2b82c70dfdb60f2cf49e6",
+  "applicationUnchanged": true,
+  "brokerPartitions": [
+    {
+      "partition": 0,
+      "committed": 59242,
+      "end": 59242,
+      "lag": 0
+    },
+    {
+      "partition": 1,
+      "committed": 59852,
+      "end": 59852,
+      "lag": 0
+    },
+    {
+      "partition": 2,
+      "committed": 59701,
+      "end": 59701,
+      "lag": 0
+    }
+  ],
+  "complete": true,
+  "finishedAt": "2026-10-11T15:33:47.242043+00:00"
+}
