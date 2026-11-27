@@ -14,6 +14,7 @@
   const PORTABLE_RECEIPT_KIND = "tpp.transfer-lab-recovery";
   const MAX_RECEIPT_FILE_BYTES = 4096;
   const HISTORY_PAGE_SIZE = 6;
+  const ATTENTION_SAMPLE_LIMIT = 50;
   const ALICE = "00000000-0000-0000-0000-000000000002";
   const BOB = "00000000-0000-0000-0000-000000000003";
   const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -23,6 +24,13 @@
     "NOT_APPLICABLE", "AWAITING_PUBLICATION", "AWAITING_PROJECTION", "BLOCKED", "PROJECTED", "INCONSISTENT",
   ]);
   const PROOF_STATES = new Set(["BALANCED_PAIR", "NO_POSTINGS", "INCONSISTENT"]);
+  const ATTENTION_STATES = Object.freeze({
+    INCONSISTENT: "Needs inspection",
+    BLOCKED: "Publication blocked",
+    PUBLICATION_UNCONFIRMED: "Projected · publication not recorded",
+    AWAITING_PUBLICATION: "Awaiting publication",
+    AWAITING_PROJECTION: "Awaiting projection",
+  });
   const observation = globalThis.TransferLabDelivery;
   const ids = [
     "submit-form", "direction", "amount", "drop-response", "submit-transfer", "simulation-status",
@@ -35,6 +43,7 @@
     "watch-start", "watch-stop", "watch-status", "download-observation", "observation-message",
     "proof-state", "proof-transfer-id", "proof-summary", "proof-postings",
     "history-status", "history-items", "history-refresh", "history-older",
+    "attention-status", "attention-items", "attention-refresh",
   ];
   const ui = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
   if (ids.some((id) => !ui[id])) return;
@@ -57,6 +66,9 @@
   let historyOnLatest = true;
   let historyNext = null;
   let historyDisplayed = false;
+  let attentionVersion = 0;
+  let attentionLoading = false;
+  let attentionDisplayed = false;
 
   function display(id, text, state = "") {
     ui[id].textContent = text;
@@ -344,6 +356,10 @@
     for (const button of ui["history-items"].querySelectorAll(".history-inspect")) {
       button.disabled = !local || busy;
     }
+    ui["attention-refresh"].disabled = !local || attentionLoading;
+    for (const button of ui["attention-items"].querySelectorAll(".attention-inspect")) {
+      button.disabled = !local || busy;
+    }
     ui["drop-response"].disabled = !canWrite || Boolean(unresolved) || !simulationReady;
     if (ui["drop-response"].disabled) ui["drop-response"].checked = false;
   }
@@ -420,6 +436,7 @@
             : "The financial transfer is complete. Use delivery lookup to inspect publication and activity.")
           : `The durable result is REJECTED (${result.rejectionCode}).`, state === "COMPLETED" ? "positive" : "negative");
         if (historyOnLatest && !historyReadingOlder) void readHistory();
+        void readAttention();
       } else {
         const state = response.status === 409 ? "CONFLICT" : "UNKNOWN";
         next = { ...snapshot.receipt, state, result: null };
@@ -606,15 +623,107 @@
     const inspect = textElement("button", "history-inspect", "Inspect");
     inspect.type = "button";
     inspect.setAttribute("aria-label", `Inspect ${direction}, ${amount}, ${timestamp}, transfer ${item.id}`);
-    inspect.addEventListener("click", () => {
-      if (!local || busy) return;
-      automaticLookup = "";
-      ui["lookup-id"].value = item.id;
-      ui["lookup-heading"].focus();
-      void lookup();
-    });
+    inspect.addEventListener("click", () => inspectDiscoveredTransfer(item.id));
     row.append(summary, inspect);
     return row;
+  }
+
+  function inspectDiscoveredTransfer(id) {
+    if (!local || busy) return;
+    automaticLookup = "";
+    ui["lookup-id"].value = id;
+    ui["lookup-heading"].focus();
+    void lookup();
+  }
+
+  function verifiedAttention(value) {
+    if (!value || typeof value !== "object" || value.sampleLimit !== ATTENTION_SAMPLE_LIMIT
+      || !Number.isInteger(value.sampledCount) || value.sampledCount < 0
+      || value.sampledCount > ATTENTION_SAMPLE_LIMIT || !Array.isArray(value.items)
+      || value.items.length > value.sampledCount) throw new Error("Delivery attention is incomplete.");
+    const ids = new Set();
+    for (const row of value.items) {
+      if (!row || typeof row.transferId !== "string" || !UUID.test(row.transferId)
+        || !Object.hasOwn(ATTENTION_STATES, row.attentionState)
+        || !validPayload({ sourceAccountId: row.sourceAccountId, destinationAccountId: row.destinationAccountId,
+          amount: row.amount, unit: row.unit })
+        || typeof row.decidedAt !== "string" || !Number.isFinite(Date.parse(row.decidedAt))
+        || (row.lastErrorCode !== null && (typeof row.lastErrorCode !== "string" || !/^[A-Z0-9_]{1,64}$/.test(row.lastErrorCode)))
+        || (row.nextAttemptAt !== null && (typeof row.nextAttemptAt !== "string" || !Number.isFinite(Date.parse(row.nextAttemptAt))))) {
+        throw new Error("Delivery attention contains an invalid transfer.");
+      }
+      const expected = {
+        INCONSISTENT: [null, "PENDING", "CLAIMED", "PUBLISHED", "BLOCKED"],
+        BLOCKED: ["BLOCKED"], AWAITING_PROJECTION: ["PUBLISHED"],
+        PUBLICATION_UNCONFIRMED: ["PENDING", "CLAIMED"], AWAITING_PUBLICATION: ["PENDING", "CLAIMED"],
+      }[row.attentionState];
+      if (!expected.includes(row.publicationStatus)
+        || (row.publicationStatus === null ? row.attemptCount !== null
+          : !Number.isSafeInteger(row.attemptCount) || row.attemptCount < 0)
+        || ids.has(row.transferId.toLowerCase())) throw new Error("Invalid delivery attention evidence.");
+      ids.add(row.transferId.toLowerCase());
+    }
+    return value;
+  }
+
+  function attentionRow(item) {
+    const id = item.transferId.toLowerCase();
+    const row = document.createElement("li");
+    row.className = "attention-row";
+    row.dataset.transferId = id;
+    row.dataset.attentionState = item.attentionState;
+    const summary = document.createElement("div");
+    summary.className = "attention-summary";
+    const direction = item.sourceAccountId === ALICE ? "Alice → Bob" : "Bob → Alice";
+    const amount = `${item.amount.toLocaleString()} FIC`;
+    const state = textElement("span", "attention-state", ATTENTION_STATES[item.attentionState]);
+    const details = textElement("span", "attention-details", [
+      id.slice(0, 8),
+      `Decided ${new Date(item.decidedAt).toLocaleString(undefined, { dateStyle: "short", timeStyle: "short" })}`,
+      ...(item.attemptCount === null ? ["No event recorded"] : [
+        `${item.attemptCount} ${item.attemptCount === 1 ? "attempt" : "attempts"}`,
+        ...(item.lastErrorCode ? [`Last error ${item.lastErrorCode}`] : []),
+        ...(item.nextAttemptAt ? [`Next eligible ${new Date(item.nextAttemptAt).toLocaleTimeString()}`] : []),
+      ]),
+    ].join(" · "));
+    details.title = id;
+    summary.append(state, textElement("span", "attention-direction", direction),
+      textElement("span", "attention-amount", amount), details);
+    const button = textElement("button", "attention-inspect", "Inspect");
+    button.type = "button";
+    button.setAttribute("aria-label", `Inspect ${direction}, ${amount}, ${state.textContent}, transfer ${id}`);
+    button.addEventListener("click", () => inspectDiscoveredTransfer(id));
+    row.append(summary, button);
+    return row;
+  }
+
+  async function readAttention() {
+    if (!local) return;
+    const version = ++attentionVersion;
+    attentionLoading = true;
+    updateControls();
+    display("attention-status", "Reading the latest completed demo transfers…", "pending");
+    try {
+      const response = await jsonRequest("/internal/demo/delivery-attention");
+      if (version !== attentionVersion) return;
+      if (response.status !== 200) throw new Error("Delivery attention unavailable.");
+      const snapshot = verifiedAttention(response.result);
+      ui["attention-items"].replaceChildren(...snapshot.items.map(attentionRow));
+      const count = snapshot.items.length;
+      display("attention-status", !snapshot.sampledCount ? "No completed demo transfers yet." : count
+        ? `${count} to review among ${snapshot.sampledCount} sampled completed transfers.`
+        : `Nothing to review among ${snapshot.sampledCount} sampled completed transfers.`, count ? "pending" : "positive");
+      attentionDisplayed = true;
+    } catch (_) {
+      if (version !== attentionVersion) return;
+      display("attention-status", attentionDisplayed ? "Could not refresh. Showing the previous observation."
+        : "Could not read delivery attention. Try Refresh attention.", "unknown");
+    } finally {
+      if (version === attentionVersion) {
+        attentionLoading = false;
+        updateControls();
+      }
+    }
   }
 
   async function readHistory(older = false) {
@@ -757,6 +866,7 @@
     cancelWatch();
     watchStatus(state, text);
     updateControls();
+    if (["settled", "blocked", "inconsistent"].includes(state)) void readAttention();
   }
 
   function ownsWatch(watch) {
@@ -974,6 +1084,7 @@
   addEventListener("pagehide", () => { if (activeWatch) finishWatch(activeWatch, "stopped"); });
   ui["history-refresh"].addEventListener("click", () => { void readHistory(); });
   ui["history-older"].addEventListener("click", () => { void readHistory(true); });
+  ui["attention-refresh"].addEventListener("click", () => { void readAttention(); });
   ui["lookup-id"].addEventListener("input", () => {
     clearLookupObservation();
     display("lookup-message", "Check delivery for the transfer ID now entered.");
@@ -994,6 +1105,7 @@
   if (!local) {
     display("origin-message", "Transfer Lab operates only on a loopback origin. No API request or saved-intent access was made.", "negative");
     display("history-status", "History is available only on a local demo URL.", "negative");
+    display("attention-status", "Delivery attention is available only on a local demo URL.", "negative");
     updateControls();
     return;
   }
@@ -1015,4 +1127,5 @@
   }
   checkSimulation();
   void readHistory();
+  void readAttention();
 })();

@@ -1,5 +1,11 @@
 # Release and verification
 
+## v0.2.5
+
+Delivery attention highlights inconsistent, blocked, and pending delivery among the latest 50 completed demo transfers. Choose **Inspect** to see the exact postings, retries and event state without typing a transfer ID. Settled transfers disappear from the active attention list. The bounded read is not a global backlog check and adds no migration.
+
+The owned Kafka outage browser verifier now discovers the affected transfer through the queue and confirms its removal after recovery. [Quick start](../README.md#run-the-demo) · [Attention acceptance](verification/delivery-attention.json)
+
 ## v0.2.4
 
 Recent transfers discovers committed and rejected decisions between the two fictional demo accounts. Inspect a result without entering an ID, follow pending publication and projection for up to 60 seconds, and download observations without a recovery key, account IDs or local endpoint. The bounded browser follow loop is read-only.

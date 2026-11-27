@@ -1,0 +1,168 @@
+{
+  "scope": "Trusted-local delivery attention for the 50 latest completed transfers between the two fictional accounts; not a total backlog.",
+  "sourceSha256": {
+    "src/main/java/dev/tpp/events/DemoDeliveryAttentionController.java": "eefb2400a07872e5781aad21e5110c23bd657e9151adffc6ae464bcee643c15e",
+    "src/main/java/dev/tpp/events/TransferDeliveryController.java": "f708909d7f8547f39e83b5a6950e6af2f70de589fe9b401988b1c21786e3c6f5",
+    "src/test/java/dev/tpp/DemoDeliveryAttentionPostgresTest.java": "b8231df4044844530d667289d1901e35cbce06de1da841389c68bae7bda0349a",
+    "scripts/verify-delivery-watch.py": "94b1047972b17d1b5d0ea43fd9668043eebd55a2a392ed8d3c53434cdf012831",
+    "scripts/verify-browser-demo.py": "5d9b0fedd6de455764c20027e7f5c9efefb1817ffcb03df80a7073ec16019b27"
+  },
+  "runtime": {
+    "before": {
+      "flywayVersions": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "indexExists": true,
+      "transferCount": 19,
+      "transferDigest": "ecdbbc37afd78e3ee034aa178cc9858c",
+      "ledgerCount": 36,
+      "ledgerDigest": "75d2282a566fc2e2493c203e8a3e9c24",
+      "balanceDigest": "9b719b287b186a6fc2e5614c5d1b4a66"
+    },
+    "after": {
+      "flywayVersions": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "indexExists": true,
+      "transferCount": 19,
+      "transferDigest": "ecdbbc37afd78e3ee034aa178cc9858c",
+      "ledgerCount": 36,
+      "ledgerDigest": "75d2282a566fc2e2493c203e8a3e9c24",
+      "balanceDigest": "9b719b287b186a6fc2e5614c5d1b4a66"
+    },
+    "noFinancialRowsChanged": true,
+    "sameDBAndKafkaContainers": true,
+    "servedAssetSha256": {
+      "demo/delivery-observation.js": "c43abee61c4e0b76fcbd0c96ebce3b62406e005539ea4ee878847fe631798bf7",
+      "demo/delivery-worker.js": "69e98e88bd2593b9f2a38d9af7572eef483c733f8d546a5971c82cd758688662",
+      "demo/demo.css": "dcc9499c9f246741b674f62040f1da8cd464471d0558b28e1c09414efa827aaf",
+      "demo/demo.js": "20723f850f7cfc9256918229c01ab9286740c12811d208b8bd4ca5ec9690b141",
+      "demo/favicon.svg": "60ad99791664060d5b45e97701d6234d10d3c483fd5be90a88da2c55ae95e52c",
+      "demo/index.html": "13bf694797bc96e2ef7335a775447bd4bd0b86ee50131b4b54689f5ae8c08d29",
+      "openapi.yaml": "f4205f834f1bc79ae2eb3eae19eb5aa39a1f7f9ae09569134bed9b1bbc75e171"
+    },
+    "images": {
+      "app": "sha256:ea08f9b3e8e08800663062c4fdce85cf22c5c7f52395c48cd7050b83190c233f",
+      "db": "sha256:18971e73fe1067d2c25869fca5fa73e190977a5621a47b2a1156b9d89e7b2d08",
+      "kafka": "sha256:1d04117637131229af0274b8363f4a9c4be3fd2733f1fb2f960f9f40fd07a8ac"
+    }
+  },
+  "finalImageReadonlyChrome": {
+    "sampleLimit": 50,
+    "sampledCount": 16,
+    "itemsShown": 0,
+    "noStore": true,
+    "narrowViewport": 390,
+    "browserPosts": 0,
+    "createdReceipt": false
+  },
+  "scopeNote": "The real outage used the same application source and browser assets before the final OpenAPI document rebuild; Chrome then checked the exact rebuilt final image read-only.",
+  "realKafka": {
+    "startedAt": "2026-11-26T16:27:54.100268+00:00",
+    "finishedAt": "2026-11-26T16:28:12.057442+00:00",
+    "transferId": "fa76dfb7-5e16-45f8-b0b2-d3a2c124b94c",
+    "duringOutage": {
+      "deliveryState": "AWAITING_PUBLICATION",
+      "eventId": "7b60aa84-7ff6-452c-b10e-2b8027e0d34f",
+      "attemptCount": 2,
+      "lastErrorCode": "DELIVERY_UNCERTAIN"
+    },
+    "attention": {
+      "sampleLimit": 50,
+      "sampledDuringOutage": 14,
+      "pendingTransferId": "fa76dfb7-5e16-45f8-b0b2-d3a2c124b94c",
+      "foundFromFreshBrowser": true,
+      "inspectedWithoutEnteringId": true,
+      "pendingRowFitsNarrowViewport": true,
+      "removedAfterSettlementFromBrowserAndApi": true
+    },
+    "browser": {
+      "postCount": 0,
+      "watchState": "settled",
+      "automaticFollowReads": 5,
+      "settledAfterSeconds": 8.077,
+      "samePostingIdsAndEvent": true,
+      "userStopCancelledFutureReads": true,
+      "savedReceiptCreated": false,
+      "scriptErrors": []
+    },
+    "brokerRestored": true,
+    "applicationNotRestarted": true,
+    "ledgerReconciliation": true,
+    "sqlEffect": {
+      "outbox": 1,
+      "inbox": 1,
+      "projection": 1,
+      "activity": 2,
+      "activitySum": 0
+    }
+  },
+  "browserRegression": {
+    "crossBrowserReceiptRecovery": true,
+    "signedPostingsUnchanged": true,
+    "historyPagingPosts": 0,
+    "redactedExport": true,
+    "narrowViewport": {
+      "viewport": 390,
+      "content": 390
+    },
+    "directPostgres": {
+      "normal": {
+        "transferId": "a35b6b81-53e5-4002-9021-eed40119a24c",
+        "eventId": "b36eb50f-0ee5-41f1-ada0-8394ed0b999b",
+        "completedTransfer": 1,
+        "ledgerEntries": 2,
+        "ledgerDeltaSum": 0,
+        "outboxEvents": 1,
+        "matchingPublishedEvent": 1,
+        "inbox": 1,
+        "projection": 1,
+        "activityRows": 2,
+        "activitySum": 0
+      },
+      "lostResponse": {
+        "transferId": "5ce6a293-9313-4a50-b5b3-c849dc0d737e",
+        "eventId": "11a960be-284f-4c78-a3f2-2659b9432765",
+        "completedTransfer": 1,
+        "ledgerEntries": 2,
+        "ledgerDeltaSum": 0,
+        "outboxEvents": 1,
+        "matchingPublishedEvent": 1,
+        "inbox": 1,
+        "projection": 1,
+        "activityRows": 2,
+        "activitySum": 0
+      }
+    }
+  },
+  "separateClientFailureSimulation": {
+    "scope": "Actual Chrome, one deliberate client-side failed GET between two real reads, no Docker fault or financial writes.",
+    "failedRefreshKeptPreviousView": true,
+    "failureWasLabelledStale": true,
+    "subsequentRealRefreshRecovered": true,
+    "postCount": 0,
+    "createdReceipt": false
+  },
+  "regression": {
+    "javaTests": 115,
+    "dedicatedPostgresAttentionTests": 3,
+    "pythonTests": 54,
+    "nodeTests": 10,
+    "testFailures": 0,
+    "testErrors": 0,
+    "testSkips": 0,
+    "spotBugsFindings": 0
+  },
+  "limits": [
+    "Older completed transfers and other accounts are intentionally outside the sample.",
+    "Structural-error branches were exercised in disposable PostgreSQL, not by damaging the live broker.",
+    "Actual Kafka recovery demonstrates one local outage, not processing latency or a service guarantee.",
+    "No release or production deployment was performed."
+  ]
+}

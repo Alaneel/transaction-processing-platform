@@ -156,7 +156,10 @@
               <button id="lookup-transfer" class="button button-secondary" type="submit" disabled>
                 <span>Check delivery</span><span class="button-arrow" aria-hidden="true">→</span>
               </button>
-              <p class="history-browse-link"><a href="#recent-transfers">Browse recent transfers <span aria-hidden="true">↓</span></a></p>
+              <p class="history-browse-link">
+                <a href="#recent-transfers">Browse recent transfers <span aria-hidden="true">↓</span></a>
+                <a href="#delivery-attention">Review delivery attention <span aria-hidden="true">↓</span></a>
+              </p>
             </form>
             <p id="lookup-message" class="action-message" role="status" aria-live="polite" aria-atomic="true">Look up your receipt’s transfer, or paste another transfer ID from this demo.</p>
 
@@ -245,6 +248,25 @@
             </div>
           </section>
         </div>
+
+        <section id="delivery-attention" class="panel attention-panel" tabindex="-1" aria-labelledby="attention-heading" aria-describedby="attention-description attention-scope-note">
+          <div class="attention-heading">
+            <header class="panel-heading">
+              <span class="step-number attention-mark" aria-hidden="true">!</span>
+              <div>
+                <p class="section-kicker">Review</p>
+                <h2 id="attention-heading">Delivery attention</h2>
+              </div>
+            </header>
+            <button id="attention-refresh" class="button button-secondary attention-refresh" type="button" disabled aria-controls="attention-items">
+              <span>Refresh attention</span><span class="button-arrow" aria-hidden="true">↻</span>
+            </button>
+          </div>
+          <p id="attention-description" class="panel-description">Read-only delivery checks for the latest 50 completed fictional transfers between Alice and Bob.</p>
+          <p id="attention-status" class="attention-status" role="status" aria-live="polite" aria-atomic="true">Delivery attention has not been loaded. Choose Refresh attention to check this recent window.</p>
+          <ul id="attention-items" class="attention-items" aria-label="Delivery attention in the latest 50 completed demo transfers"></ul>
+          <p id="attention-scope-note" class="panel-footnote">Earlier history is outside this view. Select Inspect to read delivery and ledger evidence. This section provides no controls to change delivery.</p>
+        </section>
 
         <section id="recent-transfers" class="panel history-panel" tabindex="-1" aria-labelledby="history-heading" aria-describedby="history-description">
           <div class="history-heading">

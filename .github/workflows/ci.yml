@@ -70,7 +70,7 @@ jobs:
           google-chrome --version
           python3 -m venv "$RUNNER_TEMP/tpp-playwright"
           "$RUNNER_TEMP/tpp-playwright/bin/python" -m pip install --disable-pip-version-check playwright==1.57.0
-      - name: Watch a real Kafka outage and validate the observation download in Chrome
+      - name: Find the affected transfer in Chrome and verify real Kafka recovery
         timeout-minutes: 6
         env:
           COMPOSE_PROJECT_NAME: tpp-ci-${{ github.run_id }}-${{ github.run_attempt }}

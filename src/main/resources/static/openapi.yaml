@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Transaction Processing Platform
-  version: 0.2.4
+  version: 0.2.5
   description: Educational ledger and asynchronous transfer activity using fictional FIC integer minor units. No authentication; bind locally.
 servers:
   - url: http://localhost:8080
@@ -248,6 +248,25 @@ paths:
             application/json:
               schema: {$ref: '#/components/schemas/DemoTransferHistoryPage'}
         '400': {$ref: '#/components/responses/Invalid'}
+        '503': {$ref: '#/components/responses/Unavailable'}
+  /internal/demo/delivery-attention:
+    get:
+      summary: Find delivery exceptions within the latest completed demo transfers
+      operationId: listDemoDeliveryAttention
+      description: >-
+        A read-only PostgreSQL observation of at most the latest 50 completed transfers
+        between the two seeded demo accounts. Fully settled transfers are counted in
+        the sample but omitted from items. Items are ordered by attention severity and
+        then oldest decision first. This is not a global backlog or a search of older
+        history. No receipt, key, or raw event payload is returned.
+      responses:
+        '200':
+          description: Bounded sample coverage and the items that need review
+          headers:
+            Cache-Control: {schema: {type: string, const: no-store}}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DemoDeliveryAttention'}
         '503': {$ref: '#/components/responses/Unavailable'}
   /internal/reconciliation:
     get:
@@ -720,6 +739,36 @@ components:
         transferStatus: {type: string, enum: [COMPLETED, REJECTED]}
         decidedAt: {type: string, format: date-time}
         rejectionCode: {type: [string, 'null'], maxLength: 64}
+    DemoDeliveryAttention:
+      type: object
+      additionalProperties: false
+      required: [sampleLimit, sampledCount, items]
+      properties:
+        sampleLimit: {type: integer, const: 50}
+        sampledCount: {type: integer, minimum: 0, maximum: 50}
+        items:
+          type: array
+          maxItems: 50
+          items: {$ref: '#/components/schemas/DemoDeliveryAttentionItem'}
+    DemoDeliveryAttentionItem:
+      type: object
+      additionalProperties: false
+      required: [transferId, decidedAt, amount, unit, sourceAccountId, destinationAccountId, attentionState, publicationStatus, attemptCount, lastErrorCode, nextAttemptAt]
+      properties:
+        transferId: {type: string, format: uuid}
+        decidedAt: {type: string, format: date-time}
+        amount: {type: integer, format: int64, minimum: 1, maximum: 9000000000000000}
+        unit: {type: string, const: FIC}
+        sourceAccountId: {type: string, format: uuid}
+        destinationAccountId: {type: string, format: uuid}
+        attentionState:
+          type: string
+          enum: [INCONSISTENT, BLOCKED, PUBLICATION_UNCONFIRMED, AWAITING_PUBLICATION, AWAITING_PROJECTION]
+          description: Severity order. PUBLICATION_UNCONFIRMED means matching activity is already projected but publication is still pending or claimed.
+        publicationStatus: {type: [string, 'null'], enum: [null, PENDING, CLAIMED, PUBLISHED, BLOCKED]}
+        attemptCount: {type: [integer, 'null'], minimum: 0}
+        lastErrorCode: {type: [string, 'null'], maxLength: 64}
+        nextAttemptAt: {type: [string, 'null'], format: date-time}
     LedgerEntry:
       type: object
       required: [id, transferId, accountId, delta, createdAt]

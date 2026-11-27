@@ -188,6 +188,12 @@ def execute_check(args, report):
         report["duringOutage"] = {"deliveryState": during["deliveryState"],
                                   "eventId": event_id, "attemptCount": during["event"]["attemptCount"],
                                   "lastErrorCode": during["event"]["lastErrorCode"]}
+        attention = http.get("/internal/demo/delivery-attention")
+        queue_row = next((item for item in attention["items"] if item["transferId"] == transfer_id), None)
+        require(attention["sampleLimit"] == 50 and 1 <= attention["sampledCount"] <= 50
+                and queue_row is not None and queue_row["attentionState"] == "AWAITING_PUBLICATION"
+                and queue_row["attemptCount"] >= during["event"]["attemptCount"],
+                "the bounded attention query did not surface the pending committed transfer")
 
         from playwright.sync_api import sync_playwright
         with sync_playwright() as playwright:
@@ -203,10 +209,16 @@ def execute_check(args, report):
                 page.on("request", lambda request: delivery_reads.append(request.url)
                         if request.method == "GET" and request.url == base + "/internal/transfers/" + transfer_id + "/delivery" else None)
                 require(page.goto(base + "/demo/index.html").status == 200, "browser demo is unavailable")
-                page.locator("#lookup-id").fill(transfer_id)
+                row = page.locator(f'#attention-items .attention-row[data-transfer-id="{transfer_id}"]')
+                row.wait_for(state="visible")
+                require(row.get_attribute("data-attention-state") == "AWAITING_PUBLICATION"
+                        and "attempt" in row.locator(".attention-details").inner_text(),
+                        "the browser attention row did not explain the pending publication")
                 delivery_url = base + "/internal/transfers/" + transfer_id + "/delivery"
                 with page.expect_response(lambda response: response.url == delivery_url) as observed:
-                    page.locator("#lookup-transfer").click()
+                    row.locator(".attention-inspect").click()
+                require(page.locator("#lookup-id").input_value() == transfer_id,
+                        "attention navigation did not select the transfer without an entered ID")
                 page.wait_for_function("() => document.querySelector('#delivery-state')?.textContent === 'AWAITING_PUBLICATION'")
                 verifier.check_proof_panel(page, original_proof)
                 require(re.search(r"[1-9][0-9]*", page.locator("#delivery-attempts").inner_text()), "retry count is not visible")
@@ -218,6 +230,17 @@ def execute_check(args, report):
                 for selector in ("#delivery-next-at", "#delivery-observed-at"):
                     require(page.locator(selector).is_visible() and page.locator(selector).inner_text().strip(),
                             "delivery observation/retry field is unavailable")
+                mobile = browser.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True)
+                try:
+                    mobile.on("request", lambda request: browser_posts.append(request.url)
+                              if request.method == "POST" else None)
+                    narrow = mobile.new_page()
+                    narrow.goto(base + "/demo/index.html#delivery-attention")
+                    narrow.locator(f'#attention-items .attention-row[data-transfer-id="{transfer_id}"]').wait_for()
+                    require(narrow.evaluate("document.documentElement.scrollWidth") <= 390,
+                            "the pending attention row overflowed the narrow viewport")
+                finally:
+                    mobile.close()
                 prior_reads = len(delivery_reads)
                 with page.expect_response(lambda response: response.url == delivery_url):
                     page.locator("#watch-start").click()
@@ -245,6 +268,13 @@ def execute_check(args, report):
                 require(final_delivery["deliveryState"] == "PROJECTED"
                         and final_delivery["event"]["publicationStatus"] == "PUBLISHED"
                         and final_delivery["event"]["eventId"] == event_id, "watch did not settle the same event")
+                page.wait_for_function("""id => !document.querySelector('#attention-refresh').disabled
+                  && ['positive','pending'].includes(document.querySelector('#attention-status').dataset.state)
+                  && !Array.from(document.querySelectorAll('#attention-items .attention-row'))
+                    .some(row => row.dataset.transferId === id)""", arg=transfer_id)
+                after_attention = http.get("/internal/demo/delivery-attention")
+                require(all(item["transferId"] != transfer_id for item in after_attention["items"]),
+                        "a fully settled transfer remained in delivery attention")
                 final_proof = http.get("/internal/transfers/" + transfer_id + "/ledger-proof")
                 require(final_proof == original_proof, "broker recovery changed the physical ledger postings")
                 verifier.check_proof_panel(page, final_proof)
@@ -272,6 +302,12 @@ def execute_check(args, report):
                                      "settledAfterSeconds": round(elapsed, 3),
                                      "samePostingIdsAndEvent": True, "userStopCancelledFutureReads": True,
                                      "savedReceiptCreated": False, "scriptErrors": []}
+                report["attention"] = {"sampleLimit": attention["sampleLimit"],
+                                       "sampledDuringOutage": attention["sampledCount"],
+                                       "pendingTransferId": transfer_id, "foundFromFreshBrowser": True,
+                                       "inspectedWithoutEnteringId": True,
+                                       "pendingRowFitsNarrowViewport": True,
+                                       "removedAfterSettlementFromBrowserAndApi": True}
                 context.close()
             finally:
                 browser.close()

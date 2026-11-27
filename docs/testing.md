@@ -63,6 +63,10 @@ The browser verifier also downloads a delivery observation, checks that publicat
 
 The [delivery-follow acceptance record](verification/delivery-follow.json) documents an actual owned Kafka stop and restart, no app restart, no browser POST, stable postings and a redacted download. A separate virtual-clock check verifies timeout and transfer-selection cancellation.
 
+`DemoDeliveryAttentionPostgresTest` verifies all five queue states, severity and age ordering, the strict 50-completed-transfer sample, fixed-account scope, and no writes. Its rare inconsistency cases use controlled corruption in a disposable PostgreSQL database. The real Kafka stop/restart verifier separately opens the affected transfer from the queue in Chrome with no typed ID, checks the narrow layout, and verifies that the same transfer drops out after settlement.
+
+The [delivery-attention acceptance record](verification/delivery-attention.json) includes real queue discovery and removal through a Kafka outage, the separate failed-refresh check, and the final 115 Java, 54 Python and 10 Node results.
+
 The [ledger-proof acceptance record](verification/ledger-proof.json) includes the exact tested image and assets, a real Kafka outage with unchanged ledger evidence, real Chrome recovery and direct PostgreSQL counts. The full local run passed 109 Java and 54 Python tests.
 
 The [v0.2.2 browser acceptance record](verification/browser-demo.json) is the previous verification snapshot. It includes the real network failure, unchanged saved receipt after reload, HTTP 200 replay, exact PostgreSQL evidence and final regression counts.

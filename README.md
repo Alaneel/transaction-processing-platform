@@ -13,16 +13,18 @@ An independent backend engineering project: exact integer transfers, an immutabl
 On macOS or Linux, start local Docker with Compose and use Python 3.10 or newer. The first run builds the app and starts PostgreSQL and Kafka. You do not need a host JDK.
 
 ```sh
-git clone --branch v0.2.4 --depth 1 https://github.com/Alaneel/transaction-processing-platform.git
+git clone --branch v0.2.5 --depth 1 https://github.com/Alaneel/transaction-processing-platform.git
 cd transaction-processing-platform
 python3 scripts/demo.py
 ```
 
-Open [Recent transfers](http://127.0.0.1:38080/demo/index.html#recent-transfers), or use **Browse recent transfers** on the **Browser demo** URL printed by the launcher. The launcher's sample transfer is already in the list.
+Open [Delivery attention](http://127.0.0.1:38080/demo/index.html#delivery-attention), or choose **Review delivery attention** on the **Browser demo** URL printed by the launcher.
 
-1. Choose **Inspect** on the newest transfer to see its ledger postings and Kafka delivery. **Show older transfers** pages back without typing an ID.
-2. If delivery is pending, choose **Follow delivery** to see retries, errors, and eventual publication and projection. It is read-only and stops within 60 seconds. On a healthy stack the sample may already be delivered. [Exercise a real delayed delivery](docs/testing.md#real-broker-outage-in-the-browser).
-3. Choose **Download observation** for a JSON snapshot without the recovery key, account IDs, or local URL.
+1. **Delivery attention** shows which of the latest 50 completed demo transfers need review. Blocked and inconsistent states appear ahead of ordinary delivery waits.
+2. Choose **Inspect** to see the transfer's ledger postings and Kafka progress. If needed, **Follow delivery** watches it for up to 60 seconds. **Download observation** exports evidence without the recovery key, account IDs, or local URL.
+3. A healthy demo may show nothing to review. Use [Recent transfers](http://127.0.0.1:38080/demo/index.html#recent-transfers) to inspect the launcher's sample, or [run the guarded Kafka-outage check](docs/testing.md#real-broker-outage-in-the-browser) to see a pending item appear and clear.
+
+The attention view is read-only and scoped to the two demo accounts. Its empty state is not a system-wide backlog check.
 
 To try recovery too, enable **Lose the reply on purpose** before sending the default 7 FIC, then use **Recover this transfer**. To recover in a fresh browser, [move the private receipt](docs/demo.md#move-a-receipt-to-another-browser) instead. [Walk through the browser demo](docs/demo.md#try-the-browser-demo).
 
@@ -48,6 +50,7 @@ The demo uses fictional value and loopback ports `38080`, `55436` and `39092`. R
 
 | Engineering result | Recorded evidence |
 |---|---|
+| **Delivery attention finds an affected transfer without an ID** and clears it after real Kafka recovery | [Attention acceptance](docs/verification/delivery-attention.json) |
 | **Recent history and read-only delivery following** verified with real PostgreSQL, Kafka, and Chrome | [History acceptance](docs/verification/recent-transfers.json) · [Kafka outage and export acceptance](docs/verification/delivery-follow.json) |
 | **A fresh browser session recovered the same committed transfer** without a second debit | [Portable receipt acceptance](docs/verification/portable-receipt.json) · [Hosted runs](https://github.com/Alaneel/transaction-processing-platform/actions/workflows/ci.yml) |
 | **109 Java tests and 54 Python checks passed locally**, with ledger evidence visible during a real Kafka outage | [Ledger proof acceptance](docs/verification/ledger-proof.json) |

@@ -119,7 +119,7 @@ public class TransferDeliveryController {
         event);
   }
 
-  private static DeliveryState deliveryState(
+  static DeliveryState deliveryState(
       TransferStatus transferStatus, EventProgress event, UUID inboxId, UUID projectionId) {
     if (transferStatus == TransferStatus.REJECTED) {
       return event == null && inboxId == null && projectionId == null

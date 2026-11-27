@@ -134,6 +134,8 @@ For financial evidence, `GET /internal/transfers/{id}/ledger-proof` reads the tr
 
 `GET /internal/demo/transfers` only exposes terminal decisions between the seeded Alice and Bob accounts in either direction. It returns no receipts, idempotency keys, other accounts or funding records. Request up to 20 decisions per page (default six) and use the supplied `nextBefore` token to read the next page. Each page reads one PostgreSQL snapshot using two bounded directional queries backed by a partial index. Pages are ordered by stored decision timestamp and transfer ID, not by the order in which a browser saw responses. New decisions may appear between page reads. Refresh the first page to see them.
 
+`GET /internal/demo/delivery-attention` samples the latest 50 completed transfers for the same seeded pair before joining their outbox, inbox and projection rows. The single statement uses the existing pair index and a bounded read timeout. It separates structural inconsistency, blocked publication, visible projection with unconfirmed publication, pending publication and pending projection. Fully settled results still count toward the examined sample but are not listed. Use the general event status and reconciliation endpoints for total backlog and integrity, not this demo queue.
+
 ## Build and test
 
 Host development requires a Java 21 JDK and a working Docker daemon. Point `JAVA_HOME` at Java 21 if another version is the default. Maven Wrapper pins and verifies Maven 3.9.16.

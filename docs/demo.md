@@ -57,6 +57,12 @@ Open **Recent transfers** below the transfer panels, or use **Browse recent tran
 
 The list is read-only. It shows neither recovery keys nor private receipt contents and does not resolve a browser's saved intent. A similar amount or timestamp is not proof that a particular unknown request committed. Use its original receipt when you need to recover that exact request.
 
+### Find transfers that need delivery attention
+
+Open **Delivery attention** or choose **Review delivery attention** next to the lookup. This view checks the latest 50 completed Alice/Bob transfers and shows only ones that still need review. It puts inconsistent evidence and blocked publication above ordinary waiting, with older decisions first within each group. A transfer can already have projected activity while the publication record is still pending.
+
+Select **Inspect** to open the selected transfer's ledger and delivery details. The list refreshes when a browser follow reaches a terminal state, and **Refresh attention** checks again on demand. It is not a total backlog, does not cover older transfers or other accounts, and never publishes, retries, or changes a transfer. If a healthy demo has nothing to review, the [real broker outage test](testing.md#real-broker-outage-in-the-browser) exercises a pending item and restores the broker afterward.
+
 ### Follow delivery and save an observation
 
 After **Check delivery** or **Inspect**, the delivery pane shows how many publication attempts were recorded, the last error code, when the next retry becomes eligible, and when publication and projection were observed. A prior error code can still be present after a successful retry.
