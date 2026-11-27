@@ -1,0 +1,95 @@
+{
+  "scope": "Local browser-only comparison of two redacted observation downloads for one fictional transfer.",
+  "finishedAt": "2026-11-27T00:33:52.994891+00:00",
+  "sourceSha256": {
+    "src/main/resources/static/demo/compare.html": "3371723badc5ac40c4518143caabac7445b590eb312206f69f8f7a89c3751c15",
+    "src/main/resources/static/demo/compare.css": "d1be7e00714a5265366a16096f93c63a92d4f1ec0555622ca0c04b93789fb125",
+    "src/main/resources/static/demo/observation-compare.js": "d49d70e62f63382e2a150df7bbac25338e8bf428129d12abc4089d3ce3b8d4e2",
+    "src/main/resources/static/demo/observation-compare-ui.js": "0e823d3ca9da342bbd2403e0bd3665052a7c80f08ec68c9203d3c478a69438e9",
+    "src/main/resources/static/demo/index.html": "b8b13b3b575a735a69d57b9411045491a2938dd65cc9f181b5d56c7a27accb4e",
+    "scripts/test-observation-compare.cjs": "1f9c5fac0734f3ef7ddbb5dcdaabf95b845b15c2b75372417e6db9772e0c5baa",
+    "scripts/verify-delivery-watch.py": "67a95e9cc0b3a93d944077dfb2e587546e57c190accaf6f05db9ead8ec678125",
+    "scripts/verify-browser-demo.py": "5d9b0fedd6de455764c20027e7f5c9efefb1817ffcb03df80a7073ec16019b27",
+    ".github/workflows/ci.yml": "2ed0017f118cebe6a229734a69c04e55476cbc53fc62551a529b9c83782779a6"
+  },
+  "runtime": {
+    "backend": "Retained v0.2.5-era demo image; no Java or schema changes in this iteration.",
+    "previewServesWorkspaceAssetsReadOnly": true,
+    "sameDBAndKafkaContainers": true,
+    "noFinancialRowsChangedWhenActivatingPreview": true,
+    "servedAssetSha256": {
+      "demo/compare.css": "d1be7e00714a5265366a16096f93c63a92d4f1ec0555622ca0c04b93789fb125",
+      "demo/compare.html": "3371723badc5ac40c4518143caabac7445b590eb312206f69f8f7a89c3751c15",
+      "demo/delivery-observation.js": "c43abee61c4e0b76fcbd0c96ebce3b62406e005539ea4ee878847fe631798bf7",
+      "demo/delivery-worker.js": "69e98e88bd2593b9f2a38d9af7572eef483c733f8d546a5971c82cd758688662",
+      "demo/demo.css": "dcc9499c9f246741b674f62040f1da8cd464471d0558b28e1c09414efa827aaf",
+      "demo/demo.js": "20723f850f7cfc9256918229c01ab9286740c12811d208b8bd4ca5ec9690b141",
+      "demo/favicon.svg": "60ad99791664060d5b45e97701d6234d10d3c483fd5be90a88da2c55ae95e52c",
+      "demo/index.html": "b8b13b3b575a735a69d57b9411045491a2938dd65cc9f181b5d56c7a27accb4e",
+      "demo/observation-compare-ui.js": "0e823d3ca9da342bbd2403e0bd3665052a7c80f08ec68c9203d3c478a69438e9",
+      "demo/observation-compare.js": "d49d70e62f63382e2a150df7bbac25338e8bf428129d12abc4089d3ce3b8d4e2",
+      "openapi.yaml": "4cd9215311c24d97c807f36d70c90865f546e08c757a6f66b73575c26260a77f"
+    }
+  },
+  "realKafkaOutage": {
+    "newHttpStatus": 201,
+    "recoverySecondsInBrowser": 4.516,
+    "originalBrokerRestored": true,
+    "applicationNotRestartedDuringOutage": true,
+    "ledgerReconciliationPassed": true,
+    "sqlEffect": {
+      "outbox": 1,
+      "inbox": 1,
+      "projection": 1,
+      "activity": 2,
+      "activitySum": 0
+    },
+    "comparison": {
+      "firstSha256": "8e06b489f11d1c16ce18d96b7035cc5c19a69187fb5e167899bd4266785503b2",
+      "secondSha256": "29b982c09a0dfc993f14d59d279553fc610da8685afcaefb2195e0d90f668d6e",
+      "realBrowserDownloads": true,
+      "independentContext": true,
+      "browserOfflineForComparison": true,
+      "delivery": {
+        "first": "AWAITING_PUBLICATION",
+        "second": "PROJECTED",
+        "comparison": "changed"
+      },
+      "publication": {
+        "first": "CLAIMED",
+        "second": "PUBLISHED",
+        "comparison": "changed"
+      },
+      "sameEventAndLedger": true,
+      "exportAndObservationTimesShownSeparately": true,
+      "narrowViewportWidth": 390,
+      "reversedFileOrderFlaggedWithoutReordering": true,
+      "staleResultCleared": true,
+      "differentTransferRejected": true,
+      "recoveryReceiptRejected": true,
+      "clearRemovedFiles": true,
+      "apiRequestCount": 0,
+      "postCount": 0,
+      "storageEntries": 0,
+      "scriptErrors": []
+    }
+  },
+  "browserRegression": {
+    "realChromeComplete": true,
+    "privateReceiptReplayStatus": 200,
+    "noPostDuringReceiptImportOrReload": true,
+    "freshBrowserFoundEarlierTransfer": true,
+    "narrowBrowserInspectedHistory": true,
+    "finalLedgerReconciliationPassed": true,
+    "finalEventDiscrepancies": 0,
+    "independentPostgresEvidenceMatchesBothEvents": true
+  },
+  "automatedTests": {
+    "nodePassed": 20,
+    "pythonPassed": 54,
+    "showcaseProvenancePassed": true,
+    "javaRerun": false,
+    "hostedCiRunForThisIteration": false
+  },
+  "privacy": "The comparison evidence retains hashes and check summaries, not either file or any private receipt."
+}

@@ -51,6 +51,25 @@ Use a modern browser with local storage and Web Locks to submit and recover tran
 
 The browser requires the same scheme, host, and port, so `localhost` and `127.0.0.1` are not interchangeable. A matching URL does not prove the database was retained. Use files you created yourself, do not edit them, and do not import them against a rebuilt demo database. These files are specific to Transfer Lab and are not the command-line client's receipt format.
 
+### Run the Transfer Failure Drill
+
+The live drill combines a real lost reply and a real broker outage on the **same** fictional transfer. The presenter opens in a separate, read-only Chrome window. It does not expose the private receipt or operate Docker. The Python launcher pauses only the selected, owned demo broker, drives the actual transfer and recovery UI, then restores the same broker. The optional visible viewer runs independently so Chrome shutting down cannot delay the verified result indefinitely.
+
+Use a checkout containing the drill, a running local Docker daemon, Python 3.10 or newer, and an installed Chrome browser:
+
+```sh
+python3 scripts/demo.py
+python3 -m venv benchmark-results/drill-venv
+benchmark-results/drill-venv/bin/python -m pip install playwright==1.57.0
+benchmark-results/drill-venv/bin/python scripts/failure-drill.py --headed
+```
+
+If the demo and Playwright are already available, only the last command is needed. Pass `--project` and `--base-url` together for a different owned local project and loopback port. Omit `--headed` to run without a visible window. Use an isolated, idle stack. The drill leaves one completed 7-FIC transfer in its history and writes a redacted JSON report under `benchmark-results/`. Keep the same database and Kafka volumes. Do not run other transfer or Docker operations against that project during the drill.
+
+The drill records time from warm launch, including preflight, browser startup and independent verification. A slower verified run is reported honestly rather than being counted under the 90-second target. The report covers the recorded transfer only and is not a broker throughput or production durability result.
+
+To see the flow before installing anything, watch the [real presenter capture](assets/failure-drill.gif). The [acceptance record](verification/transfer-failure-drill.json) distinguishes the measured live verification from the window and rendering checks.
+
 ### Find an earlier transfer without its ID
 
 Open **Recent transfers** below the transfer panels, or use **Browse recent transfers** by the lookup form. It reads the latest completed and rejected decisions between the two demo accounts from PostgreSQL, including ones made in earlier browser sessions. Select **Inspect** to open the selected transfer's ledger and delivery observations. Use **Show older transfers** to page back or **Refresh latest** to return to the newest decisions.
@@ -70,6 +89,14 @@ After **Check delivery** or **Inspect**, the delivery pane shows how many public
 If delivery is pending, choose **Follow delivery**. The page reads only the selected transfer's delivery status, at most once per two seconds and for up to 60 seconds. It stops when publication and projection are both recorded, when the backend reports a blocked or inconsistent result, or when you stop it or change the selection. It does not submit or replay a transfer, start a broker, or requeue an event.
 
 Use **Download observation** to save the latest verified delivery and available ledger observations as JSON. It is different from **Download private receipt**. The observation includes transfer and event IDs and signed posting IDs and amounts, but omits the local endpoint, account IDs, and idempotency key. The separate observation times do not imply a single database snapshot or a Kafka offset acknowledgement.
+
+### Compare two saved observations
+
+1. Inspect a delayed transfer and choose **Download observation**. After it settles, choose **Download observation** again for the same transfer ID.
+2. Open **Compare observation files** in Transfer Lab and choose the earlier file first and the later file second. Select **Compare observations**.
+3. Look for changes in delivery and publication, then check that the event ID and exact signed ledger entries still match. **Not comparable** means the necessary evidence was not recorded in both files or the fields refer to different events.
+
+The comparison runs in the browser without sending the selected files or creating a transfer. It accepts observation exports, not private receipts. It compares the contents of unsigned files and does not check them against a server. Check the separate delivery and ledger reading times. An export made after delivery recovers can still reuse the earlier ledger reading. If the recorded times are out of order, the page keeps your file order and shows a note.
 
 ## Demonstrate broker outage and recovery
 

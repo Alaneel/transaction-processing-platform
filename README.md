@@ -1,19 +1,35 @@
 # Transaction Processing Platform
 
-**A transaction ledger that keeps its financial boundary intact when event delivery fails.**
+**Lose the reply. Recover the same transfer. Verify there was no second debit.**
 
 Java 21 · Spring Boot · PostgreSQL · Apache Kafka · Docker
 
 An independent backend engineering project: exact integer transfers, an immutable double-entry ledger, a transactional outbox and a durable consumer inbox. The system demonstrates **at-least-once delivery with idempotent PostgreSQL effects**. It uses fictional units, one modular application and real dependency tests.
 
-[Run the demo](#run-the-demo) · [Read the engineering story](docs/portfolio-walkthrough.md) · [Inspect the evidence](docs/evidence.md) · [Browse the code](docs/code-map.md)
+[Run the failure drill](#try-one-transfer-through-two-failures) · [Try the transfer UI](#run-the-demo) · [Inspect the evidence](docs/evidence.md)
+
+## Try one transfer through two failures
+
+The **Transfer Failure Drill** follows a single fictional 7-FIC transfer. A real local Kafka broker is down when the browser sends the transfer and loses the committed reply. A fresh browser session recovers the same transfer from its private receipt. Kafka comes back, the same event reaches the activity projection, and a read-only PostgreSQL check finds one transfer, the original signed postings, and one projection.
+
+[![Failure drill from a real local run. HTTP 201 is lost, a fresh browser replays HTTP 200, and the original −7/+7 postings and one projection are verified.](docs/assets/failure-drill.gif)](docs/verification/transfer-failure-drill.json)
+
+_Actual presenter frames from one live run, with pauses adjusted. It reached the verified result in 11.2 seconds after a warm start._ [Inspect the evidence](docs/verification/transfer-failure-drill.json)
+
+From a checkout that includes the drill, with the local demo running and Chrome plus Python Playwright installed, run:
+
+```sh
+python3 scripts/failure-drill.py --headed
+```
+
+The browser shows each verified step as it happens. No pasted IDs or SQL. The 90-second target starts after the demo stack is running, not during installation or the first image build. [Setup and verification](docs/demo.md#run-the-transfer-failure-drill)
 
 ## Run the demo
 
 On macOS or Linux, start local Docker with Compose and use Python 3.10 or newer. The first run builds the app and starts PostgreSQL and Kafka. You do not need a host JDK.
 
 ```sh
-git clone --branch v0.2.5 --depth 1 https://github.com/Alaneel/transaction-processing-platform.git
+git clone --branch v0.2.6 --depth 1 https://github.com/Alaneel/transaction-processing-platform.git
 cd transaction-processing-platform
 python3 scripts/demo.py
 ```
@@ -50,6 +66,7 @@ The demo uses fictional value and loopback ports `38080`, `55436` and `39092`. R
 
 | Engineering result | Recorded evidence |
 |---|---|
+| **One transfer survives a lost reply and Kafka outage**, with matching physical postings and a single projection verified in PostgreSQL | [Combined drill acceptance](docs/verification/transfer-failure-drill.json) |
 | **Delivery attention finds an affected transfer without an ID** and clears it after real Kafka recovery | [Attention acceptance](docs/verification/delivery-attention.json) |
 | **Recent history and read-only delivery following** verified with real PostgreSQL, Kafka, and Chrome | [History acceptance](docs/verification/recent-transfers.json) · [Kafka outage and export acceptance](docs/verification/delivery-follow.json) |
 | **A fresh browser session recovered the same committed transfer** without a second debit | [Portable receipt acceptance](docs/verification/portable-receipt.json) · [Hosted runs](https://github.com/Alaneel/transaction-processing-platform/actions/workflows/ci.yml) |

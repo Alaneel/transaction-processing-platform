@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="description" content="Follow a local Transfer Lab failure drill from a lost response to checked ledger and delivery evidence.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; worker-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+    <title>Transfer Lab · Failure drill</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="failure-drill.css">
+    <script src="failure-drill.js" defer></script>
+  </head>
+  <body class="drill-view">
+    <a class="skip-link" href="#main">Skip to the failure drill</a>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Transfer Lab home">
+          <span class="brand-mark" aria-hidden="true">↗</span>
+          <span>Transfer <strong>Lab</strong></span>
+        </a>
+        <span class="environment-label">Local failure drill <span aria-hidden="true">/</span> Fictional FIC</span>
+      </header>
+
+      <main id="main" tabindex="-1">
+        <section class="drill-introduction" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow">One transfer. Four scenes.</p>
+            <h1 id="page-title">Lose the reply.<br>Keep the transfer.</h1>
+          </div>
+          <p class="drill-description">A scripted local drill with real PostgreSQL and Kafka. Follow one transfer from an uncertain response to its recovered result, ledger postings and eventual delivery.</p>
+        </section>
+
+        <section class="drill-status-panel" aria-label="Drill progress">
+          <div class="drill-status-line">
+            <span id="drill-mode" class="drill-mode" data-state="waiting">Waiting</span>
+            <p id="drill-status" role="status" aria-live="polite" aria-atomic="true" data-stage="idle">Waiting for the local runner. No drill evidence has been received.</p>
+            <div class="drill-clock"><span>Elapsed</span><output id="drill-elapsed" aria-live="off">Not started</output></div>
+          </div>
+          <p id="drill-launch-tip" class="drill-launch-tip">Start the drill from your checkout: <code>python3 scripts/failure-drill.py --headed</code></p>
+        </section>
+
+        <div class="drill-layout">
+          <section class="drill-story" aria-label="Four-scene checklist">
+            <ol class="drill-scenes">
+              <li class="panel drill-scene" data-scene="outage">
+                <header><span class="step-number" aria-hidden="true">01</span><h2>Let delivery wait</h2></header>
+                <p>The runner pauses this demo’s broker. Financial work can still reach PostgreSQL.</p>
+                <ul class="drill-steps">
+                  <li data-stage="preparing" data-state="waiting"><span class="drill-check" aria-hidden="true">○</span><span>Runner started local checks</span><span class="drill-step-state">Waiting</span></li>
+                  <li data-stage="broker-offline" data-state="waiting"><span class="drill-check" aria-hidden="true">○</span><span>Broker outage observed</span><span class="drill-step-state">Waiting</span></li>
+                </ul>
+              </li>
+              <li class="panel drill-scene" data-scene="response">
+                <header><span class="step-number" aria-hidden="true">02</span><h2>Lose the response</h2></header>
+                <p>A real transfer commits. Its response is deliberately lost before the browser can read it.</p>
+                <ul class="drill-steps">
+                  <li data-stage="reply-lost" data-state="waiting"><span class="drill-check" aria-hidden="true">○</span><span>Committed reply lost</span><span class="drill-step-state">Waiting</span></li>
+                </ul>
+              </li>
+              <li class="panel drill-scene" data-scene="recovery">
+                <header><span class="step-number" aria-hidden="true">03</span><h2>Recover the same intent</h2></header>
+                <p>A fresh browser context reuses the private receipt. The runner checks the original postings.</p>
+                <ul class="drill-steps">
+                  <li data-stage="receipt-recovered" data-state="waiting"><span class="drill-check" aria-hidden="true">○</span><span>Original result recovered</span><span class="drill-step-state">Waiting</span></li>
+                  <li data-stage="delivery-pending" data-state="waiting"><span class="drill-check" aria-hidden="true">○</span><span>Delivery still waiting</span><span class="drill-step-state">Waiting</span></li>
+                </ul>
+              </li>
+              <li class="panel drill-scene" data-scene="delivery">
+                <header><span class="step-number" aria-hidden="true">04</span><h2>Bring delivery back</h2></header>
+                <p>The broker returns. The same event reaches one projection, with paired activity checked independently.</p>
+                <ul class="drill-steps">
+                  <li data-stage="delivery-projected" data-state="waiting"><span class="drill-check" aria-hidden="true">○</span><span>Same event projected</span><span class="drill-step-state">Waiting</span></li>
+                  <li data-stage="verified" data-state="waiting"><span class="drill-check" aria-hidden="true">○</span><span>Final checks reported</span><span class="drill-step-state">Waiting</span></li>
+                </ul>
+              </li>
+            </ol>
+            <section id="drill-result" class="drill-result" hidden aria-labelledby="drill-result-heading" data-stage="failed">
+              <h2 id="drill-result-heading"></h2>
+              <p id="drill-result-message"></p>
+            </section>
+          </section>
+
+          <section class="panel drill-evidence" aria-labelledby="evidence-heading">
+            <header class="drill-evidence-heading"><p class="section-kicker">Reported by the local runner</p><h2 id="evidence-heading">Evidence for this transfer</h2></header>
+            <dl class="drill-identities">
+              <div><dt>Transfer ID</dt><dd id="drill-transfer-id">Not observed</dd></div>
+              <div><dt>Event ID</dt><dd id="drill-event-id">Not observed</dd></div>
+            </dl>
+            <dl class="drill-evidence-rows">
+              <div><dt>Committed response</dt><dd id="drill-http-status">Not observed</dd></div>
+              <div><dt>Fresh-context replay</dt><dd id="drill-replay-status">Not observed</dd></div>
+              <div><dt>Ledger entry IDs</dt><dd id="drill-posting-ids">Not observed</dd></div>
+              <div><dt>Source / destination</dt><dd id="drill-ledger-deltas">Not observed</dd></div>
+              <div><dt>Ledger after recovery</dt><dd id="drill-ledger-check">Not observed</dd></div>
+              <div><dt>Delivery</dt><dd id="drill-delivery-state">Not observed</dd></div>
+              <div><dt>Projection effects</dt><dd id="drill-projection-count">Not observed</dd></div>
+              <div><dt>Outbox / inbox / activity</dt><dd id="drill-effects">Not observed</dd></div>
+              <div><dt>Reconciliation</dt><dd id="drill-event-check">Not observed</dd></div>
+              <div><dt>App restarted</dt><dd id="drill-app-restarted">Not observed</dd></div>
+              <div><dt>90-second target</dt><dd id="drill-within-target">Not observed</dd></div>
+            </dl>
+            <p class="drill-evidence-note">For this transfer ID. Values appear only when the runner reports them; missing evidence stays “Not observed.”</p>
+          </section>
+        </div>
+
+        <p class="drill-boundary">This page is a read-only presenter: it makes no API requests and cannot start or repair a drill. The elapsed time advances only with reported evidence. Local observations are not a durability SLA.</p>
+      </main>
+
+      <footer class="footer"><span>Transaction Processing Platform <span aria-hidden="true">·</span> Transfer Lab</span><a href="index.html">Back to the demo <span aria-hidden="true">↗</span></a></footer>
+    </div>
+    <noscript><p class="no-script-message">Enable JavaScript to display evidence from the local failure-drill runner.</p></noscript>
+  </body>
+</html>

@@ -1,5 +1,13 @@
 # Release and verification
 
+## v0.2.6
+
+Compare two redacted delivery observations for the same transfer without sending either file to a server. The comparison distinguishes export, delivery-read and ledger-read times, and warns if files are out of order or the available evidence cannot be compared.
+
+The Transfer Failure Drill follows one fictional transfer through a real stopped broker and an intentionally lost HTTP reply after commit. A fresh browser recovers the original result, and a read-only PostgreSQL check confirms the same signed postings and one matching projection. The optional headed viewer is isolated from the verification runner. There are no API or database-schema changes.
+
+[Quick start and real capture](../README.md#try-one-transfer-through-two-failures) · [Comparison acceptance](verification/observation-comparison.json) · [Drill acceptance](verification/transfer-failure-drill.json)
+
 ## v0.2.5
 
 Delivery attention highlights inconsistent, blocked, and pending delivery among the latest 50 completed demo transfers. Choose **Inspect** to see the exact postings, retries and event state without typing a transfer ID. Settled transfers disappear from the active attention list. The bounded read is not a global backlog check and adds no migration.

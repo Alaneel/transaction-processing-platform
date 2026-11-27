@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="description" content="Compare two downloaded Transfer Lab observations locally in your browser.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+    <title>Compare observations · Transfer Lab</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="compare.css">
+    <script src="observation-compare.js" defer></script>
+    <script src="observation-compare-ui.js" defer></script>
+  </head>
+  <body class="comparison-page">
+    <a class="skip-link" href="#main">Skip to observation comparison</a>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Back to Transfer Lab demo">
+          <span class="brand-mark" aria-hidden="true">↗</span>
+          <span>Transfer <strong>Lab</strong></span>
+        </a>
+        <span class="environment-label">Offline comparison</span>
+      </header>
+
+      <main id="main" tabindex="-1">
+        <section class="introduction compare-introduction" aria-labelledby="page-title">
+          <div class="intro-copy">
+            <p class="eyebrow">Two files. One transfer.</p>
+            <h1 id="page-title">Compare your<br>observations.</h1>
+            <p class="intro-description">Read two observation downloads side by side. Reading and comparing these files runs locally in your browser and does not contact the server.</p>
+          </div>
+          <aside class="intro-note" aria-label="File privacy">
+            <span class="note-symbol" aria-hidden="true">↳</span>
+            <p>Choose <strong>observation downloads</strong>, not private recovery receipts. Recovery receipts contain a request key and should stay private.</p>
+          </aside>
+        </section>
+
+        <section class="panel compare-picker" aria-labelledby="choose-heading">
+          <header class="panel-heading">
+            <span class="step-number" aria-hidden="true">01</span>
+            <div>
+              <p class="section-kicker">Open locally</p>
+              <h2 id="choose-heading">Choose two observation files</h2>
+            </div>
+          </header>
+          <p class="panel-description">Use JSON files saved with “Download observation” for the same transfer ID. Each file contains saved readings, not a live result.</p>
+          <div class="compare-file-grid">
+            <div class="field compare-file-field">
+              <label for="first-report">First observation file</label>
+              <input id="first-report" type="file" accept=".json,application/json" aria-describedby="compare-file-help">
+            </div>
+            <div class="field compare-file-field">
+              <label for="second-report">Second observation file</label>
+              <input id="second-report" type="file" accept=".json,application/json" aria-describedby="compare-file-help">
+            </div>
+          </div>
+          <p id="compare-file-help" class="field-help">Observation JSON only, up to 8 KiB per file. File selection does not upload anything.</p>
+          <div class="compare-actions">
+            <button id="compare-reports" class="button" type="button" disabled>
+              <span>Compare observations</span><span class="button-arrow" aria-hidden="true">→</span>
+            </button>
+            <button id="clear-reports" class="button button-secondary" type="button" disabled>Clear files</button>
+          </div>
+          <p id="compare-status" class="action-message compare-status" role="status" aria-live="polite" aria-atomic="true" data-state="neutral">Choose two observations of the same transfer.</p>
+        </section>
+
+        <section id="compare-result" class="panel compare-result" hidden aria-labelledby="compare-result-heading">
+          <header class="panel-heading">
+            <span class="step-number" aria-hidden="true">02</span>
+            <div>
+              <p class="section-kicker">Side by side</p>
+              <h2 id="compare-result-heading">For this transfer ID</h2>
+            </div>
+          </header>
+          <dl class="compare-metadata">
+            <div class="compare-identity">
+              <dt>Transfer ID</dt>
+              <dd id="compare-transfer-id"></dd>
+            </div>
+          </dl>
+          <div class="compare-metadata compare-timestamps">
+            <section aria-labelledby="compare-first-clock">
+              <h3 id="compare-first-clock">First file</h3>
+              <dl>
+                <div><dt>Exported at</dt><dd><time id="compare-first-time"></time></dd></div>
+                <div><dt>Delivery read at</dt><dd><time id="compare-first-delivery-time"></time></dd></div>
+                <div><dt>Ledger read at</dt><dd><time id="compare-first-ledger-time"></time></dd></div>
+              </dl>
+            </section>
+            <section aria-labelledby="compare-second-clock">
+              <h3 id="compare-second-clock">Second file</h3>
+              <dl>
+                <div><dt>Exported at</dt><dd><time id="compare-second-time"></time></dd></div>
+                <div><dt>Delivery read at</dt><dd><time id="compare-second-delivery-time"></time></dd></div>
+                <div><dt>Ledger read at</dt><dd><time id="compare-second-ledger-time"></time></dd></div>
+              </dl>
+            </section>
+          </div>
+          <p id="compare-order-note" class="compare-order-note" hidden></p>
+          <table class="compare-table">
+            <caption>Saved observations by field. “First” and “Second” follow your file selections, not chronological order.</caption>
+            <colgroup><col class="compare-field-column"><col><col><col class="compare-verdict-column"></colgroup>
+            <thead>
+              <tr><th scope="col">Field</th><th scope="col">First file</th><th scope="col">Second file</th><th scope="col">Comparison</th></tr>
+            </thead>
+            <tbody id="compare-rows"></tbody>
+          </table>
+        </section>
+
+        <section class="boundary-note compare-boundary" aria-label="Limits of observation files">
+          <span class="boundary-mark" aria-hidden="true">↔</span>
+          <p><strong>Saved observations, not authenticated records.</strong> Files are unsigned and can be edited. A later export can reuse an earlier ledger reading. Check the reading times when deciding what the files show.</p>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>Transaction Processing Platform <span aria-hidden="true">·</span> Transfer Lab</span>
+        <a href="index.html">Back to the demo <span aria-hidden="true">↗</span></a>
+      </footer>
+    </div>
+    <noscript><p class="no-script-message">Enable JavaScript to compare observation files locally in your browser.</p></noscript>
+  </body>
+</html>

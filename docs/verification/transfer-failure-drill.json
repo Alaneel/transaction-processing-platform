@@ -1,0 +1,307 @@
+{
+  "scope": "Local Chrome, one simulated lost response after real commit, one real stop/start of the retained single-node Kafka broker.",
+  "finishedAt": "2026-11-27T00:46:46.059875+00:00",
+  "targetSecondsAfterStackStartup": 90,
+  "warmLaunchToVerifiedSeconds": 11.246,
+  "observedLauncherWallSecondsIncludingOldWindowShutdown": 108.287,
+  "liveRunLauncherSha256": "9b592c083ed16974065c158f96efed39c0f062bd3c42c9ccb045fbe035059560",
+  "finalViewerOnlyValidation": {
+    "secondsIncludingTenSecondHold": 11.33,
+    "scope": "Replayed the recorded live stages through the final desktop and separate headless phone presenters. Both windows closed. No new transfer or Kafka operation.",
+    "changeSinceLiveRun": "Phone check uses its own headless context; the optional visible hold uses a launcher-side timer. The scenario and SQL checks are unchanged.",
+    "completeLiveRerun": false,
+    "supersededBy": "finalLiveRerun"
+  },
+  "withinTarget": true,
+  "runtime": "Existing local demo backend and read-only mounting of the tested UI assets. No Java or schema change.",
+  "steps": [
+    {
+      "stage": "preparing",
+      "details": {},
+      "elapsedSeconds": 0.0
+    },
+    {
+      "stage": "broker-offline",
+      "details": {},
+      "elapsedSeconds": 2.84
+    },
+    {
+      "stage": "reply-lost",
+      "details": {
+        "transferId": "79a8995e-47b9-4460-965d-4a617381f622",
+        "eventId": "f3893791-c3ee-4ac9-acf7-f5fc7104ef40",
+        "httpStatus": 201,
+        "sourceDelta": -7,
+        "destinationDelta": 7,
+        "deliveryState": "AWAITING_PUBLICATION",
+        "publicationStatus": "PENDING",
+        "postingIds": [
+          "47",
+          "48"
+        ]
+      },
+      "elapsedSeconds": 3.648
+    },
+    {
+      "stage": "receipt-recovered",
+      "details": {
+        "transferId": "79a8995e-47b9-4460-965d-4a617381f622",
+        "eventId": "f3893791-c3ee-4ac9-acf7-f5fc7104ef40",
+        "httpStatus": 201,
+        "replayHttpStatus": 200,
+        "sourceDelta": -7,
+        "destinationDelta": 7,
+        "freshContext": true,
+        "ledgerUnchanged": true,
+        "deliveryState": "AWAITING_PUBLICATION",
+        "publicationStatus": "CLAIMED",
+        "postingIds": [
+          "47",
+          "48"
+        ]
+      },
+      "elapsedSeconds": 4.1
+    },
+    {
+      "stage": "delivery-pending",
+      "details": {
+        "transferId": "79a8995e-47b9-4460-965d-4a617381f622",
+        "eventId": "f3893791-c3ee-4ac9-acf7-f5fc7104ef40",
+        "httpStatus": 201,
+        "replayHttpStatus": 200,
+        "sourceDelta": -7,
+        "destinationDelta": 7,
+        "deliveryState": "AWAITING_PUBLICATION",
+        "publicationStatus": "CLAIMED",
+        "postingIds": [
+          "47",
+          "48"
+        ]
+      },
+      "elapsedSeconds": 4.257
+    },
+    {
+      "stage": "delivery-projected",
+      "details": {
+        "transferId": "79a8995e-47b9-4460-965d-4a617381f622",
+        "eventId": "f3893791-c3ee-4ac9-acf7-f5fc7104ef40",
+        "httpStatus": 201,
+        "replayHttpStatus": 200,
+        "sourceDelta": -7,
+        "destinationDelta": 7,
+        "deliveryState": "PROJECTED",
+        "publicationStatus": "PUBLISHED",
+        "postingIds": [
+          "47",
+          "48"
+        ]
+      },
+      "elapsedSeconds": 8.475
+    },
+    {
+      "stage": "verified",
+      "details": {
+        "eventDiscrepancies": 0,
+        "outboxCount": 1,
+        "inboxCount": 1,
+        "projectionCount": 1,
+        "activityCount": 2,
+        "activitySum": 0,
+        "ledgerConsistent": true,
+        "appRestarted": false,
+        "withinTarget": true
+      },
+      "elapsedSeconds": 11.246
+    }
+  ],
+  "financialOutcome": {
+    "originalUpstreamHttpStatus": 201,
+    "browserSawNoResponse": true,
+    "replayHttpStatus": 200,
+    "freshBrowserHadNoSavedReceipt": true,
+    "importOrReloadPostCount": 0,
+    "samePhysicalPostings": true,
+    "recoveryDidNotAddFinancialEffects": true,
+    "browserPostCount": 2,
+    "logicalTransferCount": 1
+  },
+  "deliveryOutcome": {
+    "sameBrokerRestored": true,
+    "appAndDatabaseNotRestarted": true,
+    "before": "AWAITING_PUBLICATION",
+    "after": "PROJECTED",
+    "oneMatchingEventAndProjection": true,
+    "bothReconciliationsPassed": true
+  },
+  "postgresReadOnlyProof": {
+    "completedTransfer": 1,
+    "postings": [
+      {
+        "entryId": "47",
+        "delta": -7,
+        "role": "SOURCE"
+      },
+      {
+        "entryId": "48",
+        "delta": 7,
+        "role": "DESTINATION"
+      }
+    ],
+    "outboxCount": 1,
+    "inboxCount": 1,
+    "projectionCount": 1,
+    "activityCount": 2,
+    "activitySum": 0,
+    "matchingPublishedEvent": 1,
+    "matchingInboxEvent": 1,
+    "matchingProjectionEvent": 1,
+    "matchingSignedActivity": 2
+  },
+  "isolatedRowIncrements": {
+    "transfers": 1,
+    "postings": 2,
+    "outbox": 1,
+    "inbox": 1,
+    "projection": 1,
+    "activity": 2
+  },
+  "offlineComparison": {
+    "firstSha256": "83a9b6f939c70f9f5da60d600ac4806fcee9e5b8c3160ac1a57d6c526ecaee0a",
+    "secondSha256": "e3956cd7108e9ab190dba99b78f1c7429e478421068f9a890700f928909564f1",
+    "realBrowserDownloads": true,
+    "independentContext": true,
+    "browserOfflineForComparison": true,
+    "delivery": {
+      "first": "AWAITING_PUBLICATION",
+      "second": "PROJECTED",
+      "comparison": "changed"
+    },
+    "publication": {
+      "first": "CLAIMED",
+      "second": "PUBLISHED",
+      "comparison": "changed"
+    },
+    "sameEventAndLedger": true,
+    "exportAndObservationTimesShownSeparately": true,
+    "narrowViewportWidth": 390,
+    "reversedFileOrderFlaggedWithoutReordering": true,
+    "staleResultCleared": true,
+    "differentTransferRejected": true,
+    "recoveryReceiptRejected": true,
+    "clearRemovedFiles": true,
+    "apiRequestCount": 0,
+    "postCount": 0,
+    "storageEntries": 0,
+    "scriptErrors": []
+  },
+  "presenter": {
+    "offlineAfterLoad": true,
+    "narrowViewportWidth": 390,
+    "visibleStageCount": 7,
+    "apiOrWriteRequests": 0,
+    "browserStorageEntries": 0
+  },
+  "preview": {
+    "asset": "docs/assets/failure-drill.gif",
+    "sha256": "abcc407b5d504b583a0a47629f0d78cb017f21f90de1ee9b0b2259cee8bbc383",
+    "type": "Sequence of real presenter captures from this run with adjusted pauses, not a live service."
+  },
+  "sourceSha256": {
+    "scripts/failure-drill.py": "b61d4b89235414dd8ddd95b243a0d27ee2bc91fff7a3e089979842f8ba5f95ca",
+    "scripts/failure_drill_browser.py": "eb4d1cf4d6a688f136233c3f2ca77ee464d81b4cbcfd94392313633da216c3e6",
+    "scripts/test_failure_drill.py": "2db2968f1d31011d6999c312a3611fc5a6650b20f70efb5202ab4d387d6e112d",
+    "scripts/verify-browser-demo.py": "5d9b0fedd6de455764c20027e7f5c9efefb1817ffcb03df80a7073ec16019b27",
+    "scripts/verify-delivery-watch.py": "67a95e9cc0b3a93d944077dfb2e587546e57c190accaf6f05db9ead8ec678125",
+    "src/main/resources/static/demo/failure-drill.html": "e7e7a646c63349bce9c8fbcb395746d0fd9b7977eaaf7dd53a0d90d187f92561",
+    "src/main/resources/static/demo/failure-drill.css": "672fc6e2a3d7d242a5d5d291fc30031a9759adbb2b245f15931949986685d668",
+    "src/main/resources/static/demo/failure-drill.js": "6a81f260ce1a518bb2b8e3ca38fb81117d8acd8a5bdfb39b800ebcc8d4714be4",
+    "src/main/resources/static/demo/index.html": "9dfbdb395fd352ecb53705ccf4c19d3ddc0a709fd84ee13f6dd8862b8ec8bfdd",
+    ".github/workflows/ci.yml": "6653a877c17405fbbe6e87a9b5788c050702fbe734117c6607b749e65cfa4782",
+    "scripts/failure_drill_presenter.py": "89261c342c6ac2b24ef5a76f2f562e9db986ca123a3db245011edad3dc24eb5b"
+  },
+  "servedAssetSha256": {
+    "demo/failure-drill.html": "e7e7a646c63349bce9c8fbcb395746d0fd9b7977eaaf7dd53a0d90d187f92561",
+    "demo/failure-drill.css": "672fc6e2a3d7d242a5d5d291fc30031a9759adbb2b245f15931949986685d668",
+    "demo/failure-drill.js": "6a81f260ce1a518bb2b8e3ca38fb81117d8acd8a5bdfb39b800ebcc8d4714be4",
+    "demo/index.html": "9dfbdb395fd352ecb53705ccf4c19d3ddc0a709fd84ee13f6dd8862b8ec8bfdd",
+    "demo/demo.css": "dcc9499c9f246741b674f62040f1da8cd464471d0558b28e1c09414efa827aaf"
+  },
+  "regressions": {
+    "pythonPassed": 64,
+    "nodePassed": 20,
+    "newLauncherUnitTests": 10,
+    "hostedCiRan": false,
+    "javaRerun": false
+  },
+  "privacy": "No private receipt bytes, recovery keys or endpoint are retained in this public-facing evidence record or animation.",
+  "finalLiveRerun": {
+    "scope": "Unmodified final launcher with a visible Chrome window and real Kafka stop/start on the retained owned demo.",
+    "finishedAt": "2026-11-27T01:09:47.514280+00:00",
+    "warmLaunchToVerifiedSeconds": 12.725,
+    "launcherWallSecondsIncludingViewerHold": 67.997,
+    "withinTarget": true,
+    "launcherSha256": "b61d4b89235414dd8ddd95b243a0d27ee2bc91fff7a3e089979842f8ba5f95ca",
+    "brokerRestoredAndHealthy": true,
+    "originalDatabaseAndKafkaContainersAndVolumesPreserved": true,
+    "appAndDatabaseNotRestartedDuringDrill": true,
+    "diskAvailableGiBBeforeBrokerRecovery": 12.23,
+    "diskAvailableGiBAfterDrill": 6.63,
+    "dockerSettingsChanged": false,
+    "originalVolumeIdentityVerified": true,
+    "usesSupervisedVisibleBrowser": true,
+    "acceptedStages": [
+      "preparing",
+      "broker-offline",
+      "reply-lost",
+      "receipt-recovered",
+      "delivery-pending",
+      "delivery-projected",
+      "verified"
+    ],
+    "upstreamHttpStatus": 201,
+    "freshContextReplayHttpStatus": 200,
+    "sameEventAndPhysicalPostings": true,
+    "sqlProof": {
+      "completedTransfer": 1,
+      "postings": [
+        {
+          "entryId": "59",
+          "delta": -7,
+          "role": "SOURCE"
+        },
+        {
+          "entryId": "60",
+          "delta": 7,
+          "role": "DESTINATION"
+        }
+      ],
+      "outboxCount": 1,
+      "inboxCount": 1,
+      "projectionCount": 1,
+      "activityCount": 2,
+      "activitySum": 0,
+      "matchingPublishedEvent": 1,
+      "matchingInboxEvent": 1,
+      "matchingProjectionEvent": 1,
+      "matchingSignedActivity": 2
+    },
+    "isolatedRowIncrements": {
+      "transfers": 1,
+      "postings": 2,
+      "outbox": 1,
+      "inbox": 1,
+      "projection": 1,
+      "activity": 2
+    },
+    "presenter": {
+      "offlineAfterLoad": true,
+      "narrowViewportWidth": 390,
+      "visibleStageCount": 7,
+      "apiOrWriteRequests": 0,
+      "browserStorageEntries": 0,
+      "viewerCleanup": {
+        "mode": "terminated-owned-viewer"
+      }
+    }
+  }
+}

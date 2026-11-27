@@ -4,7 +4,8 @@
 Requires an already-running, idle demo.py project with its matching ownership
 record, seeded fictional accounts, enabled Kafka workers, Python Playwright and
 an installed Chrome browser. Commits one new seven-FIC transfer while Kafka is
-stopped; verifies browser stop/restart, automatic recovery and redacted export.
+stopped; verifies browser stop/restart, automatic recovery, redacted exports and
+offline comparison of the two real downloaded observations.
 Only the selected project's captured Kafka container is stopped/started. Its
 history is retained, and broker restoration is attempted even when a check fails.
 """
@@ -21,6 +22,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from urllib.parse import urlsplit
 import uuid
 
 REPO = Path(__file__).resolve().parents[1]
@@ -62,7 +64,7 @@ def require_time(value):
     datetime.datetime.fromisoformat(value.replace("Z", "+00:00"))
 
 
-def validate_observation(document, transfer_id, final_delivery, original_proof, key, base):
+def validate_observation(document, transfer_id, expected_delivery, original_proof, key, base):
     require_fields(document, ("kind", "version", "transferId", "exportedAt", "delivery", "ledger"), "observation")
     require(document["kind"] == "tpp.transfer-lab-delivery-observation"
             and type(document["version"]) is int and document["version"] == 1
@@ -72,10 +74,11 @@ def validate_observation(document, transfer_id, final_delivery, original_proof, 
     require_fields(delivery, ("observedAt", "transferStatus", "decidedAt", "deliveryState", "event"), "delivery")
     require_time(delivery["observedAt"])
     require((delivery["transferStatus"], delivery["deliveryState"], delivery["decidedAt"])
-            == ("COMPLETED", "PROJECTED", final_delivery["decidedAt"]), "exported delivery is not settled")
+            == ("COMPLETED", expected_delivery["deliveryState"], expected_delivery["decidedAt"]),
+            "exported delivery differs from the observed transfer state")
     require_fields(delivery["event"], ("eventId", "publicationStatus", "attemptCount", "nextAttemptAt",
                    "lastErrorCode", "publishedAt", "processedAt", "projectedAt"), "event")
-    require(delivery["event"] == final_delivery["event"], "exported event differs from durable final evidence")
+    require(delivery["event"] == expected_delivery["event"], "exported event differs from the browser's durable observation")
     ledger = document["ledger"]
     require_fields(ledger, ("observedAt", "transferStatus", "proofState", "amount", "unit", "postings"), "ledger")
     require_time(ledger["observedAt"])
@@ -97,6 +100,147 @@ def validate_observation(document, transfer_id, final_delivery, original_proof, 
     require(all(value not in text for value in (key, base, original_proof["sourceAccountId"],
                                                original_proof["destinationAccountId"])),
             "observation disclosed a request key, endpoint or account identity")
+
+
+def download_observation(page):
+    # The file is an actual browser download. It is kept only in a private
+    # temporary directory; later imports use precisely these downloaded bytes.
+    with tempfile.TemporaryDirectory(prefix="tpp-watch-observation-") as directory:
+        with page.expect_download() as download:
+            page.locator("#download-observation").click()
+        path = Path(directory) / "observation.json"
+        download.value.save_as(path)
+        path.chmod(0o600)
+        require(path.stat().st_size <= 65536, "observation export exceeded the bounded inspection")
+        raw = path.read_bytes()
+        return raw, json.loads(raw)
+
+
+def compare_observations(browser, base, transfer_id, pending_raw, settled_raw):
+    context = browser.new_context(service_workers="block")
+    forbidden_requests, script_errors = [], []
+
+    def guard_request(route):
+        request = route.request
+        path = urlsplit(request.url).path
+        if request.method == "POST" or path.startswith(("/api/", "/internal/")):
+            forbidden_requests.append({"method": request.method, "path": path})
+            route.abort()
+        else:
+            route.continue_()
+
+    context.route("**/*", guard_request)
+    try:
+        page = context.new_page()
+        page.set_default_timeout(30000)
+        page.on("pageerror", lambda error: script_errors.append(str(error)))
+        require(page.goto(base + "/demo/compare.html").status == 200,
+                "the offline observation comparator is unavailable")
+        storage_count = "Object.keys(localStorage).length + Object.keys(sessionStorage).length"
+        require(page.evaluate(storage_count) == 0,
+                "the independent comparator context did not start without a receipt")
+        policy = page.locator('meta[http-equiv="Content-Security-Policy"]').get_attribute("content")
+        require("connect-src 'none'" in policy, "the comparator page did not disable network connections")
+        context.set_offline(True)
+
+        def import_bytes(selector, name, raw):
+            page.locator(selector).set_input_files({"name": name, "mimeType": "application/json", "buffer": raw})
+
+        import_bytes("#first-report", "outage-observation.json", pending_raw)
+        import_bytes("#second-report", "settled-observation.json", settled_raw)
+        page.locator("#compare-reports").click()
+        page.locator("#compare-result").wait_for(state="visible")
+        require(page.locator("#compare-transfer-id").inner_text().strip() == transfer_id,
+                "the comparator did not retain the real transfer identity")
+        pending, settled = json.loads(pending_raw), json.loads(settled_raw)
+        for side, source in (("first", pending), ("second", settled)):
+            for suffix, timestamp in (("time", source["exportedAt"]), ("delivery-time", source["delivery"]["observedAt"]),
+                                      ("ledger-time", source["ledger"]["observedAt"])):
+                clock = page.locator(f"#compare-{side}-{suffix}")
+                require(clock.get_attribute("datetime") == timestamp and clock.inner_text() == timestamp,
+                        "the comparator did not distinguish export and observation clocks")
+        first_publication = pending["delivery"]["event"]["publicationStatus"]
+        expected_rows = {
+            "delivery": ("changed", "AWAITING_PUBLICATION", "PROJECTED"),
+            "publication": ("changed", first_publication, "PUBLISHED"),
+            "event": ("same", pending["delivery"]["event"]["eventId"], pending["delivery"]["event"]["eventId"]),
+            "ledger": ("same", "BALANCED_PAIR", "BALANCED_PAIR"),
+        }
+        for field, (comparison, first, second) in expected_rows.items():
+            row = page.locator(f'.compare-row[data-field="{field}"]')
+            require(row.get_attribute("data-comparison") == comparison
+                    and first in row.locator(".compare-first").inner_text()
+                    and second in row.locator(".compare-second").inner_text(),
+                    "the comparator changed the expected " + field + " evidence")
+        require(page.locator('.compare-row[data-field="decision"]').get_attribute("data-comparison") == "same",
+                "the comparator changed the committed financial decision")
+        ledger = page.locator('.compare-row[data-field="ledger"]')
+        for posting in pending["ledger"]["postings"]:
+            line = f'#{posting["entryId"]} · {posting["delta"]:+d} {posting["role"]}'
+            require(all(line in ledger.locator(column).inner_text() for column in (".compare-first", ".compare-second")),
+                    "the comparator did not display an exact signed ledger entry")
+        page.set_viewport_size({"width": 390, "height": 844})
+        require(page.evaluate("document.documentElement.scrollWidth") <= 390,
+                "the real observation comparison overflowed the narrow viewport")
+        for field in expected_rows:
+            require(page.locator(f'.compare-row[data-field="{field}"]').is_visible(),
+                    "the narrow comparison hid a required evidence row")
+
+        import_bytes("#first-report", "settled-observation.json", settled_raw)
+        import_bytes("#second-report", "outage-observation.json", pending_raw)
+        page.locator("#compare-reports").click()
+        page.locator("#compare-order-note").wait_for(state="visible")
+        require("PROJECTED" in page.locator('.compare-row[data-field="delivery"] .compare-first').inner_text(),
+                "the comparator silently reordered reversed files")
+
+        # Replacing a file must immediately discard the preceding successful
+        # result. Negative fixtures are copies only; neither real file changes.
+        mismatch = json.loads(settled_raw)
+        mismatch["transferId"] = str(uuid.uuid4())
+        import_bytes("#second-report", "different-transfer.json", json.dumps(mismatch).encode())
+        page.locator("#compare-result").wait_for(state="hidden")
+        page.locator("#compare-reports").click()
+        page.locator("#compare-status[data-state='negative']").wait_for()
+        require(page.locator("#compare-result").is_hidden(),
+                "different transfer IDs retained a stale comparison")
+        receipt = {"kind": "tpp.transfer-lab-recovery", "version": 1}
+        import_bytes("#second-report", "recovery-receipt.json", json.dumps(receipt).encode())
+        page.locator("#compare-reports").click()
+        page.locator("#compare-status[data-state='negative']").wait_for()
+        require(page.locator("#compare-result").is_hidden(),
+                "a recovery receipt was accepted as an observation")
+        page.locator("#clear-reports").click()
+        require(page.locator("#compare-result").is_hidden()
+                and not page.locator("#first-report").input_value()
+                and not page.locator("#second-report").input_value(),
+                "clear retained selected observation files or comparison output")
+        require(page.evaluate(storage_count) == 0,
+                "offline comparison wrote browser storage")
+        require(not forbidden_requests and not script_errors,
+                "offline comparison attempted an API request, POST, or raised a JavaScript error")
+        return {
+            "firstSha256": hashlib.sha256(pending_raw).hexdigest(),
+            "secondSha256": hashlib.sha256(settled_raw).hexdigest(),
+            "realBrowserDownloads": True,
+            "independentContext": True,
+            "browserOfflineForComparison": True,
+            "delivery": {"first": "AWAITING_PUBLICATION", "second": "PROJECTED", "comparison": "changed"},
+            "publication": {"first": first_publication, "second": "PUBLISHED", "comparison": "changed"},
+            "sameEventAndLedger": True,
+            "exportAndObservationTimesShownSeparately": True,
+            "narrowViewportWidth": 390,
+            "reversedFileOrderFlaggedWithoutReordering": True,
+            "staleResultCleared": True,
+            "differentTransferRejected": True,
+            "recoveryReceiptRejected": True,
+            "clearRemovedFiles": True,
+            "apiRequestCount": 0,
+            "postCount": 0,
+            "storageEntries": 0,
+            "scriptErrors": [],
+        }
+    finally:
+        context.close()
 
 
 def execute_check(args, report):
@@ -230,6 +374,11 @@ def execute_check(args, report):
                 for selector in ("#delivery-next-at", "#delivery-observed-at"):
                     require(page.locator(selector).is_visible() and page.locator(selector).inner_text().strip(),
                             "delivery observation/retry field is unavailable")
+                pending_raw, pending_observation = download_observation(page)
+                validate_observation(pending_observation, transfer_id, browser_during, original_proof, key, base)
+                require(pending_observation["delivery"]["deliveryState"] == "AWAITING_PUBLICATION"
+                        and pending_observation["delivery"]["event"]["publicationStatus"] in ("PENDING", "CLAIMED"),
+                        "the first downloaded observation was not captured during the real Kafka outage")
                 mobile = browser.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True)
                 try:
                     mobile.on("request", lambda request: browser_posts.append(request.url)
@@ -281,18 +430,12 @@ def execute_check(args, report):
                 require(page.locator("#publication-state").inner_text().strip() == "PUBLISHED"
                         and "PROJECTED" in page.locator("#projection-state").inner_text(),
                         "settled page did not show both publication and projection success")
-                with tempfile.TemporaryDirectory(prefix="tpp-watch-observation-") as directory:
-                    with page.expect_download() as download:
-                        page.locator("#download-observation").click()
-                    path = Path(directory) / "observation.json"
-                    download.value.save_as(path)
-                    path.chmod(0o600)
-                    raw = path.read_bytes()
-                    require(len(raw) <= 65536, "observation export exceeded the bounded inspection")
-                    exported = json.loads(raw)
-                    validate_observation(exported, transfer_id, final_delivery, original_proof, key, base)
-                    report["observation"] = exported
-                    report["observationSha256"] = hashlib.sha256(raw).hexdigest()
+                settled_raw, exported = download_observation(page)
+                validate_observation(exported, transfer_id, final_delivery, original_proof, key, base)
+                report["observation"] = exported
+                report["observationSha256"] = hashlib.sha256(settled_raw).hexdigest()
+                report["observationComparison"] = compare_observations(
+                    browser, base, transfer_id, pending_raw, settled_raw)
                 require(page.evaluate("Object.keys(localStorage).length") == 0,
                         "read-only browser unexpectedly created a saved receipt")
                 require(page.locator("#watch-stop").is_disabled(), "settled follow left its timer active")

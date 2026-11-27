@@ -30,10 +30,11 @@ jobs:
           python3 scripts/summarize-phase3.py --help
           python3 scripts/demo.py --help
           python3 scripts/demo.py --dry-run
+          python3 scripts/failure-drill.py --help
           python3 scripts/security-patch-comparison.py --help
           python3 -m unittest discover -s scripts -p 'test_*.py'
           python3 scripts/render-showcase.py --check
-          node --test scripts/test-delivery-observation.cjs
+          node --test scripts/test-delivery-observation.cjs scripts/test-observation-compare.cjs
       - name: Build runtime image
         run: docker build -t transaction-processing-platform:ci .
       - name: Guarded normal and broker-outage demos
@@ -70,7 +71,7 @@ jobs:
           google-chrome --version
           python3 -m venv "$RUNNER_TEMP/tpp-playwright"
           "$RUNNER_TEMP/tpp-playwright/bin/python" -m pip install --disable-pip-version-check playwright==1.57.0
-      - name: Find the affected transfer in Chrome and verify real Kafka recovery
+      - name: Verify Kafka recovery and compare the real before-and-after exports in Chrome
         timeout-minutes: 6
         env:
           COMPOSE_PROJECT_NAME: tpp-ci-${{ github.run_id }}-${{ github.run_attempt }}
@@ -80,6 +81,12 @@ jobs:
         timeout-minutes: 5
         run: |
           "$RUNNER_TEMP/tpp-playwright/bin/python" scripts/verify-browser-demo.py --base-url http://127.0.0.1:18080 --channel chrome --output benchmark-results/ci-browser-demo.json
+      - name: Verify one transfer through both failure boundaries
+        timeout-minutes: 4
+        env:
+          COMPOSE_PROJECT_NAME: tpp-ci-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          "$RUNNER_TEMP/tpp-playwright/bin/python" scripts/failure-drill.py --project "$COMPOSE_PROJECT_NAME" --base-url http://127.0.0.1:18080 --output benchmark-results/ci-failure-drill.json
       - name: Retain test reports
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7 (Node 24)

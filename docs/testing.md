@@ -67,6 +67,8 @@ The [delivery-follow acceptance record](verification/delivery-follow.json) docum
 
 The [delivery-attention acceptance record](verification/delivery-attention.json) includes real queue discovery and removal through a Kafka outage, the separate failed-refresh check, and the final 115 Java, 54 Python and 10 Node results.
 
+The same Chrome outage verifier downloads the real pending and recovered observations and compares them in a separate, offline browser context. It checks that delivery and publication change while the event ID and signed ledger entries match. It also checks that export and reading times are shown separately, replacing a file clears the previous result, and the comparison does not contact the API or use browser storage. See the [observation comparison acceptance record](verification/observation-comparison.json). Run `node --test scripts/test-observation-compare.cjs` for schema, exact entry ID, incomplete-report, and timestamp edge cases.
+
 The [ledger-proof acceptance record](verification/ledger-proof.json) includes the exact tested image and assets, a real Kafka outage with unchanged ledger evidence, real Chrome recovery and direct PostgreSQL counts. The full local run passed 109 Java and 54 Python tests.
 
 The [v0.2.2 browser acceptance record](verification/browser-demo.json) is the previous verification snapshot. It includes the real network failure, unchanged saved receipt after reload, HTTP 200 replay, exact PostgreSQL evidence and final regression counts.
@@ -82,6 +84,8 @@ python3 scripts/verify-delivery-watch.py --project tpp-portfolio-demo \
 ```
 
 Use the project name and loopback URL from the launcher. The verifier checks the launcher's ownership marker, the local Docker endpoint, the selected app binding and seeded identities before stopping the owned Kafka container. It submits one fictional 7-FIC transfer, watches it in Chrome, and restores the same broker even if validation fails. The application and database are not restarted. Use an isolated stack and avoid concurrent transfer or Docker operations during the test. The Chrome client itself sends no POST and the observation export contains no recovery credentials. CI runs this alongside the browser history and recovery checks.
+
+The [Transfer Failure Drill](demo.md#run-the-transfer-failure-drill) separately exercises both failure boundaries on **one** transfer. While Kafka is stopped, the browser loses a real committed reply. A second browser session imports its private receipt and explicitly replays the original request. The drill reads both account ledgers before and after the replay, follows the recovered event to projection, and independently checks original posting IDs and row increments in PostgreSQL. The presenter only receives allowlisted evidence. Use `--capture-dir` with a new directory to retain presenter frames without recording the receipt UI. See the [live drill acceptance](verification/transfer-failure-drill.json).
 
 ## Release history and Docker boundary
 
